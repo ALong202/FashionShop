@@ -1,13 +1,13 @@
-# FashionShop
+# Setup project in Visual Studio Code
 
 Project folder is located at `D:/FashionShop`:
 
 1. **Open a Terminal or Command Prompt**: 
-   - On Windows, you can open the Command Prompt by pressing `Win + R`, typing `cmd`, and pressing Enter.
+   - On Windows, open the Command Prompt by pressing `Win + R`, typing `cmd`, and pressing Enter.
    - Alternatively, you can use PowerShell.
 
 2. **Navigate to your project directory**:
-   Use the `cd` command to change the directory to your project folder:
+   Use the `cd` command to change the directory to project folder:
 
    ```bash
    cd D:/FashionShop
@@ -21,10 +21,10 @@ Project folder is located at `D:/FashionShop`:
    ```
 
 4. **Configure environment variables**:
-   If your project uses environment variables stored in a `.env` file, make sure to create a `.env` file in your project directory (`D:/FashionShop`) and set the necessary environment variables.
+   If project uses environment variables stored in a `.env` file, make sure to create a `.env` file in project directory (`D:/FashionShop`) and set the necessary environment variables.
 
 5. **Run your project**:
-   If your `package.json` file contains a `"start"` script to run your application, use the following command:
+   If `package.json` file contains a `"start"` script to run your application, use the following command:
 
    ```bash
    npm start
@@ -39,4 +39,4 @@ Project folder is located at `D:/FashionShop`:
    npm test
    ```
 
-By following these steps, your project should be up and running on your new computer. If you encounter any issues during the process, double-check that Node.js and npm are properly installed and that there are no errors during the dependency installation phase.
+By following these steps, project should be up and running on your new computer. If you encounter any issues during the process, double-check that Node.js and npm are properly installed and that there are no errors during the dependency installation phase.
