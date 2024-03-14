@@ -2,13 +2,11 @@
   "name": "fashionshop",
   "type": "module",
   "version": "1.0.0",
-  "description": "FashionShop",
+  "description": "FashionShop. nodemon giup auto-restart app khi co su thay doi ma nguon. $ npm start de goi node backend. $ npm run dev de goi nodemon backend",
   "main": "app.js",
   "scripts": {
     "start": "node backend/app.js",
-    "start_description": "$ npm start để gọi node backend",
-    "dev": "nodemon backend/app.js",
-    "dev_description": "$ npm run dev để gọi nodemon backend"
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js"
   },
   "author": "HungNamAnhQuoc",
   "license": "ISC",
@@ -18,7 +16,6 @@
     "mongoose": "^8.2.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0",
-    "description": "Giúp auto-restart app khi có sự thay đổi mã nguồn"
+    "nodemon": "^3.1.0"
   }
 }
