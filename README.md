@@ -1,13 +1,12 @@
 ## BẢNG MỤC LỤC
 * [Hướng dẫn setup project trên Visual Studio code](#SetupProjectinVisualStudioCode)
 * [Quy định chung](#quydinhchung)
-* [ ](#giangvien)
+<!-- * [ ](#giangvien) -->
 * [ Thành viên nhóm](#thanhvien)
-* [ Đồ án môn học](#doan)
+<!-- * [ Đồ án môn học](#doan) -->
 
+## Setup project in Visual Studio Code
 <a name="SetupProjectinVisualStudioCode"></a>
-# Setup project in Visual Studio Code
-
 Project folder is located at `D:/FashionShop`:
 
 1. **Open a Terminal or Command Prompt**: 
@@ -49,8 +48,18 @@ Project folder is located at `D:/FashionShop`:
 
 By following these steps, project should be up and running on your new computer. If you encounter any issues during the process, double-check that Node.js and npm are properly installed and that there are no errors during the dependency installation phase.
 
+## Quy định chung:
 <a name="quydinhchung"></a>
-# Quy định chung:
+
 1. Tab khi thụt lề: 4 spaces (chỉnh trong 'Tab Size' của Setting hoặc Spaces ở bảng properties bên dưới cùng bên trái của Visual Studio Code)
 2. Remark code đầy đủ: tiếng Việt (có thể dùng keyword tiếng Anh)
 3. Tên biến default nhưng các nội dung hiển thị 100% tiếng Việt có dấu.
+
+## THÀNH VIÊN NHÓM
+<a name="thanhvien"></a>
+| STT    | MSSV          | Họ và Tên              | Github                                               | Email                   |
+| ------ |:-------------:| ----------------------:|-----------------------------------------------------:|-------------------------:
+| 1      | 22540008      | Trần Quang Hùng        |[lphuong304](https://github.com/ricardotran92)        |22540008@gm.uit.edu.vn   |
+| 2      | 22540001      | Nguyễn Ngọc Ánh        |[DR12719](https://github.com/DR12719)                 |22540001@gm.uit.edu.vn   |
+| 3      | 22540012      | Phạm Tiến Nam          |[ALong202](https://github.com/ALong202)               |22540012@gm.uit.edu.vn   |
+| 4      | 22540017      | Phạm Minh Quốc         |[pmquoc-uit](https://github.com/pmquoc-uit)           |22540017@gm.uit.edu.vn   |
