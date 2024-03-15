@@ -53,8 +53,8 @@ By following these steps, project should be up and running on your new computer.
 
 1. Tab khi thụt lề: 4 spaces (chỉnh trong 'Tab Size' của Setting hoặc Spaces ở thanh properties dưới cùng bên trái của Visual Studio Code)
 2. Remark code đầy đủ: tiếng Việt (có thể dùng keyword tiếng Anh)
-3. *Tên biến (bao gồm cả thuộc tính database trong MongoDB) sẽ được format ở dạng tiếng Anh.*
-   *Các nội dung có hiển thị ra màn hình 100% tiếng Việt có dấu.*
+3. * Tên biến (bao gồm cả thuộc tính database trong MongoDB) sẽ được format ở dạng tiếng Anh.
+   * Các nội dung có hiển thị ra màn hình 100% tiếng Việt có dấu.
 
 ## THÀNH VIÊN NHÓM
 <a name="thanhvien"></a>
