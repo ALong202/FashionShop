@@ -39,12 +39,12 @@ Project folder is located at `D:/FashionShop`:
 
    If you have a different script for running your application, replace `"start"` with the appropriate script name.
 
-6. **Testing**:
+<!-- 6. **Testing**:
    If you want to run tests, execute the test script defined in your `package.json`:
 
    ```bash
    npm test
-   ```
+   ``` -->
 
 By following these steps, project should be up and running on your new computer. If you encounter any issues during the process, double-check that Node.js and npm are properly installed and that there are no errors during the dependency installation phase.
 
