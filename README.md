@@ -1,3 +1,11 @@
+## BẢNG MỤC LỤC
+* [Hướng dẫn setup project trên Visual Studio code](#SetupProjectinVisualStudioCode)
+* [Quy định chung](#quydinhchung)
+* [ ](#giangvien)
+* [ Thành viên nhóm](#thanhvien)
+* [ Đồ án môn học](#doan)
+
+<a name="SetupProjectinVisualStudioCode">
 # Setup project in Visual Studio Code
 
 Project folder is located at `D:/FashionShop`:
@@ -40,3 +48,9 @@ Project folder is located at `D:/FashionShop`:
    ```
 
 By following these steps, project should be up and running on your new computer. If you encounter any issues during the process, double-check that Node.js and npm are properly installed and that there are no errors during the dependency installation phase.
+
+<a name="quydinhchung">
+# Quy định chung:
+1. Tab khi thụt lề: 4 spaces (chỉnh trong 'Tab Size' của Setting hoặc Spaces ở bảng properties bên dưới cùng bên trái của Visual Studio Code)
+2. Remark code đầy đủ: tiếng Việt (có thể dùng keyword tiếng Anh)
+3. Tên biến default nhưng các nội dung hiển thị 100% tiếng Việt có dấu.
