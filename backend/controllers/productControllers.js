@@ -3,7 +3,7 @@ Hàm điều khiển (controller functions) cho các file routes và xác địn
 Các điều khiển và các logic cho tài nguyên sản phẩm (product resource)
 */
 export const getProducts = async (req, res) => {
-    res.status(200).json({
-        message: "Tất cả sản phẩm",
-    })
-}
+  res.status(200).json({
+    message: "Tất cả sản phẩm",
+  });
+};

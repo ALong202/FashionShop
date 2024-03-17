@@ -21,7 +21,7 @@ app.use("/api", productRoutes);
 
 // app instance đăng ký routes và listen ở port 3000.
 app.listen(process.env.PORT, () => {
-    console.log(
-        `Server đang chạy ở port ${process.env.PORT} ở chế độ ${process.env.NODE_ENV}`
-    );
+  console.log(
+    `Server đang chạy ở port ${process.env.PORT} ở chế độ ${process.env.NODE_ENV}`
+  );
 });
