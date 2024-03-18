@@ -56,6 +56,16 @@ Project được cài cài đặt tại `D:/FashionShop`:
    npm install
    ```
 
+8. **Extension**:
+   Các thư viện cần cài đặt:
+   * Auto Rename Tag
+   * Bootstrap 5 Quick snippets
+   * ES7+ React/Redux/React-Native/JS snippets
+   * HTML CSS Support
+   * Live Server
+   * markdownlint
+   * Prettier - Code formatter
+
 ## Quy định chung
 
 <a name="quydinhchung"></a>

@@ -1,5 +1,7 @@
 // import logo from './logo.svg';
-// import './App.css';
+import './App.css';
+import Footer from "./component/layout/Footer";
+import Header from "./component/layout/Header";
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <h1>FashionShop</h1>
+      <Header/>
+      <Footer/>
     </div>
   );
 }
