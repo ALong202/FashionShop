@@ -3,6 +3,7 @@ import './App.css';
 import Home from './component/Home';
 import Footer from "./component/layout/Footer";
 import Header from "./component/layout/Header";
+import './custom-theme.min.css';
 
 
 
