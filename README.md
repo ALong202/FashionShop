@@ -9,46 +9,52 @@
 ## Setup project in Visual Studio Code
 
 <a name="SetupProjectinVisualStudioCode"></a>
-Project folder is located at `D:/FashionShop`:
+Project được cài cài đặt tại `D:/FashionShop`:
 
 1. **Open a Terminal or Command Prompt**:
-   * On Windows, open the Command Prompt by pressing `Win + R`, typing `cmd`, and pressing Enter.
-   * Alternatively, you can use PowerShell.
+   * Trên Windows, mở Command Prompt bằng tổ hợp phím `Win + R`, gõ `cmd`, và nhấn Enter.
+   * Lựa chọn khác, có thể sử dụng PowerShell.
 
 2. **Navigate to your project directory**:
-   Use the `cd` command to change the directory to project folder:
+   Sử dụng lệnh `cd` để thay đổi đường dẫn đến project folder:
 
    ```bash
    cd D:/FashionShop
    ```
 
 3. **Install dependencies**:
-   Run the following command to install the dependencies listed in your `package.json` file:
+   Sử dụng lệnh sau để cài the dependencies được liệt kê trong `package.json` file:
 
    ```bash
    npm install
    ```
 
-4. **Configure environment variables**:
-   If project uses environment variables stored in a `.env` file, make sure to create a `.env` file in project directory (`D:/FashionShop`) and set the necessary environment variables.
+4. **Configure environment variables (Skip)**:
+   Nếu project sử dụng environment variables lưu ở trong một `.env` file, đảm bảo rằng tạo một `.env` file trong project directory (`D:/FashionShop`)  và theit61 lập các environment variables cần thiết.
 
 5. **Run your project**:
-   If `package.json` file contains a `"start"` script to run your application, use the following command:
+   Nếu `package.json` file chứa một `"start"` script để chạy ứng dụng, sử dụng lệnh sau:
 
    ```bash
    npm start
    ```
 
-   If you have a different script for running your application, replace `"start"` with the appropriate script name.
+   Nếu bạn có script khác để chạy ứng dụng, thay `"start"` với appropriate script name.
 
-<!-- 6. **Testing**:
-   If you want to run tests, execute the test script defined in your `package.json`:
+6. **Testing (skip)**:
+   Để run tests, thực thi test script được định nghĩa in your `package.json`:
 
    ```bash
    npm test
-   ``` -->
+   ```
 
-By following these steps, project should be up and running on your new computer. If you encounter any issues during the process, double-check that Node.js and npm are properly installed and that there are no errors during the dependency installation phase.
+7. **Install FRONTEND dependencies**:
+   Thực thi các lệnh sau trong git bash:
+
+   ```bash
+   cd /d/FashionShop/frontend
+   npm install
+   ```
 
 ## Quy định chung
 
