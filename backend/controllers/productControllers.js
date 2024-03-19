@@ -1,4 +1,5 @@
 import Product from "../models/product.js"; // Import model Product từ đường dẫn ../models/product.js
+import ErrorHandler from "../utils/errorHandler.js";
 
 /*
 Hàm điều khiển (controller functions) cho các file routes và xác định route
@@ -25,10 +26,8 @@ export const getProductDetail = async (req, res) => { // Khai báo hàm điều 
     const product = await Product.findById(req?.params?.id ); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
 
     if(!product) {
-        return res.status(404).json({
-            error: "Sản phẩm không tồn tại",
-        });        
-    };
+        return next(new ErrorHandler("Không tìm thấy sản phẩm", 404));   
+    }
 
     res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
         product, // Trả về thông tin của sản phẩm mới được tạo
@@ -39,11 +38,9 @@ export const getProductDetail = async (req, res) => { // Khai báo hàm điều 
 export const updateProduct = async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
     let product = await Product.findById(req?.params?.id ); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
 
-    if(!product) {
-        return res.status(404).json({
-            error: "Sản phẩm không tồn tại",
-        });         
-    };
+    if(!product) {      
+        return next(new ErrorHandler("Không tìm thấy sản phẩm", 404));   
+    }
 
     product = await Product.findByIdAndUpdate(req?.params?.id, req.body, {
         new: true,
@@ -58,15 +55,13 @@ export const updateProduct = async (req, res) => { // Khai báo hàm điều khi
 
 
 //Xóa sản phẩm với đường dẫn => /products/:id
-export const deleteProduct = async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+export const deleteProduct = async (req, res, next) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
   const product = await Product.findById(req?.params?.id ); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
 
   if(!product) {
     //throw new error()
-      return res.status(404).json({
-          error: "Sản phẩm không tồn tại",
-      });         
-  };
+      return next(new ErrorHandler("Không tìm thấy sản phẩm", 404));   
+  }
 
   await product.deleteOne();
 
