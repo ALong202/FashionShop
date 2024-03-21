@@ -8,6 +8,9 @@ const app = express();
 import dotenv from "dotenv";
 
 import { connectDatabase } from "./config/dbConnect.js"; // tự hiện khi gõ lệnh connectDatabase()
+import errorsMiddleware from "./middlewares/errors.js";
+
+
 
 dotenv.config({ path: "backend/config/config.env" });
 
@@ -18,6 +21,8 @@ connectDatabase();
 import productRoutes from "./routes/products.js";
 
 app.use("/api", productRoutes);
+
+app.use(errorsMiddleware);
 
 // app instance đăng ký routes và listen ở port 3000.
 app.listen(process.env.PORT, () => {
