@@ -1,22 +1,21 @@
 {
-    "name": "fashionshop",
-    "type": "module",
-    "version": "1.0.0",
-    "description": "FashionShop. nodemon giup auto-restart app khi co su thay doi ma nguon. $ npm start de goi node backend. $ npm run dev de goi nodemon backend",
-    "main": "app.js",
-    "scripts": {
-        "start": "node backend/app.js",
-        "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js",
-        "seeder": "node backend/seeder/seeder.js"
-    },
-    "author": "HungNamAnhQuoc",
-    "license": "ISC",
-    "dependencies": {
-        "dotenv": "^16.4.5",
-        "express": "^4.18.3",
-        "mongoose": "^8.2.1"
-    },
-    "devDependencies": {
-        "nodemon": "^3.1.0"
-    }
+  "name": "fashionshop",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "FashionShop. nodemon giup auto-restart app khi co su thay doi ma nguon. $ npm start de goi node backend. $ npm run dev de goi nodemon backend",
+  "main": "app.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js"
+  },
+  "author": "HungNamAnhQuoc",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "mongoose": "^8.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
 }
