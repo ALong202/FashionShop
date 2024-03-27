@@ -6,7 +6,8 @@
     "main": "app.js",
     "scripts": {
         "start": "node backend/app.js",
-        "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js"
+        "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js",
+        "seeder": "node backend/seeder/seeder.js"
     },
     "author": "HungNamAnhQuoc",
     "license": "ISC",
