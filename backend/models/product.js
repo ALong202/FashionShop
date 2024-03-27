@@ -69,7 +69,7 @@ const productSchema = new mongoose.Schema(
     },
 
     size: {
-      type: String,
+      type: [String],
       required: [true, "Please enter product size"],
       enum: {
         values: ["S", "M", "L","F"],
@@ -92,8 +92,8 @@ const productSchema = new mongoose.Schema(
       {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-          required: true,
+          // ref: "User", // Chỉ active khi project go-live
+          // required: true,
         },
         rating: {
           type: Number,
@@ -108,8 +108,8 @@ const productSchema = new mongoose.Schema(
 
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+      // ref: "User", // Chỉ active khi project go-live
+      // required: true,
     },
   },
   

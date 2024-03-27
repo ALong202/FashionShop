@@ -2,6 +2,7 @@ export default [
   
   //1...................................... 
   {
+    productID: 100001,
     name: "ÁO SƠ MI - AR230315DT",
     price: 580000,
     description:
@@ -32,6 +33,7 @@ export default [
 
   //2..........................................
   {
+    productID: 100002,
     name: "Áo Polo - AP252315D",
     price: 790000,
     description:
@@ -62,6 +64,7 @@ export default [
 
   //3.  
   {
+    productID: 100003,
     name: "ÁO T-SHIRT - TSN231441",
     price: 370000,
     description:
@@ -92,6 +95,7 @@ export default [
 
   //4.
   {
+    productID: 100004,
     name: "ÁO LEN - ALD231656",
     price: 545000,
     description:
@@ -122,6 +126,7 @@ export default [
 
     //5. 
   {
+    productID: 100005,
     name: "QUẦN JEANS - QJS230161",
     price: 625000,
     description:
@@ -148,10 +153,11 @@ export default [
 
   //6.
   {
+    productID: 100006,
     name: "QUẦN TÂY - QS231535",
     price: 699000,
     description:
-      "",
+      " Áo sơ mi dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
     ratings: 4.1,
     images: [
       {
@@ -165,7 +171,7 @@ export default [
     ],
     category: "Quần",
     subCategory: "Quần tây",
-    color: "Be",
+    color: "Trắng",
     size: ["S","M", "L"], 
     stock: 1123,
     numOfReviews: 6,
@@ -174,6 +180,7 @@ export default [
 
   //7.
   {
+    productID: 100007,
     name: "THẮT LƯNG - BELT232615",
     price: 799000,
     description: 
@@ -196,10 +203,11 @@ export default [
 
   //8.
   {
+    productID: 100008,
     name: "CÀ VẠT - CV221500",
     price: 499000,
     description:
-      "",
+      " Áo sơ mi dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
     ratings: 4.9,
     images: [
       {
@@ -219,6 +227,7 @@ export default [
 
   //9.
   {
+    productID: 100009,
     name: "TẤT - TA221475",
     price: 39000,
     description:
