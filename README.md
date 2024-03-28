@@ -89,6 +89,7 @@ Project được cài cài đặt tại `D:/FashionShop`:
 4. Tên hàm: động từ / cụm động từ
 5. Biến trong JavaScript dùng let thay vì dùng var
 6. Dùng " " thay vì dùng ' '
+
 **Lưu ý: tuân thủ các yêu cầu/ mong đợi của thầy về tiêu chí format.**
 
 
