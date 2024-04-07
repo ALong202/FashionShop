@@ -26,7 +26,7 @@ const Footer = () => {
   <li className="ft-hotline">CÔNG TY CỔ PHẦN THỜI TRANG FASHIONSHOP <br/>Hotline: 1900 9090 <br/>8:30 - 17:00 tất cả các ngày trong tuần.
   <p>&nbsp;</p>
   </li>
-  <li className="ft-locator"><strong>VP Trung tâm:</strong> Đường Hàn Thuyên, khu phố 6 P, Thủ Đức, Thành phố Hồ Chí Minh</li>
+  <li className="ft-locator"><strong>VP Chính:</strong> Đường Hàn Thuyên, khu phố 6 P, Thủ Đức, Thành phố Hồ Chí Minh</li>
   </ul>
   </div>
   </div>
