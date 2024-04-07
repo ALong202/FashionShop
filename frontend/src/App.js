@@ -1,6 +1,8 @@
-// import logo from './logo.svg';
 import './App.css';
+// React router DOM quản lý routing. Router xác định các routes. Route: URL path
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './component/Home';
+
 import Footer from "./component/layout/Footer";
 import Header from "./component/layout/Header";
 // import './custom-theme.min.css';
@@ -9,21 +11,24 @@ import Header from "./component/layout/Header";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       {/* Page header từ ./component/layout/Footer */}
       <Header/>
 
       <div className="container">
-        <Home/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+
       </div>
       
-
-      
-  
 
       {/* Page Footer từ ./component/layout/Header*/}
       <Footer/>
     </div>
+    </Router>
+    
   );
 }
 
