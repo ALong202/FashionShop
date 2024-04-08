@@ -13,20 +13,20 @@ const userSchema = new mongoose.Schema(
 
     name: {
       type: String,
-      required: [true, "Please enter your name"],
-      maxLength: [50, "Your name cannot exceed 50 characters"],
+      required: [true, "Vui lòng nhập tên của bạn."],
+      maxLength: [50, "Tên của bạn không thể vượt quá 50 ký tự."],
     },
     
     password: {
       type: String,
-      required: [true, "Please enter your password"],
-      minLength: [6, "Your password must be longer than 6 characters"],
+      required: [true, "Vui lòng nhập mật khẩu của bạn"],
+      minLength: [6, "Mật khẩu của bạn phải dài hơn 6 ký tự."],
       select: false,
     },
 
     email: {
       type: String,
-      required: [true, "Please enter your email"],
+      required: [true, "Vui lòng nhập email."],
       unique: true,
     },
 
@@ -59,7 +59,7 @@ const userSchema = new mongoose.Schema(
 
 
 
-// Encrypting password before saving the user - Mã hoá mật khẩu trước khi lưu
+// Mã hoá mật khẩu trước khi lưu
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -68,30 +68,30 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-// Return JWT Token - Trả về JWT Token:
+// Trả về JWT Token:
 userSchema.methods.getJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_TIME,
   });
 };
 
-// Compare user password - So sánh mật khẩu người dùng
+// So sánh mật khẩu người dùng
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-// Generate password reset token - Tạo token để cài đặt lại mật khẩu
+// Tạo token để cài đặt lại mật khẩu
 userSchema.methods.getResetPasswordToken = function () {
-  // Gernerate token
+  // Tạo token
   const resetToken = crypto.randomBytes(20).toString("hex");
 
-  // Hash and set to resetPasswordToken field 
+  // Cài đặt lại mật khẩu
   this.resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
 
-  // Set token expire time 
+  // Đặt thời gian hết hạn mã thông báo
   this.resetPasswordExpire = Date.now() + 30 * 60 * 1000;
 
   return resetToken;

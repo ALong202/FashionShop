@@ -56,10 +56,10 @@ const orderSchema = new mongoose.Schema(
 
     paymentMethod: {
       type: String,
-      required: [true, "Please select payment method"],
+      required: [true, "Vui lòng chọn hình thức thanh toán."],
       enum: {
         values: ["COD", "Card"],
-        message: "Please select: COD or Card",
+        message: "Vui lòng chọn: COD hoặc Card.",
       },
     },
 
@@ -89,7 +89,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       enum: {
         values: ["Processing", "Shipped", "Delivered"],
-        message: "Please select correct order status",
+        message: "Vui lòng chọn trạng thái giao hàng.",
       },
       default: "Processing",
     },
