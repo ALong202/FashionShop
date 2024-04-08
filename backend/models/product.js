@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema(
   {
      productID: {
-      type: Number,
+      type: String,
       required: true,
       unique: true, 
     },
@@ -51,7 +51,7 @@ const productSchema = new mongoose.Schema(
       subCategory: {
           type: String,
           enum: {
-              "Nữ": ["Áo", "Chân váy & Đầm","Quần","Phụ kiện"],
+              "Nữ": ["Áo", "Chân váy & Đầm","Quần"],
               "Nam": ["Áo", "Quần", "Phụ kiện"],
               "Trẻ em": ["Áo", "Chân váy & Đầm","Quần","Phụ kiện"]
           },
@@ -59,7 +59,7 @@ const productSchema = new mongoose.Schema(
           subSubCategory: {
               type: String,
               enum: {
-                  "Áo": ["Áo sơ mi","Áo thun","Áo Polo"],
+                  "Áo": ["Áo sơ mi","Áo thun","Áo Polo","Áo T-shirt"],
                   "Chân váy & Đầm": ["Chân váy", "Đầm"],
                   "Quần": ["Quần tây", "Quần short", "Quần Jeans"],
                   "Phụ kiện": ["Thắt lưng", "Cà vạt"," Tất"]
@@ -74,7 +74,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, "Vui lòng nhập màu sản phẩm."],
       enum: {
-        values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng"],
+        values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng","Hồng","Cam","Xám"],
         message: "Vui lòng chọn một màu hợp lệ (Trắng, Đen, Đỏ, Xanh, Vàng)",
       },
     },
