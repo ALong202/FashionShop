@@ -10,19 +10,19 @@ const productSchema = new mongoose.Schema(
 
     name: {
       type: String,
-      required: [true, "Please enter product name"],
-      maxLength: [200, "Product name cannot exceed 200 characters"],
+      required: [true, "Vui lòng nhập tên sản phẩm."],
+      maxLength: [200, "Tên sản phẩm không được vượt quá 200 ký tự."],
     },
 
     price: {
       type: Number,
-      required: [true, "Please enter product price"],
+      required: [true, "Vui lòng nhập giá sản phẩm."],
       min: 0,
     },
 
     description: {
       type: String,
-      required: [true, "Please enter product description"],
+      required: [true, "Vui lòng nhập mô tả sản phẩm."],
     },
 
     ratings: {
@@ -46,41 +46,52 @@ const productSchema = new mongoose.Schema(
 
     category: {
       type: String,
-      required: [true, "Please enter product category"],
-      enum: ["Áo", "Quần", "Phụ kiện"],
+      required: [true, "Vui lòng nhập danh mục sản phẩm"],
+      enum: ["Nữ", "Nam","Trẻ em"],
       subCategory: {
-        type: String,
-        enum: {
-          "Áo": ["Áo sơ mi", "Áo Polo", "Áo T-shirt", "Áo len"],
-          "Quần": ["Quần Jeans","Quần tây"],
-          "Phụ kiện": ["Cà vạt", "Thắt lưng", "Tất"],
-        },
-        message: "Please select correct category",
+          type: String,
+          enum: {
+              "Nữ": ["Áo", "Chân váy & Đầm","Quần","Phụ kiện"],
+              "Nam": ["Áo", "Quần", "Phụ kiện"],
+              "Trẻ em": ["Áo", "Chân váy & Đầm","Quần","Phụ kiện"]
+          },
+          message: "Vui lòng chọn danh mục con",
+          subSubCategory: {
+              type: String,
+              enum: {
+                  "Áo": ["Áo sơ mi","Áo thun","Áo Polo"],
+                  "Chân váy & Đầm": ["Chân váy", "Đầm"],
+                  "Quần": ["Quần tây", "Quần short", "Quần Jeans"],
+                  "Phụ kiện": ["Thắt lưng", "Cà vạt"," Tất"]
+
+              },
+              message: "Vui lòng chọn danh mục phụ của danh mục con"
+          }
       }
-    },
+  },
 
     color: {
       type: String,
-      required: [true, "Please enter product color"],
+      required: [true, "Vui lòng nhập màu sản phẩm."],
       enum: {
-        values: ["Trắng", "Đen", "Đỏ", "Xanh"],
-        message: "Please select a valid color (Trắng, Đen, Đỏ, Xanh)",
+        values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng"],
+        message: "Vui lòng chọn một màu hợp lệ (Trắng, Đen, Đỏ, Xanh, Vàng)",
       },
     },
 
     size: {
       type: [String],
-      required: [true, "Please enter product size"],
+      required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
       enum: {
         values: ["S", "M", "L","F"],
-        message: "Please select a valid size (S, M, L)",
+        message: "Vui lòng chọn một size hợp lệ (S, M, L)",
       },
     },
     
 
     stock: {
       type: Number,
-      required: [true, "Please enter product stock"],
+      required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
     },
 
     numOfReviews: {
