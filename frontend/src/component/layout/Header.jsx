@@ -1,3 +1,5 @@
+// 'racfe' để tạo functional component với export
+
 import React from 'react'
 
 const Header = () => {
