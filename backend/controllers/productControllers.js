@@ -8,7 +8,7 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 export const getProducts = async (req, res) => { // Khai báo hàm điều khiển getProducts nhận req và res làm tham số
     const products = await Product.find(); // Tìm tất cả các sản phẩm từ cơ sở dữ liệu và gán cho biến products
     res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa danh sách sản phẩm
-        message: "Danh sach sản phẩm",
+        // message: "Danh sach sản phẩm",
         products, // Trả về danh sách sản phẩm
         
     }); 
