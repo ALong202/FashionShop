@@ -12,5 +12,7 @@ export default (err,req, res, next) => {
     };
     res.status(error.statusCode).json({
         message: error.message,
+       // error:err,
+        //stack: err?.stack,
     });
 };
