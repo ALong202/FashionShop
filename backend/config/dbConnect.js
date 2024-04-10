@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 // Khai báo hàm (không nhận tham số đầu vào) và xuất ra ngoài dùng cho module khác
 export const connectDatabase = () => {
-  let DB_URI = "mongodb+srv://22540001:123456789a@fashionshop.knbuosh.mongodb.net/FashionShop?retryWrites=true&w=majority&appName=FashionShop";
+  let DB_URI = "";
 
   if (process.env.NODE_ENV === "NORMAL") DB_URI = process.env.DB_LOCAL_URI;
   if (process.env.NODE_ENV === "DEVELOPMENT") DB_URI = process.env.DB_URI;
