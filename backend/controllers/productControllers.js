@@ -8,20 +8,6 @@ Hàm điều khiển (controller functions) cho các file routes và xác địn
 Các điều khiển và các logic cho tài nguyên sản phẩm (product resource)
 */
 
-/*
-export const getProducts = async (req, res) => {
-  const products = await Product.find();
-
-  res.status(200).json({
-    products,
-  });
-};
-
-
-*/
-
-
-
 export const getProducts = async (req, res) => { // Khai báo hàm điều khiển getProducts nhận req và res làm tham số
 
   const apiFilters = new APIFilters(Product, req.query).search();
