@@ -21,12 +21,13 @@ router.route("/products").get(getProducts);
 //Router route(dẫn) đến mục "/products" để post sản phẩm mới
 router.route("/admin/products").post(newProduct);
 
+//Router route(dẫn) đến mục "/products" để get thông tin 1 sản phẩm theo id cho sẵn
 router.route("/products/:id").get(getProductDetail);
 
-//Router route(dẫn) đến mục "/products" để sửa sản phẩm mới
+//Router route(dẫn) đến mục "/products" để sửa sản phẩm theo id sản phẩm
 router.route("/products/:id").put(updateProduct);
 
-//Router route(dẫn) đến mục "/products" để sửa sản phẩm mới
+//Router route(dẫn) đến mục "/products" để xóa 1 sản phẩm theo id sản phẩm
 router.route("/products/:id").delete(deleteProduct);
 
  
