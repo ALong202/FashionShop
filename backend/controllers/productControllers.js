@@ -10,13 +10,20 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 
 export const getProducts = async (req, res) => { // Khai báo hàm điều khiển getProducts nhận req và res làm tham số
 
-  const apiFilters = new APIFilters(Product, req.query).search();
+    /*
+        * Tạo một bộ lọc API mới từ đối tượng Product và các tham số truy vấn (query) từ yêu cầu HTTP, 
+        * sau đó thực hiện các phương thức search và filters để xây dựng truy vấn tùy chỉnh
+    */ 
+  const apiFilters = new APIFilters(Product, req.query).search().filters();
 
+  // Thực hiện truy vấn dữ liệu với các bộ lọc đã được áp dụng và gán kết quả vào biến 'products'
   let products = await apiFilters.query;    
+
+  // Đếm số lượng sản phẩm sau khi áp dụng bộ lọc
   let filteredProductsCount = products.length
    
   res.status(200).json({// Trả về mã trạng thái 200 và dữ liệu JSON chứa danh sách sản phẩm
-      filteredProductsCount, 
+      filteredProductsCount, //Trả về Số lượng sản phẩm đã lọc
       products, // Trả về danh sách sản phẩm
   }); 
 };
