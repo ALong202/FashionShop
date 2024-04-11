@@ -7,6 +7,8 @@ import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
+  // giữ data trong cache 1 ngày: https://redux-toolkit.js.org/rtk-query/usage/cache-behavior
+  keepUnusedDataFor: 86400,
   // builder to access the query function, mutations, send requests
   // endpoints lấy sản phẩm từ backend
   endpoints: (builder) => ({ 

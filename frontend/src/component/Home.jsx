@@ -1,12 +1,15 @@
-import React from 'react'
-import MetaData from './layout/MetaData'
-import { useGetProductsQuery } from '../redux/api/productsApi' // auto chèn khi chọn useGetProductsQuery
-import ProductItem from './product/ProductItem.jsx';
+import React from "react"
+import MetaData from "./layout/MetaData"
+import { useGetProductsQuery } from "../redux/api/productsApi" // auto chèn khi chọn useGetProductsQuery
+import ProductItem from "./product/ProductItem.jsx";
+import Loader from "./layout/Loader.jsx"; // auto chèn khi chọn Loader
 
 
 const Home = () => {
   const { data, isLoading } = useGetProductsQuery();
-  console.log(data, isLoading);
+  // console.log(data, isLoading);
+
+  if (isLoading) return <Loader />
 
   return (
       <>
