@@ -11,15 +11,15 @@ export default [
     images: [
       {
         public_id: "yst8iCm",
-        url: "https://imgur.com/yst8iCm",
+        url: "https://imgur.com/yst8iCm.png",
       },
       {
         public_id: "3yOTMCw",
-        url: "https://imgur.com/3yOTMCw",
+        url: "https://imgur.com/3yOTMCw.png",
       },
       {
         public_id: "EX3Bi7p",
-        url: "https://imgur.com/EX3Bi7p",
+        url: "https://imgur.com/EX3Bi7p.png",
       },
     ],
     category: "Nam",
@@ -43,15 +43,15 @@ export default [
     images: [
       {
         public_id: "7cZ4HsS",
-        url: "https://imgur.com/7cZ4HsS",
+        url: "https://imgur.com/7cZ4HsS.png",
       },
       {
         public_id: "Ht9kRPl",
-        url: "https://imgur.com/Ht9kRPl",
+        url: "https://imgur.com/Ht9kRPl.png",
       },
       {
         public_id: "5r2ou8L",
-        url: "https://imgur.com/5r2ou8L",
+        url: "https://imgur.com/5r2ou8L.png",
       }
     ],
     category: "Nam",
@@ -75,15 +75,15 @@ export default [
     images: [
       {
         public_id: "485qQER",
-        url: "https://imgur.com/485qQER",
+        url: "https://imgur.com/485qQER.png",
       },
       {
         public_id: "S8JCAWE",
-        url: "https://imgur.com/S8JCAWE",
+        url: "https://imgur.com/S8JCAWE.png",
       },
       {
         public_id: "ebvuGDB",
-        url: "https://imgur.com/ebvuGDB",
+        url: "https://imgur.com/ebvuGDB.png",
       }
     ],
     category: "Nam",
