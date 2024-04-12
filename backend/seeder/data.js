@@ -2,7 +2,7 @@ export default [
   
   //1...................................... 
   {
-    productID: AR230315DT,
+    productID: "AR230315DT",
     name: "ÁO SƠ MI - AR230315DT",
     price: 580000,
     description:
@@ -11,20 +11,19 @@ export default [
     images: [
       {
         public_id: "yst8iCm",
-        url: "https://imgur.com/yst8iCm",
+        url: "https://imgur.com/yst8iCm.jpeg",
       },
       {
         public_id: "3yOTMCw",
-        url: "https://imgur.com/3yOTMCw",
+        url: "https://imgur.com/3yOTMCw.jpeg",
       },
       {
         public_id: "EX3Bi7p",
-        url: "https://imgur.com/EX3Bi7p",
+        url: "https://imgur.com/EX3Bi7p.jpeg",
       },
     ],
     category: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi",
+    subCategory: "Áo sơ mi",
     color: "Trắng",
     size: ["S","M", "L"], 
     stock: 50,
@@ -34,7 +33,7 @@ export default [
 
   //2..........................................
   {
-    productID: AP252315D,
+    productID: "AP252315D",
     name: "Áo Polo - AP252315D",
     price: 790000,
     description:
@@ -43,20 +42,19 @@ export default [
     images: [
       {
         public_id: "7cZ4HsS",
-        url: "https://imgur.com/7cZ4HsS",
+        url: "https://imgur.com/7cZ4HsS.jpeg",
       },
       {
         public_id: "Ht9kRPl",
-        url: "https://imgur.com/Ht9kRPl",
+        url: "https://imgur.com/Ht9kRPl.jpeg",
       },
       {
         public_id: "5r2ou8L",
-        url: "https://imgur.com/5r2ou8L",
+        url: "https://imgur.com/5r2ou8L.jpeg",
       }
     ],
-    category: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo Polo",
+    category:"Nam",
+    subCategory: "Áo phông",
     color: "Đỏ",
     size: ["S","M", "L"], 
     stock: 0,
@@ -66,7 +64,7 @@ export default [
 
   //3......................................... 
   {
-    productID: TSN231441,
+    productID: "TSN231441",
     name: "ÁO T-SHIRT - TSN231441",
     price: 370000,
     description:
@@ -75,20 +73,19 @@ export default [
     images: [
       {
         public_id: "485qQER",
-        url: "https://imgur.com/485qQER",
+        url: "https://imgur.com/485qQER.jpeg",
       },
       {
         public_id: "S8JCAWE",
-        url: "https://imgur.com/S8JCAWE",
+        url: "https://imgur.com/S8JCAWE.jpeg",
       },
       {
         public_id: "ebvuGDB",
-        url: "https://imgur.com/ebvuGDB",
+        url: "https://imgur.com/ebvuGDB.jpeg",
       }
     ],
     category: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo T-shirt",
+    subCategory: "Áo phông",
     color: "Xanh",
     size: ["S","M", "L"], 
     stock: 1,
@@ -98,7 +95,7 @@ export default [
 
   //4...........................................
   {
-    productID: ALD231656,
+    productID: "ALD231656",
     name: "ÁO LEN - ALD231656",
     price: 545000,
     description:
@@ -107,20 +104,19 @@ export default [
     images: [
       {
         public_id: "ivttBn1",
-        url: "https://imgur.com/ivttBn1",
+        url: "https://imgur.com/ivttBn1.jpeg",
       },
       {
         public_id: "Xwozhxr",
-        url: "https://imgur.com/Xwozhxr",
+        url: "https://imgur.com/Xwozhxr.jpeg",
       },
       {
         public_id: "IUPF0sF",
-        url: "https://imgur.com/IUPF0sF",
+        url: "https://imgur.com/IUPF0sF.jpeg",
       },
     ],
     category:"Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo len",
+    subCategory: "Áo len",
     color: "Đỏ",
     size: ["S","M"], 
     stock: 11,
@@ -130,7 +126,7 @@ export default [
 
     //5.......................................... 
   {
-    productID: QJS230161,
+    productID: "QJS230161",
     name: "QUẦN JEANS - QJS230161",
     price: 625000,
     description:
@@ -139,16 +135,15 @@ export default [
     images: [
       {
         public_id: "jjPXifI",
-        url: "https://imgur.com/jjPXifI",
+        url: "https://imgur.com/jjPXifI.jpeg",
       },
       {
         public_id: "4W6323b",
-        url: "https://imgur.com/4W6323b",
+        url: "https://imgur.com/4W6323b.jpeg",
       },
     ],
     category:"Nam",
-    subCategory: "Quần",
-    subSubCategory: "Quần Jeans",
+    subCategory: "Quần bò",
     color: "Xanh",
     size: ["M", "L"], 
     stock: 122,
@@ -158,7 +153,7 @@ export default [
 
   //6.............................................
   {
-    productID: QS231535,
+    productID: "QS231535",
     name: "QUẦN TÂY - QS231535",
     price: 699000,
     description:
@@ -167,16 +162,15 @@ export default [
     images: [
       {
         public_id: "DJrhCh7",
-        url: "https://imgur.com/DJrhCh7",
+        url: "https://imgur.com/DJrhCh7.jpeg",
       },
       {
         public_id: "62h2dhh",
-        url: "https://imgur.com/62h2dhh",
+        url: "https://imgur.com/62h2dhh.jpeg",
       },
     ],
     category: "Nam",
-    subCategory: "Quần",
-    subSubCategory: "Quần tây",
+    subCategory: "Quần tây",
     color: "Trắng",
     size: ["S","M", "L"], 
     stock: 1123,
@@ -186,7 +180,7 @@ export default [
 
   //7..............................................
   {
-    productID: BELT232615,
+    productID: "BELT232615",
     name: "THẮT LƯNG - BELT232615",
     price: 799000,
     description: 
@@ -200,7 +194,6 @@ export default [
     ],
     category: "Nam",
     subCategory: "Phụ kiện",
-    subCategory: "Thắt lưng",
     color: "Đen",
     size: "F", 
     stock: 131,
@@ -210,7 +203,7 @@ export default [
 
   //8..............................................
   {
-    productID: CV221500,
+    productID: "CV221500",
     name: "CÀ VẠT - CV221500",
     price: 499000,
     description:
@@ -219,13 +212,12 @@ export default [
     images: [
       {
         public_id: "ZDgWQYW",
-        url: "https://imgur.com/ZDgWQYW",
+        url: "https://imgur.com/ZDgWQYW.jpeg",
       },
      
     ],
     category: "Nam",
     subCategory: "Phụ kiện",
-    subSubCategory: "Cà vạt",
     color: "Xanh",
     size: "F",
     stock: 0,
@@ -244,13 +236,12 @@ export default [
     images: [
       {
         public_id: "DvnzzGn",
-        url: "https://imgur.com/DvnzzGn",
+        url: "https://imgur.com/DvnzzGn.jpeg",
       },
       
     ],
     category: "Nam",
     subCategory: "Phụ kiện",
-    subSubCategory: "Tất",
     color: "Đen",
     size: ["S","M", "L"], 
     stock: 500,
@@ -260,7 +251,7 @@ export default [
 
   //10...................................................
   {
-    productID: TA221476,
+    productID: "TA221476",
     name: "TẤT - TA221476",
     price: 39000,
     description:
@@ -269,16 +260,15 @@ export default [
     images: [
       {
         public_id: "ptqq3z0",
-        url: "https://imgur.com/ptqq3z0",
+        url: "https://imgur.com/ptqq3z0.jpeg",
       },
       {
         public_id: "L4OgwPA",
-        url: "https://imgur.com/L4OgwPA",
+        url: "https://imgur.com/L4OgwPA.jpeg",
       },
     ],
     category: "Nam",
     subCategory: "Phụ kiện",
-    subSubCategory: "Tất",
     color: "Trắng",
     size: ["S","M", "L"], 
     stock: 50,
@@ -289,7 +279,7 @@ export default [
   //------------------------------------------------------
   //11...................................... 
   {
-    productID: AR230350DT,
+    productID: "AR230350DT",
     name: "ÁO SƠ MI - AR230350DT",
     price: 489000,
     description:
@@ -298,24 +288,23 @@ export default [
     images: [
       {
         public_id: "9qKB2qe",
-        url: "https://imgur.com/9qKB2qe",
+        url: "https://imgur.com/9qKB2qe.jpeg",
       },
       {
         public_id: "3uMCDDR",
-        url: "https://imgur.com/3uMCDDR",
+        url: "https://imgur.com/3uMCDDR.jpeg",
       },
       {
         public_id: "qqJ8Chh",
-        url: "https://imgur.com/qqJ8Chh",
+        url: "https://imgur.com/qqJ8Chh.jpeg",
       },
       {
         public_id: "FAtNxdX",
-        url: "https://imgur.com/FAtNxdX",
+        url: "https://imgur.com/FAtNxdX.jpeg",
       },
     ],
     category: "Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi",
+    subCategory: "Áo sơ mi",
     color: ["Trắng","Xanh","Vàng","Đen"],
     size: ["S","M", "L"], 
     stock: 50,
@@ -325,7 +314,7 @@ export default [
 
   //12..........................................
   {
-    productID: AR230351DT,
+    productID: "AR230351DT",
     name: "ÁO SƠ MI - AR230351T",
     price: 790000,
     description:
@@ -334,16 +323,15 @@ export default [
     images: [
       {
         public_id: "qOzQf2a",
-        url: "https://imgur.com/qOzQf2a",
+        url: "https://imgur.com/qOzQf2a.jpeg",
       },
       {
         public_id: "cGT33Xb",
-        url: "https://imgur.com/cGT33Xb",
+        url: "https://imgur.com/cGT33Xb.jpeg",
       },
     ],
     category: "Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi",
+    subCategory: "Áo sơ mi",
     color: ["Trắng","Đen"],
     size: ["S","M", "L"], 
     stock: 0,
@@ -353,7 +341,7 @@ export default [
 
   //13......................................... 
   {
-    productID: AR230352DT,
+    productID: "AR230352DT",
     name: "ÁO SƠ MI - AR230352T",
     price: 370000,
     description:
@@ -362,16 +350,15 @@ export default [
     images: [
       {
         public_id: "ShKxfuC",
-        url: "https://imgur.com/ShKxfuC",
+        url: "https://imgur.com/ShKxfuC.jpeg",
       },
       {
         public_id: "yEIzSs2",
-        url: "https://imgur.com/yEIzSs2",
+        url: "https://imgur.com/yEIzSs2.jpeg",
       },
     ],
     category: "Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi",
+    subCategory: "Áo sơ mi",
     color: "Xanh",
     size: ["S","M", "L"], 
     stock: 1,
@@ -381,7 +368,7 @@ export default [
 
   //14...........................................
   {
-    productID: AR230353DT ,
+    productID: "AR230353DT" ,
     name: "ÁO SƠ MI - AR230353T",
     price: 545000,
     description:
@@ -390,16 +377,15 @@ export default [
     images: [
       {
         public_id: "ItLqLeH",
-        url: "https://imgur.com/ItLqLeH",
+        url: "https://imgur.com/ItLqLeH.jpeg",
       },
       {
         public_id: "YByGnOk",
-        url: "https://imgur.com/YByGnOk",
+        url: "https://imgur.com/YByGnOk.jpeg",
       },
     ],
     category:"Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi",
+    subCategory: "Áo sơ mi",
     color: "Hồng",
     size: ["S","M"], 
     stock: 11,
@@ -409,25 +395,24 @@ export default [
 
     //15.......................................... 
   {
-    productID: AR230354DT,
+    productID: "AR230354DT",
     name: "ÁO SƠ MI - AR230354T",
     price: 625000,
     description:
-      "",
+      "Chất liệu vải mịn với độ bóng cao cấp.",
     ratings: 4.8,
     images: [
       {
         public_id: "8caD8FD",
-        url: "https://imgur.com/8caD8FD",
+        url: "https://imgur.com/8caD8FD.jpeg",
       },
       {
         public_id: "mNT5Rcv",
-        url: "https://imgur.com/mNT5Rcv",
+        url: "https://imgur.com/mNT5Rcv.jpeg",
       },
     ],
     category:"Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi",
+    subCategory: "Áo sơ mi",
     color: "Cam",
     size: ["M", "L"], 
     stock: 122,
@@ -437,7 +422,7 @@ export default [
 
   //16.............................................
   {
-    productID: AT123450,
+    productID: "AT123450",
     name: "ÁO THUN - AT123450",
     price: 199000,
     description:
@@ -446,12 +431,11 @@ export default [
     images: [
       {
         public_id: "IIktIns",
-        url: "https://imgur.com/IIktIns",
+        url: "https://imgur.com/IIktIns.jpeg",
       },
     ],
     category: "Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo thun",
+    subCategory: "Áo phông",
     color: "Xanh",
     size: ["S","M", "L"], 
     stock: 1123,
@@ -461,7 +445,7 @@ export default [
 
   //17..............................................
   {
-    productID: AT123451,
+    productID: "AT123451",
     name: "ÁO THUN - AT123451",
     price: 299000,
     description: 
@@ -485,7 +469,7 @@ export default [
 
   //18..............................................
   {
-    productID: AT123452,
+    productID: "AT123452",
     name: "ÁO THUN - AT123452",
     price: 499000,
     description:
@@ -494,17 +478,16 @@ export default [
     images: [
       {
         public_id: "Thog8iO",
-        url: "Thttps://imgur.com/Thog8iO",
+        url: "Thttps://imgur.com/Thog8iO.jpeg",
       },
       {
         public_id: "CKdHeT0",
-        url: "https://imgur.com/CKdHeT0",
+        url: "https://imgur.com/CKdHeT0.jpeg",
       },
      
     ],
     category: "Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo thun",
+    subCategory: "Áo phông",
     color: "Xám",
     size: "F",
     stock: 0,
@@ -514,7 +497,7 @@ export default [
 
   //19..................................................
   {
-    productID: AT123453,
+    productID: "AT123453",
     name: "ÁO THUN - AT123453",
     price: 39000,
     description:
@@ -523,13 +506,12 @@ export default [
     images: [
       {
         public_id: "kwqe9tG",
-        url: "https://imgur.com/kwqe9tG",
+        url: "https://imgur.com/kwqe9tG.jpeg",
       },
       
     ],
     category: "Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo thun",
+    subCategory: "Áo phông",
     color: "Xanh",
     size: ["S","M", "L"], 
     stock: 500,
@@ -539,7 +521,7 @@ export default [
 
   //20...................................................
   {
-    productID: AT123454,
+    productID: "AT123454",
     name: "ÁO THUN - AT123454",
     price: 39000,
     description:
@@ -548,16 +530,15 @@ export default [
     images: [
       {
         public_id: "zhAestS",
-        url: "https://imgur.com/zhAestS",
+        url: "https://imgur.com/zhAestS.jpeg",
       },
       {
         public_id: "7wWnTyq",
-        url: "https://imgur.com/7wWnTyq",
+        url: "https://imgur.com/7wWnTyq.jpeg",
       },
     ],
     category: "Nữ",
-    subCategory: "Áo",
-    subSubCategory: "Áo thun",
+    subSubCategory: "Áo phông",
     color: "Trắng",
     size: ["S","M", "L"], 
     stock: 50,
@@ -565,8 +546,7 @@ export default [
     reviews: [],
   },
 
-
-
+ 
 ];
 
 

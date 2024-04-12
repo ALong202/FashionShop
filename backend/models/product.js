@@ -47,26 +47,14 @@ const productSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, "Vui lòng nhập danh mục sản phẩm"],
-      enum: ["Nữ", "Nam","Trẻ em"],
+      enum: ["Nữ", "Nam"],
       subCategory: {
           type: String,
           enum: {
-              "Nữ": ["Áo", "Chân váy & Đầm","Quần"],
-              "Nam": ["Áo", "Quần", "Phụ kiện"],
-              "Trẻ em": ["Áo", "Chân váy & Đầm","Quần","Phụ kiện"]
+              "Nữ": ["Áo khoác", "Áo len","Áo phông", "Áo sơ mi","Chân váy "," Đầm","Quần bò","Quần short"],
+              "Nam": ["Áo khoác", "Áo len","Áo phông", "Áo sơ mi","Quần bò","Quần short","Quần tây","Phụ kiện"],
           },
           message: "Vui lòng chọn danh mục con",
-          subSubCategory: {
-              type: String,
-              enum: {
-                  "Áo": ["Áo sơ mi","Áo thun","Áo Polo","Áo T-shirt"],
-                  "Chân váy & Đầm": ["Chân váy", "Đầm"],
-                  "Quần": ["Quần tây", "Quần short", "Quần Jeans"],
-                  "Phụ kiện": ["Thắt lưng", "Cà vạt"," Tất"]
-
-              },
-              message: "Vui lòng chọn danh mục phụ của danh mục con"
-          }
       }
   },
 
