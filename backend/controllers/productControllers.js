@@ -8,7 +8,7 @@ Hàm điều khiển (controller functions) cho các file routes và xác địn
 Các điều khiển và các logic cho tài nguyên sản phẩm (product resource)
 */
 
-export const getProducts = async (req, res) => { // Khai báo hàm điều khiển getProducts nhận req và res làm tham số
+export const getProducts = async (req, res, next) => { // Khai báo hàm điều khiển getProducts nhận req và res làm tham số; next cho Toast message ở frontend
 
     /*
         * Tạo một bộ lọc API mới từ đối tượng Product và các tham số truy vấn (query) từ yêu cầu HTTP, 
@@ -21,6 +21,9 @@ export const getProducts = async (req, res) => { // Khai báo hàm điều khi�
 
   // Đếm số lượng sản phẩm sau khi áp dụng bộ lọc
   let filteredProductsCount = products.length
+
+//   Test frontend toast message
+//   return next(new ErrorHandler("Không tìm thấy sản phẩm", 400)); 
    
   res.status(200).json({// Trả về mã trạng thái 200 và dữ liệu JSON chứa danh sách sản phẩm
       filteredProductsCount, //Trả về Số lượng sản phẩm đã lọc
