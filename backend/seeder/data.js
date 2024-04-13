@@ -22,8 +22,16 @@ export default [
         url: "https://imgur.com/EX3Bi7p",
       },
     ],
-    category: "Nam",
-    subCategory: "Áo sơ mi",
+    category: {
+      "name": "Nam",
+      "subCategory": {
+        "name": "Áo",
+        "subSubCategory": {
+          "name": "Áo sơ mi"
+        }
+      }
+    },
+    // subCategory: "Áo sơ mi",
     color: "Trắng",
     size: ["S","M", "L"], 
     stock: 50,
