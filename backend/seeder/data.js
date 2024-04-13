@@ -11,15 +11,15 @@ export default [
     images: [
       {
         public_id: "yst8iCm",
-        url: "https://i.imgur.com/3yOTMCw.png",
+        url: "https://i.imgur.com/yst8iCm.png",
       },
       {
         public_id: "3yOTMCw",
-        url: "https://imgur.com/3yOTMCw",
+        url: "https://i.imgur.com/3yOTMCw.png",
       },
       {
         public_id: "EX3Bi7p",
-        url: "https://imgur.com/EX3Bi7p",
+        url: "https://i.imgur.com/EX3Bi7p.png",
       },
     ],
     category: {
