@@ -11,7 +11,7 @@ export default [
     images: [
       {
         public_id: "yst8iCm",
-        url: "https://imgur.com/yst8iCm",
+        url: "https://i.imgur.com/3yOTMCw.png",
       },
       {
         public_id: "3yOTMCw",
