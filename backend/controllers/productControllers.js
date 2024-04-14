@@ -10,19 +10,26 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 */
 
 export const getProducts = catchAsyncErrors(async (req, res) => {
+  // Số sản phẩm trên mỗi trang
   const resPerPage = 4;
+  // Áp dụng bộ lọc từ yêu cầu API
   const apiFilters = new APIFilters(Product, req.query).search().filters();
 
+  // Lấy danh sách sản phẩm đã được lọc
   let products = await apiFilters.query;
+  // Số lượng sản phẩm sau khi được lọc
   let filteredProductsCount = products.length;
 
+  // Phân trang sản phẩm
   apiFilters.pagination(resPerPage);
+  // Lấy lại danh sách sản phẩm sau khi phân trang
   products = await apiFilters.query.clone();
 
+  // Trả về danh sách sản phẩm đã được lọc và phân trang
   res.status(200).json({
-    resPerPage,
-    filteredProductsCount,
-    products,
+    resPerPage,// Số sản phẩm trên mỗi trang
+    filteredProductsCount,// Số sản phẩm sau khi được lọc
+    products, // Danh sách sản phẩm
   });
 });
   
@@ -90,6 +97,9 @@ export const deleteProduct = async (req, res, next) => { // Khai báo hàm đi�
   });
 };
 
+
+//   Test frontend toast message
+//   return next(new ErrorHandler("Không tìm thấy sản phẩm", 400)); 
 
 
 
