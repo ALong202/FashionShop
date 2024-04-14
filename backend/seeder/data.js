@@ -66,7 +66,7 @@ export default [
     "subCategory": {
       "name": "Áo",
       "subSubCategory": {
-        "name": "Áo Polo"
+        "name": "Áo polo"
       }
     }
   },
