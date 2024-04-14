@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetProductDetailsQuery } from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
 // frames hook dùng để lấy id từ params
 import { useParams } from "react-router-dom"; // auto chèn khi chọn useParams
@@ -13,8 +13,10 @@ const ProductDetails = () => {
 
   const dispatch = useDispatch();
 
-  const [quantity, setQuantity] = useState(1);
-  
+  const [quantity, setQuantity] = useState(1); // quantity: số lượng sản phẩm
+  const [activeImg, setActiveImg] = React.useState(""); // activeImg: ảnh đang được chọn
+
+
   const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);
 
   const product = data?.product;
