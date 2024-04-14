@@ -14,13 +14,14 @@ dotenv.config({ path: "backend/config/config.env" });
 
 // Connect với database
 connectDatabase();
-
+app.use(express.json());
 // Import tất cả các routes (đường dẫn)
 import productRoutes from "./routes/products.js";
-
-app.use(express.json());
+import authRoutes from "./routes/auth.js";
 
 app.use("/api", productRoutes);
+app.use("/api", authRoutes);
+
 
 app.use(errorsMiddleware);
 

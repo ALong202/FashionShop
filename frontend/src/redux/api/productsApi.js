@@ -15,8 +15,17 @@ export const productApi = createApi({
     getProducts: builder.query({
       query: (params) => ({
         url: "/products",
+        // đưa params về backend 
+        // params: {
+        //   page: params?.page,
+        // }
       }),
-      
+    }),
+    // Lấy thông tin chi tiết sản phẩm từ backend
+    getProductDetails: builder.query({
+      query: (id) => ({
+        url: `/products/${id}`,
+      }),
     }),
     // getProductById: builder.query({
     //   query: (id) => `/${id}`,
@@ -25,4 +34,4 @@ export const productApi = createApi({
 })
 
 // the hook  để lấy toàn bộ sản phẩm, tất cả biến Isloading-sucess-error variables
-export const { useGetProductsQuery } = productApi;
+export const { useGetProductsQuery, useGetProductDetailsQuery } = productApi;
