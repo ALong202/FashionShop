@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const SubSubCategorySchema = new mongoose.Schema({
   name: {
     type: String,
-    enum: ["Áo sơ mi","Áo thun","Áo Polo","Áo T-shirt", "Chân váy", "Đầm", "Quần tây", "Quần short", "Quần Jeans", "Thắt lưng", "Cà vạt", "Tất"],
+    enum: ["Áo sơ mi","Áo thun","Áo Polo","Áo T-shirt","Áo len", "Chân váy", "Đầm", "Quần tây", "Quần short", "Quần Jeans", "Thắt lưng", "Cà vạt", "Tất"],
     message: "Vui lòng chọn danh mục phụ của danh mục con"
   }
 });
