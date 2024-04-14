@@ -2,8 +2,8 @@ export default [
   
   //1...................................... 
   {
-    productID: "AR230315DT",
-    name: "ÁO SƠ MI - AR230315DT",
+    productID: "MASM240001",
+    name: "ÁO SƠ MI - MASM240001",
     price: 580000,
     description:
       " Áo sơ mi dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -41,8 +41,8 @@ export default [
  
  //2..........................................
  {
-  productID: "AP252315D",
-  name: "Áo Polo - AP252315D",
+  productID: "MAPL240001",
+  name: "Áo Polo - MAPL240001",
   price: 790000,
   description:
     "Áo Polo kiểu dáng body fit, tôn dáng người mặc. Màu sắc nổi bật, dễ phối đồ.",
@@ -79,11 +79,11 @@ export default [
 
 //3......................................... 
 {
-  productID: "TSN231441",
-  name: "ÁO T-SHIRT - TSN231441",
+  productID: "MAT231441",
+  name: "ÁO THUN - MATH231441",
   price: 370000,
   description:
-    "Áo T-shirt chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
+    "Áo Thun chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
   ratings: 3.5,
   images: [
     {
@@ -117,8 +117,8 @@ export default [
 
 //4...........................................
 {
-  productID: "ALD231656",
-  name: "ÁO LEN - ALD231656",
+  productID: "MALE231656",
+  name: "ÁO LEN - MALE231656",
   price: 545000,
   description:
     "Áo len dáng regular fit tôn dáng người mặc. Màu sắc thanh lịch dễ phối đồ.",
@@ -156,7 +156,7 @@ export default [
 
   //5.......................................... 
 {
-  productID: "QJS230161",
+  productID: "MQJS230161",
   name: "QUẦN JEANS - QJS230161",
   price: 625000,
   description:
@@ -165,7 +165,7 @@ export default [
   images: [
     {
       public_id: "jjPXifI",
-      url: "https://i.imgur.com/ivttBn1.png",
+      url: "https://i.imgur.com/jjPXifI.png",
     },
     {
       public_id: "4W6323b",
@@ -177,7 +177,7 @@ export default [
     "subCategory": {
       "name": "Quần",
       "subSubCategory": {
-        "name": "Quần Jeans"
+        "name": "Quần bò"
       }
     }
   },
@@ -190,8 +190,8 @@ export default [
 
 //6.............................................
 {
-  productID: "QS231535",
-  name: "QUẦN TÂY - QS231535",
+  productID: "MQT231535",
+  name: "QUẦN TÂY - MQT231535",
   price: 699000,
   description:
     "Kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -224,8 +224,8 @@ export default [
 
 //7..............................................
 {
-  productID: "BELT232615",
-  name: "THẮT LƯNG - BELT232615",
+  productID: "MBE232615",
+  name: "THẮT LƯNG - MBE232615",
   price: 799000,
   description: 
     "Chất liệu: Leather (Da)",
@@ -254,8 +254,8 @@ export default [
 
 //8..............................................
 {
-  productID: "CV221500",
-  name: "CÀ VẠT - CV221500",
+  productID: "MCV221000",
+  name: "CÀ VẠT - MCV221000",
   price: 499000,
   description:
     "Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -285,8 +285,8 @@ export default [
 
 //9..................................................
 {
-  productID: "TA221475",
-  name: "TẤT - TA221475",
+  productID: "MTA221470",
+  name: "TẤT - MTA221470",
   price: 39000,
   description:
     "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
@@ -316,8 +316,8 @@ export default [
 
 //10...................................................
 {
-  productID: "TA221476",
-  name: "TẤT - TA221476",
+  productID: "MTA225476",
+  name: "TẤT - MTA225476",
   price: 39000,
   description:
     "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
