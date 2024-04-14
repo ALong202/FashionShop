@@ -10,6 +10,9 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 
 export const getProducts = async (req, res, next) => { // Khai báo hàm điều khiển getProducts nhận req và res làm tham số; next cho Toast message ở frontend
 
+    // Frontend: quy định số sản phẩm cho mỗi trang
+    const resPerPage = 4;
+
     /*
         * Tạo một bộ lọc API mới từ đối tượng Product và các tham số truy vấn (query) từ yêu cầu HTTP, 
         * sau đó thực hiện các phương thức search và filters để xây dựng truy vấn tùy chỉnh
@@ -25,15 +28,11 @@ export const getProducts = async (req, res, next) => { // Khai báo hàm điều
 
    
   res.status(200).json({// Trả về mã trạng thái 200 và dữ liệu JSON chứa danh sách sản phẩm
-      filteredProductsCount, //Trả về Số lượng sản phẩm đã lọc
+    resPerPage,  
+    filteredProductsCount, //Trả về Số lượng sản phẩm đã lọc
       products, // Trả về danh sách sản phẩm
   }); 
 };
-
-//   Test frontend toast message
-//   return next(new ErrorHandler("Không tìm thấy sản phẩm", 400)); 
-
-
 
 //Tạo sản phẩm mới với đường dẫn => /api/admin/products
 export const newProduct = async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
@@ -94,6 +93,9 @@ export const deleteProduct = async (req, res, next) => { // Khai báo hàm đi�
   });
 };
 
+
+//   Test frontend toast message
+//   return next(new ErrorHandler("Không tìm thấy sản phẩm", 400)); 
 
 
 
