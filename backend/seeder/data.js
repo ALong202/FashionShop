@@ -732,6 +732,389 @@ reviews: [],
 },
 
 
+//21...................................... 
+{
+  productID: "FMAL245221",
+  name: "ÁO LEN - FMAL245221",
+  price: 580000,
+  description:
+    " Áo kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "E713I1m",
+      url: "https://i.imgur.com/E713I1m.jpg",
+    },
+    {
+      public_id: "komm9z1",
+      url: "https://i.imgur.com/komm9z1.jpg",
+    },
+    {
+      public_id: "Gt29WEs",
+      url: "https://i.imgur.com/Gt29WEs.jpg",
+    },
+  ],
+  category: {
+    "name": "Nữ",
+    "subCategory": {
+      "name": "Áo",
+      "subSubCategory": {
+        "name": "Áo len"
+      }
+    }
+  },
+  color: "Nâu",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
+
+
+//22..........................................
+{
+productID: "FMAL245222",
+name: "ÁO LEN - FMAL245222",
+price: 790000,
+description:
+  "Áo kiểu dáng body fit, tôn dáng người mặc. Màu sắc nổi bật, dễ phối đồ.",
+ratings: 1.65,
+images: [
+  {
+    public_id: "y80ovNF",
+    url: "https://i.imgur.com/y80ovNF.jpg",
+  },
+  {
+    public_id: "ERUNjYF",
+    url: "https://i.imgur.com/ERUNjYF.jpg",
+  },
+  {
+    public_id: "sA2zIfb",
+    url: "https://i.imgur.com/sA2zIfb.jpg",
+  }
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Xanh",
+size: ["S","M", "L"], 
+stock: 0,
+numOfReviews: 2,
+reviews: [],
+},
+
+//23......................................... 
+{
+productID: "FMAL245223",
+name: "ÁO LEN - FMAL245223",
+price: 370000,
+description:
+  "Áo chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
+ratings: 3.5,
+images: [
+  {
+    public_id: "0I5iDi8",
+    url: "https://i.imgur.com/0I5iDi8.jpg",
+  },
+  {
+    public_id: "qvKyZ9S",
+    url: "https://i.imgur.com/qvKyZ9S.jpg",
+  },
+  {
+    public_id: "yVhBxtR",
+    url: "https://i.imgur.com/yVhBxtR.jpg",
+  }
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Sọc",
+size: ["S","M", "L"], 
+stock: 1,
+numOfReviews: 12,
+reviews: [],
+},
+
+//24...........................................
+{
+productID: "FMAL245224",
+name: "ÁO LEN - FMAL245224",
+price: 545000,
+description:
+  "Áo dáng regular fit tôn dáng người mặc. Màu sắc thanh lịch dễ phối đồ.",
+ratings: 4.5,
+images: [
+  {
+    public_id: "92m81NU",
+    url: "https://i.imgur.com/92m81NU.jpg",
+  },
+  {
+    public_id: "fRLonvj",
+    url: "https://i.imgur.com/fRLonvj.jpg",
+  },
+  {
+    public_id: "yq8WPIm",
+    url: "https://i.imgur.com/yq8WPIm.jpg",
+  },
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Đỏ",
+size: ["S","M"], 
+stock: 11,
+numOfReviews: 112,
+reviews: [],
+},
+
+
+//25.......................................... 
+{
+productID: "FMAL245225",
+name: "ÁO LEN - FMAL245225",
+price: 625000,
+description:
+  "Áo màu sắc trẻ trung dễ phối đồ.",
+ratings: 4.8,
+images: [
+  {
+    public_id: "n4BmCBT",
+    url: "https://i.imgur.com/n4BmCBT.jpg",
+  },
+  {
+    public_id: "KgE3Epi",
+    url: "https://i.imgur.com/KgE3Epi.jpg",
+  },
+  {
+    public_id: "7JsdksJ",
+    url: "https://i.imgur.com/7JsdksJ.jpg",
+  },
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Cam",
+size: ["M", "L"], 
+stock: 122,
+numOfReviews: 2671,
+reviews: [],
+},
+
+//26.............................................
+{
+productID: "FMAL24526",
+name: "ÁO LEN - FMAL245226",
+price: 699000,
+description:
+  "Áo len cổ tròn, dài tay. Gấu xẻ hai bên.",
+ratings: 4.1,
+images: [
+  {
+    public_id: "a0Gw0mV",
+    url: "https://i.imgur.com/a0Gw0mV.jpg",
+  },
+  {
+    public_id: "KDwUJ8a",
+    url: "https://i.imgur.com/KDwUJ8a.jpg",
+  },
+  {
+    public_id: "LOIp0h5",
+    url: "https://i.imgur.com/LOIp0h5.jpg",
+  },
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Vàng",
+size: ["S","M", "L"], 
+stock: 1123,
+numOfReviews: 6,
+reviews: [],
+},
+
+//27..............................................
+{
+productID: "FMAL245227",
+name: "ÁO LEN - FMAL245227",
+price: 799000,
+description: 
+  "Áo len cổ chữ V, dài tay. Phía trước có hai túi đáp. Có các chi tiết viền khác màu. Cài phía trước bằng khuy cài.",
+ratings: 4.7,
+images: [
+  {
+    public_id: "HQCbiWB",
+    url: "https://i.imgur.com/HQCbiWB.jpg",
+  },
+  {
+    public_id: "t4w8gFN",
+    url: "https://i.imgur.com/t4w8gFN.jpg",
+  },
+  {
+    public_id: "RnU91Gv",
+    url: "https://i.imgur.com/RnU91Gv.jpg",
+  },
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Trắng",
+size: "F", 
+stock: 131,
+numOfReviews: 222,
+reviews: [],
+},
+
+//28..............................................
+{
+productID: "FMAL245228",
+name: "ÁO LEN - FMAL245228",
+price: 499000,
+description:
+  "Áo len có cổ tròn, tay áo dài tới khuỷu tay. Cài phía trước bằng nút ngọc trai giả.",
+ratings: 4.9,
+images: [
+  {
+    public_id: "vsdmMka",
+    url: "https://i.imgur.com/vsdmMka.jpg",
+  },
+  {
+    public_id: "WYPxTXE",
+    url: "https://i.imgur.com/WYPxTXE.jpg",
+  },
+  {
+    public_id: "aH9ui5T",
+    url: "https://i.imgur.com/aH9ui5T.jpg",
+  },
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Trắng",
+size: "F",
+stock: 0,
+numOfReviews: 56,
+reviews: [],
+},
+
+//29..................................................
+{
+productID: "FMAL245229",
+name: "ÁO LEN - FMAL245229",
+price: 39000,
+description:
+  "Áo len cổ ve lật bản rộng, dài tay, cài khuy ở cổ tay. Cài phía trước bằng các khuy màu vàng kim.",
+ratings: 5,
+images: [
+  {
+    public_id: "hopkN9Q",
+    url: "https://i.imgur.com/hopkN9Q.jpg",
+  },
+  {
+    public_id: "Qomly4p",
+    url: "https://i.imgur.com/Qomly4p.jpg",
+  },
+  {
+    public_id: "oeJIUYx",
+    url: "https://i.imgur.com/oeJIUYx.jpg",
+  },
+  
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Sọc",
+size: ["S","M", "L"], 
+stock: 500,
+numOfReviews: 1,
+reviews: [],
+},
+
+//30...................................................
+{
+productID: "FMAL245230",
+name: "ÁO LEN - FMAL245230",
+price: 39000,
+description:
+  "Áo len mỏng dệt kim, cổ tròn, dài tay.",
+ratings: 5,
+images: [
+  {
+    public_id: "DZPR233",
+    url: "https://i.imgur.com/DZPR233.jpg",
+  },
+  {
+    public_id: "23qAtI6",
+    url: "https://i.imgur.com/23qAtI6.jpg",
+  },
+  {
+    public_id: "6ua9EcB",
+    url: "https://i.imgur.com/6ua9EcB.jpg",
+  },
+],
+category: {
+  "name": "Nữ",
+  "subCategory": {
+    "name": "Áo",
+    "subSubCategory": {
+      "name": "Áo len"
+    }
+  }
+},
+color: "Hồng",
+size: ["S","M", "L"], 
+stock: 50,
+numOfReviews: 1,
+reviews: [],
+},
+
 ];
 
 
