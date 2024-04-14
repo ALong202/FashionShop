@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useState } from "react";
 import { useGetProductDetailsQuery } from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
 // frames hook dùng để lấy id từ params
 import { useParams } from "react-router-dom"; // auto chèn khi chọn useParams
 import toast from "react-hot-toast";
 import Loader from "../layout/Loader";
 import StarRatings from "react-star-ratings";
+import { useDispatch } from "react-redux";
+import { setCartItem } from "../../redux/features/cartSlice";
 
 const ProductDetails = () => {
   const params = useParams();
 
-  const [quantity, setQuantity] = useState(1); // quantity: số lượng sản phẩm
-  const [activeImg, setActiveImg] = React.useState(""); // activeImg: ảnh đang được chọn
+  const dispatch = useDispatch();
 
+  const [quantity, setQuantity] = useState(1);
+  
   const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);
+
   const product = data?.product;
 
 
@@ -26,20 +30,37 @@ const ProductDetails = () => {
     }
   }, [isError]);
 
-  const increaseQty = () => {
+  const increseQty = () => {
     const count = document.querySelector(".count");
 
-    if(count.valueAsNumber >= product?.stock) return;
-
+    if (count.valueAsNumber >= product?.stock)
+      return;
     const qty = count.valueAsNumber + 1;
     setQuantity(qty);
-    // let qty = count.value;
-    // if (qty >= product?.stock) return;
-    // qty++;
-    // setQuantity(qty);
   };
 
-  const decreaseQty = () => {};
+  const decreseQty = () => {
+    const count = document.querySelector(".count");
+
+    if (count.valueAsNumber <= 1)
+      return;
+    const qty = count.valueAsNumber - 1;
+    setQuantity(qty);
+  };
+
+  const setItemToCart = () => {
+    const cartItem = {
+      product: product?._id,
+      name: product?.name,
+      price: product?.price,
+      image: product?.images[0]?.url,
+      stock: product?.stock,
+      quantity
+    };
+
+    dispatch(setCartItem(cartItem));
+    toast.success("Đã thêm vào giỏ");
+  };
 
   if (isLoading) return <Loader />
 
@@ -96,20 +117,21 @@ const ProductDetails = () => {
 
         <p id="product_price">{product?.price.toLocaleString("vi-VN")}đ</p>
         <div className="stockCounter d-inline">
-          <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
+          <span className="btn btn-danger minus" onClick={decreseQty}>-</span>
           <input
             type="number"
             className="form-control count d-inline"
             value={quantity}
             readonly
           />
-          <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
+          <span className="btn btn-primary plus" onClick={increseQty}>+</span>
         </div>
         <button
           type="button"
           id="cart_btn"
           className="btn btn-primary d-inline ms-4"
-          disabled=""
+          disabled={product.stock <= 0}
+          onClick={setItemToCart}
         >
           Thêm vào giỏ
         </button>
@@ -130,7 +152,7 @@ const ProductDetails = () => {
         <p id="product_seller mb-3">Được bán bởi: <strong>FashionShop</strong></p>
 
         <div className="alert alert-danger my-5" type="alert">
-          Login to post your review.
+          Hãy đăng nhập để xem đánh giá.
         </div>
       </div>
     </div>
