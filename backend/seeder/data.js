@@ -116,6 +116,42 @@ export default [
 },
 
 //4...........................................
+{
+  productID: "ALD231656",
+  name: "ÁO LEN - ALD231656",
+  price: 545000,
+  description:
+    "Áo len dáng regular fit tôn dáng người mặc. Màu sắc thanh lịch dễ phối đồ.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "ivttBn1",
+      url: "https://imgur.com/ivttBn1.png",
+    },
+    {
+      public_id: "Xwozhxr",
+      url: "https://imgur.com/Xwozhxr.png",
+    },
+    {
+      public_id: "IUPF0sF",
+      url: "https://imgur.com/IUPF0sF.png",
+    },
+  ],
+  category: {
+    "name": "Nam",
+    "subCategory": {
+      "name": "Áo",
+      "subSubCategory": {
+        "name": "Áo len"
+      }
+    }
+  },
+  color: "Đỏ",
+  size: ["S","M"], 
+  stock: 11,
+  numOfReviews: 112,
+  reviews: [],
+},
 
 
   //5.......................................... 
