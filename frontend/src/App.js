@@ -10,6 +10,11 @@ import { Toaster } from "react-hot-toast";
 import ProductDetails from './component/product/ProductDetails';
 // import './custom-theme.min.css';
 
+import Cart from "./component/cart/Cart"
+import Shipping from "./component/cart/Shipping"
+import ConfirmOrder from './component/cart/ConfirmOrder';
+import PaymentMethod from './component/cart/PaymentMethod';
+
 
 
 function App() {
@@ -24,6 +29,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
+          <Route path="/shipping" element={<Shipping />} />
+          <Route path="/confirm_order" element={<ConfirmOrder/>} />
+          <Route path="/payment_method" element={<PaymentMethod />} />
         </Routes>
 
       </div>

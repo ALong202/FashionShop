@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 // package để hiển thị số sao: https://www.npmjs.com/package/react-star-ratings
 import StarRatings from "react-star-ratings";
 
+import MetaData from "../layout/MetaData"
 
 const ProductItem = ({ product }) => {
   return (
+    <>
+    <MetaData title={"Chi tiết sản phẩm"} />
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
       <div className="card p-3 rounded">
         <img
@@ -46,6 +49,8 @@ const ProductItem = ({ product }) => {
         </div>
       </div>
     </div>
+    </>
+
   )
 }
 
