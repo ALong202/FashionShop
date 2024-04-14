@@ -1,16 +1,14 @@
-// File nhập liệu chính của backend
-import express from "express";
-
-// Tạo 1 dối tượng ứng dụng Express mới
-const app = express();
-
-// Một thư viện của JavaScript load các biến môi trường từ tập tin '.env' vào application's runtime environment
-import dotenv from "dotenv";
-
+import express from "express";// File nhập liệu chính của backend
+const app = express();// Tạo 1 dối tượng ứng dụng Express mới
+import dotenv from "dotenv"; // Một thư viện của JavaScript load các biến môi trường từ tập tin '.env' vào application's runtime environment
 import { connectDatabase } from "./config/dbConnect.js"; // tự hiện khi gõ lệnh connectDatabase()
 import errorsMiddleware from "./middlewares/errors.js";
 
-
+process.on("uncaughtException", (err) =>{
+  console.log(`ERROR: ${err}`);
+  console.log("shutting down due to uncatch exception");
+  process.exit(1);
+})
 
 dotenv.config({ path: "backend/config/config.env" });
 
@@ -20,13 +18,25 @@ connectDatabase();
 // Import tất cả các routes (đường dẫn)
 import productRoutes from "./routes/products.js";
 
+app.use(express.json());
+
 app.use("/api", productRoutes);
 
 app.use(errorsMiddleware);
 
 // app instance đăng ký routes và listen ở port 3000.
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(
     `Server đang chạy ở port ${process.env.PORT} ở chế độ ${process.env.NODE_ENV}`
   );
 });
+
+//Handle Unhandled Promise rejections
+process.on("unhandledRejection", (err) => {
+  console.log(`ERROR: ${err}`);
+  console.log("Shutting down server due to Unhandled Promise Rejection");
+  server.close(() => {
+    process.exit(1);
+  });
+});
+  
