@@ -77,7 +77,7 @@ Project được cài cài đặt tại `D:/FashionShop`:
    * npm run seeder: xoá sạch-deleteMany() và nạp dữ liệu từ backend\seeder\data.js vào CSDL Mongo Atlas
    * Để view web với frontend:
       + B1: Mở thêm 1 git bash
-      + B2 (chỉ lần đầu tiên): npm install
+      + B2: npm install
       + B3: cd frontend
       + B4: npm start
 2. Phải Fetch trước khi edit project để update mới nhất từ git 'main' và tránh không bị lỗi conflict khi commit.
