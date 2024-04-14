@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetProductDetailsQuery } from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
 // frames hook dùng để lấy id từ params
 import { useParams } from "react-router-dom"; // auto chèn khi chọn useParams
@@ -8,10 +8,13 @@ import StarRatings from "react-star-ratings";
 
 const ProductDetails = () => {
   const params = useParams();
+
+  const [quantity, setQuantity] = useState(1); // quantity: số lượng sản phẩm
+  const [activeImg, setActiveImg] = React.useState(""); // activeImg: ảnh đang được chọn
+
   const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);
   const product = data?.product;
 
-  const [activeImg, setActiveImg] = React.useState("");
 
   useEffect(() => {
     setActiveImg(product?.images[0] ? product?.images[0]?.url : "/images/default_product.png");
@@ -22,6 +25,21 @@ const ProductDetails = () => {
       toast.error(error?.data?.message);
     }
   }, [isError]);
+
+  const increaseQty = () => {
+    const count = document.querySelector(".count");
+
+    if(count.valueAsNumber >= product?.stock) return;
+
+    const qty = count.valueAsNumber + 1;
+    setQuantity(qty);
+    // let qty = count.value;
+    // if (qty >= product?.stock) return;
+    // qty++;
+    // setQuantity(qty);
+  };
+
+  const decreaseQty = () => {};
 
   if (isLoading) return <Loader />
 
@@ -78,14 +96,14 @@ const ProductDetails = () => {
 
         <p id="product_price">{product?.price.toLocaleString("vi-VN")}đ</p>
         <div className="stockCounter d-inline">
-          <span className="btn btn-danger minus">-</span>
+          <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
           <input
             type="number"
             className="form-control count d-inline"
-            value="1"
+            value={quantity}
             readonly
           />
-          <span className="btn btn-primary plus">+</span>
+          <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
         </div>
         <button
           type="button"

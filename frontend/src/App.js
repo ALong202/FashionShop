@@ -8,6 +8,7 @@ import Header from "./component/layout/Header";
 // Toast package giúp hiển thị thông báo success, error, warning... https://www.npmjs.com/package/react-hot-toast
 import { Toaster } from "react-hot-toast";
 import ProductDetails from './component/product/ProductDetails';
+import Login from './component/auth/Login'; // auto chèn khi chọn Login từ Quick Fix
 // import './custom-theme.min.css';
 
 
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
 
       </div>
