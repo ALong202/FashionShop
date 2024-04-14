@@ -16,9 +16,9 @@ export const productApi = createApi({
       query: (params) => ({
         url: "/products",
         // đưa params về backend 
-        // params: {
-        //   page: params?.page,
-        // }
+        params: {
+          page: params?.page,
+        }
       }),
     }),
     // Lấy thông tin chi tiết sản phẩm từ backend
