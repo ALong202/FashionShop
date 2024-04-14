@@ -77,8 +77,8 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, "Vui lòng nhập màu sản phẩm."],
       enum: {
-        values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng","Hồng","Cam","Xám","Nâu", "Sọc"],
-        message: "Vui lòng chọn một màu hợp lệ (Trắng, Đen, Đỏ, Xanh, Vàng, Hồng, Cam, Xám, Nâu, Sọc)",
+        values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng","Hồng","Cam","Xám","Nâu", "Sọc", "Họa tiết"],
+        message: "Vui lòng chọn một màu hợp lệ (Trắng, Đen, Đỏ, Xanh, Vàng, Hồng, Cam, Xám, Nâu, Sọc, Họa tiết)",
       },
     },
 
