@@ -22,8 +22,7 @@ export const getProducts = async (req, res, next) => { // Khai báo hàm điều
   // Đếm số lượng sản phẩm sau khi áp dụng bộ lọc
   let filteredProductsCount = products.length
 
-//   Test frontend toast message
-//   return next(new ErrorHandler("Không tìm thấy sản phẩm", 400)); 
+
    
   res.status(200).json({// Trả về mã trạng thái 200 và dữ liệu JSON chứa danh sách sản phẩm
       filteredProductsCount, //Trả về Số lượng sản phẩm đã lọc
@@ -31,7 +30,8 @@ export const getProducts = async (req, res, next) => { // Khai báo hàm điều
   }); 
 };
 
-
+//   Test frontend toast message
+//   return next(new ErrorHandler("Không tìm thấy sản phẩm", 400)); 
 
 
 
