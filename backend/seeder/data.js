@@ -1195,8 +1195,8 @@ reviews: [],
 
 //33......................................... 
 {
-productID: "FMAT226332",
-name: "ÁO THUN - FMAT226332",
+productID: "FMAT226333",
+name: "ÁO THUN - FMAT226333",
 price: 370000,
 description:
   "Áo khoác chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
@@ -1233,8 +1233,8 @@ reviews: [],
 
 //34...........................................
 {
-productID: "FMAT226332",
-name: "ÁO THUN - FMAT226332",
+productID: "FMAT226334",
+name: "ÁO THUN - FMAT226334",
 price: 545000,
 description:
   " Màu sắc thanh lịch dễ phối đồ.",
@@ -1272,8 +1272,8 @@ reviews: [],
 
 //35.......................................... 
 {
-productID: "FMAT226332",
-name: "ÁO THUN - FMAT226332",
+productID: "FMAT226335",
+name: "ÁO THUN - FMAT226335",
 price: 625000,
 description:
   "Áo khoác màu sắc trẻ trung dễ phối đồ.",
@@ -1310,8 +1310,8 @@ reviews: [],
 
 //36.............................................
 {
-productID: "FMAT226332",
-name: "ÁO THUN - FMAT226332",
+productID: "FMAT226336",
+name: "ÁO THUN - FMAT226336",
 price: 699000,
 description:
   "Kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -1348,8 +1348,8 @@ reviews: [],
 
 //37..............................................
 {
-productID: "FMAT226332",
-name: "ÁO THUN - FMAT226332",
+productID: "FMAT226337",
+name: "ÁO THUN - FMAT226337",
 price: 799000,
 description: 
   "Áo khoác dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -1386,8 +1386,8 @@ reviews: [],
 
 //38..............................................
 {
-productID: "FMAT226332",
-name: "ÁO THUN - FMAT226332",
+productID: "FMAT226338",
+name: "ÁO THUN - FMAT226338",
 price: 499000,
 description:
   "Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -1424,8 +1424,8 @@ reviews: [],
 
 //39..................................................
 {
-productID: "FMAT226332",
-name: "ÁO THUN - FMAT226332",
+productID: "FMAT226339",
+name: "ÁO THUN - FMAT226339",
 price: 39000,
 description:
   "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
