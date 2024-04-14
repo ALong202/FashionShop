@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
   
-  
+  // truyền số page number về backend bằng biến params
   let [searchParams] = useSearchParams();
   const page = searchParams.get("page") || 1;
 
