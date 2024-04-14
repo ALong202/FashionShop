@@ -116,46 +116,11 @@ export default [
 },
 
 //4...........................................
-{
-  productID: ALD231656,
-  name: "ÁO LEN - ALD231656",
-  price: 545000,
-  description:
-    "Áo len dáng regular fit tôn dáng người mặc. Màu sắc thanh lịch dễ phối đồ.",
-  ratings: 4.5,
-  images: [
-    {
-      public_id: "ivttBn1",
-      url: "https://i.imgur.com/ivttBn1.png",
-    },
-    {
-      public_id: "Xwozhxr",
-      url: "https://i.imgur.com/Xwozhxr.png",
-    },
-    {
-      public_id: "IUPF0sF",
-      url: "https://i.imgur.com/IUPF0sF.png",
-    },
-  ],
-  category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo len"
-      }
-    }
-  },
-  color: "Đỏ",
-  size: ["S","M"], 
-  stock: 11,
-  numOfReviews: 112,
-  reviews: [],
-},
+
 
   //5.......................................... 
 {
-  productID: QJS230161,
+  productID: "QJS230161",
   name: "QUẦN JEANS - QJS230161",
   price: 625000,
   description:
@@ -189,7 +154,7 @@ export default [
 
 //6.............................................
 {
-  productID: QS231535,
+  productID: "QS231535",
   name: "QUẦN TÂY - QS231535",
   price: 699000,
   description:
@@ -223,7 +188,7 @@ export default [
 
 //7..............................................
 {
-  productID: BELT232615,
+  productID: "BELT232615",
   name: "THẮT LƯNG - BELT232615",
   price: 799000,
   description: 
@@ -253,7 +218,7 @@ export default [
 
 //8..............................................
 {
-  productID: CV221500,
+  productID: "CV221500",
   name: "CÀ VẠT - CV221500",
   price: 499000,
   description:
@@ -284,7 +249,7 @@ export default [
 
 //9..................................................
 {
-  productID: TA221475,
+  productID: "TA221475",
   name: "TẤT - TA221475",
   price: 39000,
   description:
@@ -315,7 +280,7 @@ export default [
 
 //10...................................................
 {
-  productID: TA221476,
+  productID: "TA221476",
   name: "TẤT - TA221476",
   price: 39000,
   description:
