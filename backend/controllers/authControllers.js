@@ -1,6 +1,7 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js"
 import User from "../models/user.js";
 import ErrorHandler from "../utils/errorHandler.js";
+import sendToken from "../utils/sendToken.js";
 
 // Hàm xử lý yêu cầu đăng ký người dùng
 //Register User => /api/register
@@ -18,12 +19,7 @@ export const registerUser = catchAsyncErrors(async (req, res, next) => {
     phone,
   });
 
-  const token = user.getJwtToken();
-
-  // Trả về một phản hồi thành công với mã trạng thái HTTP 201
-  res.status(201).json({
-    token,
-  });
+  sendToken(user, 201, res)
 });
 
 
@@ -48,10 +44,5 @@ export const loginUser = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("username hoặc mật khẩu không đúng", 401))
   }
 
-  const token = user.getJwtToken(); 
-
-  // Trả về một phản hồi thành công với mã trạng thái HTTP 201
-  res.status(200).json({
-    token,
-  });
+  sendToken(user, 201, res)
 });
