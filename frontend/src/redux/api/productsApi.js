@@ -17,7 +17,10 @@ export const productApi = createApi({
         url: "/products",
         // đưa params về backend 
         params: {
-          page: params?.page,
+          page: params?.page, // page: số trang
+          keyword: params?.keyword, // keyword: từ khóa tìm kiếm
+          "price[gte]": params?.min,
+          "price[lte]": params?.max,
         }
       }),
     }),

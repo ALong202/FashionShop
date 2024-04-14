@@ -4,6 +4,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import MetaData from './MetaData';
+import Search from './Search';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,22 +22,7 @@ const Header = () => {
           </div>
         </div>
         <div className="col-12 col-md-6 mt-2 mt-md-0">
-          <form action="your_search_action_url_here" method="get">
-            <div className="input-group">
-              <input
-                type="text"
-                id="search_field"
-                aria-describedby="search_btn"
-                className="form-control"
-                placeholder="Nhập tên sản phẩm ..."
-                name="keyword"
-                value=""
-              />
-              <button id="search_btn" className="btn" type="submit">
-                <i className="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </div>
-          </form>
+          <Search />
         </div>
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
           <a href="/cart" style={{textDecoration: "none"}}>

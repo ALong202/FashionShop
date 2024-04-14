@@ -151,7 +151,7 @@ const ProductDetails = () => {
           {product?.description}
         </p>
         <hr />
-        <p id="product_seller mb-3">Được bán bởi: <strong>FashionShop</strong></p>
+        <p id="product_seller mb-3">Sản xuất bởi: <strong>FashionShop</strong></p>
 
         <div className="alert alert-danger my-5" type="alert">
           Hãy đăng nhập để xem đánh giá.
