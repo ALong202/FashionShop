@@ -7,7 +7,7 @@ import express from 'express'
 import { 
     getProducts, 
     newProduct, 
-    getProductDetail, 
+    getProductDetails, 
     updateProduct,
     deleteProduct 
 } from '../controllers/productControllers.js'; // tự động xuất hiện khi gõ syntax get(getProducts)
@@ -22,7 +22,7 @@ router.route("/products").get(getProducts);
 router.route("/admin/products").post(newProduct);
 
 //Router route(dẫn) đến mục "/products" để get thông tin 1 sản phẩm theo id cho sẵn
-router.route("/products/:id").get(getProductDetail);
+router.route("/products/:id").get(getProductDetails);
 
 //Router route(dẫn) đến mục "/products" để sửa sản phẩm theo id sản phẩm
 router.route("/products/:id").put(updateProduct);
