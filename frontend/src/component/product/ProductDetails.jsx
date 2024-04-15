@@ -77,6 +77,7 @@ const ProductDetails = () => {
             alt={product?.name}
             width="340"
             height="390"
+            style={{ objectFit: 'contain', maxHeigth: "0%"}}
           />
         </div>
         <div className="row justify-content-start mt-5">

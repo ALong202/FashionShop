@@ -19,6 +19,7 @@ export const productApi = createApi({
         params: {
           page: params?.page, // page: số trang
           keyword: params?.keyword, // keyword: từ khóa tìm kiếm
+          category: params?.category,
           "price[gte]": params?.min,
           "price[lte]": params?.max,
         }

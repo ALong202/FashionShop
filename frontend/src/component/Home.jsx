@@ -1,3 +1,5 @@
+/* 1 component trong React, chức năng hiển thị trang chủ của ứng dụng
+*/
 import React, { useEffect } from "react"
 import MetaData from "./layout/MetaData"
 import { useGetProductsQuery } from "../redux/api/productsApi" // auto chèn khi chọn useGetProductsQuery
@@ -16,11 +18,13 @@ const Home = () => {
   const keyword = searchParams.get("keyword") || ""; // keyword: từ khóa tìm kiếm
   const min = searchParams.get("min");
   const max = searchParams.get("max");
+  const category = searchParams.get("category");
 
   const params = { page, keyword };
 
-  min != null && (params.min = min);
-  max != null && (params.max = max);
+  min !== null && (params.min = min);
+  max !== null && (params.max = max);
+  category !== null && (params.category = category);
   // console.log("====================================")
   // console.log(params);
   // console.log("====================================")

@@ -21,7 +21,10 @@ class APIFilters{
           : {};
           const category = this.queryStr.category; // Assuming category is a top-level string
           if (category) {
-            keyword.category.name = category; // Filter by category name
+            // // Hung: Initialize keyword.category as an object if it doesn't exist
+            // keyword.category = keyword.category || {}; // Hung
+            // keyword.category.name = category; // Filter by category name
+            keyword['category.name'] = category; // Filter by category name
           }
         
           // Thực hiện tìm kiếm dựa trên từ khóa và gán kết quả vào biến 'query'
@@ -35,7 +38,7 @@ class APIFilters{
         // Tạo một bản sao của đối tượng truy vấn để tránh ảnh hưởng đến đối tượng gốc
         const queryCopy = { ...this.queryStr};
         // Xác định các trường cần loại bỏ khỏi bản sao truy vấn
-        const fieldsToRemove = ["keyword", "page"];
+        const fieldsToRemove = ["keyword", "page", "category"];
         // Loại bỏ các trường đã xác định khỏi bản sao truy vấn
         fieldsToRemove.forEach((el) => delete queryCopy[el]);
         // Chuyển đổi bản sao truy vấn thành chuỗi JSON
@@ -44,16 +47,27 @@ class APIFilters{
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
         // Thực hiện tìm kiếm dựa trên các điều kiện lọc và gán kết quả vào biến 'query'
         
-       // Kiểm tra xem category có tồn tại và có trường name không trước khi truy cập
-        if (this.queryStr.category && typeof this.queryStr.category === 'object' && this.queryStr.category.name) {
-            this.query = this.query.find({
-                'category.name': this.queryStr.category.name
-            });
+        // Kiểm tra xem category có tồn tại và có trường name không trước khi truy cập
+        console.log('Before:');
+        console.log(this.queryStr);
+        console.log(this.queryStr.category);
+        console.log('After:');
+
+        // if (this.queryStr.category && typeof this.queryStr.category === 'object' && this.queryStr.category.name) {
+        //     this.query = this.query.find({
+        //         'category.name': this.queryStr.category.name
+        //     });
+        // }
+
+        if (this.queryStr.category) {
+            this.query = this.query.find({ 'category.name': this.queryStr.category });
         }
-    
-          
+        
 
         this.query = this.query.find(JSON.parse(queryStr));
+
+        
+
         return this;
     }
     pagination(resPerPage) {
@@ -66,3 +80,4 @@ class APIFilters{
 } 
 
 export default APIFilters;
+
