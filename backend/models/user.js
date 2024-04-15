@@ -5,11 +5,11 @@ import crypto from "crypto";
 
 const userSchema = new mongoose.Schema(
   {
-    // userID: {
-    //   type: Number,
-    //   required: true,
-    //   unique: true
-    // },
+    userID: {
+      type: Number,
+      required: false,
+      unique: false
+    },
 
     name: {
       type: String,

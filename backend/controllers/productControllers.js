@@ -32,9 +32,6 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
     products, // Danh sách sản phẩm
   });
 });
-  
-
-
 
 
 
