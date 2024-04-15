@@ -26,8 +26,8 @@ export const authorizeRoles = (...roles) =>{
           `Quyền (${req.user.role}) không có thể truy cập chức năng này`,
           403
         )
-      )
+      );
     }
-  }
+  };
 
-}
+};
