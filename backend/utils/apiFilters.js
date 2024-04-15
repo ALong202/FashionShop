@@ -26,6 +26,15 @@ class APIFilters{
             // keyword.category.name = category; // Filter by category name
             keyword['category.name'] = category; // Filter by category name
           }
+          const subCategory = this.queryStr.subCategory;
+            if (subCategory) {
+                keyword['category.subCategory'] = subCategory; // Lọc theo tên subcategory
+            }
+
+            const subSubCategory = this.queryStr.subSubCategory;
+            if (subCategory) {
+                keyword['category.subSubCategory'] = subSubCategory; // Lọc theo tên subcategory
+            }
         
           // Thực hiện tìm kiếm dựa trên từ khóa và gán kết quả vào biến 'query'
         this.query = this.query.find({ ...keyword});
@@ -38,7 +47,7 @@ class APIFilters{
         // Tạo một bản sao của đối tượng truy vấn để tránh ảnh hưởng đến đối tượng gốc
         const queryCopy = { ...this.queryStr};
         // Xác định các trường cần loại bỏ khỏi bản sao truy vấn
-        const fieldsToRemove = ["keyword", "page", "category"];
+        const fieldsToRemove = ["keyword", "page", "category","subCategory", "subSubCategory"];
         // Loại bỏ các trường đã xác định khỏi bản sao truy vấn
         fieldsToRemove.forEach((el) => delete queryCopy[el]);
         // Chuyển đổi bản sao truy vấn thành chuỗi JSON
