@@ -1,31 +1,5 @@
 import mongoose from "mongoose";
 
-const SubSubCategorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    enum: ["Áo khoác","Áo len","Áo polo","Áo sơ mi","Áo thun", "Cà vạt", "Chân váy", "Đầm","Quần tây","Quần bò", "Quần short", "Thắt lưng", "Tất"],
-    message: "Vui lòng chọn danh mục phụ của danh mục con"
-  }
-});
-
-const SubCategorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    enum: ["Áo", "Chân váy & Đầm","Quần", "Phụ kiện"],
-    message: "Vui lòng chọn danh mục con"
-  },
-  subSubCategory: SubSubCategorySchema
-});
-
-const CategorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Vui lòng nhập danh mục sản phẩm"],
-    enum: ["Nữ", "Nam","Trẻ em"]
-  },
-  subCategory: SubCategorySchema
-});
-
 
 const productSchema = new mongoose.Schema(
   {
