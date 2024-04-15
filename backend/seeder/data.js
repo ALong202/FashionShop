@@ -1330,7 +1330,7 @@ images: [
     url: "https://i.imgur.com/N7IB0DO.jpg",
   },
 ],
-ccategory: {
+category: {
   "name": "Nữ",
   "subCategory": {
     "name": "Áo",
@@ -1445,7 +1445,7 @@ images: [
   },
   
 ],
-ccategory: {
+category: {
   "name": "Nữ",
   "subCategory": {
     "name": "Áo",
@@ -1483,7 +1483,7 @@ images: [
     url: "https://i.imgur.com/N1lI4yN.jpg",
   },
 ],
-ccategory: {
+category: {
   "name": "Nữ",
   "subCategory": {
     "name": "Áo",
