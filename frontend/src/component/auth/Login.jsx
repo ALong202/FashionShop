@@ -16,9 +16,9 @@ const Login = () => {
   // kiểm tra nếu có lỗi request thì hiển thị thông báo lỗi bằng toast.error
   useEffect(() => {
     if(error){
-      toast.error(error?.data?.message || "Đã có lỗi xảy ra, vui lòng thử lại");
+      toast.error(error?.data?.message);
     }
-  })
+  }, [error])
   // xử lý sự kiện submit của form. Sau đó hàm login được gọi với dữ liệu đăng nhập
   const submitHandler = (e) => {
     e.preventDefault();
