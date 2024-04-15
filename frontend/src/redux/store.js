@@ -11,6 +11,7 @@ export const store = configureStore({
     // todos: todosReducer,
     cart: cartReducer,
     [productApi.reducerPath]: productApi.reducer, // ref: https://redux-toolkit.js.org/rtk-query/usage#adding-the-api-to-the-store
+    [authApi.reducerPath]: authApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
      
   },

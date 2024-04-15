@@ -5,12 +5,6 @@ import crypto from "crypto";
 
 const userSchema = new mongoose.Schema(
   {
-    userID: {
-      type: Number,
-      required: false,
-      unique: false
-    },
-
     name: {
       type: String,
       required: [true, "Vui lòng nhập tên của bạn."],
