@@ -25,10 +25,10 @@ router.route("/admin/products").post(newProduct);
 router.route("/products/:id").get(getProductDetails);
 
 //Router route(dẫn) đến mục "/products" để sửa sản phẩm theo id sản phẩm
-router.route("/products/:id").put(updateProduct);
+router.route("/admin/products/:id").put(updateProduct);
 
 //Router route(dẫn) đến mục "/products" để xóa 1 sản phẩm theo id sản phẩm
-router.route("/products/:id").delete(deleteProduct);
+router.route("/admin/products/:id").delete(deleteProduct);
 
  
 // để sử dụng trong các files. Khi 1 tệp (app.js) muốn import từ 1 module khác (product.js) thì cần export dữ liệu từ module đó (tương tự return)
