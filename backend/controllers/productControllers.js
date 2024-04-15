@@ -78,7 +78,7 @@ export const updateProduct = catchAsyncErrors( async (req, res) => { // Khai bá
 
 
 //Xóa sản phẩm với đường dẫn => /products/:id
-export const deleteProduct = async (req, res, next) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+export const deleteProduct = catchAsyncErrors(  async (req, res, next) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
   const product = await Product.findById(req?.params?.id ); // Tìm kiếm sản phẩm: sử dụng phương thức findById của Mongoose để tìm kiếm sản phẩm với ID được cung cấp trong yêu cầu (req.params.id).
 
   if(!product) {
@@ -92,7 +92,7 @@ export const deleteProduct = async (req, res, next) => { // Khai báo hàm đi�
   res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được xóa
       message: "Đã xóa sản phẩm",
   });
-};
+});
 
 
 //   Test frontend toast message
