@@ -19,22 +19,22 @@ class APIFilters{
           }
           // Nếu không có từ khóa, sử dụng đối tượng rỗng
           : {};
-          const category = this.queryStr.category; // Assuming category is a top-level string
-          if (category) {
+        const category = this.queryStr.category; // Assuming category is a top-level string
+        if (category) {
             // // Hung: Initialize keyword.category as an object if it doesn't exist
             // keyword.category = keyword.category || {}; // Hung
             // keyword.category.name = category; // Filter by category name
             keyword['category.name'] = category; // Filter by category name
-          }
-          const subCategory = this.queryStr.subCategory;
-            if (subCategory) {
-                keyword['category.subCategory'] = subCategory; // Lọc theo tên subcategory
-            }
+        }
+        const subCategory = this.queryStr.subCategory;
+        if (subCategory) {
+            keyword['category.subCategory'] = subCategory; // Lọc theo tên subcategory
+        }
 
-            const subSubCategory = this.queryStr.subSubCategory;
-            if (subCategory) {
-                keyword['category.subSubCategory'] = subSubCategory; // Lọc theo tên subcategory
-            }
+        const subSubCategory = this.queryStr.subSubCategory;
+        if (subSubCategory) {
+            keyword['category.subSubCategory'] = subSubCategory; // Lọc theo tên subcategory
+        }
         
           // Thực hiện tìm kiếm dựa trên từ khóa và gán kết quả vào biến 'query'
         this.query = this.query.find({ ...keyword});
@@ -68,10 +68,7 @@ class APIFilters{
         //     });
         // }
 
-        if (this.queryStr.category) {
-            this.query = this.query.find({ 'category.name': this.queryStr.category });
-        }
-        
+
 
         this.query = this.query.find(JSON.parse(queryStr));
 
