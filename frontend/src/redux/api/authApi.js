@@ -1,6 +1,9 @@
 /* 
-slash logiin là post request (mutation, thay vì query) gửi đến backend, backend xử lý và trả về response
+slash login là post request (mutation, thay vì query) gửi đến backend, backend xử lý và trả về response
 https://redux-toolkit.js.org/rtk-query/usage/mutations
+
+useLoginMutation được tạo ra từ endpoint login trong authApi. Endpoint này gửi 1 request POST đến /api/login với credentials (email, password) và trả về response.
+Khi đăng nhập sẽ dùng lệnh POST thay vì GET vì dữ liệu credentials không nên hiển thị trên URL.
 */ 
 import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
@@ -25,5 +28,5 @@ export const authApi = createApi({
   }),
 })
 
-// the hook  để lấy toàn bộ sản phẩm, tất cả biến Isloading-sucess-error variables
+// the hook để lấy toàn bộ sản phẩm, tất cả biến Isloading-sucess-error variables
 export const { useLoginMutation } = authApi;

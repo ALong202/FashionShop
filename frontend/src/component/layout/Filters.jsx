@@ -119,30 +119,23 @@ const Filters = () => {
       <hr />
       <h5 className="mb-3">Ratings</h5>
 
-      <div className="form-check">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          name="ratings"
-          id="check7"
-          value="5"
-        />
-        <label className="form-check-label" for="check7">
-          <span className="star-rating">★ ★ ★ ★ ★</span>
-        </label>
-      </div>
-      <div className="form-check">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          name="ratings"
-          id="check8"
-          value="4"
-        />
-        <label className="form-check-label" for="check8">
-          <span className="star-rating">★ ★ ★ ★ ☆</span>
-        </label>
-      </div>
+      {[5,4,3,2,1].map((rating) => (
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            name="ratings"
+            id="check7"
+            value={rating}
+            defaultChecked={defaultCheckHandler("rating", rating)}
+            onClick={(e) => handleClick(e.target)}
+          />
+          <label className="form-check-label" for="check7">
+            <span className="star-rating">★ ★ ★ ★ ★</span>
+          </label>
+        </div>
+      ))}
+      
     </div>
   )
 }
@@ -159,4 +152,18 @@ export default Filters
     value="Category 2"
   />
   <label className="form-check-label" for="check5"> Category 2 </label>
+</div> */}
+
+
+{/* <div className="form-check">
+  <input
+    className="form-check-input"
+    type="checkbox"
+    name="ratings"
+    id="check8"
+    value="4"
+  />
+  <label className="form-check-label" for="check8">
+    <span className="star-rating">★ ★ ★ ★ ☆</span>
+  </label>
 </div> */}
