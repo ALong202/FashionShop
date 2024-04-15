@@ -2061,8 +2061,8 @@ reviews: [],
 
 //62..........................................
 {
-productID: "MAL212261",
-name: "ÁO LEN VẢI DỆT - MAL212261",
+productID: "MAL212262",
+name: "ÁO LEN VẢI DỆT - MAL212262",
 price: 790000,
 description:
   "Áo LEN vải pha sợi cotton, dáng oversize. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài bằng hàng khuy cài.",
@@ -2091,8 +2091,8 @@ reviews: [],
 
 //63......................................... 
 {
-productID: "MAL212261",
-name: "ÁO LEN VẢI DỆT KIỂU LƯỚI - MAL212261",
+productID: "MAL212263",
+name: "ÁO LEN VẢI DỆT KIỂU LƯỚI - MAL212263",
 price: 1599000,
 description:
   "Áo len vải dệt thưa, dáng relaxed fit. Cổ chữ V, dài tay. Bo viền bằng vải gân. Cài phía trước bằng hàng khuy cài.",
@@ -2125,8 +2125,8 @@ reviews: [],
 
 //64...........................................
 {
-productID: "MAL212261",
-name: "ÁO CARDIGAN OVERSIZE VẢI DỆT - MAL212261",
+productID: "MAL212264",
+name: "ÁO CARDIGAN OVERSIZE VẢI DỆT - MAL212264",
 price: 1999000,
 description:
   "Áo len vải cotton, dáng oversize. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài phía trước bằng hàng khuy cài.",
@@ -2160,8 +2160,8 @@ reviews: [],
 
 //65.......................................... 
 {
-productID: "MAL212261",
-name: "ÁO LEN DỆT KIM KIỂU VẶN THỪNG - MAL212261",
+productID: "MAL212265",
+name: "ÁO LEN DỆT KIM KIỂU VẶN THỪNG - MAL212265",
 price: 1625000,
 description:
   "Áo len vải pha sợi cotton. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài phía trước bằng hàng khuy cài.",
@@ -2194,8 +2194,8 @@ reviews: [],
 
 //66.............................................
 {
-productID: "MAL212261",
-name: "ÁO LEN DỆT KIM - MAL212261",
+productID: "MAL212266",
+name: "ÁO LEN DỆT KIM - MAL212266",
 price: 1699000,
 description:
   "Áo len oversize vải pha sợi cotton. Cổ tròn, dài tay. Cổ tay và gấu bo vải gân.",
@@ -2228,8 +2228,8 @@ reviews: [],
 
 //67..............................................
 {
-productID: "MAL212261",
-name: "ÁO LEN DỆT KIM - MAL212261",
+productID: "MAL212267",
+name: "ÁO LEN DỆT KIM - MAL212267",
 price: 1799000,
 description: 
   "Áo vải pha sợi cotton và sợi len. Cổ chữ V, tay sát nách. Bo viền bằng len gân. Bộ sưu tập đặc biệt Origins.",
@@ -2262,8 +2262,8 @@ reviews: [],
 
 //68..............................................
 {
-productID: "MAL212261",
-name: "ÁO LEN SỢI COTTON - LEN - MAL212261",
+productID: "MAL212268",
+name: "ÁO LEN SỢI COTTON - LEN - MAL212268",
 price: 1499000,
 description:
   "Áo len chất liệu pha sợi cotton và sợi len. Cổ tròn, dài tay. Bo viền bằng len gân.",
@@ -2296,8 +2296,8 @@ reviews: [],
 
 //69..................................................
 {
-productID: "MAL212261",
-name: "ÁO LEN SỢI COTTON - LEN CÀI KHÓA KÉO - MAL212261",
+productID: "MAL212269",
+name: "ÁO LEN SỢI COTTON - LEN CÀI KHÓA KÉO - MAL212269",
 price: 139000,
 description:
   "Áo len chất liệu pha sợi cotton và sợi len. Cổ cao, cài khóa kéo phía trước. Dài tay. Bo viền bằng len gân.",
@@ -2331,8 +2331,8 @@ reviews: [],
 
 //70...................................................
 {
-productID: "MAL212261",
-name: "ÁO LEN DỆT KIM KIỂU CHẬP VÒNG CÓ MŨ - MAL212261",
+productID: "MAL212270",
+name: "ÁO LEN DỆT KIM KIỂU CHẬP VÒNG CÓ MŨ - MAL212270",
 price: 2239000,
 description:
   "Áo len vải pha sợi cotton và sợi linen. Cổ may liền mũ trùm đầu, dài tay. Phía trước có hai túi đáp. Bo viền bằng vải gân. Cài phía trước bằng khóa kéo.",
