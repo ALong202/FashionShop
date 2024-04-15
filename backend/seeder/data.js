@@ -1,46 +1,41 @@
 export default [
   
-  //1...................................... 
-  {
-    productID: "MASM240001",
-    name: "ÁO SƠ MI - MASM240001",
-    price: 580000,
-    description:
-      " Áo sơ mi dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
-    ratings: 4.5,
-    images: [
-      {
-        public_id: "yst8iCm",
-        url: "https://i.imgur.com/yst8iCm.png",
-      },
-      {
-        public_id: "3yOTMCw",
-        url: "https://i.imgur.com/3yOTMCw.png",
-      },
-      {
-        public_id: "EX3Bi7p",
-        url: "https://i.imgur.com/EX3Bi7p.png",
-      },
-    ],
-    category: {
-      "name": "Nam",
-      "subCategory": {
-        "name": "Áo",
-        "subSubCategory": {
-          "name": "Áo sơ mi"
-        }
-      }
+//1...................................... 
+{
+  productID: "MASM240001",
+  name: "ÁO SƠ MI - MASM240001",
+  price: 580000,
+  description:
+    " Áo sơ mi dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "yst8iCm",
+      url: "https://i.imgur.com/yst8iCm.png",
     },
-    color: "Trắng",
-    size: ["S","M", "L"], 
-    stock: 50,
-    numOfReviews: 32,
-    reviews: [],
+    {
+      public_id: "3yOTMCw",
+      url: "https://i.imgur.com/3yOTMCw.png",
+    },
+    {
+      public_id: "EX3Bi7p",
+      url: "https://i.imgur.com/EX3Bi7p.png",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
   },
+  color: "Trắng",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
 
- 
- //2..........................................
- {
+//2..........................................
+{
   productID: "MAPL240002",
   name: "Áo Polo - MAPL240002",
   price: 790000,
@@ -62,13 +57,9 @@ export default [
     }
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo polo"
-      }
-    }
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo polo"
   },
   color: "Đỏ",
   size: ["S","M", "L"], 
@@ -100,13 +91,9 @@ export default [
     }
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo sơ mi"
-      }
-    }
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo thun"
   },
   color: "Xanh",
   size: ["S","M", "L"], 
@@ -138,13 +125,9 @@ export default [
     },
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo len"
-      }
-    }
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo len"
   },
   color: "Đỏ",
   size: ["S","M"], 
@@ -154,7 +137,7 @@ export default [
 },
 
 
-  //5.......................................... 
+//5.......................................... 
 {
   productID: "MQJS230105",
   name: "QUẦN JEANS - QJS230105",
@@ -173,13 +156,9 @@ export default [
     },
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Quần",
-      "subSubCategory": {
-        "name": "Quần bò"
-      }
-    }
+    name: "Nam",
+    subCategory: "Quần",
+    subSubCategory: "Quần bò"
   },
   color: "Xanh",
   size: ["M", "L"], 
@@ -207,13 +186,9 @@ export default [
     },
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Quần",
-      "subSubCategory": {
-        "name": "Quần tây"
-      }
-    }
+    name: "Nam",
+    subCategory: "Quần",
+    subSubCategory: "Quần tây"
   },
   color: "Trắng",
   size: ["S","M", "L"], 
@@ -237,13 +212,9 @@ export default [
     },
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Phụ kiện",
-      "subSubCategory": {
-        "name": "Thắt lưng"
-      }
-    }
+    name: "Nam",
+    subCategory: "Phụ kiện",
+    subSubCategory: "Thắt lưng"
   },
   color: "Đen",
   size: "F", 
@@ -268,13 +239,9 @@ export default [
    
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Phụ kiện",
-      "subSubCategory": {
-        "name": "Thắt lưng"
-      }
-    }
+    name: "Nam",
+    subCategory: "Phụ kiện",
+    subSubCategory: "Thắt lưng"
   },
   color: "Xanh",
   size: "F",
@@ -299,13 +266,9 @@ export default [
     
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Phụ kiện",
-      "subSubCategory": {
-        "name": "Thắt lưng"
-      }
-    }
+    name: "Nam",
+    subCategory: "Phụ kiện",
+    subSubCategory: "Thắt lưng"
   },
   color: "Đen",
   size: ["S","M", "L"], 
@@ -333,13 +296,9 @@ export default [
     },
   ],
   category: {
-    "name": "Nam",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo sơ mi"
-      }
-    }
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
   },
   color: "Trắng",
   size: ["S","M", "L"], 
@@ -371,13 +330,9 @@ export default [
     },
   ],
   category: {
-    "name": "Nữ",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo khoác"
-      }
-    }
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
   },
   color: "Hồng",
   size: ["S","M", "L"], 
@@ -410,13 +365,9 @@ images: [
   }
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Hồng",
 size: ["S","M", "L"], 
@@ -448,13 +399,9 @@ images: [
   }
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Xanh",
 size: ["S","M", "L"], 
@@ -486,13 +433,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Xanh",
 size: ["S","M"], 
@@ -525,13 +468,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Đen",
 size: ["M", "L"], 
@@ -563,13 +502,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Xanh",
 size: ["S","M", "L"], 
@@ -601,13 +536,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Trắng",
 size: "F", 
@@ -639,13 +570,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Trắng",
 size: "F",
@@ -678,13 +605,9 @@ images: [
   
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Xanh",
 size: ["S","M", "L"], 
@@ -716,13 +639,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo khoác"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo khoác"
 },
 color: "Trắng",
 size: ["S","M", "L"], 
@@ -730,7 +649,6 @@ stock: 50,
 numOfReviews: 1,
 reviews: [],
 },
-
 
 //21...................................... 
 {
@@ -755,13 +673,9 @@ reviews: [],
     },
   ],
   category: {
-    "name": "Nữ",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo len"
-      }
-    }
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo len"
   },
   color: "Nâu",
   size: ["S","M", "L"], 
@@ -769,7 +683,6 @@ reviews: [],
   numOfReviews: 32,
   reviews: [],
 },
-
 
 //22..........................................
 {
@@ -794,13 +707,9 @@ images: [
   }
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Xanh",
 size: ["S","M", "L"], 
@@ -832,13 +741,9 @@ images: [
   }
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Sọc",
 size: ["S","M", "L"], 
@@ -870,13 +775,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Đỏ",
 size: ["S","M"], 
@@ -909,13 +810,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Cam",
 size: ["M", "L"], 
@@ -947,13 +844,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Vàng",
 size: ["S","M", "L"], 
@@ -985,13 +878,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Trắng",
 size: "F", 
@@ -1023,13 +912,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Trắng",
 size: "F",
@@ -1062,13 +947,9 @@ images: [
   
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Sọc",
 size: ["S","M", "L"], 
@@ -1100,13 +981,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo len"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
 },
 color: "Hồng",
 size: ["S","M", "L"], 
@@ -1139,13 +1016,9 @@ reviews: [],
     },
   ],
   category: {
-    "name": "Nữ",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo thun"
-      }
-    }
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo thun"
   },
   color: "Xanh",
   size: ["S","M", "L"], 
@@ -1178,13 +1051,9 @@ images: [
   }
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Xanh",
 size: ["S","M", "L"], 
@@ -1216,13 +1085,9 @@ images: [
   }
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Sọc",
 size: ["S","M", "L"], 
@@ -1254,13 +1119,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Hồng",
 size: ["S","M"], 
@@ -1293,13 +1154,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Trắng",
 size: ["M", "L"], 
@@ -1331,13 +1188,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Sọc",
 size: ["S","M", "L"], 
@@ -1369,13 +1222,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Xanh",
 size: "F", 
@@ -1407,13 +1256,9 @@ images: [
   },
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Hồng",
 size: "F",
@@ -1446,13 +1291,9 @@ images: [
   
 ],
 category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
+  name: "Nữ",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
 },
 color: "Đen",
 size: ["S","M", "L"], 
@@ -1463,425 +1304,383 @@ reviews: [],
 
 //40...................................................
 {
-productID: "FMAT226340",
-name: "ÁO THUN - FMAT226340",
-price: 39000,
-description:
-  "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
-ratings: 5,
-images: [
-  {
-    public_id: "LoPXi1s",
-    url: "https://i.imgur.com/LoPXi1s.jpg",
-  },
-  {
-    public_id: "SXVSIuZ",
-    url: "https://i.imgur.com/SXVSIuZ.jpg",
-  },
-  {
-    public_id: "N1lI4yN",
-    url: "https://i.imgur.com/N1lI4yN.jpg",
-  },
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo thun"
-    }
-  }
-},
-color: "Họa tiết",
-size: ["S","M", "L"], 
-stock: 50,
-numOfReviews: 1,
-reviews: [],
-},
-
-
-//41...................................... 
-{
-  productID: "FMASM210541",
-  name: "ÁO SƠ MI - FMASM210541",
-  price: 580000,
+  productID: "FMAT226340",
+  name: "ÁO THUN - FMAT226340",
+  price: 39000,
   description:
-    " Áo kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
-  ratings: 4.5,
+    "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
+  ratings: 5,
   images: [
     {
-      public_id: "cQz0Bfh",
-      url: "https://i.imgur.com/cQz0Bfh.jpg",
+      public_id: "LoPXi1s",
+      url: "https://i.imgur.com/LoPXi1s.jpg",
     },
     {
-      public_id: "A4NnWyB",
-      url: "https://i.imgur.com/A4NnWyB.jpg",
+      public_id: "SXVSIuZ",
+      url: "https://i.imgur.com/SXVSIuZ.jpg",
     },
     {
-      public_id: "TsQgkOA",
-      url: "https://i.imgur.com/TsQgkOA.jpg",
+      public_id: "N1lI4yN",
+      url: "https://i.imgur.com/N1lI4yN.jpg",
     },
   ],
   category: {
-    "name": "Nữ",
-    "subCategory": {
-      "name": "Áo",
-      "subSubCategory": {
-        "name": "Áo sơ mi"
-      }
-    }
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo thun"
   },
-  color: "Vàng",
+  color: "Họa tiết",
   size: ["S","M", "L"], 
   stock: 50,
-  numOfReviews: 32,
+  numOfReviews: 1,
   reviews: [],
-},
-
-
-//42..........................................
-{
-productID: "FMASM210542",
-name: "ÁO SƠ MI - FMASM210542",
-price: 790000,
-description:
-  "Áo kiểu dáng body fit, tôn dáng người mặc. Màu sắc nổi bật, dễ phối đồ.",
-ratings: 1.65,
-images: [
-  {
-    public_id: "Gyvbwd0",
-    url: "https://i.imgur.com/Gyvbwd0.jpg",
-  },
-  {
-    public_id: "UvJg7WS",
-    url: "https://i.imgur.com/UvJg7WS.jpg",
-  },
-  {
-    public_id: "nh8sg57",
-    url: "https://i.imgur.com/nh8sg57.jpg",
-  }
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Hồng",
-size: ["S","M", "L"], 
-stock: 0,
-numOfReviews: 2,
-reviews: [],
-},
-
-//43......................................... 
-{
-productID: "FMASM210543",
-name: "ÁO SƠ MI - FMASM210543",
-price: 370000,
-description:
-  "Áo chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
-ratings: 3.5,
-images: [
-  {
-    public_id: "oQZ4v5v",
-    url: "https://i.imgur.com/oQZ4v5v.jpg",
-  },
-  {
-    public_id: "bZQY9eM",
-    url: "https://i.imgur.com/bZQY9eM.jpg",
-  },
-  {
-    public_id: "myWe7a5",
-    url: "https://i.imgur.com/myWe7a5.jpg",
-  }
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Sọc",
-size: ["S","M", "L"], 
-stock: 1,
-numOfReviews: 12,
-reviews: [],
-},
-
-//44...........................................
-{
-productID: "FMASM210544",
-name: "ÁO SƠ MI - FMASM210544",
-price: 545000,
-description:
-  "Áo dáng regular fit tôn dáng người mặc. Màu sắc thanh lịch dễ phối đồ.",
-ratings: 4.5,
-images: [
-  {
-    public_id: "vjfIb61",
-    url: "https://i.imgur.com/vjfIb61.jpg",
-  },
-  {
-    public_id: "7GHUbji",
-    url: "https://i.imgur.com/7GHUbji.jpg",
-  },
-  {
-    public_id: "Li1Ez4E",
-    url: "https://i.imgur.com/Li1Ez4E.jpg",
-  },
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Họa tiết",
-size: ["S","M"], 
-stock: 11,
-numOfReviews: 112,
-reviews: [],
-},
-
-
-//45.......................................... 
-{
-productID: "FMASM210545",
-name: "ÁO SƠ MI - FMASM210545",
-price: 625000,
-description:
-  "Áo màu sắc trẻ trung dễ phối đồ.",
-ratings: 4.8,
-images: [
-  {
-    public_id: "fvcE6xA",
-    url: "https://i.imgur.com/fvcE6xA.jpg",
-  },
-  {
-    public_id: "wPLb48r",
-    url: "https://i.imgur.com/wPLb48r.jpg",
-  },
-  {
-    public_id: "GQKYvDh",
-    url: "https://i.imgur.com/GQKYvDh.jpg",
-  },
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Sọc",
-size: ["M", "L"], 
-stock: 122,
-numOfReviews: 2671,
-reviews: [],
-},
-
-//46.............................................
-{
-productID: "FMASM210546",
-name: "ÁO SƠ MI - FMASM210546",
-price: 699000,
-description:
-  "Áo len cổ tròn, dài tay. Gấu xẻ hai bên.",
-ratings: 4.1,
-images: [
-  {
-    public_id: "Gqux7Vr",
-    url: "https://i.imgur.com/Gqux7Vr.jpg",
-  },
-  {
-    public_id: "31y5zbu",
-    url: "https://i.imgur.com/31y5zbu.jpg",
-  },
-  {
-    public_id: "vCe6IEW",
-    url: "https://i.imgur.com/vCe6IEW.jpg",
-  },
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Xanh",
-size: ["S","M", "L"], 
-stock: 1123,
-numOfReviews: 6,
-reviews: [],
-},
-
-//47..............................................
-{
-productID: "FMASM210547",
-name: "ÁO SƠ MI - FMASM210547",
-price: 799000,
-description: 
-  "Áo len cổ chữ V, dài tay. Phía trước có hai túi đáp. Có các chi tiết viền khác màu. Cài phía trước bằng khuy cài.",
-ratings: 4.7,
-images: [
-  {
-    public_id: "47FhOZn",
-    url: "https://i.imgur.com/47FhOZn.jpg",
-  },
-  {
-    public_id: "6xDrz0W",
-    url: "https://i.imgur.com/6xDrz0W.jpg",
-  },
-  {
-    public_id: "nVW1Fwp",
-    url: "https://i.imgur.com/nVW1Fwp.jpg",
-  },
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Hồng",
-size: "F", 
-stock: 131,
-numOfReviews: 222,
-reviews: [],
-},
-
-//48..............................................
-{
-productID: "FMASM210548",
-name: "ÁO SƠ MI - FMASM210548",
-price: 499000,
-description:
-  "Áo len có cổ tròn, tay áo dài tới khuỷu tay. Cài phía trước bằng nút ngọc trai giả.",
-ratings: 4.9,
-images: [
-  {
-    public_id: "ljSkmlg",
-    url: "https://i.imgur.com/ljSkmlg.jpg",
-  },
-  {
-    public_id: "bj2t1GP",
-    url: "https://i.imgur.com/bj2t1GP.jpg",
-  },
-  {
-    public_id: "EQx5BLk",
-    url: "https://i.imgur.com/EQx5BLk.jpg",
-  },
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Hồng",
-size: "F",
-stock: 0,
-numOfReviews: 56,
-reviews: [],
-},
-
-//49..................................................
-{
-productID: "FMASM210549",
-name: "ÁO SƠ MI - FMASM210549",
-price: 39000,
-description:
-  "Áo len cổ ve lật bản rộng, dài tay, cài khuy ở cổ tay. Cài phía trước bằng các khuy màu vàng kim.",
-ratings: 5,
-images: [
-  {
-    public_id: "YtESMVl",
-    url: "https://i.imgur.com/YtESMVl.jpg",
-  },
-  {
-    public_id: "bOkjyPW",
-    url: "https://i.imgur.com/bOkjyPW.jpg",
-  },
-  {
-    public_id: "jGCIiIz",
-    url: "https://i.imgur.com/jGCIiIz.jpg",
   },
   
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
+  
+  //41...................................... 
+  {
+    productID: "FMASM210541",
+    name: "ÁO SƠ MI - FMASM210541",
+    price: 580000,
+    description:
+      " Áo kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
+    ratings: 4.5,
+    images: [
+      {
+        public_id: "cQz0Bfh",
+        url: "https://i.imgur.com/cQz0Bfh.jpg",
+      },
+      {
+        public_id: "A4NnWyB",
+        url: "https://i.imgur.com/A4NnWyB.jpg",
+      },
+      {
+        public_id: "TsQgkOA",
+        url: "https://i.imgur.com/TsQgkOA.jpg",
+      },
+    ],
+    category: {
+      name: "Nữ",
+      subCategory: "Áo",
+      subSubCategory: "Áo sơ mi"
+    },
+    color: "Vàng",
+    size: ["S","M", "L"], 
+    stock: 50,
+    numOfReviews: 32,
+    reviews: [],
+  },
+  
+  
+  //42..........................................
+  {
+  productID: "FMASM210542",
+  name: "ÁO SƠ MI - FMASM210542",
+  price: 790000,
+  description:
+    "Áo kiểu dáng body fit, tôn dáng người mặc. Màu sắc nổi bật, dễ phối đồ.",
+  ratings: 1.65,
+  images: [
+    {
+      public_id: "Gyvbwd0",
+      url: "https://i.imgur.com/Gyvbwd0.jpg",
+    },
+    {
+      public_id: "UvJg7WS",
+      url: "https://i.imgur.com/UvJg7WS.jpg",
+    },
+    {
+      public_id: "nh8sg57",
+      url: "https://i.imgur.com/nh8sg57.jpg",
     }
-  }
-},
-color: "Nâu",
-size: ["S","M", "L"], 
-stock: 500,
-numOfReviews: 1,
-reviews: [],
-},
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Hồng",
+  size: ["S","M", "L"], 
+  stock: 0,
+  numOfReviews: 2,
+  reviews: [],
+  },
+  
+  //43......................................... 
+  {
+  productID: "FMASM210543",
+  name: "ÁO SƠ MI - FMASM210543",
+  price: 370000,
+  description:
+    "Áo chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
+  ratings: 3.5,
+  images: [
+    {
+      public_id: "oQZ4v5v",
+      url: "https://i.imgur.com/oQZ4v5v.jpg",
+    },
+    {
+      public_id: "bZQY9eM",
+      url: "https://i.imgur.com/bZQY9eM.jpg",
+    },
+    {
+      public_id: "myWe7a5",
+      url: "https://i.imgur.com/myWe7a5.jpg",
+    }
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Sọc",
+  size: ["S","M", "L"], 
+  stock: 1,
+  numOfReviews: 12,
+  reviews: [],
+  },
+  
+  //44...........................................
+  {
+  productID: "FMASM210544",
+  name: "ÁO SƠ MI - FMASM210544",
+  price: 545000,
+  description:
+    "Áo dáng regular fit tôn dáng người mặc. Màu sắc thanh lịch dễ phối đồ.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "vjfIb61",
+      url: "https://i.imgur.com/vjfIb61.jpg",
+    },
+    {
+      public_id: "7GHUbji",
+      url: "https://i.imgur.com/7GHUbji.jpg",
+    },
+    {
+      public_id: "Li1Ez4E",
+      url: "https://i.imgur.com/Li1Ez4E.jpg",
+    },
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Họa tiết",
+  size: ["S","M"], 
+  stock: 11,
+  numOfReviews: 112,
+  reviews: [],
+  },
+  
+  
+  //45.......................................... 
+  {
+  productID: "FMASM210545",
+  name: "ÁO SƠ MI - FMASM210545",
+  price: 625000,
+  description:
+    "Áo màu sắc trẻ trung dễ phối đồ.",
+  ratings: 4.8,
+  images: [
+    {
+      public_id: "fvcE6xA",
+      url: "https://i.imgur.com/fvcE6xA.jpg",
+    },
+    {
+      public_id: "wPLb48r",
+      url: "https://i.imgur.com/wPLb48r.jpg",
+    },
+    {
+      public_id: "GQKYvDh",
+      url: "https://i.imgur.com/GQKYvDh.jpg",
+    },
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Sọc",
+  size: ["M", "L"], 
+  stock: 122,
+  numOfReviews: 2671,
+  reviews: [],
+  },
+  
+  //46.............................................
+  {
+  productID: "FMASM210546",
+  name: "ÁO SƠ MI - FMASM210546",
+  price: 699000,
+  description:
+    "Áo len cổ tròn, dài tay. Gấu xẻ hai bên.",
+  ratings: 4.1,
+  images: [
+    {
+      public_id: "Gqux7Vr",
+      url: "https://i.imgur.com/Gqux7Vr.jpg",
+    },
+    {
+      public_id: "31y5zbu",
+      url: "https://i.imgur.com/31y5zbu.jpg",
+    },
+    {
+      public_id: "vCe6IEW",
+      url: "https://i.imgur.com/vCe6IEW.jpg",
+    },
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Xanh",
+  size: ["S","M", "L"], 
+  stock: 1123,
+  numOfReviews: 6,
+  reviews: [],
+  },
+  
+  //47..............................................
+  {
+  productID: "FMASM210547",
+  name: "ÁO SƠ MI - FMASM210547",
+  price: 799000,
+  description: 
+    "Áo len cổ chữ V, dài tay. Phía trước có hai túi đáp. Có các chi tiết viền khác màu. Cài phía trước bằng khuy cài.",
+  ratings: 4.7,
+  images: [
+    {
+      public_id: "47FhOZn",
+      url: "https://i.imgur.com/47FhOZn.jpg",
+    },
+    {
+      public_id: "6xDrz0W",
+      url: "https://i.imgur.com/6xDrz0W.jpg",
+    },
+    {
+      public_id: "nVW1Fwp",
+      url: "https://i.imgur.com/nVW1Fwp.jpg",
+    },
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Hồng",
+  size: "F", 
+  stock: 131,
+  numOfReviews: 222,
+  reviews: [],
+  },
+  
+  //48..............................................
+  {
+  productID: "FMASM210548",
+  name: "ÁO SƠ MI - FMASM210548",
+  price: 499000,
+  description:
+    "Áo len có cổ tròn, tay áo dài tới khuỷu tay. Cài phía trước bằng nút ngọc trai giả.",
+  ratings: 4.9,
+  images: [
+    {
+      public_id: "ljSkmlg",
+      url: "https://i.imgur.com/ljSkmlg.jpg",
+    },
+    {
+      public_id: "bj2t1GP",
+      url: "https://i.imgur.com/bj2t1GP.jpg",
+    },
+    {
+      public_id: "EQx5BLk",
+      url: "https://i.imgur.com/EQx5BLk.jpg",
+    },
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Hồng",
+  size: "F",
+  stock: 0,
+  numOfReviews: 56,
+  reviews: [],
+  },
+  
+  //49..................................................
+  {
+  productID: "FMASM210549",
+  name: "ÁO SƠ MI - FMASM210549",
+  price: 39000,
+  description:
+    "Áo len cổ ve lật bản rộng, dài tay, cài khuy ở cổ tay. Cài phía trước bằng các khuy màu vàng kim.",
+  ratings: 5,
+  images: [
+    {
+      public_id: "YtESMVl",
+      url: "https://i.imgur.com/YtESMVl.jpg",
+    },
+    {
+      public_id: "bOkjyPW",
+      url: "https://i.imgur.com/bOkjyPW.jpg",
+    },
+    {
+      public_id: "jGCIiIz",
+      url: "https://i.imgur.com/jGCIiIz.jpg",
+    },
+    
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Nâu",
+  size: ["S","M", "L"], 
+  stock: 500,
+  numOfReviews: 1,
+  reviews: [],
+  },
+  
+  //50...................................................
+  {
+  productID: "FMASM210550",
+  name: "ÁO SƠ MI - FMASM210550",
+  price: 39000,
+  description:
+    "Áo len mỏng dệt kim, cổ tròn, dài tay.",
+  ratings: 5,
+  images: [
+    {
+      public_id: "dxgN2WQ",
+      url: "https://i.imgur.com/dxgN2WQ.jpg",
+    },
+    {
+      public_id: "Dxl65eI",
+      url: "https://i.imgur.com/Dxl65eI.jpg",
+    },
+    {
+      public_id: "5AXoC7u",
+      url: "https://i.imgur.com/5AXoC7u.jpg",
+    },
+  ],
+  category: {
+    name: "Nữ",
+    subCategory: "Áo",
+    subSubCategory: "Áo sơ mi"
+  },
+  color: "Xanh",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 1,
+  reviews: [],
+  },
+  
 
-//50...................................................
-{
-productID: "FMASM210550",
-name: "ÁO SƠ MI - FMASM210550",
-price: 39000,
-description:
-  "Áo len mỏng dệt kim, cổ tròn, dài tay.",
-ratings: 5,
-images: [
-  {
-    public_id: "dxgN2WQ",
-    url: "https://i.imgur.com/dxgN2WQ.jpg",
-  },
-  {
-    public_id: "Dxl65eI",
-    url: "https://i.imgur.com/Dxl65eI.jpg",
-  },
-  {
-    public_id: "5AXoC7u",
-    url: "https://i.imgur.com/5AXoC7u.jpg",
-  },
-],
-category: {
-  "name": "Nữ",
-  "subCategory": {
-    "name": "Áo",
-    "subSubCategory": {
-      "name": "Áo sơ mi"
-    }
-  }
-},
-color: "Xanh",
-size: ["S","M", "L"], 
-stock: 50,
-numOfReviews: 1,
-reviews: [],
-},
 ];
 
 
