@@ -54,8 +54,8 @@
     if (process.env.NODE_ENV === "DEVELOPMENT") {
         res.status(error.statusCode).json({
             message: error.message,
-            //error:err,
-           // stack: err?.stack,
+            error:err,
+            stack: err?.stack,
         });
     }
 
