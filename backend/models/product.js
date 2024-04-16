@@ -110,8 +110,8 @@ const productSchema = new mongoose.Schema(
 
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      // ref: "User", // Chỉ active khi project go-live
-      // required: true,
+      //ref: "User", // Chỉ active khi project go-live
+      //required: true,
     },
   },
   
