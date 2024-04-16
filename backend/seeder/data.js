@@ -3,7 +3,7 @@ export default [
 //1...................................... 
 {
   productID: "MASM240001",
-  name: "ÁO SƠ MI - MASM240001",
+  name: "ÁO SƠ MI DÀI TAY - MASM240001",
   price: 580000,
   description:
     " Áo sơ mi dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -241,7 +241,7 @@ export default [
   category: {
     name: "Nam",
     subCategory: "Phụ kiện",
-    subSubCategory: "Thắt lưng"
+    subSubCategory: "Cà vạt"
   },
   color: "Xanh",
   size: "F",
@@ -268,7 +268,7 @@ export default [
   category: {
     name: "Nam",
     subCategory: "Phụ kiện",
-    subSubCategory: "Thắt lưng"
+    subSubCategory: "Tất"
   },
   color: "Đen",
   size: ["S","M", "L"], 
@@ -297,8 +297,8 @@ export default [
   ],
   category: {
     name: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi"
+    subCategory: "Phụ kiện",
+    subSubCategory: "Tất"
   },
   color: "Trắng",
   size: ["S","M", "L"], 
@@ -310,7 +310,7 @@ export default [
 //11...................................... 
 {
   productID: "FMAK241511",
-  name: "ÁO KHOÁC - FMAK241511",
+  name: "ÁO KHOÁC DÀI TAY - FMAK241511",
   price: 580000,
   description:
     " Áo Khoác dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
@@ -345,7 +345,7 @@ export default [
 //12..........................................
 {
 productID: "FMAK241512",
-name: "ÁO KHOÁC - FMAK241512",
+name: "ÁO KHOÁC BODY FIT - FMAK241512",
 price: 790000,
 description:
   "Áo Khoác kiểu dáng body fit, tôn dáng người mặc. Màu sắc nổi bật, dễ phối đồ.",
@@ -379,7 +379,7 @@ reviews: [],
 //13......................................... 
 {
 productID: "FMAK241513",
-name: "ÁO KHOÁC - FMAK241513",
+name: "ÁO KHOÁC COTTON MADAL- FMAK241513",
 price: 370000,
 description:
   "Áo khoác chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
@@ -927,7 +927,7 @@ reviews: [],
 {
 productID: "FMAL245229",
 name: "ÁO LEN - FMAL245229",
-price: 39000,
+price: 1539000,
 description:
   "Áo len cổ ve lật bản rộng, dài tay, cài khuy ở cổ tay. Cài phía trước bằng các khuy màu vàng kim.",
 ratings: 5,
@@ -962,7 +962,7 @@ reviews: [],
 {
 productID: "FMAL245230",
 name: "ÁO LEN - FMAL245230",
-price: 39000,
+price: 1039000,
 description:
   "Áo len mỏng dệt kim, cổ tròn, dài tay.",
 ratings: 5,
@@ -992,7 +992,7 @@ numOfReviews: 1,
 reviews: [],
 },
 
-//chua lam moi
+
 //31...................................... 
 {
   productID: "FMAT226331",
@@ -1271,7 +1271,7 @@ reviews: [],
 {
 productID: "FMAT226339",
 name: "ÁO THUN - FMAT226339",
-price: 39000,
+price: 1539000,
 description:
   "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
 ratings: 5,
@@ -1306,7 +1306,7 @@ reviews: [],
 {
   productID: "FMAT226340",
   name: "ÁO THUN - FMAT226340",
-  price: 39000,
+  price: 539000,
   description:
     "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
   ratings: 5,
@@ -1615,7 +1615,7 @@ reviews: [],
   {
   productID: "FMASM210549",
   name: "ÁO SƠ MI - FMASM210549",
-  price: 39000,
+  price: 1039000,
   description:
     "Áo len cổ ve lật bản rộng, dài tay, cài khuy ở cổ tay. Cài phía trước bằng các khuy màu vàng kim.",
   ratings: 5,
@@ -1650,7 +1650,7 @@ reviews: [],
   {
   productID: "FMASM210550",
   name: "ÁO SƠ MI - FMASM210550",
-  price: 39000,
+  price: 1539000,
   description:
     "Áo len mỏng dệt kim, cổ tròn, dài tay.",
   ratings: 5,
@@ -1681,6 +1681,687 @@ reviews: [],
   },
   
 
+   //51...................................... 
+  {
+    productID: "MAK241251",
+    name: "ÁO KHOÁC DENIM DÁNG CROP - MAK241251",
+    price: 1590000,
+    description:
+      "Áo khoác denim dáng crop. Cổ ve lật, dài tay, cổ tay bo và cài khuy. Có hai túi có nắp trước ngực và túi may viền hai bên hông. Kiểu bạc màu. Cài phía trước bằng hàng khuy cài.",
+    ratings: 4.5,
+    images: [
+      {
+        public_id: "MxxEtdg",
+        url: "https://i.imgur.com/MxxEtdg.jpg",
+      },
+      {
+        public_id: "tgDW2YR",
+        url: "https://i.imgur.com/tgDW2YR.jpg",
+      },
+      {
+        public_id: "zlNd30Q",
+        url: "https://i.imgur.com/zlNd30Q.jpg",
+      },
+    ],
+    category: {
+      name: "Nam",
+      subCategory: "Áo",
+      subSubCategory: "Áo khoác"
+    },
+    color: "Xanh",
+    size: ["S","M", "L"], 
+    stock: 50,
+    numOfReviews: 32,
+    reviews: [],
+  },
+  
+  
+  //52..........................................
+  {
+  productID: "MAK241252",
+  name: "ÁO KHOÁC VẢI DỆT DÁNG CROP - MAK241252",
+  price: 790000,
+  description:
+    "Áo khoác vải cotton compact dệt chéo. Cổ ve lật, dài tay, cổ tay bo và cài khuy. Có túi may viền hai bên hông và một túi ở lớp vải lót bên trong. Dáng crop. Cài phía trước bằng khóa kéo.",
+  ratings: 1.65,
+  images: [
+    {
+      public_id: "WRuhKFd",
+      url: "https://i.imgur.com/WRuhKFd.jpg",
+    },
+    {
+      public_id: "0HBuZrF",
+      url: "https://i.imgur.com/0HBuZrF.jpg",
+    },
+    {
+      public_id: "tdjiHrr",
+      url: "https://i.imgur.com/tdjiHrr.jpg",
+    }
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Xanh",
+  size: ["S","M", "L"], 
+  stock: 0,
+  numOfReviews: 2,
+  reviews: [],
+  },
+  
+  //53......................................... 
+  {
+  productID: "MAK241253",
+  name: "ÁO KHOÁC BOMBER GIẢ DA LỘN - MAK241253",
+  price: 1599000,
+  description:
+    "Áo khoác giả da lộn. Cổ bo viền bằng vải gân co giãn, dài tay. Có túi may viền hai bên hông. Gấu bo vải gân. Cài phía trước bằng khóa kéo.",
+  ratings: 3.5,
+  images: [
+    {
+      public_id: "mLKihUP",
+      url: "https://i.imgur.com/mLKihUP.jpg",
+    },
+    {
+      public_id: "5psE2kh",
+      url: "https://i.imgur.com/5psE2kh.jpg",
+    },
+    {
+      public_id: "2iWMkFw",
+      url: "https://i.imgur.com/2iWMkFw.jpg",
+    }
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Nâu",
+  size: ["S","M", "L"], 
+  stock: 1,
+  numOfReviews: 12,
+  reviews: [],
+  },
+  
+  //54...........................................
+  {
+    productID: "MAK241254",
+    name: "ÁO KHOÁC BOMBER GIẢ DA - MAK241254",
+  price: 1999000,
+  description:
+    "Áo khoác chất liệu giả da. Cổ cao, dài tay. Có túi may viền hai bên hông và một túi ở lớp vải lót bên trong. Bo viền bằng vải gân. Cài phía trước bằng khóa kéo.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "P6gSWYz",
+      url: "https://i.imgur.com/P6gSWYz.jpg",
+    },
+    {
+      public_id: "n6ZiJmZ",
+      url: "https://i.imgur.com/n6ZiJmZ.jpg",
+    },
+    {
+      public_id: "sB7qNiX",
+      url: "https://i.imgur.com/sB7qNiX.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Đen",
+  size: ["S","M"], 
+  stock: 11,
+  numOfReviews: 112,
+  reviews: [],
+  },
+  
+  
+  //55.......................................... 
+  {
+  productID: "MAK241255",
+  name: "ÁO KHOÁC BOMBER NHẸ - MAK241255",
+  price: 1625000,
+  description:
+    "Áo khoác vải kỹ thuật nhẹ. Cổ tròn, dài tay. Có túi may viền hai bên hông. Có một túi ở lớp vải lót bên trong. Bo viền bằng vải gân. Cài phía trước bằng khóa kéo.",
+  ratings: 4.8,
+  images: [
+    {
+      public_id: "YSuT7Q6",
+      url: "https://i.imgur.com/YSuT7Q6.jpg",
+    },
+    {
+      public_id: "5LIxHR1",
+      url: "https://i.imgur.com/5LIxHR1.jpg",
+    },
+    {
+      public_id: "MohYct3",
+      url: "https://i.imgur.com/MohYct3.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Trắng",
+  size: ["M", "L"], 
+  stock: 122,
+  numOfReviews: 2671,
+  reviews: [],
+  },
+  
+  //56.............................................
+  {
+  productID: "MAK241256",
+  name: "ÁO KHOÁC CHẦN BÔNG NHẸ - MAK241256",
+  price: 1699000,
+  description:
+    "Áo khoác cổ cao, tay sát nách. Có túi may viền hai bên hông. Cài khóa kéo phía trước.",
+  ratings: 4.1,
+  images: [
+    {
+      public_id: "p7F01cc",
+      url: "https://i.imgur.com/p7F01cc.jpg",
+    },
+    {
+      public_id: "7GCPVbh",
+      url: "https://i.imgur.com/7GCPVbh.jpg",
+    },
+    {
+      public_id: "yAwVMVW",
+      url: "https://i.imgur.com/yAwVMVW.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Xanh",
+  size: ["S","M", "L"], 
+  stock: 1123,
+  numOfReviews: 6,
+  reviews: [],
+  },
+  
+  //57..............................................
+  {
+  productID: "MAK241257",
+  name: "ÁO KHOÁC CHẦN BÔNG CỔ PHỐI VẢI - MAK241257",
+  price: 1799000,
+  description: 
+    "Áo khoác vải kỹ thuật, may chần bông bên trong. Cổ ve lật bằng lông cừu nhân tạo, dài tay, cổ tay bo thun co giãn. Có túi may viền hai bên hông. Gấu bo vải gân. Cài khóa kéo phía trước.",
+  ratings: 4.7,
+  images: [
+    {
+      public_id: "IJMLTEO",
+      url: "https://i.imgur.com/IJMLTEO.jpg",
+    },
+    {
+      public_id: "KFwU4aL",
+      url: "https://i.imgur.com/KFwU4aL.jpg",
+    },
+    {
+      public_id: "aSYfr2o",
+      url: "https://i.imgur.com/aSYfr2o.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Xanh",
+  size: "F", 
+  stock: 131,
+  numOfReviews: 222,
+  reviews: [],
+  },
+  
+  //58..............................................
+  {
+  productID: "MAK241258",
+  name: "ÁO KHOÁC CỔ BO VẢI GÂN - MAK241258",
+  price: 1499000,
+  description:
+    "Áo khoác vải kỹ thuật, may chần bông bên trong. Cổ cao bo vải gân co giãn cùng màu. Dài tay. Có túi may viền hai bên hông và một túi ở lớp vải lót bên trong. Bo thun co giãn bên trong. Cài phía trước bằng khóa kéo.",
+  ratings: 4.9,
+  images: [
+    {
+      public_id: "m6UPIdr",
+      url: "https://i.imgur.com/m6UPIdr.jpg",
+    },
+    {
+      public_id: "R94z8Zl",
+      url: "https://i.imgur.com/R94z8Zl.jpg",
+    },
+    {
+      public_id: "wROgoTQ",
+      url: "https://i.imgur.com/wROgoTQ.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Trắng",
+  size: "F",
+  stock: 0,
+  numOfReviews: 56,
+  reviews: [],
+  },
+  
+  //59..................................................
+  {
+  productID: "MAK241259",
+  name: "ÁO KHOÁC GIẢ DA CHẦN BÔNG - MAK241259",
+  price: 39000,
+  description:
+    "Áo khoác giả da dáng rộng, may chần bông bên trong. Cổ ve lật, dài tay, cổ tay bo thun co giãn. Có túi may viền hai bên hông và một túi ở lớp vải lót bên trong. Gấu bo thun co giãn. Cài phía trước bằng khóa kéo.",
+  ratings: 5,
+  images: [
+    {
+      public_id: "FZIcSLA",
+      url: "https://i.imgur.com/FZIcSLA.jpg",
+    },
+    {
+      public_id: "mqKpH6D",
+      url: "https://i.imgur.com/mqKpH6D.jpg",
+    },
+    {
+      public_id: "QabrHOT",
+      url: "https://i.imgur.com/QabrHOT.jpg",
+    },
+    
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Xanh",
+  size: ["S","M", "L"], 
+  stock: 500,
+  numOfReviews: 1,
+  reviews: [],
+  },
+  
+  //60...................................................
+  {
+  productID: "MAK241260",
+  name: "ÁO KHOÁC BOMBER HIỆU ỨNG BẠC MÀU - MAK241260",
+  price: 2239000,
+  description:
+    "Áo khoác may chần bông nhẹ bên trong, chất liệu vải kỹ thuật được xử lý bằng quy trình nhuộm và giặt đặc biệt, giúp tạo ra một vẻ ngoài độc đáo. Do đó, màu sắc thực tế của sản phẩm có thể có khác biệt nhỏ so với hình ảnh. Dài tay, cổ và cổ tay áo bo vải gân co giãn. Có túi có nắp hai bên hông. Một túi ở lớp vải lót bên trong. Gấu bo vải gân co giãn. Cài phía trước bằng khóa kéo. Bộ sưu tập đặc biệt Origins.",
+  ratings: 5,
+  images: [
+    {
+      public_id: "r1Pfk4E",
+      url: "https://i.imgur.com/r1Pfk4E.jpg",
+    },
+    {
+      public_id: "9upIaJ0",
+      url: "https://i.imgur.com/9upIaJ0.jpg",
+    },
+    {
+      public_id: "vB3OolB",
+      url: "https://i.imgur.com/vB3OolB.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo khoác"
+  },
+  color: "Đỏ",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 1,
+  reviews: [],
+  },
+  
+//61...................................... 
+{
+  productID: "MAL212261",
+  name: "ÁO LEN VẢI DỆT - MAL212261",
+  price: 1590000,
+  description:
+    "Áo len dáng regular fit. Cổ chữ V, dài tay. Bo viền bằng len gân. Cài phía trước bằng hàng khuy cài.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "LzQqjZQ",
+      url: "https://i.imgur.com/LzQqjZQ.jpg",
+    },
+    {
+      public_id: "9fbyxYf",
+      url: "https://i.imgur.com/9fbyxYf.jpg",
+    },
+    {
+      public_id: "hrEmaOS",
+      url: "https://i.imgur.com/hrEmaOS.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo len"
+  },
+  color: "Nâu",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
+
+
+//62..........................................
+{
+productID: "MAL212262",
+name: "ÁO LEN VẢI DỆT - MAL212262",
+price: 790000,
+description:
+  "Áo LEN vải pha sợi cotton, dáng oversize. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài bằng hàng khuy cài.",
+ratings: 1.65,
+images: [
+  {
+    public_id: "E99O1JY",
+    url: "https://i.imgur.com/E99O1JY.jpg",
+  },
+  {
+    public_id: "ofSckH3",
+    url: "https://i.imgur.com/ofSckH3.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Vàng",
+size: ["S","M", "L"], 
+stock: 0,
+numOfReviews: 2,
+reviews: [],
+},
+
+//63......................................... 
+{
+productID: "MAL212263",
+name: "ÁO LEN VẢI DỆT KIỂU LƯỚI - MAL212263",
+price: 1599000,
+description:
+  "Áo len vải dệt thưa, dáng relaxed fit. Cổ chữ V, dài tay. Bo viền bằng vải gân. Cài phía trước bằng hàng khuy cài.",
+ratings: 3.5,
+images: [
+  {
+    public_id: "9lRa1a5",
+    url: "https://i.imgur.com/9lRa1a5.jpg",
+  },
+  {
+    public_id: "rTedbJ5",
+    url: "https://i.imgur.com/rTedbJ5.jpg",
+  },
+  {
+    public_id: "rjq9hXg",
+    url: "https://i.imgur.com/rjq9hXg.jpg",
+  }
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Nâu",
+size: ["S","M", "L"], 
+stock: 1,
+numOfReviews: 12,
+reviews: [],
+},
+
+//64...........................................
+{
+productID: "MAL212264",
+name: "ÁO CARDIGAN OVERSIZE VẢI DỆT - MAL212264",
+price: 1999000,
+description:
+  "Áo len vải cotton, dáng oversize. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài phía trước bằng hàng khuy cài.",
+ratings: 4.5,
+images: [
+  {
+    public_id: "KUQx858",
+    url: "https://i.imgur.com/KUQx858.jpg",
+  },
+  {
+    public_id: "AEoUX83",
+    url: "https://i.imgur.com/AEoUX83.jpg",
+  },
+  {
+    public_id: "Utl2PyQ",
+    url: "https://i.imgur.com/Utl2PyQ.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Đen",
+size: "F", 
+stock: 11,
+numOfReviews: 112,
+reviews: [],
+},
+
+
+//65.......................................... 
+{
+productID: "MAL212265",
+name: "ÁO LEN DỆT KIM KIỂU VẶN THỪNG - MAL212265",
+price: 1625000,
+description:
+  "Áo len vải pha sợi cotton. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài phía trước bằng hàng khuy cài.",
+ratings: 4.8,
+images: [
+  {
+    public_id: "cU6foQI",
+    url: "https://i.imgur.com/cU6foQI.jpg",
+  },
+  {
+    public_id: "QCF9fdI",
+    url: "https://i.imgur.com/QCF9fdI.jpg",
+  },
+  {
+    public_id: "JXtyhZu",
+    url: "https://i.imgur.com/JXtyhZu.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Xanh",
+size: ["M", "L"], 
+stock: 122,
+numOfReviews: 2671,
+reviews: [],
+},
+
+//66.............................................
+{
+productID: "MAL212266",
+name: "ÁO LEN DỆT KIM - MAL212266",
+price: 1699000,
+description:
+  "Áo len oversize vải pha sợi cotton. Cổ tròn, dài tay. Cổ tay và gấu bo vải gân.",
+ratings: 4.1,
+images: [
+  {
+    public_id: "yHc5Eun",
+    url: "https://i.imgur.com/yHc5Eun.jpg",
+  },
+  {
+    public_id: "sSrDp2b",
+    url: "https://i.imgur.com/sSrDp2b.jpg",
+  },
+  {
+    public_id: "SHzCXMc",
+    url: "https://i.imgur.com/SHzCXMc.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Xanh",
+size: ["M", "L"], 
+stock: 123,
+numOfReviews: 6,
+reviews: [],
+},
+
+//67..............................................
+{
+productID: "MAL212267",
+name: "ÁO LEN DỆT KIM - MAL212267",
+price: 1799000,
+description: 
+  "Áo vải pha sợi cotton và sợi len. Cổ chữ V, tay sát nách. Bo viền bằng len gân. Bộ sưu tập đặc biệt Origins.",
+ratings: 4.7,
+images: [
+  {
+    public_id: "m90IvCE",
+    url: "https://i.imgur.com/m90IvCE.jpg",
+  },
+  {
+    public_id: "fmyW4tB",
+    url: "https://i.imgur.com/fmyW4tB.jpg",
+  },
+  {
+    public_id: "ikI2q93",
+    url: "https://i.imgur.com/ikI2q93.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Nâu",
+size: "F", 
+stock: 131,
+numOfReviews: 222,
+reviews: [],
+},
+
+//68..............................................
+{
+productID: "MAL212268",
+name: "ÁO LEN SỢI COTTON - LEN - MAL212268",
+price: 1499000,
+description:
+  "Áo len chất liệu pha sợi cotton và sợi len. Cổ tròn, dài tay. Bo viền bằng len gân.",
+ratings: 4.9,
+images: [
+  {
+    public_id: "iOLlcFW",
+    url: "https://i.imgur.com/iOLlcFW.jpg",
+  },
+  {
+    public_id: "LC9ott5",
+    url: "https://i.imgur.com/LC9ott5.jpg",
+  },
+  {
+    public_id: "6gKo7GT",
+    url: "https://i.imgur.com/6gKo7GT.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Cam",
+size: "F",
+stock: 58,
+numOfReviews: 56,
+reviews: [],
+},
+
+//69..................................................
+{
+productID: "MAL212269",
+name: "ÁO LEN SỢI COTTON - LEN CÀI KHÓA KÉO - MAL212269",
+price: 139000,
+description:
+  "Áo len chất liệu pha sợi cotton và sợi len. Cổ cao, cài khóa kéo phía trước. Dài tay. Bo viền bằng len gân.",
+ratings: 5,
+images: [
+  {
+    public_id: "6rmIdqf",
+    url: "https://i.imgur.com/6rmIdqf.jpg",
+  },
+  {
+    public_id: "EKyupiG",
+    url: "https://i.imgur.com/EKyupiG.jpg",
+  },
+  {
+    public_id: "20YGU9c",
+    url: "https://i.imgur.com/20YGU9c.jpg",
+  },
+  
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Nâu",
+size: ["S","M", "L"], 
+stock: 500,
+numOfReviews: 1,
+reviews: [],
+},
+
+//70...................................................
+{
+productID: "MAL212270",
+name: "ÁO LEN DỆT KIM KIỂU CHẬP VÒNG CÓ MŨ - MAL212270",
+price: 2239000,
+description:
+  "Áo len vải pha sợi cotton và sợi linen. Cổ may liền mũ trùm đầu, dài tay. Phía trước có hai túi đáp. Bo viền bằng vải gân. Cài phía trước bằng khóa kéo.",
+ratings: 5,
+images: [
+  {
+    public_id: "hWhbnUW",
+    url: "https://i.imgur.com/hWhbnUW.jpg",
+  },
+  {
+    public_id: "lLDxCdT",
+    url: "https://i.imgur.com/lLDxCdT.jpg",
+  },
+  {
+    public_id: "0HAfsO1",
+    url: "https://i.imgur.com/0HAfsO1.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo len"
+},
+color: "Trắng",
+size: ["S","M", "L"], 
+stock: 50,
+numOfReviews: 1,
+reviews: [],
+},
 ];
 
 
