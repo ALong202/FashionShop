@@ -180,3 +180,51 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// Cập nhật thông tin hồ sơ người dùng  =>  /api/me/update
+export const updateProfile = catchAsyncErrors(async (req, res, next) => {
+  // Dữ liệu mới của người dùng
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  // Tìm và cập nhật thông tin hồ sơ của người dùng trong cơ sở dữ liệu
+  const user = await User.findByIdAndUpdate(req.user._id, newUserData, {
+    new: true,
+  });
+
+  // Trả về thông tin người dùng đã được cập nhật với mã trạng thái 200
+  res.status(200).json({
+    user,
+  });
+});
+
+// Lấy tất cả người dùng - ADMIN  =>  /api/admin/users
+export const allUsers = catchAsyncErrors(async (req, res, next) => {
+  // Truy vấn tất cả người dùng từ cơ sở dữ liệu
+  const users = await User.find();
+
+  // Trả về danh sách người dùng với mã trạng thái 200
+  res.status(200).json({
+    users,
+  });
+});
+
+// Lấy thông tin chi tiết của người dùng - ADMIN  =>  /api/admin/users/:id
+export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  // Tìm kiếm người dùng trong cơ sở dữ liệu bằng ID
+  const user = await User.findById(req.params.id);
+
+  // Kiểm tra xem người dùng có tồn tại không
+  if (!user) {
+    // Nếu không tìm thấy người dùng, trả về lỗi với mã trạng thái 404
+    return next(
+      new ErrorHandler(`Không tìm thấy người dùng với id: ${req.params.id}`, 404)
+    );
+  }
+
+  // Trả về thông tin chi tiết của người dùng với mã trạng thái 200
+  res.status(200).json({
+    user,
+  });
+});
