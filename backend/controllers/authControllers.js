@@ -145,3 +145,38 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   // Gửi lại token cho người dùng để đăng nhập lại
   sendToken(user, 200, res);
 });
+
+// Lấy thông tin hồ sơ người dùng hiện tại => /api/me
+export const getUserProfile = catchAsyncErrors(async (req, res, next) => {
+  // Lấy thông tin người dùng từ cơ sở dữ liệu bằng ID người dùng hiện tại được trích xuất từ JWT
+  const user = await User.findById(req?.user?._id);
+
+  // Trả về thông tin người dùng với mã trạng thái 200
+  res.status(200).json({
+    user,
+  });
+});
+
+// Cập nhật mật khẩu  =>  /api/password/update
+export const updatePassword = catchAsyncErrors(async (req, res, next) => {
+  // Tìm kiếm thông tin người dùng trong cơ sở dữ liệu bằng ID người dùng hiện tại
+  const user = await User.findById(req?.user?._id).select("+password");
+
+  // Kiểm tra xem mật khẩu trước đó của người dùng có khớp với mật khẩu cũ được cung cấp hay không
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+  // Nếu mật khẩu cũ không khớp, trả về lỗi
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Mật khẩu cũ không chính xác", 400));
+  }
+
+  // Cập nhật mật khẩu mới cho người dùng và lưu vào cơ sở dữ liệu
+  user.password = req.body.password;
+  user.save();
+
+  // Trả về thành công với mã trạng thái 200
+  res.status(200).json({
+    success: true,
+  });
+});
+
