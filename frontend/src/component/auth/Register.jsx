@@ -9,9 +9,14 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    phone: "",
+    address: "",
   });
 
-  const { name, email, password } = user;
+  // Thêm trạng thái cho xác nhận mật khẩu
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const { name, email, password, phone, address } = user;
   
   const [register, { isLoading, error, data }] = useRegisterMutation();
 
@@ -29,10 +34,19 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    // Kiểm tra xem mật khẩu và xác nhận mật khẩu có khớp nhau không trong hàm submitHandler
+    if(password !== confirmPassword){
+      toast.error("Mật khẩu và xác nhận mật khẩu không khớp");
+      return;
+    }
+    
     // Dispatch login'
     const signUpData = {
+      name,
       email,
       password,
+      phone,
+      address,
     };
 
     register(signUpData);
@@ -77,13 +91,49 @@ const Register = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="password_field" className="form-label">Password</label>
+            <label htmlFor="password_field" className="form-label">Mật khẩu</label>
             <input
               type="password"
               id="password_field"
               className="form-control"
               name="password"
               value={password}
+              onChange={onChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="confirm_password_field" className="form-label">Nhập lại mật khẩu</label>
+            <input
+              type="password"
+              id="confirm_password_field"
+              className="form-control"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="phone_field" className="form-label">Số điện thoại</label>
+            <input
+              type="tel"
+              id="phone_field"
+              className="form-control"
+              name="phone"
+              value={phone}
+              onChange={onChange}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="address_field" className="form-label">Địa chỉ</label>
+            <input
+              type="text"
+              id="adddress_field"
+              className="form-control"
+              name="address"
+              value={address}
               onChange={onChange}
             />
           </div>
