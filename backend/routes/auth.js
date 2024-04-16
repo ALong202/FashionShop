@@ -10,7 +10,9 @@ import {
   updatePassword,
   updateProfile,
   allUsers,
-  getUserDetails
+  getUserDetails,
+  deleteUser,
+  updateUser
 } from "../controllers/authControllers.js";
 import { authorizeRoles, isAuthenticatedUser } from "../middlewares/auth.js";
 const router = express.Router();
@@ -42,6 +44,12 @@ router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 router.route("/admin/users").get(isAuthenticatedUser, authorizeRoles("admin"), allUsers);
 
 // Lấy thông tin chi tiết của một người dùng cụ thể (chỉ cho quản trị viên)
-router.route("/admin/users/:id").get(isAuthenticatedUser, authorizeRoles("admin"), getUserDetails);
-export default router;
+router.route("/admin/users/:id")
+  // Lấy thông tin chi tiết của người dùng (GET)
+  .get(isAuthenticatedUser, authorizeRoles("admin"), getUserDetails)
+  // Cập nhật thông tin người dùng (PUT)
+  .put(isAuthenticatedUser, authorizeRoles("admin"), updateUser)
+  // Xóa người dùng (DELETE)
+  .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
 
+  export default router;
