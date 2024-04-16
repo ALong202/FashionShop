@@ -25,13 +25,6 @@ const ProductItem = ({ product, columnSize }) => {
             <Link to={`/product/${product?._id}`}>{product?.name}</Link>
           </h5>
           <div className="ratings mt-auto d-flex">
-            {/*<div className="star-ratings">
-              <i className="fa fa-star star-active"></i>
-              <i className="fa fa-star star-active"></i>
-              <i className="fa fa-star star-active"></i>
-              <i className="fa fa-star star-active"></i>
-              <i className="fa fa-star star-active"></i>
-            </div>*/}
             <StarRatings
               rating={product?.ratings}
               starRatedColor="#ffb829"
@@ -57,3 +50,11 @@ const ProductItem = ({ product, columnSize }) => {
 export default ProductItem
 
 // .toLocaleString('vi-VN') => Chuyển đổi số sang chuỗi theo định dạng tiền tệ Việt Nam
+
+{/*<div className="star-ratings">
+  <i className="fa fa-star star-active"></i>
+  <i className="fa fa-star star-active"></i>
+  <i className="fa fa-star star-active"></i>
+  <i className="fa fa-star star-active"></i>
+  <i className="fa fa-star star-active"></i>
+</div>*/}
