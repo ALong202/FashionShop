@@ -11,6 +11,7 @@ import {
     updateProduct,
     deleteProduct 
 } from '../controllers/productControllers.js'; // tự động xuất hiện khi gõ syntax get(getProducts)
+import { authorizeRoles, isAuthenticatedUser } from '../middlewares/auth.js';
 
 // Tạo một đối tượng Router của Express mới để định nghĩa các tuyến đường (routes) cho ứng dụng.
 const router = express.Router()
@@ -22,6 +23,7 @@ router.route("/products").get(getProducts);
 router.route("/admin/products").post(newProduct);
 
 //Router route(dẫn) đến mục "/products" để get thông tin 1 sản phẩm theo id cho sẵn
+//router.route("/products/:id").get(isAuthenticatedUser, authorizeRoles("admin"), getProductDetails);
 router.route("/products/:id").get(getProductDetails);
 
 //Router route(dẫn) đến mục "/products" để sửa sản phẩm theo id sản phẩm
