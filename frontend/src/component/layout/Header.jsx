@@ -1,16 +1,18 @@
 // 'racfe' để tạo functional component với export
 
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
-import MetaData from './MetaData';
-import Search from './Search';
-import { useGetMeQuery } from '../../redux/api/userApi';
+import React from "react"
+import { useSelector } from "react-redux"; // auto chèn
+import { Link, useNavigate } from "react-router-dom"
+import MetaData from "./MetaData";
+import Search from "./Search";
+import { useGetMeQuery } from "../../redux/api/userApi";
 
 const Header = () => {
 
-  const { data } = useGetMeQuery();
+  const { isLoading } = useGetMeQuery();
   // console.log(data); // Dữ liệu người dùng đăng nhập từ backend
+
+  const { user } = useSelector((state) => state.auth)
 
   const navigate = useNavigate();
   const {cartItems} = useSelector((state) => state.cart)
@@ -35,6 +37,7 @@ const Header = () => {
             <span className="ms-1" id="cart_count">{cartItems?.length}</span>
           </a>
 
+        {user ? (
           <div className="ms-4 dropdown">
             <button
               className="btn dropdown-toggle text-white"
@@ -50,7 +53,7 @@ const Header = () => {
                   className="rounded-circle"
                 />
               </figure>
-              <span>Guest</span>
+              <span>{user?.name}</span>
             </button>
             <div className="dropdown-menu w-100" aria-labelledby="dropDownMenuButton">
               <a className="dropdown-item" href="/admin/dashboard"> Dashboard </a>
@@ -62,8 +65,13 @@ const Header = () => {
               <a className="dropdown-item text-danger" href="/"> Đăng xuất </a>
             </div>
           </div>
+        ): (
+          // Nếu không phải loading status, chỉ hiện nút đăng nhập
+          !isLoading && (
+            <Link to="/login" className="btn ms-4" id="login_btn"> Đăng nhập </Link>
+          )
+        )}  
 
-          <a href="/login" className="btn ms-4" id="login_btn"> Đăng nhập </a>
         </div>
       </nav>
     </>
