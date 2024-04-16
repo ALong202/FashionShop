@@ -7,10 +7,13 @@ import Footer from "./component/layout/Footer";
 import Header from "./component/layout/Header";
 // Toast package giúp hiển thị thông báo success, error, warning... https://www.npmjs.com/package/react-hot-toast
 import { Toaster } from "react-hot-toast";
+import { ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 import ProductDetails from "./component/product/ProductDetails";
 import Login from "./component/auth/Login"; // auto chèn khi chọn Login từ Quick Fix
 import Register from "./component/auth/Register"; // auto chèn
 // import './custom-theme.min.css';
+
 
 import Cart from "./component/cart/Cart"
 import Shipping from "./component/cart/Shipping"
@@ -24,7 +27,15 @@ function App() {
   return (
     <Router>
       <div className="App">
+      {/* "react-hot-toast" */}
       <Toaster position="top-center" />
+      {/* "react-toastify" */}
+      <ToastContainer 
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        draggable
+      /> 
       {/* Page header từ ./component/layout/Footer */}
       <Header/>
 

@@ -4,7 +4,8 @@ import CheckoutSteps from './CheckoutSteps'
 import { useSelector } from 'react-redux'
 import { calculateOrderCost } from '../../helpers/helpers'
 import { useCreateNewOrderMutation } from '../../redux/api/orderApi'
-import toast from 'react-hot-toast'
+// import toast from 'react-hot-toast'
+import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom'
 
 const PaymentMethod = () => {
