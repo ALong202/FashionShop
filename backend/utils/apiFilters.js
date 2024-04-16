@@ -32,7 +32,7 @@ class APIFilters{
             }
 
             const subSubCategory = this.queryStr.subSubCategory;
-            if (subCategory) {
+            if (subSubCategory) {
                 keyword['category.subSubCategory'] = subSubCategory; // Lọc theo tên subcategory
             }
         
