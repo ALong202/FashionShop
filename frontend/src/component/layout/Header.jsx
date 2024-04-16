@@ -1,4 +1,6 @@
-// 'racfe' để tạo functional component với export
+/* 'racfe' để tạo functional component với export
+Link/to là componnent của react-router-dom tạo ra thẻ a để điều hướng giữa các trang. Khi nhấp vào 1 Link, React Router sẽ thay đổi URL và render lại thành phần tương ứng mà không cần tải lại trang. Còn a/href là cách truyền thogn61, trình duyệt tải lại toàn bộ trang.
+*/ 
 
 import React from "react"
 import { useSelector } from "react-redux"; // auto chèn
@@ -48,7 +50,8 @@ const Header = () => {
             >
               <figure className="avatar avatar-nav">
                 <img
-                  src="../images/default_avatar.jpg"
+                  src={user?.avatar ? user?.avatar?.url
+                    : "/images/default_avatar.jpg"}
                   alt="User Avatar"
                   className="rounded-circle"
                 />
@@ -56,13 +59,13 @@ const Header = () => {
               <span>{user?.name}</span>
             </button>
             <div className="dropdown-menu w-100" aria-labelledby="dropDownMenuButton">
-              <a className="dropdown-item" href="/admin/dashboard"> Dashboard </a>
+              <Link className="dropdown-item" to="/admin/dashboard"> Dashboard </Link>
 
-              <a className="dropdown-item" href="/me/orders"> Đơn hàng </a>
+              <Link className="dropdown-item" to="/me/orders"> Đơn hàng </Link>
 
-              <a className="dropdown-item" href="/me/profile"> Tài khoản </a>
+              <Link className="dropdown-item" to="/me/profile"> Tài khoản </Link>
 
-              <a className="dropdown-item text-danger" href="/"> Đăng xuất </a>
+              <Link className="dropdown-item text-danger" to="/"> Đăng xuất </Link>
             </div>
           </div>
         ): (
