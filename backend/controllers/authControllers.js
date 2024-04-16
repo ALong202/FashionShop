@@ -4,6 +4,7 @@ import { getResetPasswordTemplate } from "../utils/emailTemplates.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/sendToken.js";
 import sendEmail from "../utils/sendEmail.js";
+import crypto from "crypto";
 
 // Hàm xử lý yêu cầu đăng ký người dùng
 //Register User => /api/register
@@ -96,7 +97,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     });
     // Trả về mã trạng thái 200 và thông báo email đã được gửi thành công
     res.status(200).json({
-      message: `Email từ: ${user.email}`,
+      message: `Gửi email tới: ${user.email}`,
     });
   } catch (error) {
     // Nếu có lỗi khi gửi email, xóa thông tin mã token và hết hạn của người dùng và trả về lỗi
@@ -106,4 +107,41 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save();
     return next(new ErrorHandler(error?.message, 500));
   }
+});
+
+// Đặt lại mật khẩu => /api/password/reset/:token
+export const resetPassword = catchAsyncErrors(async (req, res, next) => {
+  // Tạo mã hash từ token được cung cấp trong yêu cầu
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
+  // Tìm kiếm người dùng trong cơ sở dữ liệu với mã token và mã token vẫn còn hiệu lực
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+  // Kiểm tra xem người dùng có tồn tại không
+  if (!user) {
+    return next(
+      new ErrorHandler(
+        "Mã đặt lại mật khẩu không hợp lệ hoặc đã hết hạn",
+        400
+      )
+    );
+  }
+  // Kiểm tra xem mật khẩu mới và xác nhận mật khẩu có khớp nhau không
+  if (req.body.password !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Mật khẩu không khớp", 400));
+  }
+
+  // Cập nhật mật khẩu mới cho người dùng
+  user.password = req.body.password;
+  // Xóa thông tin về mã token đặt lại mật khẩu và thời gian hết hạn của người dùng
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+  // Lưu thông tin người dùng đã cập nhật vào cơ sở dữ liệu
+  await user.save();
+  // Gửi lại token cho người dùng để đăng nhập lại
+  sendToken(user, 200, res);
 });
