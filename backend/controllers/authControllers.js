@@ -7,15 +7,15 @@ import sendToken from "../utils/sendToken.js";
 //Register User => /api/register
 export const registerUser = catchAsyncErrors(async (req, res, next) => {
   // Trích xuất thông tin người dùng từ req.body sử dụng destructuring
-  const {name, email, password, address, phone } = req.body;
+  const {name, email, password, phone, address } = req.body;
 
   // Tạo một người dùng mới trong cơ sở dữ liệu sử dụng mô hình User
   const user = await User.create({
     name,
     email,
     password,
-    address,
     phone,
+    address,
   });
 
   sendToken(user, 201, res)
