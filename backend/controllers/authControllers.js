@@ -186,6 +186,8 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
     name: req.body.name,
     email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
   };
 
   // Tìm và cập nhật thông tin hồ sơ của người dùng trong cơ sở dữ liệu
