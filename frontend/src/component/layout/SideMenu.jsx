@@ -21,7 +21,7 @@ const SideMenu = () => {
     },
     {
       name: "Update Password",
-      "url": "/me/update_profile",
+      "url": "/me/update_password",
       icon: "fas fa-lock",
     }
   ]

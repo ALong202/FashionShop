@@ -18,6 +18,7 @@ import Cart from "./component/cart/Cart"
 import Shipping from "./component/cart/Shipping"
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
+import UpdateProfile from "./component/layout/user/UpdateProfile";
 
 
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/me/profile" element={<Profile />} />
+          <Route path="/me/update_profile" element={<UpdateProfile />} />
           <Route path="/cart" element={<Cart />} />
           {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
           <Route path="/shipping" element={<Shipping />} />
