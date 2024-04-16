@@ -15,6 +15,7 @@ const ProductDetails = () => {
 
   const [quantity, setQuantity] = useState(1); // quantity: số lượng sản phẩm
   const [activeImg, setActiveImg] = React.useState(""); // activeImg: ảnh đang được chọn
+  const [selectedSize, setSelectedSize] = useState(null); // size: kích cỡ sản phẩm
 
 
   const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);
@@ -32,6 +33,11 @@ const ProductDetails = () => {
     }
   }, [isError]);
 
+  // Chọn size
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+  
   const increseQty = () => {
     const count = document.querySelector(".count");
 
@@ -57,11 +63,14 @@ const ProductDetails = () => {
       price: product?.price,
       image: product?.images[0]?.url,
       stock: product?.stock,
+      size: selectedSize, // size: kích cỡ sản phẩm
       quantity
     };
 
     dispatch(setCartItem(cartItem));
     toast.success("Đã thêm vào giỏ");
+
+    console.log(cartItem);
   };
 
   if (isLoading) return <Loader />
@@ -144,6 +153,20 @@ const ProductDetails = () => {
         <p>
           Tình trạng: <span id="stock_status" className={product?.stock > 0 ? "greenColor" : "redColor"}>{product?.stock > 0 ? "Còn hàng" : "Hết hàng"}</span>
         </p>
+
+        <p>Sizes: </p>
+        <div className="size-buttons">
+          {product.size.map((size, index) => (
+            <button 
+              key={index} 
+              onClick={() => handleSizeClick(size)}
+              // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
+              className={`size-button ${selectedSize === size ? 'selected' : ''}`}
+            >
+              {size}
+            </button>
+          ))}
+        </div>
 
         <hr />
 

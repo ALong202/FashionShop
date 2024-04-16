@@ -178,6 +178,31 @@ footer {
   margin-top: 9rem;
 }
 
+
+/* Product sizes */
+.size-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.size-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.size-button:hover {
+  background-color: #bbb;
+}
+
+.size-button.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
 /* Loader */
 /* .loader {
   display: block;
