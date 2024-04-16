@@ -57,10 +57,10 @@ class APIFilters{
         // Thực hiện tìm kiếm dựa trên các điều kiện lọc và gán kết quả vào biến 'query'
         
         // Kiểm tra xem category có tồn tại và có trường name không trước khi truy cập
-        console.log('Before:');
-        console.log(this.queryStr);
-        console.log(this.queryStr.category);
-        console.log('After:');
+        // console.log('Before:');
+        // console.log(this.queryStr);
+        // console.log(this.queryStr.category);
+        // console.log('After:');
 
         // if (this.queryStr.category && typeof this.queryStr.category === 'object' && this.queryStr.category.name) {
         //     this.query = this.query.find({

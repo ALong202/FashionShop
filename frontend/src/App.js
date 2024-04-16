@@ -7,19 +7,17 @@ import Footer from "./component/layout/Footer";
 import Header from "./component/layout/Header";
 // Toast package giúp hiển thị thông báo success, error, warning... https://www.npmjs.com/package/react-hot-toast
 import { Toaster } from "react-hot-toast";
-import { ToastContainer } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import { ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 import ProductDetails from "./component/product/ProductDetails";
 import Login from "./component/auth/Login"; // auto chèn khi chọn Login từ Quick Fix
 import Register from "./component/auth/Register"; // auto chèn
+import Profile from "./component/layout/user/Profile"; // auto chèn
 // import './custom-theme.min.css';
-
-
 import Cart from "./component/cart/Cart"
 import Shipping from "./component/cart/Shipping"
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
-
 
 
 
@@ -45,6 +43,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/me/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
           {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
           <Route path="/shipping" element={<Shipping />} />
