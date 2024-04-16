@@ -21,10 +21,11 @@ app.use(cookieParser());
 // Import tất cả các routes (đường dẫn)
 import productRoutes from "./routes/products.js";
 import authRoutes from "./routes/auth.js";
+import orderRoutes from "./routes/order.js";
 
 app.use("/api", productRoutes);
 app.use("/api", authRoutes);
-
+app.use("/api", orderRoutes);
 
 app.use(errorsMiddleware);
 
