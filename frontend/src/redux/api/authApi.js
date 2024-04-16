@@ -53,8 +53,13 @@ export const authApi = createApi({
         }
       },
     }),
+    logout: builder.query({
+      query: () => "/logout",
+    })
   }),
 })
 
 // the hook để lấy toàn bộ sản phẩm, tất cả biến Isloading-sucess-error variables
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useLazyLogoutQuery } = authApi;
+
+// const { data } = useLogoutQuery(); // Khi reload (F5) là tự log out

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRegisterMutation } from "../../redux/api/authApi";
-import toast from "react-hot-toast";
+// import { toast, Toaster } from 'react-hot-toast';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const Register = () => {
@@ -17,6 +20,10 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { name, email, password, phone, address } = user;
+
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
   
   const [register, { isLoading, error, data }] = useRegisterMutation();
 
@@ -24,12 +31,25 @@ const Register = () => {
   console.log(data);
   console.log("=====================================");
 
-  // kiểm tra nếu có lỗi request thì hiển thị thông báo lỗi bằng toast.error
+  // // kiểm tra nếu có lỗi request thì hiển thị thông báo lỗi bằng toast.error
+  // useEffect(() => {
+  //   if(error){
+  //     toast.error(error?.data?.message);
+  //   }
+  // }, [error])
   useEffect(() => {
+    if(isAuthenticated){
+      // Thêm thông báo thành công
+      toast.success("Bạn đã đăng ký thành công", { 
+        autoClose: false,
+      });
+      navigate("/"); // Nếu đăng ký thành công thì chuyển hướng về trang chủ
+    }
     if(error){
       toast.error(error?.data?.message);
     }
-  }, [error])
+  }, [error, isAuthenticated])
+
   // xử lý sự kiện submit của form. Sau đó hàm login được gọi với dữ liệu đăng nhập
   const submitHandler = (e) => {
     e.preventDefault();

@@ -1,22 +1,30 @@
 /* 'racfe' để tạo functional component với export
 Link/to là componnent của react-router-dom tạo ra thẻ a để điều hướng giữa các trang. Khi nhấp vào 1 Link, React Router sẽ thay đổi URL và render lại thành phần tương ứng mà không cần tải lại trang. Còn a/href là cách truyền thogn61, trình duyệt tải lại toàn bộ trang.
 */ 
-
 import React from "react"
 import { useSelector } from "react-redux"; // auto chèn
 import { Link, useNavigate } from "react-router-dom"
 import MetaData from "./MetaData";
 import Search from "./Search";
 import { useGetMeQuery } from "../../redux/api/userApi";
+import { useLazyLogoutQuery} from "../../redux/api/authApi";
 
 const Header = () => {
 
-  const { isLoading } = useGetMeQuery();
   // console.log(data); // Dữ liệu người dùng đăng nhập từ backend
 
+  const { isLoading } = useGetMeQuery();
+  const [logout] = useLazyLogoutQuery();
+  
   const { user } = useSelector((state) => state.auth)
 
-  const navigate = useNavigate();
+  // Sau khi logout, reload lại trang với window.location.reload(). Không thể dùng useNavigate() vì không còn user nào để điều hướng
+  const logoutHandler = () => {
+    logout().then(() => {
+      window.location.reload();
+    });
+  }
+
   const {cartItems} = useSelector((state) => state.cart)
   return (
     // Navigation bar: đặt ở trên cùng của web và chứa ác liên kết hoặc menu giúp người dùng điều hướng, truy cập các phần khác nhau của web
@@ -59,13 +67,13 @@ const Header = () => {
               <span>{user?.name}</span>
             </button>
             <div className="dropdown-menu w-100" aria-labelledby="dropDownMenuButton">
-              <Link className="dropdown-item" to="/admin/dashboard"> Dashboard </Link>
+              <Link className="dropdown-item" to="/admin/dashboard"> Dashboard{" "} </Link>
 
-              <Link className="dropdown-item" to="/me/orders"> Đơn hàng </Link>
+              <Link className="dropdown-item" to="/me/orders"> Đơn hàng{" "} </Link>
 
-              <Link className="dropdown-item" to="/me/profile"> Tài khoản </Link>
+              <Link className="dropdown-item" to="/me/profile"> Tài khoản{" "} </Link>
 
-              <Link className="dropdown-item text-danger" to="/"> Đăng xuất </Link>
+              <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}> Đăng xuất{" "} </Link>
             </div>
           </div>
         ): (
@@ -82,3 +90,9 @@ const Header = () => {
 }
 
 export default Header
+
+// // Khi reload (F5) là tự log out
+// const { data } = useLogoutQuery();
+// console.log("====================================");
+// console.log("logout => ", data);
+// console.log("====================================");

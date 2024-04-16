@@ -1,24 +1,35 @@
 /* component react hiển thị form đăng nhập*/
 import React, { useEffect, useState } from "react"
 import { useLoginMutation } from "../../redux/api/authApi"; // auto chèn khi chọn useLoginMutation từ Quick Fix
-import toast from "react-hot-toast"; // auto chèn khi chọn toast từ Quick Fix
+// import toast from "react-hot-toast"; // auto chèn khi chọn toast từ Quick Fix
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
 
 // Component Login gồm 2 biến email và password được khởi tạo bằng useState lưu trữ từ form
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
   // Hook từ Redux Toolkit Query được sử dụng để request đăng nhập. Trả về 1 mảng chứa hàm login để gửi request về một đối tượng chứa trạng thái của request như isLoading, error, data
   const [login, { isLoading, error, data }] = useLoginMutation();
+
+  const { isAuthenticated } = useSelector((state) => state.auth);
   
   console.log("=====================================");
   console.log(data);
   console.log("=====================================");
   // kiểm tra nếu có lỗi request thì hiển thị thông báo lỗi bằng toast.error
   useEffect(() => {
+    if(isAuthenticated){
+      navigate("/");
+    }
     if(error){
       toast.error(error?.data?.message);
     }
-  }, [error])
+  }, [error, isAuthenticated])
   // xử lý sự kiện submit của form. Sau đó hàm login được gọi với dữ liệu đăng nhập
   const submitHandler = (e) => {
     e.preventDefault();

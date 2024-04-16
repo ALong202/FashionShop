@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useGetProductDetailsQuery } from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
 // frames hook dùng để lấy id từ params
 import { useParams } from "react-router-dom"; // auto chèn khi chọn useParams
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
 import StarRatings from "react-star-ratings";
 import { useDispatch } from "react-redux";

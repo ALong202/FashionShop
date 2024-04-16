@@ -5,7 +5,8 @@ import MetaData from "./layout/MetaData"
 import { useGetProductsQuery } from "../redux/api/productsApi" // auto chèn khi chọn useGetProductsQuery
 import ProductItem from "./product/ProductItem.jsx";
 import Loader from "./layout/Loader.jsx"; // auto chèn khi chọn Loader
-import toast from "react-hot-toast"
+// import toast from "react-hot-toast"
+import { toast } from "react-toastify";
 import CustomPagination from "./layout/CustomPagination.jsx";
 import { useSearchParams } from "react-router-dom";
 import Filters from "./layout/Filters.jsx";
