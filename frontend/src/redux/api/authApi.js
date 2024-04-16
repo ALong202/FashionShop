@@ -28,7 +28,7 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled}) {
         try {
           await queryFulfilled;
-          await dispatch(userApi.endpoints.getMe.initiate({null})); // gọi endpoint getMe từ userApi để lấy thông tin user sau khi login
+          await dispatch(userApi.endpoints.getMe.initiate(null)); // gọi endpoint getMe từ userApi để lấy thông tin user sau khi login
         } catch (error) {
           console.log(error);
         }
