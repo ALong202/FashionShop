@@ -2,20 +2,32 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"; 
 import { getPriceQueryParams } from "../../helpers/helpers";
-import { PRODUCT_CATEGORIES } from "../../constants/constants";
+import { PRODUCT_CATEGORIES, PRODUCT_SUBCATEGORIES, PRODUCT_SUBSUBCATEGORIES } from "../../constants/constants";
 
 const Filters = () => {
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
+  const [category, setCategory] = useState(""); //
+  const [subCategory, setSubCategory] = useState(""); //
+  const [subSubCategory, setSubSubCategory] = useState(""); //
+
 
   const navigate = useNavigate();
-  let [searchParams] = useSearchParams();
+  // let [searchParams] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams(); //
 
   // Update giá trị lọc giá lên URL
+  // useEffect(() => {
+  //   searchParams.has('min') && setMin(searchParams.get('min'));
+  //   searchParams.has('max') && setMax(searchParams.get('max'));
+  // })
   useEffect(() => {
     searchParams.has('min') && setMin(searchParams.get('min'));
     searchParams.has('max') && setMax(searchParams.get('max'));
-  })
+    searchParams.has('category') && setCategory(searchParams.get('category')); // Update category from URL
+    searchParams.has('subCategory') && setSubCategory(searchParams.get('subCategory')); // Update subCategory from URL
+    searchParams.has('subSubCategory') && setSubSubCategory(searchParams.get('subSubCategory')); // Update subSubCategory from URL
+  }, [searchParams]); // Add searchParams to dependency array
 
   // Handle lọc Category và Ratings lên URL
   const handleClick = (checkbox) => {
@@ -23,7 +35,7 @@ const Filters = () => {
     // Chỉ chọn 1 checkbox
     checkboxes.forEach((item) => {
       if(item !== checkbox) item.checked = false
-    })
+    });
 
     if(checkbox.checked === false) {
       // Xoá filter khỏi query khi không có check
@@ -115,26 +127,42 @@ const Filters = () => {
         </div>
       ))}
       
-
       <hr />
-      <h5 className="mb-3">Ratings</h5>
-
-      {[5,4,3,2,1].map((rating) => (
+      <h5 className="mb-3">SubCategory</h5>
+      {PRODUCT_SUBCATEGORIES[category]?.map((subCategory) => (
         <div className="form-check">
           <input
             className="form-check-input"
             type="checkbox"
-            name="ratings"
-            id="check7"
-            value={rating}
-            defaultChecked={defaultCheckHandler("rating", rating)}
+            name="subCategory"
+            id="check5"
+            value={subCategory}
+            defaultChecked={defaultCheckHandler("subCategory", subCategory)}
             onClick={(e) => handleClick(e.target)}
           />
-          <label className="form-check-label" for="check7">
-            <span className="star-rating">★ ★ ★ ★ ★</span>
-          </label>
+          <label className="form-check-label" for="check5"> {subCategory} </label>
         </div>
       ))}
+
+      <hr />
+      <h5 className="mb-3">SubSubCategory</h5>
+      {PRODUCT_SUBSUBCATEGORIES[subCategory]?.map((subSubCategory) => (
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            name="subSubCategory"
+            id="check6"
+            value={subSubCategory}
+            defaultChecked={defaultCheckHandler("subSubCategory", subSubCategory)}
+            onClick={(e) => handleClick(e.target)}
+          />
+          <label className="form-check-label" for="check6"> {subSubCategory} </label>
+        </div>
+      ))}
+
+      <hr />
+      
       
     </div>
   )
@@ -167,3 +195,21 @@ export default Filters
     <span className="star-rating">★ ★ ★ ★ ☆</span>
   </label>
 </div> */}
+
+{/* <h5 className="mb-3">Ratings</h5>
+{[5,4,3,2,1].map((rating) => (
+  <div className="form-check">
+    <input
+      className="form-check-input"
+      type="checkbox"
+      name="ratings"
+      id="check7"
+      value={rating}
+      defaultChecked={defaultCheckHandler("rating", rating)}
+      onClick={(e) => handleClick(e.target)}
+    />
+    <label className="form-check-label" for="check7">
+      <span className="star-rating">★ ★ ★ ★ ★</span>
+    </label>
+  </div>
+))} */}

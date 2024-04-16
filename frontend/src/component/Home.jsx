@@ -1,4 +1,4 @@
-/* 1 component trong React, chức năng hiển thị trang chủ của ứng dụng
+/* 1 component trong React, chức năng hiển thị trang chủ của ứng dụng.
 */
 import React, { useEffect } from "react"
 import MetaData from "./layout/MetaData"
@@ -12,23 +12,27 @@ import Filters from "./layout/Filters.jsx";
 
 const Home = () => {
   
-  // truyền số page number về backend bằng biến params
+  // Dùng hàm useSearchParams() từ react-router-dom để lấy các tham số từ URL
   let [searchParams] = useSearchParams();
   const page = searchParams.get("page") || 1;
   const keyword = searchParams.get("keyword") || ""; // keyword: từ khóa tìm kiếm
   const min = searchParams.get("min");
   const max = searchParams.get("max");
   const category = searchParams.get("category");
+  const subCategory = searchParams.get("subCategory");
+  const subSubCategory = searchParams.get("subSubCategory");
 
   const params = { page, keyword };
 
   min !== null && (params.min = min);
   max !== null && (params.max = max);
   category !== null && (params.category = category);
+  subCategory !== null && (params.subCategory = subCategory);
+  subSubCategory !== null && (params.subSubCategory = subSubCategory);
   // console.log("====================================")
   // console.log(params);
   // console.log("====================================")
-
+  // truyền số page number về backend bằng biến params
   const { data, isLoading, error, isError } = useGetProductsQuery(params);
 
   useEffect(() => {

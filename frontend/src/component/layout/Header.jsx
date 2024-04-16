@@ -5,8 +5,13 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import MetaData from './MetaData';
 import Search from './Search';
+import { useGetMeQuery } from '../../redux/api/userApi';
 
 const Header = () => {
+
+  const { data } = useGetMeQuery();
+  console.log(data);
+
   const navigate = useNavigate();
   const {cartItems} = useSelector((state) => state.cart)
   return (
