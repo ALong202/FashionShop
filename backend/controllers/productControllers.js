@@ -36,12 +36,13 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
 
 
 //Tạo sản phẩm mới với đường dẫn => /api/admin/products
-export const newProduct = async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+    req.body.user = req.user._id;
     const product = await Product.create(req.body); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
     res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
         product, // Trả về thông tin của sản phẩm mới được tạo
     });
-};
+});
 
 
 //Tìm 1 sản phẩm mới với đường dẫn => /products/:id

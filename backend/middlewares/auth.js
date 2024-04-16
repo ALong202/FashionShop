@@ -18,16 +18,17 @@ export const isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 });
 
 // 
-export const authorizeRoles = (...roles) =>{
-  return (req, res, next) =>{
-    if(!roles.includes(req.user.role)) {
+export const authorizeRoles = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
       return next(
         new ErrorHandler(
-          `Quyền (${req.user.role}) không có thể truy cập chức năng này`,
+          `Role (${req.user.role}) is not allowed to access this resource`,
           403
         )
       );
     }
-  };
 
+    next();
+  };
 };
