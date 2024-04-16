@@ -5,6 +5,7 @@ useLoginMutation là hook được tạo bởi Redux Toolkit Query (RTK Query) t
 Khi đăng nhập sẽ dùng lệnh POST thay vì GET vì dữ liệu credentials không nên hiển thị trên URL.
 */ 
 import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { userApi } from './userApi';
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -23,6 +24,15 @@ export const authApi = createApi({
           body,
         }
       },
+      // authenticate user after register
+      async onQueryStarted(args, { dispatch, queryFulfilled}) {
+        try {
+          await queryFulfilled;
+          await dispatch(userApi.endpoints.getMe.initiate({null})); // gọi endpoint getMe từ userApi để lấy thông tin user sau khi login
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),    
     // mutation để login
     login: builder.mutation({
@@ -31,6 +41,15 @@ export const authApi = createApi({
           url: "/login",
           method: "POST",
           body,
+        }
+      },
+      // authenticate user after login
+      async onQueryStarted(args, { dispatch, queryFulfilled}) {
+        try {
+          await queryFulfilled;
+          await dispatch(userApi.endpoints.getMe.initiate({null})); // gọi endpoint getMe từ userApi để lấy thông tin user sau khi login
+        } catch (error) {
+          console.log(error);
         }
       },
     }),

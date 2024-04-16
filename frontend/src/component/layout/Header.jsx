@@ -10,7 +10,7 @@ import { useGetMeQuery } from '../../redux/api/userApi';
 const Header = () => {
 
   const { data } = useGetMeQuery();
-  console.log(data);
+  // console.log(data); // Dữ liệu người dùng đăng nhập từ backend
 
   const navigate = useNavigate();
   const {cartItems} = useSelector((state) => state.cart)

@@ -1,16 +1,18 @@
 /* store.js trong Redux Toolkit cấu hình Redux store, lưu trữ toàn bộ trạng thái ứng dụng.
 */
-import { configureStore } from "@reduxjs/toolkit" // ref: https://redux-toolkit.js.org/api/configureStore
-import { productApi } from "./api/productsApi" // auto chèn khi chọn productAPi
-import { authApi } from "./api/authApi"
+import { configureStore } from "@reduxjs/toolkit"; // ref: https://redux-toolkit.js.org/api/configureStore
+import userReducer from "./features/userSlice" ;
+import { productApi } from "./api/productsApi"; // auto chèn khi chọn productAPi
+import { authApi } from "./api/authApi";
 import { userApi } from "./api/userApi";
 import cartReducer from "./features/cartSlice";
 import { orderApi } from "./api/orderApi";
 
-
 export const store = configureStore({
+  // Dùng Chome extension Redux DevTools để theo dõi các reducers và trạng thái của ứng dụng
   reducer: {
-    // Define a top-level state field named `todos`, handled by `todosReducer`
+    // Define a top-level state field named `todos`, handled by `todosReducer`. Mặc dù userApi vẫn có thông tin user ở userApi/queries/getme/data, nhưng userReducer sẽ xử lý trạng thái của user ở userSlice ở trường state tách biệt
+    auth: userReducer,
     // Định nghĩa các reducers. cartReducer xử lý trạng thái của giỏ hàng
     cart: cartReducer,
     // API slices xử lý trạng thái của các yêu cầu API ứng dụng
