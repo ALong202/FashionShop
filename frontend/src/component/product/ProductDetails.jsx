@@ -162,6 +162,7 @@ const ProductDetails = () => {
               onClick={() => handleSizeClick(size)}
               // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
               className={`size-button ${selectedSize === size ? 'selected' : ''}`}
+              disabled={product.stock <= 0}  // Disable the button if there's no stock for this size
             >
               {size}
             </button>
