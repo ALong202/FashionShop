@@ -107,7 +107,8 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   // Tạo URL để người dùng có thể đặt lại mật khẩu
-  const resetUrl = `${process.env.FRONTEND_URL}/api/password/reset/${resetToken}`;
+  // const resetUrl = `${process.env.FRONTEND_URL}/api/password/reset/${resetToken}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
    // Tạo nội dung email chứa liên kết đặt lại mật khẩu
   const message = getResetPasswordTemplate(user?.name, resetUrl);
 

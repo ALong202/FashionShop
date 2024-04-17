@@ -24,6 +24,8 @@ import Cart from "./component/cart/Cart"
 import Shipping from "./component/cart/Shipping"
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
+import ForgotPassword from "./component/auth/ForgotPassword";
+import ResetPassword from "./component/auth/ResetPassword";
 
 
 
@@ -50,6 +52,9 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+          <Route path="/password/forgot" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
 
           {/* <Route path="/me/profile" element={<Profile />} /> 
           <Route path="/me/update_profile" element={<UpdateProfile />} />*/}
