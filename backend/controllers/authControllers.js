@@ -5,7 +5,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/sendToken.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
-import { upload_file } from "../utils/cloudinary.js";
+import { delete_file, upload_file } from "../utils/cloudinary.js";
 
 // Hàm xử lý yêu cầu đăng ký người dùng
 //Register User => /api/register
@@ -73,6 +73,15 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 // Upload user avatar   =>  /api/me/upload_avatar
 export const uploadAvatar = catchAsyncErrors(async (req, res, next) => {
   const avatarResponse = await upload_file(req.body.avatar, "fashionshop/avatars");
+
+  // Xoá avatar cũ trên cloudinary - optional
+  if (req?.user?.avatar?.url) {
+    try {
+      await delete_file(req?.user?.avatar?.public_id);
+    } catch (error) {
+      console.log(`Xoá avatar cũ thất bại: ${error.message}`);
+    }
+  }
 
   const user = await User.findByIdAndUpdate(req?.user?._id, {
     avatar: avatarResponse,

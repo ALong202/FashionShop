@@ -41,14 +41,24 @@ const UploadAvatar = () => {
       avatar,
     };
 
-    // console.log("=====================================");
-    // console.log(userData);
-    // console.log("=====================================");
+    console.log("=====================================");
+    console.log(userData);
+    const jsonData = JSON.stringify(userData);
+    console.log(`Size of JSON data: ${new Blob([jsonData]).size} bytes`);
+    console.log("=====================================");
 
     uploadAvatar(userData);
   };
 
   const onChange = (e) => {
+    const file = e.target.files[0];
+    
+    // Kiểm tra kích thuong file (<= 10mb, giới hạn của cloudinary)
+    if (file.size > 1024 * 1024 * 10) {
+      alert("Vui lòng chọn file dưới 10mb");
+      return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = () => {
