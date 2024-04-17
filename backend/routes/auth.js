@@ -9,6 +9,7 @@ import {
   getUserProfile,
   updatePassword,
   updateProfile,
+  uploadAvatar,
   allUsers,
   getUserDetails,
   deleteUser,
@@ -39,6 +40,8 @@ router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
 // Cập nhật thông tin hồ sơ của người dùng hiện tại
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
+
+router.route("/me/upload_avatar").put(isAuthenticatedUser, uploadAvatar);
 
 // Lấy thông tin tất cả người dùng (chỉ cho quản trị viên)
 router.route("/admin/users").get(isAuthenticatedUser, authorizeRoles("admin"), allUsers);

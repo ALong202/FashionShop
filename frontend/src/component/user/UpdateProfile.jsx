@@ -2,10 +2,10 @@
 */
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useUpdateProfileMutation } from '../../../redux/api/userApi';
+import { useUpdateProfileMutation } from '../../redux/api/userApi'; 
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import UserLayout from '../UserLayout';
+import UserLayout from '../layout/UserLayout';
 import { set } from 'mongoose';
 
 const UpdateProfile = () => {
@@ -50,7 +50,6 @@ const UpdateProfile = () => {
     };
 
     updateProfile(userData);
-  
   };
 
   return (

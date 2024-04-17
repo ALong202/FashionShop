@@ -40,7 +40,21 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"], // khi updateProfile thành công, sẽ làm mất hiệu lực dữ liệu tag User, yêu cầu 1 lần gọi API mới để lấy dữ liệu mới nhất của người dùng sau udpate.  
     }), 
+    uploadAvatar: builder.mutation({
+      query(body) {
+        return {
+          url: "/me/upload_avatar",
+          method: "PUT",
+          body,
+        };      
+      },
+      invalidatesTags: ["User"], // khi updateProfile thành công, sẽ làm mất hiệu lực dữ liệu tag User, yêu cầu 1 lần gọi API mới để lấy dữ liệu mới nhất của người dùng sau udpate.  
+    }), 
   }),
 })
 
-export const { useGetMeQuery, useUpdateProfileMutation } = userApi;
+export const { 
+  useGetMeQuery, 
+  useUpdateProfileMutation, 
+  useUploadAvatarMutation 
+} = userApi;
