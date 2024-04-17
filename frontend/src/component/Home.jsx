@@ -68,7 +68,7 @@ const Home = () => {
         )}
         <div className={keyword || category ? "col-6 col-md-9": "col-6 col-md-12"}>
           <h1 id="products_heading" className="text-secondary">
-            {keyword ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Sản phẩm nổi bật"}
+            {keyword || category ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Sản phẩm nổi bật"}
             
           </h1>
 
