@@ -2470,8 +2470,8 @@ reviews: [],
 
 //83......................................... 
 {
-  productID: "MAPL232383",
-  name: "ÁO NỈ POLO VẢI SẦN- MAPL232383",
+productID: "MAPL232383",
+name: "ÁO NỈ POLO VẢI SẦN- MAPL232383",
 price: 1599000,
 description:
   "Áo nỉ dáng rộng, cổ ve lật, xẻ phía trước. Dài tay.",
@@ -2573,7 +2573,7 @@ reviews: [],
 
 //86.............................................
 {
-productID: "MQT134586",
+productID: "MQB134586",
 name: "QUẦN BÒ CÓ TÚI THUỘC DÒNG SẢN PHẨM UTILITY - MQT134586",
 price: 1699000,
 description:
@@ -2607,7 +2607,7 @@ reviews: [],
 
 //87..............................................
 {
-productID: "MQT134587",
+productID: "MQB134587",
 name: "QUẦN BÒ SLIM CROPPED FIT - MQT134587",
 price: 1799000,
 description: 
@@ -2641,7 +2641,7 @@ reviews: [],
 
 //88..............................................
 {
-productID: "MQT134588",
+productID: "MQB134588",
 name: "QUẦN BÒ DÁNG STRAIGHT CÓ TÚI - MQT134588",
 price: 1499000,
 description:
@@ -2675,9 +2675,9 @@ reviews: [],
 
 //89..................................................
 {
-productID: "MQT134589",
+productID: "MQB134589",
 name: "QUẦN BÒ DÁNG STRAIGHT FIT - MQT134589",
-price: 139000,
+price: 1390000,
 description:
   "Quần bò vải denim làm từ sợi cotton, dáng straight fit. Có 5 túi. Kiểu bạc màu. Toàn thân chần chỉ nổi khác màu. Cài phía trước bằng khuy cài.",
 ratings: 5,
@@ -2710,7 +2710,7 @@ reviews: [],
 
 //90...................................................
 {
-productID: "MQT134590",
+productID: "MQB134590",
 name: "QUẦN BÒ DÁNG REGULAR FIT - MQT134590",
 price: 2239000,
 description:
@@ -2741,6 +2741,667 @@ stock: 50,
 numOfReviews: 1,
 reviews: [],
 },
+
+//91...................................... 
+{
+  productID: "MQS132391",
+  name: "QUẦN SHORT BERMUDA VẢI DỆT MỀM - MQS132391",
+  price: 1590000,
+  description:
+    "Quần short bermuda dáng relaxed fit, chất liệu vải mềm. Cạp co giãn, điều chỉnh bằng dây rút. Có hai túi phía trước và hai túi may viền phía sau.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "kUU6gLt",
+      url: "https://i.imgur.com/kUU6gLt.jpg",
+    },
+    {
+      public_id: "xhROOrh",
+      url: "https://i.imgur.com/xhROOrh.jpg",
+    },
+    {
+      public_id: "7UfEGAD",
+      url: "https://i.imgur.com/7UfEGAD.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Quần",
+    subSubCategory: "Quần short"
+  },
+  color: "Trắng",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
+
+
+//92..........................................
+{
+productID: "MQS132392",
+name: "QUẦN SHORT BERMUDA 100% VẢI LINEN - MQS132392",
+price: 1090000,
+description:
+  "Quần short bermuda vải linen, dáng regular fit. Có hai túi phía trước và hai túi may viền phía sau. Cài phía trước bằng khóa kéo và khuy.",
+ratings: 1.65,
+images: [
+  {
+    public_id: "n0RvA2g",
+    url: "https://i.imgur.com/n0RvA2g.jpg",
+  },
+  {
+    public_id: "RMPLOtK",
+    url: "https://i.imgur.com/RMPLOtK.jpg",
+  },
+  {
+    public_id: "ovS9fV3",
+    url: "https://i.imgur.com/ovS9fV3.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần short"
+},
+color: "Xanh",
+size: ["S","M", "L"], 
+stock: 0,
+numOfReviews: 2,
+reviews: [],
+},
+
+//93......................................... 
+{
+productID: "MQS132393",
+name: "QUẦN SHORT DENIM CƠ BẢN - MQS132393",
+price: 1599000,
+description:
+  "Quần short bermuda dáng regular fit. Có 5 túi. Kiểu bạc màu. Cài phía trước bằng khóa kéo và khuy.",
+ratings: 3.5,
+images: [
+  {
+    public_id: "pOJk4Ms",
+    url: "https://i.imgur.com/pOJk4Ms.jpg",
+  },
+  {
+    public_id: "4QpL30p",
+    url: "https://i.imgur.com/4QpL30p.jpg",
+  },
+  {
+    public_id: "xohH1Fz",
+    url: "https://i.imgur.com/xohH1Fz.jpg",
+  }
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần short"
+},
+color: "Xanh",
+size: ["S","M", "L"], 
+stock: 1,
+numOfReviews: 12,
+reviews: [],
+},
+
+//94...........................................
+{
+productID: "MQS132394",
+name: "QUẦN SHORT BERMUDA CARGO VẢI BẠC MÀU - MQS132394",
+price: 1999000,
+description:
+  "Quần short bermuda dáng relaxed fit. Có hai túi phía trước và hai túi đáp phía sau. Có túi đáp có nắp hai bên ống quần. Kiểu bạc màu. Cài khóa kéo và khuy phía trước",
+ratings: 4.5,
+images: [
+  {
+    public_id: "wSjCO4H",
+    url: "https://i.imgur.com/wSjCO4H.jpg",
+  },
+  {
+    public_id: "cblSE9k",
+    url: "https://i.imgur.com/cblSE9k.jpg",
+  },
+  {
+    public_id: "Us0vecI",
+    url: "https://i.imgur.com/Us0vecI.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần short"
+},
+color: "Xanh",
+size: "F", 
+stock: 11,
+numOfReviews: 112,
+reviews: [],
+},
+
+
+//95.......................................... 
+{
+productID: "MQS132395",
+name: "QUẦN SHORT BERMUDA VẢI DỆT - MQS132395",
+price: 1625000,
+description:
+  "Quần dáng regular fit. Cạp co giãn, có dây rút điều chỉnh bên trong, xếp li phía trước. Có hai túi phía trước và hai túi may viền phía sau. Gấu có viền lật. Cài khóa kéo và khuy phía trước.",
+ratings: 4.8,
+images: [
+  {
+    public_id: "wQxDXBQ",
+    url: "https://i.imgur.com/wQxDXBQ.jpg",
+  },
+  {
+    public_id: "X5KAxjn",
+    url: "https://i.imgur.com/X5KAxjn.jpg",
+  },
+  {
+    public_id: "IxqAWmL",
+    url: "https://i.imgur.com/IxqAWmL.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần tây",
+},
+color: "Cam",
+size: ["M", "L"], 
+stock: 122,
+numOfReviews: 2671,
+reviews: [],
+},
+
+//96.............................................
+{
+productID: "MQT134596",
+name: "QUẦN TÂY DỆT CẠP JOGGER - MQT134596",
+price: 1699000,
+description:
+  "Quần bò dáng straight fit. Có hai túi phía trước và hai túi đáp phía sau. Có các túi đa năng ở hai bên ống quần. Kiểu bạc màu. Cài khóa kéo và khuy phía trước.",
+ratings: 4.1,
+images: [
+  {
+    public_id: "eFfyl3G",
+    url: "https://i.imgur.com/eFfyl3G.jpg",
+  },
+  {
+    public_id: "koTQZOU",
+    url: "https://i.imgur.com/koTQZOU.jpg",
+  },
+  {
+    public_id: "ostE1r6",
+    url: "https://i.imgur.com/ostE1r6.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần tây",
+},
+color: "Đen",
+size: ["M", "L"], 
+stock: 123,
+numOfReviews: 6,
+reviews: [],
+},
+
+//97..............................................
+{
+productID: "MQT134597",
+name: "QUẦN TÂY VẢI DỆT CHÉO - MQT134597",
+price: 1799000,
+description: 
+  "Quần vải pha sợi cotton và sợi linen, dáng straight fit. Cạp có chi tiết xếp li phía trước. Có hai túi phía trước và hai túi đáp phía sau. Cài khóa kéo và khuy phía trước.",
+ratings: 4.7,
+images: [
+  {
+    public_id: "xr3i7g3",
+    url: "https://i.imgur.com/xr3i7g3.jpg",
+  },
+  {
+    public_id: "bHatdng",
+    url: "https://i.imgur.com/bHatdng.jpg",
+  },
+  {
+    public_id: "LpkHvtK",
+    url: "https://i.imgur.com/LpkHvtK.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần tây",
+},
+color: "Trắng",
+size: "F", 
+stock: 131,
+numOfReviews: 222,
+reviews: [],
+},
+
+//98..............................................
+{
+productID: "MQT134598",
+name: "QUẦN TÂY VẢI LINEN - MQT134598",
+price: 1499000,
+description:
+  "Quần vải linen, dáng straight fit. Cạp điều chỉnh bằng dây rút. Có hai túi phía trước và hai túi may viền phía sau. Cài phía trước bằng khóa kéo và khuy.",
+ratings: 4.9,
+images: [
+  {
+    public_id: "OQl7eJr",
+    url: "https://i.imgur.com/OQl7eJr.jpg",
+  },
+  {
+    public_id: "iYh2ME1",
+    url: "https://i.imgur.com/iYh2ME1.jpg",
+  },
+  {
+    public_id: "d3E7PQB",
+    url: "https://i.imgur.com/d3E7PQB.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần tây",
+},
+color: "Xanh",
+size: "F",
+stock: 58,
+numOfReviews: 56,
+reviews: [],
+},
+
+//99..................................................
+{
+productID: "MQT134599",
+name: "QUẦN TÂY VẢI LINEN - MQT134599",
+price: 1390000,
+description:
+  "Quần vải linen, dáng straight fit. Có hai túi phía trước và hai túi may viền đôi cài khuy phía sau. Cài phía trước bằng khóa kéo và khuy.",
+ratings: 5,
+images: [
+  {
+    public_id: "UvhgnPj",
+    url: "https://i.imgur.com/UvhgnPj.jpg",
+  },
+  {
+    public_id: "WDieg4H",
+    url: "https://i.imgur.com/WDieg4H.jpg",
+  },
+  {
+    public_id: "Z9q2HYu",
+    url: "https://i.imgur.com/Z9q2HYu.jpg",
+  },
+  
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần tây",
+},
+color: "Nâu",
+size: ["S","M", "L"], 
+stock: 500,
+numOfReviews: 1,
+reviews: [],
+},
+
+//100...................................................
+{
+productID: "MQT134100",
+name: "QUẦN TÂY VẢI LINEN - MQT134100",
+price: 2239000,
+description:
+  "Quần vải linen, dáng straight fit. Cạp điều chỉnh bằng dây rút. Có hai túi phía trước và hai túi may viền phía sau. Cài phía trước bằng khóa kéo và khuy.",
+ratings: 5,
+images: [
+  {
+    public_id: "40v1yvy",
+    url: "https://i.imgur.com/40v1yvy.jpg",
+  },
+  {
+    public_id: "nEWCbVV",
+    url: "https://i.imgur.com/nEWCbVV.jpg",
+  },
+  {
+    public_id: "TFfvf2j",
+    url: "https://i.imgur.com/TFfvf2j.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần tây",
+},
+color: "Xám",
+size: ["S","M", "L"], 
+stock: 50,
+numOfReviews: 5,
+reviews: [],
+},
+
+//101...................................... 
+{
+  productID: "MCV132101",
+  name: "CÀ VẠT - MCV132101",
+  price: 1590000,
+  description:
+    "Cà vạt làm bằng vải pha cotton và lanh.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "HhfkV8b",
+      url: "https://i.imgur.com/HhfkV8b.jpg",
+    },
+    {
+      public_id: "afdfLzN",
+      url: "https://i.imgur.com/afdfLzN.jpg",
+    },
+    {
+      public_id: "rS7n26Q",
+      url: "https://i.imgur.com/rS7n26Q.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Phụ kiện",
+    subSubCategory: "Cà vạt"
+  },
+  color: "Xanh",
+  size: "F",
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
+
+
+//102..........................................
+{
+productID: "MPCV132102",
+name: "CÀ VẠT LỤA - MpCV132102",
+price: 1090000,
+description:
+  "Cà vạt bản to chất liệu vải lụa.",
+ratings: 1.65,
+images: [
+  {
+    public_id: "z5S6aJn",
+    url: "https://i.imgur.com/z5S6aJn.jpg",
+  },
+  {
+    public_id: "O9XcXSh",
+    url: "https://i.imgur.com/O9XcXSh.jpg",
+  },
+  {
+    public_id: "Cf7tOYp",
+    url: "https://i.imgur.com/Cf7tOYp.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Cà vạt"
+},
+color: "Xanh",
+size: "F", 
+stock: 0,
+numOfReviews: 2,
+reviews: [],
+},
+
+//103......................................... 
+{
+productID: "MPCV132103",
+name: " - MPCV132103",
+price: 1599000,
+description:
+  "Cà vạt làm bằng vải pha cotton và lanh.",
+ratings: 3.5,
+images: [
+  {
+    public_id: "U8KkthH",
+    url: "https://i.imgur.com/U8KkthH.jpg",
+  },
+  {
+    public_id: "veIdiW5",
+    url: "https://i.imgur.com/veIdiW5.jpg",
+  },
+  {
+    public_id: "a4qo4UG",
+    url: "https://i.imgur.com/a4qo4UG.jpg",
+  }
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Cà vạt"
+},
+color: "Xanh",
+size: "F", 
+stock: 1,
+numOfReviews: 12,
+reviews: [],
+},
+
+//104...........................................
+{
+productID: "MPCV132104",
+name: " - MPCV132104",
+price: 1999000,
+description:
+  "Cà vạt làm bằng vải pha cotton và lanh.",
+ratings: 4.5,
+images: [
+  {
+    public_id: "kN6yJAC",
+    url: "https://i.imgur.com/kN6yJAC.jpg",
+  },
+  {
+    public_id: "G1Z1fh1",
+    url: "https://i.imgur.com/G1Z1fh1.jpg",
+  },
+  {
+    public_id: "MRxLNzC",
+    url: "https://i.imgur.com/MRxLNzC.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Cà vạt"
+},
+color: "Xanh",
+size: "F", 
+stock: 11,
+numOfReviews: 112,
+reviews: [],
+},
+
+
+//105.......................................... 
+{
+productID: "MPCV132105",
+name: " - MPCV132105",
+price: 1625000,
+description:
+  "Cà vạt làm bằng vải pha cotton và lanh.",
+ratings: 4.8,
+images: [
+  {
+    public_id: "2gMRihY",
+    url: "https://i.imgur.com/2gMRihY.jpg",
+  },
+  {
+    public_id: "dH2pB9z",
+    url: "https://i.imgur.com/dH2pB9z.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Cà vạt"
+},
+color: "Sọc",
+size: "F",
+stock: 122,
+numOfReviews: 2671,
+reviews: [],
+},
+
+//106.............................................
+{
+productID: "MPTL132106",
+name: "THẮT LƯNG DA DẬP VÂN NỔI - MTL132106",
+price: 1699000,
+description:
+  "Thắt lưng da dập vân nổi. Có khóa cài và đai luồn dây bằng kim loại.",
+ratings: 4.1,
+images: [
+  {
+    public_id: "ckScVMO",
+    url: "https://i.imgur.com/ckScVMO.jpg",
+  },
+  {
+    public_id: "op6eeXm",
+    url: "https://i.imgur.com/op6eeXm.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Thắt lưng"
+},
+color: "Nâu",
+size: "F",
+stock: 123,
+numOfReviews: 6,
+reviews: [],
+},
+
+//107..............................................
+{
+productID: "MPTL132107",
+name: "THẮT LƯNG DA LỘN THÊU HỌA TIẾT - MTL132107",
+price: 1799000,
+description: 
+  "Thắt lưng da lộn, thêu họa tiết khác màu. Có khóa cài bằng kim loại và đai luồn dây.",
+ratings: 4.7,
+images: [
+  {
+    public_id: "xr3i7g3",
+    url: "https://i.imgur.com/xr3i7g3.jpg",
+  },
+  {
+    public_id: "bHatdng",
+    url: "https://i.imgur.com/bHatdng.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Thắt lưng"
+},
+color: "Nâu",
+size: "F", 
+stock: 131,
+numOfReviews: 222,
+reviews: [],
+},
+
+//108..............................................
+{
+productID: "MPTL132108",
+name: "THẮT LƯNG DA CÓ KHÓA KIM LOẠI KHẮC HOA VĂN - MTL132108",
+price: 1499000,
+description:
+  "Thắt lưng da. Cài khóa bấm bằng kim loại khắc hoa văn kiểu vintage.",
+ratings: 4.9,
+images: [
+  {
+    public_id: "b3ogDvj",
+    url: "https://i.imgur.com/b3ogDvj.jpg",
+  },
+  {
+    public_id: "WjzO0Px",
+    url: "https://i.imgur.com/WjzO0Px.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Thắt lưng"
+},
+color: "Xanh",
+size: "F",
+stock: 58,
+numOfReviews: 56,
+reviews: [],
+},
+
+//109..................................................
+{
+productID: "MPTL132109",
+name: "THẮT LƯNG DA KIỂU CỔ ĐIỂN - MTL132109",
+price: 1390000,
+description:
+  "Thắt lưng da. May hai đường chỉ nổi. Có đai luồn dây bằng da và khóa cài bằng kim loại.",
+ratings: 5,
+images: [
+  {
+    public_id: "ybwRfCa",
+    url: "https://i.imgur.com/ybwRfCa.jpg",
+  },
+  
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Thắt lưng"
+},
+color: "Đen",
+size: "F",
+stock: 500,
+numOfReviews: 1,
+reviews: [],
+},
+
+//110...................................................
+{
+productID: "MPTL132110",
+name: "THẮT LƯNG DA CÓ ĐINH TÁN - MTL132110",
+price: 2239000,
+description:
+  "Thắt lưng da. Dập đinh tán kim loại trang trí. Có đai luồn dây bằng da và khóa cài bằng kim loại.",
+ratings: 5,
+images: [
+  {
+    public_id: "Erh3O0j",
+    url: "https://i.imgur.com/Erh3O0j.jpg",
+  },
+  {
+    public_id: "R1xuh1I",
+    url: "https://i.imgur.com/R1xuh1I.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Thắt lưng"
+},
+color: "Nâu",
+size: "F",
+stock: 50,
+numOfReviews: 5,
+reviews: [],
+},
+
+
+
 
 
 ];
