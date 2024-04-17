@@ -5,6 +5,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/sendToken.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
+import { upload_file } from "../utils/cloudinary.js";
 
 // Hàm xử lý yêu cầu đăng ký người dùng
 //Register User => /api/register
@@ -66,6 +67,19 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
   // Trả về mã trạng thái 200 và thông báo đăng xuất thành công
   res.status(200).json({
     message: "Đăng Xuất",
+  });
+});
+
+// Upload user avatar   =>  /api/me/upload_avatar
+export const uploadAvatar = catchAsyncErrors(async (req, res, next) => {
+  const avatarResponse = await upload_file(req.body.avatar, "fashionshop/avatars");
+
+  const user = await User.findByIdAndUpdate(req?.user?._id, {
+    avatar: avatarResponse,
+  });
+  // Trả về mã trạng thái 200
+  res.status(200).json({
+    user,
   });
 });
 

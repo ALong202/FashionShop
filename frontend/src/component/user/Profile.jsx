@@ -1,5 +1,5 @@
 import React from "react"
-import UserLayout from "../UserLayout"
+import UserLayout from "../layout/UserLayout"
 import { useSelector } from "react-redux"
 
 const Profile = () => {

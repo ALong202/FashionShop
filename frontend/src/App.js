@@ -14,14 +14,16 @@ import "react-toastify/dist/ReactToastify.css";
 import ProductDetails from "./component/product/ProductDetails";
 import Login from "./component/auth/Login"; // auto chèn khi chọn Login từ Quick Fix
 import Register from "./component/auth/Register"; // auto chèn
-import Profile from "./component/layout/user/Profile"; // auto chèn
+import Profile from "./component/user/Profile"; // auto chèn
+import UpdateProfile from "./component/user/UpdateProfile";
+import ProtectedRoute from "./component/auth/ProtectedRoute";
 // import './custom-theme.min.css';
 import Cart from "./component/cart/Cart"
 import Shipping from "./component/cart/Shipping"
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
-import UpdateProfile from "./component/layout/user/UpdateProfile";
-import ProtectedRoute from "./component/auth/ProtectedRoute";
+import UploadAvatar from "./component/user/UploadAvatar";
+
 
 
 
@@ -60,12 +62,20 @@ function App() {
           />
 
           <Route
-             path="/me/update_profile"
-               element={
+            path="/me/update_profile"
+              element={
+              <ProtectedRoute>
+                <UpdateProfile/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/me/upload_avatar"
+              element={
                 <ProtectedRoute>
-                  <UpdateProfile/>
+                  <UploadAvatar/>
                 </ProtectedRoute>
-              }
+            }
           />
           <Route path="/cart" element={<Cart />} />
           {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
