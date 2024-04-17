@@ -36,7 +36,6 @@ const UploadAvatar = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // Dispatch login'
     const userData = {
       avatar,
     };
@@ -79,7 +78,7 @@ const UploadAvatar = () => {
           <form
             className="shadow rounded bg-body" onSubmit = {submitHandler}  
           >
-            <h2 className="mb-4">Upload Avatar</h2>
+            <h2 className="mb-4">Cập nhật Avatar</h2>
 
             <div className="mb-3">
               <div className="d-flex align-items-center">
@@ -94,7 +93,7 @@ const UploadAvatar = () => {
                 </div>
                 <div className="input-foam">
                   <label className="form-label" htmFor="customFile">
-                    Choose Avatar
+                    Chọn Avatar
                   </label>
                   <input
                     type="file"

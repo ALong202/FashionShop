@@ -17,12 +17,13 @@ import Register from "./component/auth/Register"; // auto chèn
 import Profile from "./component/user/Profile"; // auto chèn
 import UpdateProfile from "./component/user/UpdateProfile";
 import ProtectedRoute from "./component/auth/ProtectedRoute";
+import UploadAvatar from "./component/user/UploadAvatar";
+import UpdatePassword from "./component/user/UpdatePassword";
 // import './custom-theme.min.css';
 import Cart from "./component/cart/Cart"
 import Shipping from "./component/cart/Shipping"
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
-import UploadAvatar from "./component/user/UploadAvatar";
 
 
 
@@ -74,6 +75,15 @@ function App() {
               element={
                 <ProtectedRoute>
                   <UploadAvatar/>
+                </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/me/update_password"
+              element={
+                <ProtectedRoute>
+                  <UpdatePassword/>
                 </ProtectedRoute>
             }
           />

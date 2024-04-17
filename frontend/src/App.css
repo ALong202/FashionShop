@@ -322,6 +322,15 @@ footer {
   background-color: white;
 }
 
+/* Category field */
+.category_field {
+  width: 200px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 /* Login & Register */
 
 .wrapper {
