@@ -1,3 +1,5 @@
+/* Bảo mật Route profile nếu chưa đăng nhập bằng ProtectedRoute  
+*/
 import "./App.css";
 // React router DOM quản lý routing. Router xác định các routes. Route: URL path
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
@@ -19,6 +21,7 @@ import Shipping from "./component/cart/Shipping"
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
 import UpdateProfile from "./component/layout/user/UpdateProfile";
+import ProtectedRoute from "./component/auth/ProtectedRoute";
 
 
 
@@ -44,8 +47,26 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/me/profile" element={<Profile />} />
-          <Route path="/me/update_profile" element={<UpdateProfile />} />
+
+          {/* <Route path="/me/profile" element={<Profile />} /> 
+          <Route path="/me/update_profile" element={<UpdateProfile />} />*/}
+          <Route 
+            path="/me/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route
+             path="/me/update_profile"
+               element={
+                <ProtectedRoute>
+                  <UpdateProfile/>
+                </ProtectedRoute>
+              }
+          />
           <Route path="/cart" element={<Cart />} />
           {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
           <Route path="/shipping" element={<Shipping />} />

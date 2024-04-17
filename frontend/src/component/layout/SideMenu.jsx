@@ -5,22 +5,22 @@ const SideMenu = () => {
 
   const menuItems = [
     {
-      name: "Profile",
+      name: "Hồ sơ cá nhân",
       "url": "/me/profile",
       icon: "fas fa-user",
     },
     {
-      name: "Update Profile",
+      name: "Cập nhật hồ sơ",
       "url": "/me/update_profile",
       icon: "fas fa-user",
     },
     {
-      name: "Upload avatar",
+      name: "Cập nhật avatar",
       "url": "/me/upload_avatar",
       icon: "fas fa-user-circle",
     },
     {
-      name: "Update Password",
+      name: "Cập nhật mật khẩu",
       "url": "/me/update_password",
       icon: "fas fa-lock",
     }
