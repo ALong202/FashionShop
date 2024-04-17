@@ -4,6 +4,10 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv"; // Một thư viện của JavaScript load các biến môi trường từ tập tin '.env' vào application's runtime environment
 import { connectDatabase } from "./config/dbConnect.js"; // tự hiện khi gõ lệnh connectDatabase()
 import errorsMiddleware from "./middlewares/errors.js";
+import getRawBody from 'raw-body';
+
+
+
 
 process.on("uncaughtException", (err) =>{
   console.log(`ERROR: ${err}`);
@@ -15,7 +19,9 @@ dotenv.config({ path: "backend/config/config.env" });
 
 // Connect với database
 connectDatabase();
-app.use(express.json());
+// mở rộng kích thước file json lên 10mb. 10mb cũng là giá trị tối đa của cloudinary. Tuy nhiên khi upload ảnh, dữ liệu sẽ moá hoá dạng base64, làm tăng kích thước dữ liệu lên server lên đến 33%. nên phải tăng json request limit lên. 1 cách để sử dụng khác là dùng thư viện multer
+app.use(express.json({ limit: "20mb" })); 
+
 app.use(cookieParser());
 
 // Import tất cả các routes (đường dẫn)
@@ -45,3 +51,14 @@ process.on("unhandledRejection", (err) => {
   });
 });
   
+
+// const upload = multer({ 
+//   limits: { 
+//     fileSize: 10 * 1024 * 1024, // 10MB
+//   },
+// });
+
+// app.post('/upload', upload.single('file'), (req, res) => {
+//   // req.file chứa thông tin về tệp đã tải lên
+//   res.send('File uploaded successfully');
+// });
