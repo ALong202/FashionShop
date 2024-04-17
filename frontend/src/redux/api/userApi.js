@@ -50,11 +50,21 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"], // khi updateProfile thành công, sẽ làm mất hiệu lực dữ liệu tag User, yêu cầu 1 lần gọi API mới để lấy dữ liệu mới nhất của người dùng sau udpate.  
     }), 
+    updatePassword: builder.mutation({
+      query(body) {
+        return {
+          url: "/password/update",
+          method: "PUT",
+          body,
+        };      
+      },
+    }), 
   }),
 })
 
 export const { 
   useGetMeQuery, 
   useUpdateProfileMutation, 
-  useUploadAvatarMutation 
+  useUploadAvatarMutation,
+  useUpdatePasswordMutation,
 } = userApi;

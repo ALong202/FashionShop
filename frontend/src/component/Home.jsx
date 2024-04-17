@@ -1,4 +1,5 @@
 /* 1 component trong React, chức năng hiển thị trang chủ của ứng dụng.
+Để tìm kiếm theo keyword hoặc category, thêm điều kiện kiểm tra category trong JSX
 */
 import React, { useEffect } from "react"
 import MetaData from "./layout/MetaData"
@@ -43,6 +44,15 @@ const Home = () => {
   }, [isError]);
   // console.log(data, isLoading);
 
+  useEffect(() => {
+    // Fetch data based on category
+    if (category) {
+      // Fetch products by category
+    } else {
+      // Fetch all products
+    }
+  }, [category]);
+
   const columnSize = keyword ? 4 : 3;
 
   if (isLoading) return <Loader />
@@ -51,12 +61,12 @@ const Home = () => {
       <>
       <MetaData title={"Cửa hàng thời trang"} />
       <div className="row">
-        {keyword && (
+        {(keyword || category) && (
           <div className="col-6 col-md-3 mt-5">
             <Filters />
           </div>
         )}
-        <div className={keyword? "col-6 col-md-9": "col-6 col-md-12"}>
+        <div className={keyword || category ? "col-6 col-md-9": "col-6 col-md-12"}>
           <h1 id="products_heading" className="text-secondary">
             {keyword ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Sản phẩm nổi bật"}
             
