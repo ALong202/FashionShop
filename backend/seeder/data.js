@@ -1,312 +1,5 @@
 export default [
   
-//1...................................... 
-{
-  productID: "MASM240001",
-  name: "ÁO SƠ MI DÀI TAY - MASM240001",
-  price: 580000,
-  description:
-    " Áo sơ mi dài tay, kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
-  ratings: 4.5,
-  images: [
-    {
-      public_id: "yst8iCm",
-      url: "https://i.imgur.com/yst8iCm.png",
-    },
-    {
-      public_id: "3yOTMCw",
-      url: "https://i.imgur.com/3yOTMCw.png",
-    },
-    {
-      public_id: "EX3Bi7p",
-      url: "https://i.imgur.com/EX3Bi7p.png",
-    },
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo sơ mi"
-  },
-  color: "Trắng",
-  size: ["S","M", "L"], 
-  stock: 50,
-  numOfReviews: 32,
-  reviews: [],
-},
-
-//2..........................................
-{
-  productID: "MAPL240002",
-  name: "Áo Polo - MAPL240002",
-  price: 790000,
-  description:
-    "Áo Polo kiểu dáng body fit, tôn dáng người mặc. Màu sắc nổi bật, dễ phối đồ.",
-  ratings: 1.65,
-  images: [
-    {
-      public_id: "7cZ4HsS",
-      url: "https://i.imgur.com/7cZ4HsS.png",
-    },
-    {
-      public_id: "Ht9kRPl",
-      url: "https://i.imgur.com/Ht9kRPl.png",
-    },
-    {
-      public_id: "5r2ou8L",
-      url: "https://i.imgur.com/Ht9kRPl.png",
-    }
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo polo"
-  },
-  color: "Đỏ",
-  size: ["S","M", "L"], 
-  stock: 0,
-  numOfReviews: 2,
-  reviews: [],
-},
-
-//3......................................... 
-{
-  productID: "MAT231403",
-  name: "ÁO THUN - MATH231403",
-  price: 370000,
-  description:
-    "Áo Thun chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
-  ratings: 3.5,
-  images: [
-    {
-      public_id: "485qQER",
-      url: "https://i.imgur.com/485qQER.png",
-    },
-    {
-      public_id: "S8JCAWE",
-      url: "https://i.imgur.com/S8JCAWE.png",
-    },
-    {
-      public_id: "ebvuGDB",
-      url: "https://i.imgur.com/ebvuGDB.png",
-    }
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo thun"
-  },
-  color: "Xanh",
-  size: ["S","M", "L"], 
-  stock: 1,
-  numOfReviews: 12,
-  reviews: [],
-},
-
-//4...........................................
-{
-  productID: "MALE231604",
-  name: "ÁO LEN - MALE231604",
-  price: 545000,
-  description:
-    "Áo len dáng regular fit tôn dáng người mặc. Màu sắc thanh lịch dễ phối đồ.",
-  ratings: 4.5,
-  images: [
-    {
-      public_id: "ivttBn1",
-      url: "https://imgur.com/ivttBn1.png",
-    },
-    {
-      public_id: "Xwozhxr",
-      url: "https://imgur.com/Xwozhxr.png",
-    },
-    {
-      public_id: "IUPF0sF",
-      url: "https://imgur.com/IUPF0sF.png",
-    },
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Áo",
-    subSubCategory: "Áo len"
-  },
-  color: "Đỏ",
-  size: ["S","M"], 
-  stock: 11,
-  numOfReviews: 112,
-  reviews: [],
-},
-
-
-//5.......................................... 
-{
-  productID: "MQJS230105",
-  name: "QUẦN JEANS - QJS230105",
-  price: 625000,
-  description:
-    "Quần jeans dáng slimfit ôm dáng người mặc. Màu sắc trẻ trung dễ phối đồ.",
-  ratings: 4.8,
-  images: [
-    {
-      public_id: "jjPXifI",
-      url: "https://i.imgur.com/jjPXifI.png",
-    },
-    {
-      public_id: "4W6323b",
-      url: "https://i.imgur.com/4W6323b.png",
-    },
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Quần",
-    subSubCategory: "Quần bò"
-  },
-  color: "Xanh",
-  size: ["M", "L"], 
-  stock: 122,
-  numOfReviews: 2671,
-  reviews: [],
-},
-
-//6.............................................
-{
-  productID: "MQT231506",
-  name: "QUẦN TÂY - MQT231506",
-  price: 699000,
-  description:
-    "Kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
-  ratings: 4.1,
-  images: [
-    {
-      public_id: "DJrhCh7",
-      url: "https://i.imgur.com/DJrhCh7.png",
-    },
-    {
-      public_id: "62h2dhh",
-      url: "https://i.imgur.com/62h2dhh.png",
-    },
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Quần",
-    subSubCategory: "Quần tây"
-  },
-  color: "Trắng",
-  size: ["S","M", "L"], 
-  stock: 1123,
-  numOfReviews: 6,
-  reviews: [],
-},
-
-//7..............................................
-{
-  productID: "MBE232607",
-  name: "THẮT LƯNG - MBE232607",
-  price: 799000,
-  description: 
-    "Chất liệu: Leather (Da)",
-  ratings: 4.7,
-  images: [
-    {
-      public_id: "D4bsMSN",
-      url: "https://i.imgur.com/D4bsMSN.png",
-    },
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Phụ kiện",
-    subSubCategory: "Thắt lưng"
-  },
-  color: "Đen",
-  size: "F", 
-  stock: 131,
-  numOfReviews: 222,
-  reviews: [],
-},
-
-//8..............................................
-{
-  productID: "MCV221008",
-  name: "CÀ VẠT - MCV221008",
-  price: 499000,
-  description:
-    "Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
-  ratings: 4.9,
-  images: [
-    {
-      public_id: "ZDgWQYW",
-      url: "https://i.imgur.com/ZDgWQYW.png",
-    },
-   
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Phụ kiện",
-    subSubCategory: "Cà vạt"
-  },
-  color: "Xanh",
-  size: "F",
-  stock: 0,
-  numOfReviews: 56,
-  reviews: [],
-},
-
-//9..................................................
-{
-  productID: "MTA221409",
-  name: "TẤT - MTA221409",
-  price: 39000,
-  description:
-    "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
-  ratings: 5,
-  images: [
-    {
-      public_id: "DvnzzGn",
-      url: "https://i.imgur.com/DvnzzGn.png",
-    },
-    
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Phụ kiện",
-    subSubCategory: "Tất"
-  },
-  color: "Đen",
-  size: ["S","M", "L"], 
-  stock: 500,
-  numOfReviews: 1,
-  reviews: [],
-},
-
-//10...................................................
-{
-  productID: "MTA225410",
-  name: "TẤT - MTA225410",
-  price: 39000,
-  description:
-    "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
-  ratings: 5,
-  images: [
-    {
-      public_id: "ptqq3z0",
-      url: "https://i.imgur.com/ptqq3z0.jpg",
-    },
-    {
-      public_id: "L4OgwPA",
-      url: "https://i.imgur.com/L4OgwPA.png",
-    },
-  ],
-  category: {
-    name: "Nam",
-    subCategory: "Phụ kiện",
-    subSubCategory: "Tất"
-  },
-  color: "Trắng",
-  size: ["S","M", "L"], 
-  stock: 50,
-  numOfReviews: 1,
-  reviews: [],
-},
-
 //11...................................... 
 {
   productID: "FMAK241511",
@@ -585,7 +278,7 @@ reviews: [],
 {
 productID: "FMAK241519",
 name: "ÁO KHOÁC - FMAK241519",
-price: 39000,
+price: 1039000,
 description:
   "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
 ratings: 5,
@@ -620,7 +313,7 @@ reviews: [],
 {
 productID: "FMAK241520",
 name: "ÁO KHOÁC - FMAK241520",
-price: 39000,
+price: 1309000,
 description:
   "Chất liệu Cotton co giãn thoải mái thoáng khí. Thiết kế Basic hiện đại, trẻ trung",
 ratings: 5,
@@ -654,7 +347,7 @@ reviews: [],
 {
   productID: "FMAL245221",
   name: "ÁO LEN - FMAL245221",
-  price: 580000,
+  price: 1580000,
   description:
     " Áo kiểu dáng Regular Fit dễ mặc, hợp form dáng. Màu sắc và kiểu dáng trẻ trung, kiểu dáng hiện đại, dễ phối đồ.",
   ratings: 4.5,
@@ -722,7 +415,7 @@ reviews: [],
 {
 productID: "FMAL245223",
 name: "ÁO LEN - FMAL245223",
-price: 370000,
+price: 1370000,
 description:
   "Áo chất liệu: COTTON MODAL. Màu sắc trẻ trung, dễ phối đồ. Kiểu dáng body fit tôn dáng.",
 ratings: 3.5,
@@ -893,7 +586,7 @@ reviews: [],
 {
 productID: "FMAL245228",
 name: "ÁO LEN - FMAL245228",
-price: 499000,
+price: 1499000,
 description:
   "Áo len có cổ tròn, tay áo dài tới khuỷu tay. Cài phía trước bằng nút ngọc trai giả.",
 ratings: 4.9,
@@ -2065,7 +1758,7 @@ productID: "MAL212262",
 name: "ÁO LEN VẢI DỆT - MAL212262",
 price: 790000,
 description:
-  "Áo LEN vải pha sợi cotton, dáng oversize. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài bằng hàng khuy cài.",
+  "Áo len vải pha sợi cotton, dáng oversize. Cổ chữ V, dài tay. Cổ tay và gấu bo vải gân. Cài bằng hàng khuy cài.",
 ratings: 1.65,
 images: [
   {
@@ -2362,6 +2055,694 @@ stock: 50,
 numOfReviews: 1,
 reviews: [],
 },
+
+//71...................................... 
+{
+  productID: "MAT202371",
+  name: "ÁO THUN KIỂU CƠ BẢN MEDIUM WEIGHT - MAT202371",
+  price: 590000,
+  description:
+    "Áo thun dáng regular fit. Cổ tròn, cộc tay.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "SXl1DQU",
+      url: "https://i.imgur.com/SXl1DQU.jpg",
+    },
+    {
+      public_id: "2nrFnjo",
+      url: "https://i.imgur.com/2nrFnjo.jpg",
+    },
+    {
+      public_id: "bB7UdPt",
+      url: "https://i.imgur.com/bB7UdPt.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo thun"
+  },
+  color: "Trắng",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
+
+
+//72..........................................
+{
+productID: "MAT202372",
+name: "ÁO THUN RÁCH KIỂU BẠC MÀU - MAT202372",
+price: 790000,
+description:
+  "Áo thun dáng rộng, cổ tròn, cộc tay. Vải hiệu ứng bạc màu, trang trí các chi tiết rách.",
+ratings: 1.65,
+images: [
+  {
+    public_id: "HuInXGU",
+    url: "https://i.imgur.com/HuInXGU.jpg",
+  },
+  {
+    public_id: "Pr8Jdu7",
+    url: "https://i.imgur.com/Pr8Jdu7.jpg",
+  },
+  {
+    public_id: "mIE56Vr",
+    url: "https://i.imgur.com/mIE56Vr.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
+},
+color: "Đỏ",
+size: ["S","M", "L"], 
+stock: 0,
+numOfReviews: 2,
+reviews: [],
+},
+
+//73......................................... 
+{
+productID: "MAT202373",
+name: "ÁO THUN BA LỖ VẢI PHA SỢI MODAL - MAT202373",
+price: 1599000,
+description:
+  "Áo thun ba lỗ vải rũ pha sợi modal. Cổ tròn, sát nách.",
+ratings: 3.5,
+images: [
+  {
+    public_id: "8VKQa8a",
+    url: "https://i.imgur.com/8VKQa8a.jpg",
+  },
+  {
+    public_id: "hbFr1W9",
+    url: "https://i.imgur.com/hbFr1W9.jpg",
+  },
+  {
+    public_id: "i2bQaHi",
+    url: "https://i.imgur.com/i2bQaHi.jpg",
+  }
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
+},
+color: "Đen",
+size: ["S","M", "L"], 
+stock: 1,
+numOfReviews: 12,
+reviews: [],
+},
+
+//74...........................................
+{
+productID: "MAT202374",
+name: "ÁO THUN HEAVY WEIGHT KIỂU CƠ BẢN - MAT202374",
+price: 1999000,
+description:
+  "Áo thun vải cotton compact, dáng rộng. Cổ tròn, cộc tay.",
+ratings: 4.5,
+images: [
+  {
+    public_id: "vAnCozs",
+    url: "https://i.imgur.com/vAnCozs.jpg",
+  },
+  {
+    public_id: "OJLq8yG",
+    url: "https://i.imgur.com/OJLq8yG.jpg",
+  },
+  {
+    public_id: "EMLfX6U",
+    url: "https://i.imgur.com/EMLfX6U.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
+},
+color: "Xanh",
+size: "F", 
+stock: 11,
+numOfReviews: 112,
+reviews: [],
+},
+
+
+//75.......................................... 
+{
+productID: "MAT202375",
+name: "ÁO THUN IN CHỮ - MAT202375",
+price: 1625000,
+description:
+  "Áo thun dáng boxy fit. Cổ tròn, cộc tay. Trang trí họa tiết chữ bằng chất liệu giả nhung khác màu.",
+ratings: 4.8,
+images: [
+  {
+    public_id: "ITNY3Q4",
+    url: "https://i.imgur.com/ITNY3Q4.jpg",
+  },
+  {
+    public_id: "NeEaOVP",
+    url: "https://i.imgur.com/NeEaOVP.jpg",
+  },
+  {
+    public_id: "iqlniJg",
+    url: "https://i.imgur.com/iqlniJg.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo thun"
+},
+color: "Trắng",
+size: ["M", "L"], 
+stock: 122,
+numOfReviews: 2671,
+reviews: [],
+},
+
+//76.............................................
+{
+productID: "MASM120276",
+name: "ÁO SƠ MI VẢI LANH - MASM120276",
+price: 1699000,
+description:
+  "Áo sơ mi vừa vặn thoải mái làm bằng vải lanh. Cổ áo xòe và tay áo ngắn. Nút cài phía trước.",
+ratings: 4.1,
+images: [
+  {
+    public_id: "D5OraU2",
+    url: "https://i.imgur.com/D5OraU2.jpg",
+  },
+  {
+    public_id: "Z9sYsEC",
+    url: "https://i.imgur.com/Z9sYsEC.jpg",
+  },
+  {
+    public_id: "If5ivZD",
+    url: "https://i.imgur.com/If5ivZD.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo sơ mi",
+},
+color: "Trắng",
+size: ["M", "L"], 
+stock: 123,
+numOfReviews: 6,
+reviews: [],
+},
+
+//77..............................................
+{
+productID: "MASM120277",
+name: "ÁO SƠ MI KẺ VẢI PHA SỢI COTTON - MASM120277",
+price: 1799000,
+description: 
+  "Áo sơ mi vải pha sợi cotton, dáng regular fit. Cổ ve lật, dài tay, cổ tay bo và cài khuy. Có hai túi đáp trước ngực. Cài phía trước bằng hàng khuy cài.",
+ratings: 4.7,
+images: [
+  {
+    public_id: "sSMRPrY",
+    url: "https://i.imgur.com/sSMRPrY.jpg",
+  },
+  {
+    public_id: "J3NzE1Y",
+    url: "https://i.imgur.com/J3NzE1Y.jpg",
+  },
+  {
+    public_id: "by4x6dF",
+    url: "https://i.imgur.com/by4x6dF.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo sơ mi"
+},
+color: "Sọc",
+size: "F", 
+stock: 131,
+numOfReviews: 222,
+reviews: [],
+},
+
+//78..............................................
+{
+productID: "MASM120278",
+name: "ÁO SƠ MI DÁNG BOXY VIỀN PHỐI DẢI TRANG TRÍ - MASM120278",
+price: 1499000,
+description:
+  "Áo sơ mi vải dệt cotton, dáng boxy fit. Cổ ve nhọn khoét chữ K, cộc tay. Gấu xẻ hai bên. Viền phối dải trang trí cùng màu. Cài phía trước bằng hàng khuy cài.",
+ratings: 4.9,
+images: [
+  {
+    public_id: "aMjbNaE",
+    url: "https://i.imgur.com/aMjbNaE.jpg",
+  },
+  {
+    public_id: "lfvIbVJ",
+    url: "https://i.imgur.com/lfvIbVJ.jpg",
+  },
+  {
+    public_id: "iBjvIE9",
+    url: "https://i.imgur.com/iBjvIE9.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo sơ mi"
+},
+color: "Xanh",
+size: "F",
+stock: 58,
+numOfReviews: 56,
+reviews: [],
+},
+
+//79..................................................
+{
+productID: "MASM120279",
+name: "ÁO SƠ MI DENIM - MASM120279",
+price: 139000,
+description:
+  "Áo sơ mi vải denim, dáng regular fit. Cổ ve lật, dài tay, cổ tay bo và cài khuy. Có hai túi đáp có nắp trước ngực. Kiểu bạc màu. Cài phía trước bằng khuy bấm.",
+ratings: 5,
+images: [
+  {
+    public_id: "l0QIIL9",
+    url: "https://i.imgur.com/l0QIIL9.jpg",
+  },
+  {
+    public_id: "YDZZuV2",
+    url: "https://i.imgur.com/YDZZuV2.jpg",
+  },
+  {
+    public_id: "DhqmBub",
+    url: "https://i.imgur.com/DhqmBub.jpg",
+  },
+  
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo sơ mi"
+},
+color: "Xanh",
+size: ["S","M", "L"], 
+stock: 500,
+numOfReviews: 1,
+reviews: [],
+},
+
+//80...................................................
+{
+productID: "MASM120280",
+name: "ÁO SƠ MI VẢI LINEN - COTTON - MASM120280",
+price: 2239000,
+description:
+  "Áo sơ mi vải pha sợi linen và sợi cotton, dáng regular fit. Cổ ve lật cài khuy, dài tay, cổ tay bo và cài khuy. Cài phía trước bằng hàng khuy cài.",
+ratings: 5,
+images: [
+  {
+    public_id: "bJeGwuy",
+    url: "https://i.imgur.com/bJeGwuy.jpg",
+  },
+  {
+    public_id: "Ygkq8rx",
+    url: "https://i.imgur.com/Ygkq8rx.jpg",
+  },
+  {
+    public_id: "LTDWMCW",
+    url: "https://i.imgur.com/LTDWMCW.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo sơ mi"
+},
+color: "Xanh",
+size: ["S","M", "L"], 
+stock: 50,
+numOfReviews: 1,
+reviews: [],
+},
+
+//81...................................... 
+{
+  productID: "MAPL232381",
+  name: "ÁO POLO DỆT KIM - MAPL232381",
+  price: 590000,
+  description:
+    "Áo polo vải pha sợi cotton. Cổ ve lật, có hàng khuy cài phía trước, cộc tay. Bo viền bằng vải gân.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "vLtRuGa",
+      url: "https://i.imgur.com/vLtRuGa.jpg",
+    },
+    {
+      public_id: "sxZcm6a",
+      url: "https://i.imgur.com/sxZcm6a.jpg",
+    },
+    {
+      public_id: "OsWCd14",
+      url: "https://i.imgur.com/OsWCd14.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Áo",
+    subSubCategory: "Áo polo"
+  },
+  color: "Trắng",
+  size: ["S","M", "L"], 
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
+
+
+//82..........................................
+{
+productID: "MAPL232382",
+name: "ÁO POLO DỆT KIM PHA SỢI VISCOSE - MAPL232382",
+price: 1090000,
+description:
+  "Áo polo dệt kim pha sợi viscose. Cổ ve lật, có hàng khuy cài phía trước. Cộc tay. Bo viền bằng vải gân.",
+ratings: 1.65,
+images: [
+  {
+    public_id: "qq57O0H",
+    url: "https://i.imgur.com/qq57O0H.jpg",
+  },
+  {
+    public_id: "Vi7tjKf",
+    url: "https://i.imgur.com/Vi7tjKf.jpg",
+  },
+  {
+    public_id: "ZrWzTqV",
+    url: "https://i.imgur.com/ZrWzTqV.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo polo"
+},
+color: "Đen",
+size: ["S","M", "L"], 
+stock: 0,
+numOfReviews: 2,
+reviews: [],
+},
+
+//83......................................... 
+{
+  productID: "MAPL232383",
+  name: "ÁO NỈ POLO VẢI SẦN- MAPL232383",
+price: 1599000,
+description:
+  "Áo nỉ dáng rộng, cổ ve lật, xẻ phía trước. Dài tay.",
+ratings: 3.5,
+images: [
+  {
+    public_id: "qLePa4U",
+    url: "https://i.imgur.com/qLePa4U.jpg",
+  },
+  {
+    public_id: "hxOju8a",
+    url: "https://i.imgur.com/hxOju8a.jpg",
+  },
+  {
+    public_id: "mD8E5p5",
+    url: "https://i.imgur.com/mD8E5p5.jpg",
+  }
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo polo"
+},
+color: "Vàng",
+size: ["S","M", "L"], 
+stock: 1,
+numOfReviews: 12,
+reviews: [],
+},
+
+//84...........................................
+{
+productID: "MAPL232384",
+name: "ÁO POLO THÊU CHỮ - MAPL232384",
+price: 1999000,
+description:
+  "Áo polo cổ ve lật, có hàng khuy cài phía trước. Dài tay. Thêu họa tiết khác màu phía trước. Kiểu bạc màu. Bo viền bằng vải gân.",
+ratings: 4.5,
+images: [
+  {
+    public_id: "W9C2232",
+    url: "https://i.imgur.com/W9C2232.jpg",
+  },
+  {
+    public_id: "Sej1HLC",
+    url: "https://i.imgur.com/Sej1HLC.jpg",
+  },
+  {
+    public_id: "MmVSBbV",
+    url: "https://i.imgur.com/MmVSBbV.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo polo"
+},
+color: "Nâu",
+size: "F", 
+stock: 11,
+numOfReviews: 112,
+reviews: [],
+},
+
+
+//85.......................................... 
+{
+productID: "MAPL232385",
+name: "ÁO POLO DỆT KIM - MAPL232385",
+price: 1625000,
+description:
+  "Áo polo vải cotton dệt kim. Cổ ve lật, có hàng khuy cài phía trước. Cộc tay. Bo viền bằng vải gân.",
+ratings: 4.8,
+images: [
+  {
+    public_id: "sRlN0i6",
+    url: "https://i.imgur.com/sRlN0i6.jpg",
+  },
+  {
+    public_id: "GXwtxAk",
+    url: "https://i.imgur.com/GXwtxAk.jpg",
+  },
+  {
+    public_id: "yDJQfN7",
+    url: "https://i.imgur.com/yDJQfN7.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Áo",
+  subSubCategory: "Áo polo"
+},
+color: "Xanh",
+size: ["M", "L"], 
+stock: 122,
+numOfReviews: 2671,
+reviews: [],
+},
+
+//86.............................................
+{
+productID: "MQT134586",
+name: "QUẦN BÒ CÓ TÚI THUỘC DÒNG SẢN PHẨM UTILITY - MQT134586",
+price: 1699000,
+description:
+  "Quần bò dáng straight fit. Có hai túi phía trước và hai túi đáp phía sau. Có các túi đa năng ở hai bên ống quần. Kiểu bạc màu. Cài khóa kéo và khuy phía trước.",
+ratings: 4.1,
+images: [
+  {
+    public_id: "f41vqJX",
+    url: "https://i.imgur.com/f41vqJX.jpg",
+  },
+  {
+    public_id: "diNcMiN",
+    url: "https://i.imgur.com/diNcMiN.jpg",
+  },
+  {
+    public_id: "y2CtMFb",
+    url: "https://i.imgur.com/y2CtMFb.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần bò",
+},
+color: "Vàng",
+size: ["M", "L"], 
+stock: 123,
+numOfReviews: 6,
+reviews: [],
+},
+
+//87..............................................
+{
+productID: "MQT134587",
+name: "QUẦN BÒ SLIM CROPPED FIT - MQT134587",
+price: 1799000,
+description: 
+  "Quần bò slim dáng crop. Có 5 túi. Kiểu bạc màu. Cài phía trước bằng khóa kéo và khuy.",
+ratings: 4.7,
+images: [
+  {
+    public_id: "IVBwPuR",
+    url: "https://i.imgur.com/IVBwPuR.jpg",
+  },
+  {
+    public_id: "Ah0xtqI",
+    url: "https://i.imgur.com/Ah0xtqI.jpg",
+  },
+  {
+    public_id: "v8nsEMm",
+    url: "https://i.imgur.com/v8nsEMm.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần bò",
+},
+color: "Xanh",
+size: "F", 
+stock: 131,
+numOfReviews: 222,
+reviews: [],
+},
+
+//88..............................................
+{
+productID: "MQT134588",
+name: "QUẦN BÒ DÁNG STRAIGHT CÓ TÚI - MQT134588",
+price: 1499000,
+description:
+  "Quần bò vải denim làm từ sợi cotton, dáng straight fit. Có 5 túi. Có túi đáp hai bên ống quần. Cài phía trước bằng khuy cài.",
+ratings: 4.9,
+images: [
+  {
+    public_id: "xHCBytz",
+    url: "https://i.imgur.com/xHCBytz.jpg",
+  },
+  {
+    public_id: "rIHVQ7S",
+    url: "https://i.imgur.com/rIHVQ7S.jpg",
+  },
+  {
+    public_id: "5nYtBG0",
+    url: "https://i.imgur.com/5nYtBG0.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần bò",
+},
+color: "Xanh",
+size: "F",
+stock: 58,
+numOfReviews: 56,
+reviews: [],
+},
+
+//89..................................................
+{
+productID: "MQT134589",
+name: "QUẦN BÒ DÁNG STRAIGHT FIT - MQT134589",
+price: 139000,
+description:
+  "Quần bò vải denim làm từ sợi cotton, dáng straight fit. Có 5 túi. Kiểu bạc màu. Toàn thân chần chỉ nổi khác màu. Cài phía trước bằng khuy cài.",
+ratings: 5,
+images: [
+  {
+    public_id: "C0YlWXS",
+    url: "https://i.imgur.com/C0YlWXS.jpg",
+  },
+  {
+    public_id: "9hccnxg",
+    url: "https://i.imgur.com/9hccnxg.jpg",
+  },
+  {
+    public_id: "NSj7gy7",
+    url: "https://i.imgur.com/NSj7gy7.jpg",
+  },
+  
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần bò",
+},
+color: "Đen",
+size: ["S","M", "L"], 
+stock: 500,
+numOfReviews: 1,
+reviews: [],
+},
+
+//90...................................................
+{
+productID: "MQT134590",
+name: "QUẦN BÒ DÁNG REGULAR FIT - MQT134590",
+price: 2239000,
+description:
+  "Quần bò vải denim làm từ sợi cotton, dáng regular fit. Có 5 túi. Kiểu bạc màu. Cài phía trước bằng khuy cài.",
+ratings: 5,
+images: [
+  {
+    public_id: "zNaWQQR",
+    url: "https://i.imgur.com/zNaWQQR.jpg",
+  },
+  {
+    public_id: "UxWOFyZ",
+    url: "https://i.imgur.com/UxWOFyZ.jpg",
+  },
+  {
+    public_id: "e25IW1o",
+    url: "https://i.imgur.com/e25IW1o.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Quần",
+  subSubCategory: "Quần bò",
+},
+color: "Xám",
+size: ["S","M", "L"], 
+stock: 50,
+numOfReviews: 1,
+reviews: [],
+},
+
+
 ];
 
 
