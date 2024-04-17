@@ -3293,12 +3293,12 @@ description:
 ratings: 4.7,
 images: [
   {
-    public_id: "xr3i7g3",
-    url: "https://i.imgur.com/xr3i7g3.jpg",
+    public_id: "ckScVMO",
+    url: "https://i.imgur.com/ckScVMO.jpg",
   },
   {
-    public_id: "bHatdng",
-    url: "https://i.imgur.com/bHatdng.jpg",
+    public_id: "op6eeXm",
+    url: "https://i.imgur.com/op6eeXm.jpg",
   },
 ],
 category: {
