@@ -1,7 +1,7 @@
 /* 
 */ 
 import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import { setIsAuthenticated, setUser } from '../features/userSlice';
+import { setIsAuthenticated, setLoading, setUser } from '../features/userSlice';
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -22,8 +22,10 @@ export const userApi = createApi({
           const { data } = await queryFulfilled;
           dispatch(setUser(data));
           dispatch(setIsAuthenticated(true));
+          dispatch(setLoading(false));
         } catch (error) {
-          console.error("Failed to fetch user data: ", error);
+          dispatch(setLoading(false));
+          console.log(error);
         }
       },
       providesTags: ["User"], // khi getUser gọi và thành công, sẽ cung cấp tag User

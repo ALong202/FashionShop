@@ -61,7 +61,7 @@ const UpdateProfile = () => {
             className="shadow rounded bg-body"
             onSubmit={submitHandler}
           >
-            <h2 className="mb-4">Update Profile</h2>
+            <h2 className="mb-4">Cập nhật hồ sơ</h2>
 
             <div className="mb-3">
               <label htmlFor="name_field" className="form-label"> Name </label>
