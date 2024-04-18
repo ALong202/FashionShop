@@ -94,7 +94,14 @@ function App() {
           />
           <Route path="/cart" element={<Cart />} />
           {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
-          <Route path="/shipping" element={<Shipping />} />
+          <Route
+            path="/shipping" 
+              element={
+                <ProtectedRoute>
+                  <Shipping />
+                </ProtectedRoute>
+                } 
+          />
           <Route path="/confirm_order" element={<ConfirmOrder/>} />
           <Route
             path="/payment_method" 
