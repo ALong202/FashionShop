@@ -96,7 +96,14 @@ function App() {
           {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/confirm_order" element={<ConfirmOrder/>} />
-          <Route path="/payment_method" element={<PaymentMethod />} />
+          <Route
+            path="/payment_method" 
+              element={
+                <ProtectedRoute>
+                  <PaymentMethod />
+                </ProtectedRoute>
+                } 
+          />
         </Routes>
 
       </div>
