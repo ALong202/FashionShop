@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import MetaData from "../layout/MetaData"
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { setCartItem, removeCartItem } from "../../redux/features/cartSlice";
-
+import { colorMap } from "../../constants/constants";
+//import { useGetProductDetailsQuery } from "../../redux/api/productsApi";
+import { toast } from "react-toastify";
 
 const Cart =() => {
   const dispatch = useDispatch();
@@ -11,34 +13,56 @@ const Cart =() => {
   const {cartItems} = useSelector((state) => state.cart);
 
   const navigate = useNavigate();
+  
+  //Xử lý khi thay đổi color
+  const handleColorChange = (item, color) => {
+    const newColor = color;
+    setItemToCart(item, item.quantity, newColor, item?.selectedSize)
+  }
 
+  //Xử lý khi thay đổi size
+  const handleSizeClick = (item, size) => {
+    const newSize = size;
+    setItemToCart(item, item.quantity, item?.selectedColor, newSize)
+  };
+
+  //Xử lý khi chọn tăng số lượng
   const increseQty = (item, quantity) => {
     const newQty = quantity + 1
 
     if (newQty >= item?.stock)
       return;
-    setItemToCart(item, newQty);
+    setItemToCart(item, newQty, item?.selectedColor, item?.selectedSize);
   };
 
+  //Xử lý khi chọn giảm số lượng
   const decreseQty = (item, quantity) => {
     const newQty = quantity -1
 
     if (newQty <= 0)
       return;
-    setItemToCart(item, newQty);
+    setItemToCart(item, newQty, item?.selectedColor, item?.selectedSize);
   };
 
-  const setItemToCart = (item, newQty) => {
+  //Hàm set thông tin mặt hàng trong giỏ
+  const setItemToCart = (item, newQty, newSelColor, newSelSize) => {
     const cartItem = {
       product: item?.product,
       name: item?.name,
       price: item?.price,
       image: item?.image,
       stock: item?.stock,
+      color: item?.color, //list các màu của sản phẩm
+      size: item?.size, //list các size của sản phẩm
+      selectedColor: newSelColor, // color: màu sắc đã chọn cho sản phẩm
+      selectedSize: newSelSize, // size: kích cỡ đã chọn cho sản phẩm
       quantity: newQty
     };
 
     dispatch(setCartItem(cartItem));
+    toast.success("sửa thành công");
+
+    console.log(cartItem);
   };
 
   //Hàm xử lý khi xóa sản phẩm trong giỏ
@@ -71,15 +95,48 @@ const Cart =() => {
                     <img
                       src={item?.image}
                       alt="FashionShop"
-                      height="90"
-                      width="115"
+                      height="180"
+                      width="150"
                     />
                   </div>
+
                   <div className="col-5 col-lg-3">
-                    <Link to={`/products/${item?.product}`}> {item?.name} </Link>
+                    <Link to={`/product/${item?.product}`}> {item?.name} </Link>
+                    <p>Màu sắc:
+                      <div className="color-chooser">
+                        {item?.color.map((colorName) => (
+                          <button
+                            key={colorName}
+                            style={{ backgroundColor: colorMap[colorName] }}
+                            className={`color-button ${item?.selectedColor === colorName ? 'active' : ''}`}
+                            onClick={() => handleColorChange(item, colorName)}
+                          >
+                            {colorName}
+                          </button>
+                        ))}
+                      </div>
+                    </p>
+
+                    <p>Sizes: 
+                    <div className="size-buttons">
+                      {item?.size.map((size, index) => (
+                        <button 
+                          key={index} 
+                          onClick={() => handleSizeClick(item, size)}
+                          // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
+                          className={`size-button ${item?.selectedSize === size ? 'selected' : ''}`}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </p>
                   </div>
+
+                  
+
                   <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                    <p id="card_item_price">{item?.price}</p>
+                    <p id="card_item_price">{item?.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</p>
                   </div>
                   <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                     <div className="stockCounter d-inline">
