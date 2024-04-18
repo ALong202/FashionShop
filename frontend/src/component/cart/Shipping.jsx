@@ -9,13 +9,15 @@ import CheckoutSteps from './CheckoutSteps';
 
 const Shipping = () => {
 
+  const { user } =useSelector((state) => state.auth)
+
   const dispath = useDispatch();
   const navigate = useNavigate();
 
-  const [address, setAddress] = useState("1");
+  const [address, setAddress] = useState(user?.address);
   //const [city, setCity] = useState("");
   //const [zipCode, setZipCode] = useState("");
-  const [phoneNo, setPhoneNo] = useState("1");
+  const [phoneNo, setPhoneNo] = useState(user?.phone);
   //const [country, setCountry] = useState("");
 
   const { shippingInfo } = [];
