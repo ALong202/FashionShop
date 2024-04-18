@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { calculateOrderCost } from '../../helpers/helpers';
 import CheckoutSteps from './CheckoutSteps';
+import { colorMap } from '../../constants/constants';
 
 const ConfirmOrder = () => {
 
@@ -41,13 +42,28 @@ const ConfirmOrder = () => {
                     <img
                       src={item?.image}
                       alt="FashionShop"
-                      height="45"
-                      width="65"
+                      height="65"
+                      width="80"
                     />
                   </div>
 
                   <div className="col-5 col-lg-6">
                     <Link to={`/product/${item.product}`}>{item?.name}</Link>
+                    <div>
+                      <button
+                        style={{ backgroundColor: colorMap[item?.selectedColor] }}
+                        className={"color-button active"}
+                        disabled={true}
+                      >
+                      {item?.selectedColor}
+                      </button>
+                      <button 
+                      className={"size-button selected"}
+                      disabled={true}
+                      >
+                      {item?.selectedSize}
+                      </button>
+                    </div>
                   </div>
 
                   <div className="col-4 col-lg-4 mt-4 mt-lg-0">

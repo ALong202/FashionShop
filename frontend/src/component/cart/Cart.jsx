@@ -80,7 +80,7 @@ const Cart =() => {
     <>
       <MetaData title={"Giỏ Hàng"} />
       {cartItems?.length === 0 ? (
-        <h2 className="mt-5">Chưa thêm mặt hàng nào vào giỏ</h2>
+        <h2 className="mt-5">Quý khách chưa chọn mặt hàng nào</h2>
       ) : (
         <>
         <h2 className="mt-5">Mặt hàng trong giỏ: <b>{cartItems?.length} mặt hàng</b></h2>
