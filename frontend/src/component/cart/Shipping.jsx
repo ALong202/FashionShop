@@ -12,10 +12,10 @@ const Shipping = () => {
   const dispath = useDispatch();
   const navigate = useNavigate();
 
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState("1");
   //const [city, setCity] = useState("");
   //const [zipCode, setZipCode] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
+  const [phoneNo, setPhoneNo] = useState("1");
   //const [country, setCountry] = useState("");
 
   const { shippingInfo } = [];
