@@ -3600,8 +3600,8 @@ export default [
     
     //117..............................................
     {
-    productID: "FMCV532116",
-    name: "CHÂN VÁY MIDI VẢI RŨ BÓNG DẬP LI - FMCV532116",
+    productID: "FMCV532117",
+    name: "CHÂN VÁY MIDI VẢI RŨ BÓNG DẬP LI - FMCV532117",
     price: 1799000,
     description: 
       "Chân váy midi cạp cao co giãn.",
@@ -3630,8 +3630,8 @@ export default [
     
     //118..............................................
     {
-    productID: "FMCV532116",
-    name: "CHÂN VÁY XẾP LI VẠT BẤT ĐỐI XỨNG - FMCV532116",
+    productID: "FMCV532118",
+    name: "CHÂN VÁY XẾP LI VẠT BẤT ĐỐI XỨNG - FMCV532118",
     price: 1499000,
     description:
       "Chân váy vải dập li. Cạp cao co giãn. Gấu lệch, có vạt nhọn hai bên.",
@@ -3664,8 +3664,8 @@ export default [
     
     //119..................................................
     {
-    productID: "FMCV532116",
-    name: "CHÂN VÁY MIDI DENIM  - FMCV532116",
+    productID: "FMCV532119",
+    name: "CHÂN VÁY MIDI DENIM  - FMCV532119",
     price: 1390000,
     description:
       "Chân váy cạp cao, kiểu bạc màu. Gấu xẻ phía trước. .",
@@ -3698,8 +3698,8 @@ export default [
     
     //120...................................................
     {
-    productID: "FMCV532116",
-    name: "CHÂN VÁY DÀI IN HỌA TIẾT HOA - FMCV532116",
+    productID: "FMCV532120",
+    name: "CHÂN VÁY DÀI IN HỌA TIẾT HOA - FMCV532120npm",
     price: 1239000,
     description:
       "Chân váy cạp co giãn, có dây rút để điều chỉnh, hai đầu dây phối quả tua rua. Vải hiệu ứng nhăn.",
