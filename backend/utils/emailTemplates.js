@@ -426,8 +426,7 @@ export const getResetPasswordTemplate = (username, resetUrl) => `
   </head>
   <body>
     <span class="preheader"
-      >Use this link to reset your password. The link is only valid for 30
-      minutes.</span
+      >Sử dụng liên kết này để đặt lại mật khẩu của bạn. Link chỉ có hiệu lực trong 30 phút.</span
     >
     <table
       class="email-wrapper"
@@ -476,11 +475,12 @@ export const getResetPasswordTemplate = (username, resetUrl) => `
                       <div class="f-fallback">
                         <h1>Hi ${username},</h1>
                         <p>
-                          You recently requested to reset your password for your
-                          fashionshop account. Use the button below to reset it.
+                        Gần đây bạn đã yêu cầu đặt lại mật khẩu cho tài khoản FashionShop của mình. 
+                        Sử dụng nút bên dưới để thiết lập lại nó. 
+                        
                           <strong
-                            >This password reset is only valid for the next 30
-                            minutes.</strong
+                            >Việc đặt lại mật khẩu này chỉ có hiệu lực trong 30 phút tiếp theo.
+                            </strong
                           >
                         </p>
 
@@ -507,7 +507,7 @@ export const getResetPasswordTemplate = (username, resetUrl) => `
                                       href="${resetUrl}"
                                       class="f-fallback button button--green"
                                       target="_blank"
-                                      >Reset your password</a
+                                      >Đặt lại mật khẩu của bạn</a
                                     >
                                   </td>
                                 </tr>
@@ -516,20 +516,18 @@ export const getResetPasswordTemplate = (username, resetUrl) => `
                           </tr>
                         </table>
                         <p>
-                          If you did not request a password reset, please ignore
-                          this email or
-                          <a href="{{support_url}}">contact support</a> if you
-                          have questions.
+                        Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này hoặc  
+                          <a href="{{support_url}}">liên hệ với bộ phận hỗ trợ</a> 
+                          nếu bạn có thắc mắc.
                         </p>
-                        <p>Thanks, <br />The fashionshop team</p>
+                        <p>Thanks, <br />The FashionShop team</p>
 
                         <table class="body-sub" role="presentation">
                           <tr>
                             <td>
                               <p class="f-fallback sub">
-                                If you’re having trouble with the button above,
-                                copy and paste the URL below into your web
-                                browser.
+                              Nếu bạn gặp sự cố với nút ở trên, 
+                              hãy sao chép và dán URL bên dưới vào trình duyệt web của bạn.
                               </p>
                               <p class="f-fallback sub">
                                 <a href="${resetUrl}">${resetUrl}</a>
