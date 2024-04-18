@@ -5,6 +5,7 @@ import ErrorHandler from "../utils/errorHandler.js";
 import sendToken from "../utils/sendToken.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
+import { delete_file, upload_file } from "../utils/cloudinary.js";
 
 // Hàm xử lý yêu cầu đăng ký người dùng
 //Register User => /api/register
@@ -69,6 +70,28 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+// Upload user avatar   =>  /api/me/upload_avatar
+export const uploadAvatar = catchAsyncErrors(async (req, res, next) => {
+  const avatarResponse = await upload_file(req.body.avatar, "fashionshop/avatars");
+
+  // Xoá avatar cũ trên cloudinary - optional
+  if (req?.user?.avatar?.url) {
+    try {
+      await delete_file(req?.user?.avatar?.public_id);
+    } catch (error) {
+      console.log(`Xoá avatar cũ thất bại: ${error.message}`);
+    }
+  }
+
+  const user = await User.findByIdAndUpdate(req?.user?._id, {
+    avatar: avatarResponse,
+  });
+  // Trả về mã trạng thái 200
+  res.status(200).json({
+    user,
+  });
+});
+
 // Quên mật khẩu => /api/password/forgot
 export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   // Tìm kiếm người dùng trong cơ sở dữ liệu bằng email
@@ -84,7 +107,8 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   // Tạo URL để người dùng có thể đặt lại mật khẩu
-  const resetUrl = `${process.env.FRONTEND_URL}/api/password/reset/${resetToken}`;
+  // const resetUrl = `${process.env.FRONTEND_URL}/api/password/reset/${resetToken}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
    // Tạo nội dung email chứa liên kết đặt lại mật khẩu
   const message = getResetPasswordTemplate(user?.name, resetUrl);
 

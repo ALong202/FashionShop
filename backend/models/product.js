@@ -49,11 +49,11 @@ const productSchema = new mongoose.Schema(
       name: {
         type: String,
         required: [true, "Vui lòng nhập danh mục sản phẩm"],
-        enum: ["Nữ", "Nam","Trẻ em"]
+        enum: ["Nữ", "Nam"]
       },
       subCategory: {
         type: String,
-        enum: ["Áo", "Chân váy & Đầm","Quần", "Phụ kiện"],
+        enum: ["Áo", "Chân váy và đầm","Quần", "Phụ kiện"],
       },
       subSubCategory: {
         type: String,
@@ -62,7 +62,7 @@ const productSchema = new mongoose.Schema(
     },
 
     color: {
-      type: String,
+      type: [String],
       required: [true, "Vui lòng nhập màu sản phẩm."],
       enum: {
         values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng","Hồng","Cam","Xám","Nâu", "Sọc", "Họa tiết"],
@@ -75,7 +75,7 @@ const productSchema = new mongoose.Schema(
       required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
       enum: {
         values: ["S", "M", "L","F"],
-        message: "Vui lòng chọn một size hợp lệ (S, M, L)",
+        message: "Vui lòng chọn một size hợp lệ (S, M, L, F)",
       },
     },
     

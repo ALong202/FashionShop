@@ -8,6 +8,8 @@ import Loader from "../layout/Loader";
 import StarRatings from "react-star-ratings";
 import { useDispatch } from "react-redux";
 import { setCartItem } from "../../redux/features/cartSlice";
+import { colorMap } from "../../constants/constants";
+
 
 const ProductDetails = () => {
   const params = useParams();
@@ -17,6 +19,7 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1); // quantity: số lượng sản phẩm
   const [activeImg, setActiveImg] = React.useState(""); // activeImg: ảnh đang được chọn
   const [selectedSize, setSelectedSize] = useState(null); // size: kích cỡ sản phẩm
+  const [selectedColor, setSelectedColor] = useState(null); // color: màu sắc sản phẩm
 
 
   const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);
@@ -33,6 +36,11 @@ const ProductDetails = () => {
       toast.error(error?.data?.message);
     }
   }, [isError]);
+
+  // Chọn màu
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  }
 
   // Chọn size
   const handleSizeClick = (size) => {
@@ -58,13 +66,24 @@ const ProductDetails = () => {
   };
 
   const setItemToCart = () => {
+    if (product?.color?.length > 0 && !selectedColor) {
+      toast.error("Vui lòng chọn màu");
+      return;
+    }
+  
+    if (product?.size?.length > 0 && !selectedSize) {
+      toast.error("Vui lòng chọn kích cỡ");
+      return;
+    }
+
     const cartItem = {
       product: product?._id,
       name: product?.name,
       price: product?.price,
       image: product?.images[0]?.url,
-      stock: product?.stock,
-      size: selectedSize, // size: kích cỡ sản phẩm
+      // stock: product?.stock,
+      selectedColor: selectedColor, // color: màu sắc sản phẩm
+      selectedSize: selectedSize, // size: kích cỡ sản phẩm
       quantity
     };
 
@@ -155,20 +174,38 @@ const ProductDetails = () => {
           Tình trạng: <span id="stock_status" className={product?.stock > 0 ? "greenColor" : "redColor"}>{product?.stock > 0 ? "Còn hàng" : "Hết hàng"}</span>
         </p>
 
-        <p>Sizes: </p>
-        <div className="size-buttons">
-          {product.size.map((size, index) => (
-            <button 
-              key={index} 
-              onClick={() => handleSizeClick(size)}
-              // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
-              className={`size-button ${selectedSize === size ? 'selected' : ''}`}
-              disabled={product.stock <= 0}  // Disable the button if there's no stock for this size
-            >
-              {size}
-            </button>
-          ))}
-        </div>
+        <p>Màu sắc:
+          {/* <div className="color-chooser"> */}
+            {product.color.map((colorName) => (
+              <button
+                key={colorName}
+                style={{ backgroundColor: colorMap[colorName] }}
+                // className="color-button"
+                className={`color-button ${colorName === selectedColor ? 'active' : ''}`}
+                disabled={product.stock <= 0}
+                onClick={() => handleColorChange(colorName)}
+              >
+                {colorName}
+              </button>
+            ))}
+          {/* </div> */}
+        </p>
+
+        <p>Sizes: 
+          <div className="size-buttons">
+            {product.size.map((size, index) => (
+              <button 
+                key={index} 
+                onClick={() => handleSizeClick(size)}
+                // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
+                className={`size-button ${selectedSize === size ? 'selected' : ''}`}
+                disabled={product.stock <= 0}  // Disable the button if there's no stock for this size
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </p>
 
         <hr />
 
