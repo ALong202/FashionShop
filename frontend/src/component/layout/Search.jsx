@@ -54,7 +54,7 @@ const Search = () => {
           <option value="">Chọn danh mục</option>
           <option value="Nam">Nam</option>
           <option value="Nữ">Nữ</option>
-          <option value="Trẻ em">Trẻ em</option>
+          {/* <option value="Trẻ em">Trẻ em</option> */}
           // Thêm các option khác tại đây
         </select>
 
