@@ -13,7 +13,11 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
   // Số sản phẩm trên mỗi trang
   const resPerPage = 4;
   // Áp dụng bộ lọc từ yêu cầu API
-  const apiFilters = new APIFilters(Product, req.query).search().filters();
+  const apiFilters = new APIFilters(Product, req.query)
+                          .search()
+                          .filters()
+                          .sorting();
+
 
   // Lấy danh sách sản phẩm đã được lọc
   let products = await apiFilters.query;

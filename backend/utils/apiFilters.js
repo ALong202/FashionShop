@@ -47,7 +47,7 @@ class APIFilters{
         // Tạo một bản sao của đối tượng truy vấn để tránh ảnh hưởng đến đối tượng gốc
         const queryCopy = { ...this.queryStr};
         // Xác định các trường cần loại bỏ khỏi bản sao truy vấn
-        const fieldsToRemove = ["keyword", "page", "category","subCategory", "subSubCategory"];
+        const fieldsToRemove = ["keyword", "page", "category","subCategory", "subSubCategory", "sort", "resPerPage"];
         // Loại bỏ các trường đã xác định khỏi bản sao truy vấn
         fieldsToRemove.forEach((el) => delete queryCopy[el]);
         // Chuyển đổi bản sao truy vấn thành chuỗi JSON
@@ -86,6 +86,26 @@ class APIFilters{
         return this;
     }
 
+
+    sortByPrice() {
+        if (this.queryStr.priceSort) {
+            const sort = this.queryStr.priceSort === 'asc' ? 1 : -1;
+            this.query = this.query.sort({ price: sort });
+        }
+        return this;
+    }
+
+    sorting() {
+        if (this.queryStr.sort) {
+            const sortBy = this.queryStr.sort.split(",").join(" ");
+            this.query = this.query.sort(sortBy);
+        }
+        else{
+            this.query = this.query.sort("-createdAt");
+        }
+        return this;
+    }
+    
 } 
 
 export default APIFilters;
