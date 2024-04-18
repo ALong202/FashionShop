@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Vui lòng nhập mật khẩu của bạn"],
-      minLength: [6, "Mật khẩu của bạn phải dài hơn 6 ký tự."],
+      minLength: [6, "Mật khẩu của bạn phải ít nhất 6 ký tự."],
       select: false,
     },
 

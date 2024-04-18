@@ -1,3 +1,5 @@
+/* Bảo mật Route profile nếu chưa đăng nhập bằng ProtectedRoute  
+*/
 import "./App.css";
 // React router DOM quản lý routing. Router xác định các routes. Route: URL path
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
@@ -12,13 +14,19 @@ import "react-toastify/dist/ReactToastify.css";
 import ProductDetails from "./component/product/ProductDetails";
 import Login from "./component/auth/Login"; // auto chèn khi chọn Login từ Quick Fix
 import Register from "./component/auth/Register"; // auto chèn
-import Profile from "./component/layout/user/Profile"; // auto chèn
+import Profile from "./component/user/Profile"; // auto chèn
+import UpdateProfile from "./component/user/UpdateProfile";
+import ProtectedRoute from "./component/auth/ProtectedRoute";
+import UploadAvatar from "./component/user/UploadAvatar";
+import UpdatePassword from "./component/user/UpdatePassword";
 // import './custom-theme.min.css';
 import Cart from "./component/cart/Cart"
 import Shipping from "./component/cart/Shipping"
 import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
-import UpdateProfile from "./component/layout/user/UpdateProfile";
+import ForgotPassword from "./component/auth/ForgotPassword";
+import ResetPassword from "./component/auth/ResetPassword";
+
 
 
 
@@ -44,8 +52,46 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/me/profile" element={<Profile />} />
-          <Route path="/me/update_profile" element={<UpdateProfile />} />
+
+          <Route path="/password/forgot" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
+
+          {/* <Route path="/me/profile" element={<Profile />} /> 
+          <Route path="/me/update_profile" element={<UpdateProfile />} />*/}
+          <Route 
+            path="/me/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route
+            path="/me/update_profile"
+              element={
+              <ProtectedRoute>
+                <UpdateProfile/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/me/upload_avatar"
+              element={
+                <ProtectedRoute>
+                  <UploadAvatar/>
+                </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/me/update_password"
+              element={
+                <ProtectedRoute>
+                  <UpdatePassword/>
+                </ProtectedRoute>
+            }
+          />
           <Route path="/cart" element={<Cart />} />
           {/**một số route cần có route cho ac đăng ký và chưa đăng ký */}
           <Route path="/shipping" element={<Shipping />} />

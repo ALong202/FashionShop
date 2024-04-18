@@ -110,7 +110,7 @@ const Filters = () => {
           </div>
         </div>
       </form>
-      <hr />
+      {/* <hr />
       <h5 className="mb-3">Category</h5>
       {PRODUCT_CATEGORIES?.map((category) => (
         <div className="form-check">
@@ -125,10 +125,11 @@ const Filters = () => {
           />
           <label className="form-check-label" for="check4"> {category} </label>
         </div>
-      ))}
+      ))} */}
       
       <hr />
-      <h5 className="mb-3">SubCategory</h5>
+      {/* <h5 className="mb-3">SubCategory</h5> */}
+      <h5 className="mb-3">Danh mục</h5>
       {PRODUCT_SUBCATEGORIES[category]?.map((subCategory) => (
         <div className="form-check">
           <input
@@ -145,7 +146,8 @@ const Filters = () => {
       ))}
 
       <hr />
-      <h5 className="mb-3">SubSubCategory</h5>
+      {/* <h5 className="mb-3">SubSubCategory</h5> */}
+      <h5 className="mb-3"></h5>
       {PRODUCT_SUBSUBCATEGORIES[subCategory]?.map((subSubCategory) => (
         <div className="form-check">
           <input
