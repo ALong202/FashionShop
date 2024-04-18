@@ -178,6 +178,23 @@ footer {
   margin-top: 9rem;
 }
 
+/* Product color */
+.color-button {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  height: 30px;
+  margin: 5px;
+  width: 50px;
+  gap: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.color-button:focus {
+  border: 3px solid #000; /* Đường viền đen, 3px độ rộng */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
 
 /* Product sizes */
 .size-buttons {
@@ -187,7 +204,9 @@ footer {
 }
 
 .size-button {
+  height: 30px;
   padding: 10px;
+  line-height: 5px;
   border: none;
   border-radius: 5px;
   background-color: #ddd;
