@@ -177,19 +177,20 @@ const ProductDetails = () => {
         </p>
 
         <p>Màu sắc:
-          <div className="color-chooser">
+          {/* <div className="color-chooser"> */}
             {product.color.map((colorName) => (
               <button
                 key={colorName}
                 style={{ backgroundColor: colorMap[colorName] }}
-                className="color-button"
+                // className="color-button"
+                className={`color-button ${colorName === selectedColor ? 'active' : ''}`}
                 disabled={product.stock <= 0}
                 onClick={() => handleColorChange(colorName)}
               >
                 {colorName}
               </button>
             ))}
-          </div>
+          {/* </div> */}
         </p>
 
         <p>Sizes: 
