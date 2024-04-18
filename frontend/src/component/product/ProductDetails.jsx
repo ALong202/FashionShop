@@ -81,7 +81,9 @@ const ProductDetails = () => {
       name: product?.name,
       price: product?.price,
       image: product?.images[0]?.url,
-      // stock: product?.stock,
+      stock: product?.stock, //must have -> for handler +/- in c
+      color: product?.color,  //use for handle color in cart
+      size: product?.size,  //use for handle size in cart
       selectedColor: selectedColor, // color: màu sắc sản phẩm
       selectedSize: selectedSize, // size: kích cỡ sản phẩm
       quantity
