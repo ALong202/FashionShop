@@ -3088,7 +3088,7 @@ reviews: [],
 //101...................................... 
 {
   productID: "MCV132101",
-  name: "CÀ VẠT - MCV132101",
+  name: "CÀ VẠT COTTON - MCV132101",
   price: 1590000,
   description:
     "Cà vạt làm bằng vải pha cotton và lanh.",
@@ -3157,7 +3157,7 @@ reviews: [],
 //103......................................... 
 {
 productID: "MPCV132103",
-name: " - MPCV132103",
+name: "CÀ VẠT COTTON- MPCV132103",
 price: 1599000,
 description:
   "Cà vạt làm bằng vải pha cotton và lanh.",
@@ -3191,7 +3191,7 @@ reviews: [],
 //104...........................................
 {
 productID: "MPCV132104",
-name: " - MPCV132104",
+name: "CÀ VẠT COTTON - MPCV132104",
 price: 1999000,
 description:
   "Cà vạt làm bằng vải pha cotton và lanh.",
@@ -3226,7 +3226,7 @@ reviews: [],
 //105.......................................... 
 {
 productID: "MPCV132105",
-name: " - MPCV132105",
+name: "CÀ VẠT COTTON - MPCV132105",
 price: 1625000,
 description:
   "Cà vạt làm bằng vải pha cotton và lanh.",
@@ -3393,14 +3393,176 @@ category: {
   subCategory: "Phụ kiện",
   subSubCategory: "Thắt lưng"
 },
-color: "Nâu",
+color: "Xanh",
 size: "F",
 stock: 50,
 numOfReviews: 5,
 reviews: [],
 },
 
+//111...................................... 
+{
+  productID: "MPT132111",
+  name: "TẤT VẢI DỆT CÓ GÂN - MPT132111",
+  price: 159000,
+  description:
+    "Tất dệt kim có gân, phần cổ chân bo vải gân bản nhỏ co giãn.",
+  ratings: 4.5,
+  images: [
+    {
+      public_id: "QjLbOFw",
+      url: "https://i.imgur.com/QjLbOFw.jpg",
+    },
+    {
+      public_id: "OqFYCZy",
+      url: "https://i.imgur.com/OqFYCZy.jpg",
+    },
+    {
+      public_id: "bfpt97B",
+      url: "https://i.imgur.com/bfpt97B.jpg",
+    },
+  ],
+  category: {
+    name: "Nam",
+    subCategory: "Phụ kiện",
+    subSubCategory: "Tất"
+  },
+  color: "Xanh",
+  size: "F",
+  stock: 50,
+  numOfReviews: 32,
+  reviews: [],
+},
 
+
+//112..........................................
+{
+productID: "MPT132112",
+name: "SET 3 ĐÔI TẤT VẢI GÂN - MPT132122",
+price: 490000,
+description:
+  "Set 3 đôi tất dệt kim co giãn, phần cổ chân bo vải gân.",
+ratings: 1.65,
+images: [
+  {
+    public_id: "x1FFsxb",
+    url: "https://i.imgur.com/x1FFsxb.jpg",
+  },
+  {
+    public_id: "BFm1OII",
+    url: "https://i.imgur.com/BFm1OII.jpg",
+  },
+  {
+    public_id: "AWvvj9F",
+    url: "https://i.imgur.com/AWvvj9F.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Tất"
+},
+color: "Xanh",
+size: "F", 
+stock: 0,
+numOfReviews: 2,
+reviews: [],
+},
+
+//113......................................... 
+{
+productID: "MPT132113",
+name: "SET 4 ĐÔI TẤT BÀN CHÂN KHÔNG LỘ ĐƯỜNG MAY - MPT132113",
+price: 599000,
+description:
+  "Set 4 đôi bít tất bàn chân, chất liệu vải pha sợi cotton không lộ đường may. Bo viền bằng len gân.",
+ratings: 3.5,
+images: [
+  {
+    public_id: "duPGCWU",
+    url: "https://i.imgur.com/duPGCWU.jpg",
+  },
+  {
+    public_id: "ZW6cQrL",
+    url: "https://i.imgur.com/ZW6cQrL.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Tất"
+},
+color: "Trắng",
+size: "F", 
+stock: 1,
+numOfReviews: 12,
+reviews: [],
+},
+
+//114...........................................
+{
+productID: "MPT132114",
+name: "TẤT VẢI DỆT CÓ GÂN - MPT132114",
+price: 1999000,
+description:
+  "Tất vải pha sợi cotton. Phần cổ chân bo vải gân co giãn.",
+ratings: 4.5,
+images: [
+  {
+    public_id: "jZwS0he",
+    url: "https://i.imgur.com/jZwS0he.jpg",
+  },
+  {
+    public_id: "AkXFwaa",
+    url: "https://i.imgur.com/AkXFwaa.jpg",
+  },
+  {
+    public_id: "hg3xSsB",
+    url: "https://i.imgur.com/hg3xSsB.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Tất"
+},
+color: "Đỏ",
+size: "F", 
+stock: 11,
+numOfReviews: 112,
+reviews: [],
+},
+
+
+//115.......................................... 
+{
+productID: "MPT132115",
+name: "SET 4 ĐÔI BÍT TẤT CỔ NGẮN - MPT132115",
+price: 1625000,
+description:
+  "Set 4 đôi bít tất cổ ngắn, chất liệu vải pha sợi cotton. Phần cổ chân bo vải gân.",
+ratings: 4.8,
+images: [
+  {
+    public_id: "bAhaRj5",
+    url: "https://i.imgur.com/bAhaRj5.jpg",
+  },
+  {
+    public_id: "pLD6Lee",
+    url: "https://i.imgur.com/pLD6Lee.jpg",
+  },
+],
+category: {
+  name: "Nam",
+  subCategory: "Phụ kiện",
+  subSubCategory: "Tất"
+},
+color: "Xanh",
+size: "F",
+stock: 122,
+numOfReviews: 2671,
+reviews: [],
+},
 
 
 
