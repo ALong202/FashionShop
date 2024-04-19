@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
 import { saveShippingInfo } from "../../redux/features/cartSlice";
 import CheckoutSteps from './CheckoutSteps';
-//import CheckoutSteps from './CheckoutSteps';
-
 
 const Shipping = () => {
 
@@ -14,35 +12,36 @@ const Shipping = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [address, setAddress] = useState(user?.address);
-  //const [city, setCity] = useState("");
-  //const [zipCode, setZipCode] = useState("");
-  const [phoneNo, setPhoneNo] = useState(user?.phone);
-  //const [country, setCountry] = useState("");
-
   const { shippingInfo } = useSelector((state) => state.cart);
 
-  //Hook để render lại khi sửa thông tin vận chuyển
-  useEffect(() => {
-    if (shippingInfo) {
-      setAddress(shippingInfo?.address);
-      //setCity(shippingInfo?.city);
-      //setZipCode(shippingInfo?.zipCode);
-      setPhoneNo(shippingInfo?.phoneNo);
-      //setCountry(shippingInfo?.country);
-    }
-    else{
-      setAddress(user?.address);
-      setPhoneNo(user?.phone);
-    }
-  }, [shippingInfo]);
+  const [orderID, setOrderID] = useState(user?._id + Date.now()); //Tạo orderID trong shipping là ID người dùng+timestamp
 
-  const [orderID, setOrderID] = useState(user?._id + Date.now()); //Tạo orderID là ID người dùng+timestamp
+  /*Điện sẵn thông tin từ shippingInfo nếu đã có trên local strorage của kh.
+  Nếu chưa có thì dùng thông tin mặc định từ tài khoản*/
+  const [address, setAddress] = useState(shippingInfo?.address || user?.address);
+  const [phoneNo, setPhoneNo] = useState(shippingInfo?.phoneNo || user?.phone);
+
+
+  //Nếu chưa có shippingInfo trên local db thì tạo với thông số mặc định
+  // if(shippingInfo.length === 0){
+  //   setAddress(user?.address);
+  //   setPhoneNo(user?.phoneNo);
+  //   dispatch(saveShippingInfo({orderID, address: user?.address, phoneNo: user?.phone }));
+  // }
+
+
+  //Hook để render lại khi sửa thông tin vận chuyển
+  // useEffect(() => {
+  //   if (shippingInfo) {
+  //     setAddress(shippingInfo?.address);
+  //     setPhoneNo(shippingInfo?.phoneNo);
+  //   }
+  // }, [shippingInfo]);
 
   const submitHanler = (e) => {
-    //Cho phép dùng giá trị mặc định nên comment
-    //e.preventDefault();    
-    dispatch(saveShippingInfo({orderID, address, phoneNo}));
+    //e.preventDefault(); //cho phép dùng giá trị mặc định trên các trường thông tin
+    //Lưu lại shippingInfo với thông số mặc định hoặc thay đổi (nếu có) khi chọn xác nhận thông tin
+    dispatch(saveShippingInfo({orderID, address, phoneNo}));    
     navigate("/confirm_order");
   };
 
@@ -73,19 +72,6 @@ const Shipping = () => {
               />
             </div>
 
-            {/*<div className="mb-3">
-              <label htmlFor="city_field" className="form-label">Tỉnh/Thành phố</label>
-              <input
-                type="text"
-                id="city_field"
-                className="form-control"
-                name="city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-              />
-            </div>*/}
-
             <div className="mb-3">
               <label htmlFor="phone_field" className="form-label">Điện thoại liên hệ</label>
               <input
@@ -98,33 +84,6 @@ const Shipping = () => {
                 required
               />
             </div>
-
-            {/*<div className="mb-3">
-              <label htmlFor="zip_code_field" className="form-label">Zip Code</label
-              >
-              <input
-                type="number"
-                id="zip_code_field"
-                className="form-control"
-                name="postalCode"
-                value=""
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="country_field" className="form-label">Country</label>
-              <select
-                id="country_field"
-                className="form-select"
-                name="country"
-                required
-              >
-                <option value="Country1">Country1</option>
-                <option value="Country2">Country2</option>
-              </select>
-            </div>*/}
-
             <button id="shipping_btn" type="submit" className="btn w-100 py-2">
               Tiếp tục thanh toán
             </button>
