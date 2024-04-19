@@ -4,7 +4,6 @@ import CheckoutSteps from './CheckoutSteps'
 import { useSelector } from 'react-redux'
 import { calculateOrderCost } from '../../helpers/helpers'
 import { useCreateNewOrderMutation } from '../../redux/api/orderApi'
-// import toast from 'react-hot-toast'
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom'
 
@@ -24,17 +23,26 @@ const PaymentMethod = () => {
     }
 
     if (isSuccess) {
-      navigate("/");
+      navigate("/me/orders?order_success=true");
+    }
+    if (isLoading){
+      toast.warn("Đang tạo đơn hàng trên hệ thống");
     }
   }, [error, isSuccess]);
 
   
   const submitHandler = (e) => {
 
+    //Ko cho phép để trống hình thức thanh toán
+    e.preventDefault();    
+    if (method === ""){
+      toast.error("Bạn phải chọn hình thức thanh toán");
+    }
+
     const { itemsPrice, shippingPrice, totalPrice } = calculateOrderCost(cartItems);
 
     if (method === "COD"){
-      alert("COD");
+      //alert("COD");
 
       const orderData = {
         shippingInfo,
@@ -43,9 +51,9 @@ const PaymentMethod = () => {
         shippingAmount: shippingPrice, 
         totalAmount: totalPrice,
         paymentInfo: {
-          status: "Not Paid"
+          status: "Chưa thanh toán"
         },
-        paymentMethod: " COD",
+        paymentMethod: "COD",
       };
 
 
@@ -53,7 +61,7 @@ const PaymentMethod = () => {
     }
 
     if (method === "Card"){
-      //alert("Card");
+      alert("Card");
 
     }
   }
@@ -61,7 +69,7 @@ const PaymentMethod = () => {
 
   return (
     <>
-      <MetaData title={"Thông tin thanh toán"} />
+      <MetaData title={"Hình thức thanh toán"} />
 
       <CheckoutSteps shipping confirmOrder payment/>
 

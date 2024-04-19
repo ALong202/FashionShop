@@ -4,9 +4,9 @@ const orderSchema = new mongoose.Schema(
   {
     shippingInfo: {
       orderID: {
-      type: Number,
+      type: String, //Quốc: e tạm thời đổi number sang string để tiện tạo orderID bên frontend, nếu bên a bất tiện và cần đổi thì trao đổi vs e nha. Thks
       required: true,  
-      unique: true    
+      unique: true  
       },
 
       address: {

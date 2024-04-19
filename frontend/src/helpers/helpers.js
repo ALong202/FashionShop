@@ -1,10 +1,12 @@
 //Hàm hõ trợ tính toán giá thanh toán
 export const calculateOrderCost = (cartItems) => {
   const itemsPrice = cartItems?.reduce(
-    (acc, item) => acc + item.price * item.quantity, 0
+    (acc, item) => acc + item.price * item.quantity, 0  //acc: tham số cho cộng tích lũy
   );
 
+  //Tính giá vận chuyển
   const shippingPrice = itemsPrice * 0.1;
+  //Tính tổng tiền
   const totalPrice = (itemsPrice + shippingPrice);
 
   return{

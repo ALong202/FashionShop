@@ -10,7 +10,7 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
     orderItems,
     shippingInfo,
     itemsPrice,
-    taxAmount,
+    //taxAmount, -> Quốc: model ko có tax, a xem lại thử có cần giữ vì lí do nào khác???
     shippingAmount,
     totalAmount,
     paymentMethod,
@@ -22,7 +22,7 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
     orderItems,
     shippingInfo,
     itemsPrice,
-    taxAmount,
+    //taxAmount, -> Quốc: model ko có tax, a xem lại thử có cần giữ vì lí do nào khác???
     shippingAmount,
     totalAmount,
     paymentMethod,

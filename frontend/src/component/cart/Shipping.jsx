@@ -9,9 +9,9 @@ import CheckoutSteps from './CheckoutSteps';
 
 const Shipping = () => {
 
-  const { user } =useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
 
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [address, setAddress] = useState(user?.address);
@@ -20,7 +20,7 @@ const Shipping = () => {
   const [phoneNo, setPhoneNo] = useState(user?.phone);
   //const [country, setCountry] = useState("");
 
-  const { shippingInfo } = [];
+  const { shippingInfo } = useSelector((state) => state.cart);
 
   //Hook để render lại khi sửa thông tin vận chuyển
   useEffect(() => {
@@ -31,12 +31,18 @@ const Shipping = () => {
       setPhoneNo(shippingInfo?.phoneNo);
       //setCountry(shippingInfo?.country);
     }
+    else{
+      setAddress(user?.address);
+      setPhoneNo(user?.phone);
+    }
   }, [shippingInfo]);
+
+  const [orderID, setOrderID] = useState(user?._id + Date.now()); //Tạo orderID là ID người dùng+timestamp
 
   const submitHanler = (e) => {
     //Cho phép dùng giá trị mặc định nên comment
-    //e.preventDefault();
-    dispath(saveShippingInfo({address, phoneNo}));
+    //e.preventDefault();    
+    dispatch(saveShippingInfo({orderID, address, phoneNo}));
     navigate("/confirm_order");
   };
 
