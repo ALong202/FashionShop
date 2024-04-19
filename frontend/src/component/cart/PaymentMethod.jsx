@@ -61,7 +61,7 @@ const PaymentMethod = () => {
     }
 
     if (method === "Card"){
-      alert("Card");
+      alert("Hình thức này đang được xây dựng");
 
     }
   }

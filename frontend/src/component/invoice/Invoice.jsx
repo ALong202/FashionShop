@@ -88,7 +88,7 @@ const Invoice = () => {
               {orderItems?.map((item) => (
                 <tr>
                   <td className="service">{item?.product }</td>
-                  <td className="desc">{item?.name}</td>
+                  <td className="desc">{item?.name} - Màu: {item?.selectedColor} - Kích thước: {item?.selectedSize}</td>
                   <td className="unit">{item?.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
                   <td className="qty">{item?.quantity}</td>
                   <td className="total">{(item?.price * item?.quantity).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
