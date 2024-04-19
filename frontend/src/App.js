@@ -26,6 +26,9 @@ import ConfirmOrder from "./component/cart/ConfirmOrder";
 import PaymentMethod from "./component/cart/PaymentMethod";
 import ForgotPassword from "./component/auth/ForgotPassword";
 import ResetPassword from "./component/auth/ResetPassword";
+import MyOrders from "./component/order/MyOrders";
+import OrderDetails from "./component/order/OrderDetails";
+import Invoice from "./component/invoice/Invoice";
 
 
 
@@ -102,12 +105,43 @@ function App() {
                 </ProtectedRoute>
                 } 
           />
-          <Route path="/confirm_order" element={<ConfirmOrder/>} />
+          <Route
+            path="/confirm_order" 
+              element={
+                <ProtectedRoute>
+                  <ConfirmOrder />
+                </ProtectedRoute>
+                } 
+          />
           <Route
             path="/payment_method" 
               element={
                 <ProtectedRoute>
                   <PaymentMethod />
+                </ProtectedRoute>
+                } 
+          />
+          <Route
+            path="/me/orders" 
+              element={
+                <ProtectedRoute>
+                  <MyOrders />
+                </ProtectedRoute>
+                } 
+          />
+          <Route
+            path="/me/orders/:id" 
+              element={
+                <ProtectedRoute>
+                  <OrderDetails />
+                </ProtectedRoute>
+                } 
+          />
+          <Route
+            path="/invoice/orders/:id" 
+              element={
+                <ProtectedRoute>
+                  <Invoice />
                 </ProtectedRoute>
                 } 
           />

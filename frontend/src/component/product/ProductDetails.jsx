@@ -6,9 +6,11 @@ import { useParams } from "react-router-dom"; // auto chèn khi chọn useParams
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
 import StarRatings from "react-star-ratings";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCartItem } from "../../redux/features/cartSlice";
 import { colorMap } from "../../constants/constants";
+import NewReview from "../reviews/NewReview";
+import ListReviews from "../reviews/ListReviews";
 
 
 const ProductDetails = () => {
@@ -25,6 +27,8 @@ const ProductDetails = () => {
   const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);
 
   const product = data?.product;
+
+  const { isAuthenticated } = useSelector((state) => state.auth); //đã đăng nhập mới cho bình luận
 
 
   useEffect(() => {
@@ -99,6 +103,7 @@ const ProductDetails = () => {
 
 
   return (
+    <>
     <div className="row d-flex justify-content-around">
       <div className="col-12 col-lg-5 img-fluid" id="product_image">
         <div className="p-3">
@@ -218,11 +223,19 @@ const ProductDetails = () => {
         <hr />
         <p id="product_seller mb-3">Sản xuất bởi: <strong>FashionShop</strong></p>
 
-        <div className="alert alert-danger my-5" type="alert">
-          Hãy đăng nhập để xem đánh giá.
-        </div>
+        {isAuthenticated ? (
+          <NewReview productId = { product?._id} />
+        ) : (
+          <div className="alert alert-danger my-5" type="alert">
+            Hãy đăng nhập để xem đánh giá.
+          </div>
+        )}
       </div>
     </div>
+    {product?.reviews?.length > 0 && (
+      <ListReviews reviews = {product?.review} />
+    )}
+    </>
   )
 }
 

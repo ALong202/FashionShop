@@ -7,6 +7,7 @@ import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
+  tagTypes: ["Product"],
   // giữ data trong cache 1 ngày: https://redux-toolkit.js.org/rtk-query/usage/cache-behavior
   keepUnusedDataFor: 86400,
   // builder to access the query function, mutations, send requests
@@ -31,13 +32,35 @@ export const productApi = createApi({
     getProductDetails: builder.query({
       query: (id) => ({
         url: `/products/${id}`,
+        providesTags: ["Product"],
       }),
     }),
     // getProductById: builder.query({
     //   query: (id) => `/${id}`,
     // }),
+    submitReview: builder.mutation({
+      query(body){
+        return {
+          url: "/reviews",
+          method: "PUT",
+          body,
+        }
+      },
+      invalidatesTags: ["Product"],
+    }),
+    canUserReview: builder.query({
+      query: (productId) => ({
+        url: `/can_review/?productId = ${productId}`,
+      }),
+    }),
+    // g
   }),
 })
 
 // the hook  để lấy toàn bộ sản phẩm, tất cả biến Isloading-sucess-error variables
-export const { useGetProductsQuery, useGetProductDetailsQuery } = productApi;
+export const { 
+  useGetProductsQuery, 
+  useGetProductDetailsQuery, 
+  useSubmitReviewMutation,
+  useCanUserReviewQuery
+} = productApi;

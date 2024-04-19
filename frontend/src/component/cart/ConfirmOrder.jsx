@@ -10,11 +10,9 @@ const ConfirmOrder = () => {
 
   const navigate = useNavigate();
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
-  //const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
-  const {itemsPrice,
-    shippingPrice,
-    totalPrice,} = calculateOrderCost(cartItems);
+  const { itemsPrice, shippingPrice, totalPrice } = calculateOrderCost(cartItems);
   
   return (   
     <>
@@ -25,7 +23,7 @@ const ConfirmOrder = () => {
       <div className="row d-flex justify-content-between">
         <div className="col-12 col-lg-8 mt-5 order-confirm">
           <h4 className="mb-3">Thông tin vận chuyển</h4>
-          <p><b>Người nhận: PMQ</b>{/*user?.name*/}</p>
+          <p><b>Người nhận: </b>{user?.name}</p>
           <p className="mb-4">
             <b>Địa chỉ: </b> {shippingInfo?.address}
           </p>
@@ -51,6 +49,7 @@ const ConfirmOrder = () => {
                     <Link to={`/product/${item.product}`}>{item?.name}</Link>
                     <div>
                       <button
+                        key={item?.selectedColor}
                         style={{ backgroundColor: colorMap[item?.selectedColor] }}
                         className={"color-button active"}
                         disabled={true}
@@ -58,6 +57,7 @@ const ConfirmOrder = () => {
                       {item?.selectedColor}
                       </button>
                       <button 
+                      key={item?.selectedSize}
                       className={"size-button selected"}
                       disabled={true}
                       >

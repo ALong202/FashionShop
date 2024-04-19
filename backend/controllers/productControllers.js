@@ -53,7 +53,7 @@ export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo h
 
 //Tìm 1 sản phẩm mới với đường dẫn => /products/:id
 export const getProductDetails = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
-    const product = await Product.findById(req?.params?.id ); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
+    const product = await Product.findById(req?.params?.id ).populate("reviews.user"); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
 
     if(!product) {
         return next(new ErrorHandler("Không tìm thấy sản phẩm", 404));   //sử dụng một instance của lớp ErrorHandler và gọi hàm next để trả về lỗi 404
