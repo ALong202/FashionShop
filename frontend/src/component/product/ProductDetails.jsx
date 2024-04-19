@@ -28,7 +28,7 @@ const ProductDetails = () => {
 
   const product = data?.product;
 
-  const { isAuthenticated } = useSelector((state) => state.auth); //đã đăng nhập mới cho bình luận
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
 
   useEffect(() => {
@@ -224,16 +224,16 @@ const ProductDetails = () => {
         <p id="product_seller mb-3">Sản xuất bởi: <strong>FashionShop</strong></p>
 
         {isAuthenticated ? (
-          <NewReview productId = { product?._id} />
+          <NewReview productId = {product?._id} />
         ) : (
           <div className="alert alert-danger my-5" type="alert">
-            Hãy đăng nhập để xem đánh giá.
+            Đăng nhập để xem đánh giá.
           </div>
         )}
       </div>
     </div>
     {product?.reviews?.length > 0 && (
-      <ListReviews reviews = {product?.review} />
+      <ListReviews reviews = {product?.reviews} />
     )}
     </>
   )

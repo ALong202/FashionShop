@@ -30,10 +30,9 @@ export const productApi = createApi({
     }),
     // Lấy thông tin chi tiết sản phẩm từ backend
     getProductDetails: builder.query({
-      query: (id) => ({
-        url: `/products/${id}`,
-        providesTags: ["Product"],
-      }),
+      query: (id) => 
+        `/products/${id}`,
+        providesTags: ['Product'],
     }),
     // getProductById: builder.query({
     //   query: (id) => `/${id}`,
@@ -49,11 +48,9 @@ export const productApi = createApi({
       invalidatesTags: ["Product"],
     }),
     canUserReview: builder.query({
-      query: (productId) => ({
-        url: `/can_review/?productId = ${productId}`,
-      }),
+      query: (productId) => 
+        `/can_review/?productId=${productId}`,        
     }),
-    // g
   }),
 })
 
