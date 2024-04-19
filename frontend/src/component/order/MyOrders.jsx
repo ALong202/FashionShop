@@ -25,8 +25,9 @@ const MyOrder = () => {
     }
 
     if (orderSuccess){
-      dispatch(clearCart);
+      dispatch(clearCart());
       navigate("/me/orders")
+      toast.success("Tạo đơn hàng thành công");
     }
   }, [error, orderSuccess]);
 
