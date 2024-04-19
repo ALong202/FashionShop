@@ -29,20 +29,20 @@ const CheckoutSteps = ({shipping, confirmOrder, payment}) => {
         {confirmOrder? (
           <Link
             to="/confirm_order"
-            className="float-right mt-2 mt-md-0 col-12 col-md-4 col-lg-3"
+            className="float-right mt-2 mt-md-0 col-12 col-md-4 col-lg-2"
           >
             <div className="triangle2-active"></div>
-            <div className="step active-step">Giao dịch</div>
+            <div className="step active-step">Đơn hàng</div>
             <div className="triangle-active"></div>
           </Link>                   
         ) : (
           <Link
             to="#!"
-            className="float-right mt-2 mt-md-0 col-12 col-md-4 col-lg-3"
+            className="float-right mt-2 mt-md-0 col-12 col-md-4 col-lg-2"
             disabled
           >
             <div className="triangle2-incomplete"></div>
-            <div className="step incomplete">Giao dịch</div>
+            <div className="step incomplete">Đơn hàng</div>
             <div className="triangle-incomplete"></div>
           </Link>
         )}
