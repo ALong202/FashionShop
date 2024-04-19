@@ -3,28 +3,34 @@ import StarRatings from "react-star-ratings";
 import { useCanUserReviewQuery, useSubmitReviewMutation } from '../../redux/api/productsApi';
 import { toast } from 'react-toastify';
 
-const NewReview = ({ productId }) => {
+const NewReview = ({productId}) => {
   const [rating, setRating] = useState(0);
+
   const [comment, setComment] = useState('');
 
   const [submitReview, {isLoading, error, isSuccess}] = useSubmitReviewMutation();
 
   const {data} = useCanUserReviewQuery(productId);
-  const canReview = data?.canReview
+
+  const canReview = data?.canReview;
+  console.log(canReview);
+
   useEffect(() => {
     if (error) {
       toast.error(error?.data?.message);
     }
+    if (isLoading){
+      toast.warn("Đang tải bình luận lên")
+    }
     if (isSuccess){
       toast.success("Đã đăng bình luận")
     }
-  }, [error, isSuccess]);
+    
+  }, [error, isLoading, isSuccess]);
 
   const submitHandler= () => {
     const reviewData = {rating, comment, productId};
     submitReview(reviewData);
-    console.log("============================");
-    console.log(rating, comment);
   }
 
   return (
@@ -38,7 +44,7 @@ const NewReview = ({ productId }) => {
           data-bs-toggle="modal"
           data-bs-target="#ratingModal"
         >
-          Submit Your Review
+          Đánh giá sản phẩm
         </button>
       )}
 
@@ -56,7 +62,7 @@ const NewReview = ({ productId }) => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="ratingModalLabel">
-                    Submit Review
+                    Đánh giá sản phẩm
                   </h5>
                   <button
                     type="button"
@@ -90,7 +96,7 @@ const NewReview = ({ productId }) => {
                     aria-label="Close"
                     onClick={submitHandler}
                   >
-                    Submit
+                    Đánh giá
                   </button>
                 </div>
               </div>
