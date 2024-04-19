@@ -36,14 +36,17 @@ router.route("/admin/products/:id").put(updateProduct);
 //Router route(dẫn) đến mục "/products" để xóa 1 sản phẩm theo id sản phẩm
 router.route("/admin/products/:id").delete(deleteProduct);
 
-router.route("/reviews")
+router
+  .route("/reviews")
   .get(isAuthenticatedUser, getProductReviews)
   .put(isAuthenticatedUser, createProductReview);
 
-router.route("/admin/reviews")
+router
+  .route("/admin/reviews")
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteReview);
 
-router.route("/can_review").get(isAuthenticatedUser, canUserReview);
+router
+  .route("/can_review").get(isAuthenticatedUser, canUserReview);
 
 
 
