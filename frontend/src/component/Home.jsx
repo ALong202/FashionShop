@@ -1,7 +1,7 @@
 /* 1 component trong React, chức năng hiển thị trang chủ của ứng dụng.
 Để tìm kiếm theo keyword hoặc category, thêm điều kiện kiểm tra category trong JSX
 */
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import MetaData from "./layout/MetaData"
 import { useGetProductsQuery } from "../redux/api/productsApi" // auto chèn khi chọn useGetProductsQuery
 import ProductItem from "./product/ProductItem.jsx";
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import CustomPagination from "./layout/CustomPagination.jsx";
 import { useSearchParams } from "react-router-dom";
 import Filters from "./layout/Filters.jsx";
+import Slider from "./layout/Slider.jsx";
 
 const Home = () => {
   
@@ -25,12 +26,27 @@ const Home = () => {
   const subSubCategory = searchParams.get("subSubCategory");
 
   const params = { page, keyword };
-
+  // cateogry
   min !== null && (params.min = min);
   max !== null && (params.max = max);
   category !== null && (params.category = category);
   subCategory !== null && (params.subCategory = subCategory);
   subSubCategory !== null && (params.subSubCategory = subSubCategory);
+  
+  // // Slider declaration:
+  // const [slideIndex, setSlideIndex] = useState(1);
+
+  // const plusDivs = (n) => {
+  //   setSlideIndex(slideIndex + n);
+  // };
+
+  // const currentDiv = (n) => {
+  //   setSlideIndex(n);
+  // };
+
+
+
+
   // console.log("====================================")
   // console.log(params);
   // console.log("====================================")
@@ -57,10 +73,16 @@ const Home = () => {
 
   if (isLoading) return <Loader />
 
+  
   return (
       <>
       <MetaData title={"Cửa hàng thời trang"} />
       <div className="row">
+        {/* Chỉ thêm Slider khi ở Homepage */}
+        {!keyword && !category && (
+          <Slider />
+        )}
+
         {(keyword || category) && (
           <div className="col-6 col-md-3 mt-5">
             <Filters />
