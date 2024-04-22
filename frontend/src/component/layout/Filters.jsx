@@ -1,4 +1,5 @@
-
+/* defaultChecked chỉ đặt giá trị mặc định cho checkbox khi nó được render lần đầu tiên (F5), trong khi checked sẽ cập nhật giá trị của checkbox mỗi khi trạng thái của nó thay đổi(bao gồm việc thay đổi giá trị của nút Filter ở Header).
+*/
 import React, { useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"; 
 import { getPriceQueryParams } from "../../helpers/helpers";
@@ -74,6 +75,24 @@ const Filters = () => {
     navigate(path);
   };
 
+  // Trong Filters.jsx
+useEffect(() => {
+  const handleStorageChange = () => {
+    const localCategory = localStorage.getItem('category');
+    if (localCategory) {
+      setCategory(localCategory);
+    }
+  };
+
+  window.addEventListener('storage', handleStorageChange);
+
+  // Cleanup function
+  return () => {
+    window.removeEventListener('storage', handleStorageChange);
+  };
+}, []); // Không có dependency
+
+
   return (
     <div className="border p-3 filter">
       <h3>Bộ Lọc</h3>
@@ -110,7 +129,7 @@ const Filters = () => {
           </div>
         </div>
       </form>
-      {/* <hr />
+      <hr />
       <h5 className="mb-3">Category</h5>
       {PRODUCT_CATEGORIES?.map((category) => (
         <div className="form-check">
@@ -120,12 +139,13 @@ const Filters = () => {
             name="category"
             id="check4"
             value={category}
-            defaultChecked={defaultCheckHandler("category", category)}
+            // defaultChecked={defaultCheckHandler("category", category)}
+            checked={defaultCheckHandler("category", category)}
             onClick={(e) => handleClick(e.target)}
           />
           <label className="form-check-label" for="check4"> {category} </label>
         </div>
-      ))} */}
+      ))}
       
       <hr />
       {/* <h5 className="mb-3">SubCategory</h5> */}

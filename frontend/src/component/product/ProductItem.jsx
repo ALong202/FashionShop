@@ -9,7 +9,7 @@ import MetaData from "../layout/MetaData"
 const ProductItem = ({ product, columnSize }) => {
   return (
     <>
-    <MetaData title={"Chi tiết sản phẩm"} />
+    <MetaData title={"Thời trang"} />
     <div className={`col-sm-12 col-md-6 col-lg-${columnSize} my-3`}>
       <div className="card p-3 rounded">
         <img

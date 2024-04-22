@@ -33,20 +33,6 @@ const Home = () => {
   subCategory !== null && (params.subCategory = subCategory);
   subSubCategory !== null && (params.subSubCategory = subSubCategory);
   
-  // // Slider declaration:
-  // const [slideIndex, setSlideIndex] = useState(1);
-
-  // const plusDivs = (n) => {
-  //   setSlideIndex(slideIndex + n);
-  // };
-
-  // const currentDiv = (n) => {
-  //   setSlideIndex(n);
-  // };
-
-
-
-
   // console.log("====================================")
   // console.log(params);
   // console.log("====================================")
@@ -109,7 +95,7 @@ const Home = () => {
             resPerPage={data?.resPerPage}
             filteredProductsCount={data?.filteredProductsCount}
           />
-          {/* iFrame chỉ hiển thị ở Homepage. centered-iframe đặt  */}
+          {/* iFrame chỉ hiển thị ở Homepage. */}
           {!keyword && !category && (
             <div className="centered-container">
               <div className="centered-iframe">
