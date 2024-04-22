@@ -39,7 +39,7 @@ const handleChange = (event) => {
       <div className="input-group">
         {/* Tạo nút droplist để chọn category Nam/Nữ */}
         <div className="dropdown" onClick={() => setShowDropdown(!showDropdown)}>
-          <button className="btn btn-secondary dropdown-toggle custom-dropdown" type="button">
+          <button className="btn btn-secondary dropdown-toggle Btn" type="button">
             <i className="fa fa-bars" aria-hidden="true"></i>
           </button>
           {showDropdown && (
@@ -61,8 +61,8 @@ const handleChange = (event) => {
           onChange={(e) => setkeyword(e.target.value)}
         />
 
-        <button id="search_btn" className="btn" type="submit">
-          <i className="fa fa-search search-icon" aria-hidden="true"></i>
+        <button id="search_btn" className="Btn" type="submit">
+          <i className="fa fa-search icon" aria-hidden="true"></i>
         </button>
       </div>
     </form>
