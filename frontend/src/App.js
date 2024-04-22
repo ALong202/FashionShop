@@ -1,4 +1,5 @@
-/* Bảo mật Route profile nếu chưa đăng nhập bằng ProtectedRoute  
+/* Bảo mật Route profile nếu chưa đăng nhập bằng ProtectedRoute
+container-fluid sẽ chiếm 100% chiều rộng ở tất cả breakpoint, còn container thì sẽ có khoảng trắng ở 2 bên  
 */
 import "./App.css";
 // React router DOM quản lý routing. Router xác định các routes. Route: URL path
@@ -48,8 +49,7 @@ function App() {
       /> 
       {/* Page header từ ./component/layout/Footer */}
       <Header/>
-
-      <div className="container">
+      <div className="container-fluid">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />

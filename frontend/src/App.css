@@ -20,6 +20,10 @@ body {
   overflow-x: hidden;
 }
 
+/* body {
+  font-size: 1rem;
+} */
+
 /* Scroll Bar */
 
 ::-webkit-scrollbar-track {
@@ -59,21 +63,43 @@ nav {
   background-color: #69544a;
 }
 
-.search-icon {
-  color: #ffffff;
-}
-
-.custom-dropdown {
-  background-color: #69544a
-}
-
 .input-group {
   width: 90%;
   margin-right: 35%;
 }
 
+.Btn {
+  background-color: #69544a;
+  color: white;
+}
+.Btn:hover {
+  background-color: #e0e9f0;
+  color: #392a27;
+}
+.Btn:active {
+  transform: scale(0.95);
+}
+.Btn.focus,
+.Btn:focus {
+  outline: 5px;
+  box-shadow: none;
+}
+
+.Btn icon {
+  color: white;
+}
+
 /* Slider */
-.w3-content{margin-left:auto;margin-right:auto}.w3-content{max-width:980px}.w3-auto{max-width:1140px} /* canh giữa */
+
+
+.w3-content{margin-left:auto;margin-right:auto}  /* canh giữa */
+/* .w3-content{max-width:980px} */
+.w3-content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+.w3-auto{max-width:1140px}
 .w3-tooltip,.w3-display-container{position:relative}.w3-tooltip .w3-text{display:none}.w3-tooltip:hover .w3-text{display:inline-block} /* hiện các nút điều hướng khi di chuột qua slider */
 .w3-center{text-align:center!important} /* vị trí nút slider ở giữa */
 .w3-text-white,.w3-hover-text-white:hover{color:#fff!important} /* màu trắng cho mũi tên */
@@ -133,7 +159,7 @@ nav {
   top: 0; /* trên cùng */
   left: 0; /* bên trái */
   width: 100%; /* cho iframe chiếm toàn bộ không gian */
-  height: 100%;
+  height: 80%; /* chiều cao của iframe chiếm 80% không gian */
 }
 
 .centered-container {
@@ -171,19 +197,26 @@ nav {
 
 .cart-icon {
  color: #392a27;
- margin-right: -15px;
+ margin-right: -15px; /* Cho icon sát vào chữ "Giỏ hàng" */
 }
 
 #cart_count {
-  background-color: #febd69;
+  /* background-color: #febd69; */
+  background-color: #e0e9f0;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
-  color: black;
+  color: #392a27;
   font-weight: bold;
   font-size: 0.8rem;
 }
 
 /* Home page */
+
+.container-no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 #products_heading {
   margin-top: 1.8rem;
 }
@@ -195,6 +228,7 @@ nav {
 .card-title a {
   color: #2e2e2e;
   text-decoration: none;
+  font-size: 1.2rem;
 }
 
 .card-title a:hover {
@@ -204,8 +238,9 @@ nav {
 
 .card-body {
   padding-left: 0;
+  padding-right: 0;
 }
-
+/* Homepage price */
 .card-text {
   font-size: 1.4rem;
 }
@@ -215,7 +250,7 @@ nav {
   height: 150px; */
   width: 100%;
   height: 250px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .ratings {
@@ -515,6 +550,7 @@ footer {
   outline: 0;
   box-shadow: none;
 }
+
 
 .username {
   font-size: 0.8rem; /* Thay đổi kích thước chữ tại đây */

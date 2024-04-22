@@ -38,7 +38,7 @@ const Slider = () => {
 
 
   return (
-    <div className="w3-content w3-display-container" style={{maxWidth: '800px'}}>
+    <div className="w3-content w3-display-container" style={{maxWidth: '90%'}}>
       <img className="mySlides" src="../images/Slider/img_nature_wide.jpg" style={{width: '100%'}} />
       <img className="mySlides" src="../images/Slider/img_snow_wide.jpg" style={{width: '100%'}} />
       <img className="mySlides" src="../images/Slider/img_mountains_wide.jpg" style={{width: '100%'}} />

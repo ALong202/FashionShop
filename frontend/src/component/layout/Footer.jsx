@@ -73,16 +73,7 @@ const Footer = () => {
   </div>
 
 
-
-
-
-
   </div>
-
-      
-      
-
-
 
         <p className="text-center mt-1 fw-bold">
         Copyright © 2024 FashionShop.
