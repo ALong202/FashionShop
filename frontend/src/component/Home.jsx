@@ -109,6 +109,23 @@ const Home = () => {
             resPerPage={data?.resPerPage}
             filteredProductsCount={data?.filteredProductsCount}
           />
+          {/* iFrame chỉ hiển thị ở Homepage. centered-iframe đặt  */}
+          {!keyword && !category && (
+            <div className="centered-container">
+              <div className="centered-iframe">
+                <iframe
+                // width="560" height="315" 
+                src="https://www.youtube.com/embed/mL9iDxi9B38?si=Z3v_wwyQ3sjq0D63" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          )}    
+
         </div>
       </div>
       </>

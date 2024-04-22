@@ -51,15 +51,15 @@ nav {
 }
 
 /* Slider */
-.w3-content{margin-left:auto;margin-right:auto}.w3-content{max-width:980px}.w3-auto{max-width:1140px}
-.w3-display-container:hover .w3-display-hover{display:block}.w3-display-container:hover span.w3-display-hover{display:inline-block}.w3-display-hover{display:none}
-.w3-tooltip,.w3-display-container{position:relative}.w3-tooltip .w3-text{display:none}.w3-tooltip:hover .w3-text{display:inline-block}
-
+.w3-content{margin-left:auto;margin-right:auto}.w3-content{max-width:980px}.w3-auto{max-width:1140px} /* canh giữa */
+.w3-tooltip,.w3-display-container{position:relative}.w3-tooltip .w3-text{display:none}.w3-tooltip:hover .w3-text{display:inline-block} /* hiện các nút điều hướng khi di chuột qua slider */
 .w3-center{text-align:center!important} /* vị trí nút slider ở giữa */
+.w3-text-white,.w3-hover-text-white:hover{color:#fff!important} /* màu trắng cho mũi tên */
 .w3-large{font-size:1.5em!important} /* kích thước mũi tên slider */
-/* .w3-text-white */
-.w3-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
-.w3-left{float:left!important}.w3-right{float:right!important}
+/* .w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before, */
+.w3-container,.w3-panel{padding:0.01em 16px} /* đưa 2 nút mũi tên vào trong hình */
+.w3-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)} /* dịch mũi tên và nút tròn từ dưới ngoài hình lên dưới trong hình */
+.w3-left{float:left!important}.w3-right{float:right!important} /* 2 mũi tên sát nhau giữa -> 2 bên */
 .w3-hover-text-khaki:hover{color:#b4aa50!important}
 
 
@@ -79,7 +79,7 @@ nav {
 
 /* CSS cho hiệu ứng hover */
 .w3-badge:hover {
-  background-color: lightgray; /* Thay đổi màu nền khi di chuột qua */
+  background-color: #b4aa50; /* Thay đổi màu nền khi di chuột qua */
 }
 
 /* CSS cho hiệu ứng active */
@@ -95,7 +95,26 @@ nav {
   background-color: black;
 }
 
+/* Youtube iframe */
+.centered-iframe {
+  position: relative; /* để iframe định vị tương đối so với nó */
+  width: 100%; /* Chiều rộng bằng ..% chiều rộng của viewport */
+  padding-top: 56.25%; /* 0.5625: Tỉ lệ 16:9 ứng với video */
+  overflow: hidden; /* cắt bỏ nội dung vượt qua kích thước đã định */
+}
 
+.centered-iframe iframe {
+  position: absolute;
+  top: 0; /* trên cùng */
+  left: 0; /* bên trái */
+  width: 100%; /* cho iframe chiếm toàn bộ không gian */
+  height: 100%;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center; /* canh giữa theo chiều ngang */
+}
 
 
 
@@ -241,8 +260,8 @@ footer {
 }
 
 .color-button:focus {
-  border: 3px solid #000; /* Đường viền đen, 3px độ rộng */
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  /* border: 3px solid #000; */
+  box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
 
