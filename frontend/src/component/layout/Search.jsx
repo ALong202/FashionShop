@@ -7,11 +7,12 @@ const Search = () => {
   const [keyword, setkeyword] = useState("");
   const [category, setCategory] = useState(""); //
   const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      navigate(`/?keyword=${keyword}`);
+      navigate(`/?keyword=${keyword}&category=${category}`);
     } else if (category.trim()) {
       navigate(`/?category=${category}`);
     } else {
@@ -19,9 +20,36 @@ const Search = () => {
     }
   }
 
+  // Set category and navigate
+  const setCategoryAndNavigate = (e, category) => {
+    e.preventDefault();
+    setCategory(category);
+    if (category) {
+      navigate(`/?category=${category}`);
+    }
+  };
+
+// Trong Search.jsx
+const handleChange = (event) => {
+  localStorage.setItem('category', event.target.value);
+}
+
   return (
     <form onSubmit={submitHandler}>
       <div className="input-group">
+        {/* Tạo nút droplist để chọn category Nam/Nữ */}
+        <div className="dropdown" onClick={() => setShowDropdown(!showDropdown)}>
+          <button className="btn btn-secondary dropdown-toggle custom-dropdown" type="button">
+            <i className="fa fa-bars" aria-hidden="true"></i>
+          </button>
+          {showDropdown && (
+            <div className="dropdown-menu show">
+              <a className="dropdown-item" href="#" onClick={(e) => setCategoryAndNavigate(e, 'Nam')}>Nam</a>
+              <a className="dropdown-item" href="#" onClick={(e) => setCategoryAndNavigate(e, 'Nữ')}>Nữ</a>
+            </div>
+          )}
+        </div>
+
         <input
           type="text"
           id="search_field"
@@ -32,34 +60,9 @@ const Search = () => {
           value={keyword}
           onChange={(e) => setkeyword(e.target.value)}
         />
-        {/* <input
-          type="text"
-          id="category_field"
-          className="form-control"
-          placeholder="Enter Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        /> */}
-        <select
-          id="category_field"
-          className="form-control category_field"
-          value={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-            if (e.target.value) {
-              navigate(`/?category=${e.target.value}`);
-            }
-          }}
-        >
-          <option value="">Chọn danh mục</option>
-          <option value="Nam">Nam</option>
-          <option value="Nữ">Nữ</option>
-          {/* <option value="Trẻ em">Trẻ em</option> */}
-          // Thêm các option khác tại đây
-        </select>
 
         <button id="search_btn" className="btn" type="submit">
-          <i className="fa fa-search" aria-hidden="true"></i>
+          <i className="fa fa-search search-icon" aria-hidden="true"></i>
         </button>
       </div>
     </form>
