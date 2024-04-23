@@ -36,12 +36,12 @@ const Slider = () => {
 
   useEffect(() => {
     const slides = document.getElementsByClassName("mySlides");
-    const dots = document.getElementsByClassName("demo");
+    const dots = document.getElementsByClassName("w3-badge");
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";  
     }
     for (let i = 0; i < dots.length; i++) {
-      // dots[i].className = dots[i].className.replace(" active", "");
+      dots[i].className = dots[i].className.replace(" active", "");
     }
     // Kiểm tra phần tử cuối cùng của mảng có tồn tại không trước khi thực hiện thay đổi
     if (slides[slideIndex-1]) {
@@ -88,9 +88,7 @@ const Slider = () => {
       <div className="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style={{width: '100%'}}>
         <div className="w3-left w3-hover-text-khaki" onClick={() => plusDivs(-1)}>&#10094;</div>
         <div className="w3-right w3-hover-text-khaki" onClick={() => plusDivs(1)}>&#10095;</div>
-        {/* <span className="w3-badge demo" onClick={() => currentDiv(1)}></span>
-        <span className="w3-badge demo" onClick={() => currentDiv(2)}></span>
-        <span className="w3-badge demo" onClick={() => currentDiv(3)}></span> */}
+
         <span className={`w3-badge demo ${slideIndex === 1 ? 'active' : ''}`} onClick={() => currentDiv(1)}></span>
         <span className={`w3-badge demo ${slideIndex === 2 ? 'active' : ''}`} onClick={() => currentDiv(2)}></span>
         <span className={`w3-badge demo ${slideIndex === 3 ? 'active' : ''}`} onClick={() => currentDiv(3)}></span>

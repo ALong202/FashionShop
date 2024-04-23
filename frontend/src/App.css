@@ -262,7 +262,9 @@ nav {
 .w3-badge:active {
   background-color: #392a27; /* Thay đổi màu nền khi nhấn chuột */
 }
-
+.w3-badge.active {
+  background-color: #392a27; /* Thay đổi màu sắc khi auto chuyển slide, click tới lùi */
+}
 .w3-badge:focus {
   background-color: blue; /* Thay đổi màu nền khi nhấn chuột */
 }
@@ -418,13 +420,14 @@ nav {
   bottom: 0;
   width: 100%;
 } */
-
+/* margin-top: khoản cách từ border-top với body-content */
 .page-footer {
   background: #fafafa;
   color: #656565;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
+  margin-top: 50px;
   border-top: 1px solid #cfd3cb;
 }
 .page-footer a {
@@ -588,13 +591,13 @@ nav {
   max-width: 466px;
 }
 .page-footer .footer-column2 {
-  width: 16.6%;
+  width: 20.0%;
 }
 .page-footer .footer-column3 {
-  width: 20.8%;
+  width: 20.0%;
 }
 .page-footer .footer-column4 {
-  width: 29.1%;
+  width: 26.5%;
 }
 .page-footer .footer-copyright {
   padding: 0;
@@ -675,7 +678,7 @@ nav {
   display: inline-block;
   height: 30px;
   margin: 5px;
-  width: 50px;
+  width: 60px;
   gap: 10px;
   transition: transform 0.3s ease-in-out;
 }
@@ -683,9 +686,13 @@ nav {
   transform: scale(1.1); 
 }
 .color-button:active {
-  transform: scale(0.9); 
+  transform: scale(0.9);
 }
 .color-button:focus {
+  box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
+}
+.color-button-selected {
+  transform: scale(0.9); 
   box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
@@ -712,7 +719,7 @@ nav {
 }
 
 .size-button.selected {
-  background-color: #4caf50;
+  background-color: #c4b3ad;
   color: white;
 }
 
