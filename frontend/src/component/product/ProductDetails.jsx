@@ -188,7 +188,7 @@ const ProductDetails = () => {
                 key={colorName}
                 style={{ backgroundColor: colorMap[colorName] }}
                 // className="color-button"
-                className={`color-button ${colorName === selectedColor ? 'active' : ''}`}
+                className={`color-button ${colorName === selectedColor ? 'color-button-selected' : ''}`}
                 disabled={product.stock <= 0}
                 onClick={() => handleColorChange(colorName)}
               >
