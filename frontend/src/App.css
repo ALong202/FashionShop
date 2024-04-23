@@ -260,19 +260,15 @@ nav {
 
 /* CSS cho hiệu ứng active */
 .w3-badge:active {
-  background-color: #000; /* Thay đổi màu nền khi nhấn chuột */
+  background-color: #392a27; /* Thay đổi màu nền khi nhấn chuột */
 }
 
 .w3-badge:focus {
   background-color: blue; /* Thay đổi màu nền khi nhấn chuột */
 }
 
-.w3-badge.active {
-  background-color: black;
-}
 
 /* Youtube iframe */
-
 .centered-iframe {
   position: relative; /* để iframe định vị tương đối so với nó */
   width: 80%; /* Chiều rộng bằng ..% chiều rộng của centered-container (nếu không là viewport) */
@@ -318,10 +314,22 @@ nav {
 
 #view_btn,
 #new_review_btn {
-  background-color: #fa9c23;
+  /* background-color: #fa9c23; */
+  background-color: #e0e9f0;
   padding: 0.4rem 1.8rem;
-  color: black;
+  /* color: black; */
+  color: #392a27 ;
 }
+#view_btn:hover {
+  background-color: #bbb; /* Màu nền khi hover */
+}
+
+#view_btn:active {
+  background-color: #c4b3ad; /* Màu nền khi nhấn */
+  scale: 0.95;
+}
+
+
 
 #cart {
   /* background-color: #e0e9f0; */
@@ -608,10 +616,30 @@ nav {
   font-weight: bold;
 }
 
+/* Nút cộng trừ số lượng sản phẩm */
+.btn-danger, .btn-primary {
+  background-color: #e0e9f0;
+  color: black;
+}
+.btn-danger:hover, .btn-primary:hover {
+  background-color: #ddd; 
+  transform: scale(1.1); 
+}
+.btn-danger:active, .btn-primary:active {
+  background-color: #bbb; 
+  transform: scale(0.9); 
+}
+.btn-danger:focus, .btn-primary:focus {
+  outline: none; /* Xóa viền mặc định khi nút được chọn */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Thêm đổ bóng khi nút được chọn */
+}
+
+
 #cart_btn,
 #review_btn {
   border-radius: 2rem;
-  background-color: #fa9c23;
+  background-color: #69544a;
+  color: white;
   border: none;
   padding: 0.5rem 2rem;
 }
@@ -639,7 +667,8 @@ nav {
   margin-top: 9rem;
 }
 
-/* Product color */
+
+/* Product color - Màu sắc sản phẩm*/
 .color-button {
   border: none;
   cursor: pointer;
@@ -650,9 +679,13 @@ nav {
   gap: 10px;
   transition: transform 0.3s ease-in-out;
 }
-
+.color-button:hover {
+  transform: scale(1.1); 
+}
+.color-button:active {
+  transform: scale(0.9); 
+}
 .color-button:focus {
-  /* border: 3px solid #000; */
   box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
@@ -878,6 +911,7 @@ nav {
 }
 
 
+
 .username {
   font-size: 0.8rem; /* Thay đổi kích thước chữ tại đây */
   color: black;
@@ -1007,17 +1041,30 @@ nav {
 
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  background-color: #c4b3ad;
+  border-color: #c4b3ad;
+  color: #392a27;
 }
 
 .page-link {
-  color: #fa9c23;
+  color: #c4b3ad;
 }
 
 .page-link:hover {
-  color: #fa9c23;
+  color: #c4b3ad;
 }
+
+/* Scroll to top - quay lại đầu trang */
+#TopBtn {
+  display: flex; /* Change this to block */
+}
+#TopBtn:hover {
+  background-color: #fa9c23;
+  color: white;
+  transform: scale(1.1);
+}
+
+
 
 /* Products List Admin */
 #products_table .btn {
