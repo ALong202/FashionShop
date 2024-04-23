@@ -44,7 +44,7 @@ const Header = () => {
         <div className="col-12 col-md-5 mt-2 mt-md-0">
           <Search />
         </div>
-        <div className="col-12 col-md-2 mt-4 mt-md-0 text-center text-md-end">
+        <div className="col-6 col-md-2 mt-4 mt-md-0 text-center text-md-end">
           <a href="/cart" style={{textDecoration: "none"}}>
             <i className="fa fa-shopping-cart cart-icon" aria-hidden="true" ></i>
             <span id="cart" className="ms-3"> Giỏ hàng </span>
@@ -52,11 +52,11 @@ const Header = () => {
           </a>
         </div>
 
-        <div className="col-12 col-md-2 mt-4 mt-md-0 text-center text-md-end">          
+        <div className="col-6 col-md-2 mt-4 mt-md-0 text-center text-md-end">          
           {user ? (
             <div className="ms-4 dropdown">
               <button
-                className="btn dropdown-toggle text-white"
+                className="btn dropdown-toggle text-white custom-dropdown-toggle"
                 type="button"
                 id="dropDownMenuButton"
                 data-bs-toggle="dropdown"

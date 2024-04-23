@@ -158,6 +158,7 @@ nav {
   position: relative;
   display: inline-block;
   vertical-align: middle;
+
 }
 
 #search_btn {
@@ -192,6 +193,26 @@ nav {
 }
 
 /* Slider */
+.slider-container {
+  display: flex;
+  align-items: stretch;
+}
+
+.mySlides {
+  /* background-size: cover;
+  background-position: center; */
+  width: 100%;
+  height: 60vh; /* vh: Đặt chiều cao theo viewport */
+  object-fit: contain; /* contain: co giãn theo màn hình. cover, giữ chiều cao, khuyết 2 bên*/
+}
+
+@media (max-width: 768px) { /* Điều chỉnh kích thước này theo nhu cầu của bạn */
+  .mySlides {
+    /* width: auto; */
+    height: 20vh;
+    object-fit: contain;
+  }
+}
 
 
 .w3-content{margin-left:auto;margin-right:auto}  /* canh giữa */
@@ -208,6 +229,11 @@ nav {
 .w3-large{font-size:1.5em!important} /* kích thước mũi tên slider */
 /* .w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before, */
 .w3-container,.w3-panel{padding:0.01em 16px} /* đưa 2 nút mũi tên vào trong hình */
+@media screen and (min-width: 768px) {
+  .w3-container, .w3-panel {
+    padding: 0.01em 150px;
+  }
+}
 .w3-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)} /* dịch mũi tên và nút tròn từ dưới ngoài hình lên dưới trong hình */
 .w3-left{float:left!important}.w3-right{float:right!important} /* 2 mũi tên sát nhau giữa -> 2 bên */
 .w3-hover-text-khaki:hover{color:#b4aa50!important}
@@ -250,10 +276,17 @@ nav {
 .centered-iframe {
   position: relative; /* để iframe định vị tương đối so với nó */
   width: 80%; /* Chiều rộng bằng ..% chiều rộng của centered-container (nếu không là viewport) */
-  height: 80vh; /* viewport height: Chiều cao bằng 80% chiều cao của viewport */
+  height: 0; /* viewport height: Chiều cao bằng 80% chiều cao của viewport. Tuy nhiên đặt chiều bao đầu bằng 0 để xài padding-bottom */
+  padding-bottom: 56.25%; /* Tạo tỷ lệ 16:9 */
   overflow: hidden; /* cắt bỏ nội dung vượt qua kích thước đã định */
 }
 
+@media (min-width: 768px) and (min-aspect-ratio: 4/3) { /* medium-size là 768 và tỉ lệ phải từ 4/3 */
+  .centered-iframe {
+    padding-bottom: 0; /* Xóa padding-bottom */
+    height: 80vh; /* Tạo tỷ lệ theo 80% viewport cho màn hình lớn hơn medium size */
+  }
+}
 
 .centered-iframe iframe {
   position: absolute; /* để iframe định vị tuyệt đối so với center-container */
@@ -831,6 +864,12 @@ nav {
 .rounded-circle {
   border-radius: 50% !important;
 }
+/* biểu tượng xổ xuống ở avatar */
+.custom-dropdown-toggle::after {
+  border-top-color: black;
+}
+
+
 
 .btn.focus,
 .btn:focus {
@@ -841,6 +880,7 @@ nav {
 
 .username {
   font-size: 0.8rem; /* Thay đổi kích thước chữ tại đây */
+  color: black;
 }
 
 /* Header User Profile */
