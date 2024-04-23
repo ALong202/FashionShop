@@ -8,15 +8,7 @@ const Footer = () => {
 
     // <footer className="py-1 pt-5">
     <footer className="page-footer">
-
-      {/* <a href="javascript:void(0)" id="navBackToTop" aria-label="Back to top" >
-        <div classNameName="navFooterBackToTop">
-        <span classNameName="navFooterBackToTopText">
-          Back to top
-        </span>
-        </div>
-      </a> */}
-
+      
       <div className="footer content">
         <div className="footer-content">
           <div className="row">

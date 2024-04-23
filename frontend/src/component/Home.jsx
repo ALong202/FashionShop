@@ -13,6 +13,11 @@ import CustomPagination from "./layout/CustomPagination.jsx";
 import { useSearchParams } from "react-router-dom";
 import Filters from "./layout/Filters.jsx";
 import Slider from "./layout/Slider.jsx";
+import Top from "./layout/Top.jsx";
+
+
+
+
 
 const Home = () => {
   
@@ -113,12 +118,28 @@ const Home = () => {
                 ></iframe>
               </div>
             </div>
-          )}    
+          )} 
+
+          
+          <Top />
+          {/* Nút quay lại đầu trang */}
+          {/* <a href="#" id="navBackToTop" aria-label="Back to top" onClick={(e) => {e.preventDefault(); window.scroll({top: 0, behavior: 'smooth'});}}>
+            <div className="navFooterBackToTop">
+              <span className="navFooterBackToTopText">
+                Quay lại đầu trang
+              </span>
+            </div>
+          </a> */}
+
+
+          
 
         </div>
       </div>
       </>
   )
+
+  
 }
 
 export default Home
@@ -129,3 +150,4 @@ Nếu có keyword thì 9 column, không thì 12 column
 {keyword ? `${data?.products?.length} -> hiện đang show ra <= 4 sp
 
 */
+
