@@ -46,6 +46,7 @@ const Search = () => {
             <div className="dropdown-menu show">
               <a className="dropdown-item" href="#" onClick={(e) => setCategoryAndNavigate(e, 'Nam')}>Nam</a>
               <a className="dropdown-item" href="#" onClick={(e) => setCategoryAndNavigate(e, 'Nữ')}>Nữ</a>
+              <a className="dropdown-item" href="#" onClick={(e) => setCategoryAndNavigate(e, '')}>Tất cả</a>
             </div>
           )}
         </div>

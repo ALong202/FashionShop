@@ -79,19 +79,20 @@ const Home = () => {
         )}
 
         {/* Nếu kích thước từ medium (768px) thì Filter chiếm 3/12 grid, nhỏ hơn thì full width */}
-        {(keyword || category) && (
+        {(keyword || category || window.location.search.includes('category=')) && (
           <div className="col-12 col-md-3 mt-5" >
             <Filters />
           </div>
         )}
         {/* Nếu kích thước từ medium (768px) thì Sản phẩm chiếm 9/12 grid, nhỏ hơn thì full width */}
-        <div className={keyword || category ? "col-12 col-md-9": "col-12 col-md-12 "}>
+        <div className={keyword || category || window.location.search.includes('category=') ? "col-12 col-md-9": "col-12 col-md-12 "}>
           <h1 id="products_heading" className="text-secondary">
             {keyword || category ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Sản phẩm nổi bật"}            
           </h1>
-
-          <Sorters />
-
+          
+          {(keyword || category) && (
+            <Sorters />
+          )}
         
           <section id="products" className="mt-5">
             <div className="row g-1">
@@ -108,7 +109,7 @@ const Home = () => {
             filteredProductsCount={data?.filteredProductsCount}
           />
           {/* iFrame chỉ hiển thị ở Homepage. */}
-          {!keyword && !category && (
+          {!keyword && !category && !window.location.search.includes('category=') && (
             <div className="centered-container">
               <div className="centered-iframe">
                 <iframe
