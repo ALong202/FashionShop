@@ -4,6 +4,26 @@ RTK Query is a data fetching and caching tool built on top of Redux Toolkit.
 */ 
 import { createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
+// const createQueryParams = (params) => {
+//   console.log(params); // In ra các tham số trước khi gửi yêu cầu
+
+//   return {
+//     url: "/products",
+//     params: {
+//       page: params?.page,
+//       keyword: params?.keyword,
+//       category: params?.category,
+//       subCategory: params?.subCategory,
+//       subSubCategory: params?.subSubCategory,
+//       sort: params?.sort,
+//       "price[gte]": params?.min,
+//       "price[lte]": params?.max,
+//     }
+//   };
+// };
+
+
+
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
@@ -23,9 +43,10 @@ export const productApi = createApi({
           category: params?.category,
           subCategory: params?.subCategory, //
           subSubCategory: params?.subSubCategory, //
+          sort: params?.sort,
           "price[gte]": params?.min,
           "price[lte]": params?.max,
-          sort: params?.sort,
+          
         }
       }),
     }),

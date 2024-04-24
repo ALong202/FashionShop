@@ -1046,26 +1046,31 @@ nav {
   color: white;
 }
 
-/* Pagination */
+/* Pagination: page-link: chữ, page-item: ô */
 .page-item.active .page-link {
   background-color: #c4b3ad;
   border-color: #c4b3ad;
   color: #392a27;
 }
 
+
 .page-link {
   color: #c4b3ad;
 }
 
 .page-link:hover {
-  color: #c4b3ad;
+  color: #392a27;
+  transform: scale(1.1);
 }
 
 /* Scroll to top - quay lại đầu trang */
-#TopBtn {
-  display: flex; /* Change this to block */
+.top-btn {
+  display: inline-block;
+  align-self: flex-start;
+  margin-left: 16px;
+  margin-top: 30px;
 }
-#TopBtn:hover {
+.top-btn:hover {
   background-color: #392a27;
   color: white;
   transform: scale(1.1);
@@ -1144,7 +1149,8 @@ nav {
 }
 
 .filter {
-  margin-top: 5.8rem;
+  /* margin-top: 5.8rem; */
+  margin-top: 8rem;
 }
 
 /* Sidebar */
@@ -1163,6 +1169,19 @@ nav {
   border-color: #f3f4f6;
   border-radius: 0.3rem;
   color: #fa9c23;
+}
+
+.sort-button {
+  display: flex;
+  justify-content: flex-end;
+}
+/* Tạo khoản cách với chữ "Sắp xếp" */
+#sortOrder {
+  margin-left: 10px;
+}
+#sortOrder:hover {
+  background-color: #f3f4f6;
+  transform: scale(1.1);
 }
 
 

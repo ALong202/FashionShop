@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
 
-
-
 const Search = () => {
   const [keyword, setkeyword] = useState("");
   const [category, setCategory] = useState(""); //
@@ -12,7 +10,11 @@ const Search = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      navigate(`/?keyword=${keyword}&category=${category}`);
+      if (category.trim()){
+        navigate(`/?keyword=${keyword}&category=${category}`);
+      } else {
+        navigate(`/?keyword=${keyword}`);
+      }
     } else if (category.trim()) {
       navigate(`/?category=${category}`);
     } else {
@@ -20,19 +22,17 @@ const Search = () => {
     }
   }
 
-  // Set category and navigate
+  // Set category trên URL và navigate
   const setCategoryAndNavigate = (e, category) => {
     e.preventDefault();
     setCategory(category);
-    if (category) {
-      navigate(`/?category=${category}`);
-    }
+    navigate(`/?category=${category}`);
   };
 
-// Trong Search.jsx
-const handleChange = (event) => {
-  localStorage.setItem('category', event.target.value);
-}
+// // Trong Search.jsx
+// const handleChange = (event) => {
+//   localStorage.setItem('category', event.target.value);
+// }
 
   return (
     <form onSubmit={submitHandler}>
