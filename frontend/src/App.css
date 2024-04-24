@@ -158,13 +158,13 @@ nav {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-
 }
 
 #search_btn {
   /* background-color: #febd69; */
   background-color: #69544a;
 }
+
 
 .input-group {
   width: 90%;
@@ -176,8 +176,9 @@ nav {
   color: white;
 }
 .Btn:hover {
-  background-color: #e0e9f0;
-  color: #392a27;
+  background-color: #69544a;
+  color: white;
+  transform: scale(1.1);
 }
 .Btn:active {
   transform: scale(0.95);
@@ -255,18 +256,19 @@ nav {
 
 /* CSS cho hiệu ứng hover */
 .w3-badge:hover {
-  background-color: #b4aa50; /* Thay đổi màu nền khi di chuột qua */
+  background-color: #b4aa50; 
+  transform: scale(1.1);
 }
 
 /* CSS cho hiệu ứng active */
 .w3-badge:active {
-  background-color: #392a27; /* Thay đổi màu nền khi nhấn chuột */
+  background-color: #392a27; 
 }
 .w3-badge.active {
   background-color: #392a27; /* Thay đổi màu sắc khi auto chuyển slide, click tới lùi */
 }
 .w3-badge:focus {
-  background-color: blue; /* Thay đổi màu nền khi nhấn chuột */
+  background-color: blue; 
 }
 
 
@@ -314,6 +316,7 @@ nav {
   font-size: 0.8rem;
 }
 
+/* Nút xem chi tiết sảm phẩm */
 #view_btn,
 #new_review_btn {
   /* background-color: #fa9c23; */
@@ -323,11 +326,12 @@ nav {
   color: #392a27 ;
 }
 #view_btn:hover {
-  background-color: #bbb; /* Màu nền khi hover */
+  background-color: #bbb; 
+  transform: scale(1.05);
 }
 
 #view_btn:active {
-  background-color: #c4b3ad; /* Màu nền khi nhấn */
+  background-color: #c4b3ad; 
   scale: 0.95;
 }
 
@@ -630,7 +634,7 @@ nav {
 }
 .btn-danger:active, .btn-primary:active {
   background-color: #bbb; 
-  transform: scale(0.9); 
+  transform: scale(0.95); 
 }
 .btn-danger:focus, .btn-primary:focus {
   outline: none; /* Xóa viền mặc định khi nút được chọn */
@@ -671,7 +675,7 @@ nav {
 }
 
 
-/* Product color - Màu sắc sản phẩm*/
+/* Product color - Màu sản phẩm */
 .color-button {
   border: none;
   cursor: pointer;
@@ -681,18 +685,19 @@ nav {
   width: 60px;
   gap: 10px;
   transition: transform 0.3s ease-in-out;
+  border: 1px solid #ddd;
 }
 .color-button:hover {
   transform: scale(1.1); 
 }
 .color-button:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 .color-button:focus {
   box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
 }
 .color-button-selected {
-  transform: scale(0.9); 
+  transform: scale(0.95); 
   box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.25);
 }
 
@@ -713,11 +718,10 @@ nav {
   background-color: #ddd;
   cursor: pointer;
 }
-
 .size-button:hover {
   background-color: #bbb;
+  transform: scale(1.1);
 }
-
 .size-button.selected {
   background-color: #c4b3ad;
   color: white;
@@ -1069,6 +1073,7 @@ nav {
   align-self: flex-start;
   margin-left: 16px;
   margin-top: 30px;
+  font-size: 0.8rem;
 }
 .top-btn:hover {
   background-color: #392a27;
@@ -1185,41 +1190,3 @@ nav {
 }
 
 
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
