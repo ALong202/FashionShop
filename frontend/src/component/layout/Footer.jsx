@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="footer content">
         <div className="footer-content">
           <div className="row">
-            <div className="footer-column footer-column1">
+            <div className="footer-column footer-column1 col-12 col-md-3">
               <div className="footer-item">
                 <h4 className="footer-logo">
                   <a title="FashionShop" href="https://FashionShop.vn/"> 
@@ -27,7 +27,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="footer-column footer-column2">
+            <div className="footer-column footer-column2 col-12 col-md-3">
               <div className="footer-item">
                 <h4 className="footer-title active">GIỚI THIỆU FASHIONSHOP</h4>
                 <ul className="footer-links">
@@ -39,7 +39,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="footer-column footer-column3">
+            <div className="footer-column footer-column3 col-12 col-md-3">
               <div className="footer-item">
                 <h4 className="footer-title active">HỖ TRỢ KHÁCH HÀNG</h4>
                 <ul className="footer-links">
@@ -52,7 +52,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="footer-column footer-column4">
+            <div className="footer-column footer-column4 col-12 col-md-3">
               <div className="footer__info">
                 <div className="footer-title"><span className="logo-title">KẾT NỐI</span></div>
                 <ul className="footer-social flex-wrap">

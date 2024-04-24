@@ -442,8 +442,13 @@ nav {
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
-  margin-top: 30px;
+  margin-top: 10px;
   border-top: 1px solid #cfd3cb;
+}
+@media (min-width: 768px) {
+  .page-footer {
+    margin-top: 30px;
+  }
 }
 .page-footer a {
   color: #656565;
@@ -453,9 +458,14 @@ nav {
   color: #c9ae63;
 }
 .page-footer .footer-content {
-  padding: 20px 16px 38px;
+  padding: 10px 16px 10px;
   margin-bottom: 0 !important;
   border: none !important;
+}
+@media (min-width: 768px) {
+  .page-footer .footer-content {
+    padding: 20px 16px 38px;
+  }
 }
 .page-footer .footer-bottom {
   padding: 6px 16px 9px;
@@ -605,7 +615,7 @@ nav {
 .page-footer .footer-column1 .footer-item {
   max-width: 466px;
 }
-.page-footer .footer-column2 {
+/* .page-footer .footer-column2 {
   width: 20.0%;
 }
 .page-footer .footer-column3 {
@@ -616,9 +626,27 @@ nav {
 }
 .page-footer .footer-copyright {
   padding: 0;
+} */
+
+.page-footer .footer-column1,
+.page-footer .footer-column2,
+.page-footer .footer-column3,
+.page-footer .footer-column4 {
+  width: 100%;
 }
 
-
+@media (min-width: 768px) {
+  .page-footer .footer-column1 {
+    width: 33.5%;
+  }
+  .page-footer .footer-column2,
+  .page-footer .footer-column3 {
+    width: 20.0%;
+  }
+  .page-footer .footer-column4 {
+    width: 26.5%;
+  }
+}
 
 
 
@@ -680,9 +708,19 @@ nav {
 .greenColor {
   color: green !important;
 }
-
+/* khoản cách từ hình chi tiết sản phẩm đến header */
 #product_image {
-  margin-top: 9rem;
+  margin-top: 0rem; 
+}
+@media (min-width: 768px) {
+  #product_image {
+    margin-top: 6rem;
+  }
+}
+@media (min-width: 1366px) {
+  #product_image {
+    margin-top: 9rem;
+  }
 }
 
 
@@ -1088,8 +1126,13 @@ nav {
   display: inline-block;
   align-self: flex-start;
   margin-left: 16px;
-  margin-top: 30px;
+  margin-top: 0px;
   font-size: 0.8rem;
+}
+@media (min-width: 768px) {
+  .top-btn {
+    margin-top: 30px;
+  }
 }
 .top-btn:hover {
   background-color: #392a27;
@@ -1171,7 +1214,12 @@ nav {
 
 .filter {
   /* margin-top: 5.8rem; */
-  margin-top: 8rem;
+  margin-top: 1rem;
+}
+@media (min-width: 768px) {
+  .filter {
+    margin-top: 8rem;
+  }
 }
 
 /* Sidebar */
