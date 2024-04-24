@@ -160,6 +160,14 @@ nav {
   vertical-align: middle;
 }
 
+/* Account droplist */
+.dropdown-item {
+  background-color: #f9f9f9;
+}
+.dropdown-item:hover {
+  background-color: #e0e9f0;
+}
+
 #search_btn {
   /* background-color: #febd69; */
   background-color: #69544a;
@@ -872,15 +880,18 @@ nav {
 
 .wrapper form .btn,
 .fetch-btn {
-  background-color: #fa9c23;
+  /* background-color: #fa9c23;
+  color: black; */
+  background-color: #69544a;
+  color: white;
   border-color: #fa9c23;
-  color: black;
   margin-top: 1rem;
 }
 
 .fetch-btn:hover {
   background-color: #fa9c23;
   color: black;
+  transform: scale(1.1);
 }
 
 .wrapper form a {
@@ -920,7 +931,9 @@ nav {
   outline: 0;
   box-shadow: none;
 }
-
+.btn:hover {
+  transform: scale(1.1);
+}
 
 
 .username {
@@ -1170,10 +1183,10 @@ nav {
 }
 
 .list-group-item.active {
-  background-color: #f3f4f6;
-  border-color: #f3f4f6;
+  background-color: #c4b3ad;
+  border-color: #e0e9f0;
   border-radius: 0.3rem;
-  color: #fa9c23;
+  color: white;
 }
 
 .sort-button {
