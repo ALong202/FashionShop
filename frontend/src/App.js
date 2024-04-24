@@ -30,6 +30,7 @@ import ResetPassword from "./component/auth/ResetPassword";
 import MyOrders from "./component/order/MyOrders";
 import OrderDetails from "./component/order/OrderDetails";
 import Invoice from "./component/invoice/Invoice";
+import Top from "./component/layout/Top";
 
 
 
@@ -149,7 +150,9 @@ function App() {
 
       </div>
       
-
+      {/* Nút Scroll to Top */}
+      <Top/>
+              
       {/* Page Footer từ ./component/layout/Header*/}
       <Footer/>
     </div>

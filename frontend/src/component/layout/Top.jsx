@@ -27,7 +27,8 @@ const Top = () => {
   return (
     <>
       {isVisible && (
-      <button onClick={scrollToTop} id="TopBtn" title="Go to top">Quay lại đầu trang</button>
+      
+      <button onClick={scrollToTop} className="top-btn" title="Go to top">Quay lại đầu trang</button>
       )}
 
     </>

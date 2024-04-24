@@ -14,7 +14,8 @@ const ProductItem = ({ product, columnSize }) => {
     <>
     <MetaData title={"Thời trang"} />
 
-      <div className={`col-sm-12 col-md-6 col-lg-${columnSize} my-3`}>
+      {/* <div className={`col-sm-12 col-md-6 col-lg-${columnSize} my-3`}> */}
+      <div className={`col-sm-12 col-md-6 col-lg-3 col-xl-3 my-3`}>
         <div className="card p-3 rounded">
           <img
             className="card-img-top mx-auto"

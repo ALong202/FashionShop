@@ -12,7 +12,7 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 
 export const getProducts = catchAsyncErrors(async (req, res) => {
   // Số sản phẩm trên mỗi trang
-  const resPerPage = 4;
+  const resPerPage = 8;
   // Áp dụng bộ lọc từ yêu cầu API
   const apiFilters = new APIFilters(Product, req.query)
                           .search()

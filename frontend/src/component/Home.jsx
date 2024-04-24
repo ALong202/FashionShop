@@ -31,7 +31,7 @@ const Home = () => {
   const category = searchParams.get("category");
   const subCategory = searchParams.get("subCategory");
   const subSubCategory = searchParams.get("subSubCategory");
-  const priceSort = searchParams.get("priceSort");
+  const sort = searchParams.get("sort");
 
   const params = { page, keyword };
 
@@ -41,7 +41,7 @@ const Home = () => {
   category !== null && (params.category = category);
   subCategory !== null && (params.subCategory = subCategory);
   subSubCategory !== null && (params.subSubCategory = subSubCategory);
-  priceSort != null && (params.priceSort = priceSort);
+  sort != null && (params.sort = sort);
   
   // console.log("====================================")
   // console.log(params);
@@ -80,7 +80,7 @@ const Home = () => {
 
         {/* Nếu kích thước từ medium (768px) thì Filter chiếm 3/12 grid, nhỏ hơn thì full width */}
         {(keyword || category) && (
-          <div className="col-12 col-md-3 mt-5">
+          <div className="col-12 col-md-3 mt-5" >
             <Filters />
           </div>
         )}
@@ -123,8 +123,6 @@ const Home = () => {
               </div>
             </div>
           )} 
-          {/* Nút Scroll to Top */}
-          <Top />
     
 
         </div>
