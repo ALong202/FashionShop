@@ -202,7 +202,7 @@ nav {
   /* background-size: cover;
   background-position: center; */
   width: 100%;
-  height: 60vh; /* vh: Đặt chiều cao theo viewport */
+  height: auto; /* vh: Đặt chiều cao theo viewport */
   object-fit: contain; /* contain: co giãn theo màn hình. cover, giữ chiều cao, khuyết 2 bên*/
 }
 
@@ -231,7 +231,7 @@ nav {
 .w3-container,.w3-panel{padding:0.01em 16px} /* đưa 2 nút mũi tên vào trong hình */
 @media screen and (min-width: 768px) {
   .w3-container, .w3-panel {
-    padding: 0.01em 150px;
+    padding: 0.01em 16px;
   }
 }
 .w3-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)} /* dịch mũi tên và nút tròn từ dưới ngoài hình lên dưới trong hình */
@@ -427,7 +427,7 @@ nav {
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
-  margin-top: 50px;
+  margin-top: 30px;
   border-top: 1px solid #cfd3cb;
 }
 .page-footer a {
@@ -1066,7 +1066,7 @@ nav {
   display: flex; /* Change this to block */
 }
 #TopBtn:hover {
-  background-color: #fa9c23;
+  background-color: #392a27;
   color: white;
   transform: scale(1.1);
 }

@@ -25,6 +25,7 @@ export const productApi = createApi({
           subSubCategory: params?.subSubCategory, //
           "price[gte]": params?.min,
           "price[lte]": params?.max,
+          sort: params?.sort,
         }
       }),
     }),
