@@ -2,7 +2,7 @@
 Để tìm kiếm theo keyword hoặc category, thêm điều kiện kiểm tra category trong JSX
 row g-* để tạo khoảng cách giữa các sản phẩm. Ví dụ: g-0 loại bỏ khoảng cách giữa các sản phẩm, g-1 tạo khoảng cách 1rem giữa các sản phẩm. Mặc định là g (ứng g-3)
 */
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import MetaData from "./layout/MetaData"
 import { useGetProductsQuery } from "../redux/api/productsApi" // auto chèn khi chọn useGetProductsQuery
 import ProductItem from "./product/ProductItem.jsx";
@@ -14,6 +14,7 @@ import { useSearchParams } from "react-router-dom";
 import Filters from "./layout/Filters.jsx";
 import Slider from "./layout/Slider.jsx";
 import Top from "./layout/Top.jsx";
+import Sorters from "./layout/Sorters.jsx";
 
 
 
@@ -30,14 +31,17 @@ const Home = () => {
   const category = searchParams.get("category");
   const subCategory = searchParams.get("subCategory");
   const subSubCategory = searchParams.get("subSubCategory");
+  const priceSort = searchParams.get("priceSort");
 
   const params = { page, keyword };
+
   // cateogry
   min !== null && (params.min = min);
   max !== null && (params.max = max);
   category !== null && (params.category = category);
   subCategory !== null && (params.subCategory = subCategory);
   subSubCategory !== null && (params.subSubCategory = subSubCategory);
+  priceSort != null && (params.priceSort = priceSort);
   
   // console.log("====================================")
   // console.log(params);
@@ -65,7 +69,6 @@ const Home = () => {
 
   if (isLoading) return <Loader />
 
-  
   return (
       <>
       <MetaData title={"Cửa hàng thời trang"} />
@@ -84,17 +87,18 @@ const Home = () => {
         {/* Nếu kích thước từ medium (768px) thì Sản phẩm chiếm 9/12 grid, nhỏ hơn thì full width */}
         <div className={keyword || category ? "col-12 col-md-9": "col-12 col-md-12 "}>
           <h1 id="products_heading" className="text-secondary">
-            {keyword || category ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Sản phẩm nổi bật"}
-            
+            {keyword || category ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Sản phẩm nổi bật"}            
           </h1>
 
+          <Sorters />
+
+        
           <section id="products" className="mt-5">
             <div className="row g-1">
               {data?.products?.map((product) => (
                 <ProductItem product = {product} columnSize={columnSize} />
               )) }
-              
-
+            
             </div>
           </section>
 
@@ -119,20 +123,9 @@ const Home = () => {
               </div>
             </div>
           )} 
-
-          
+          {/* Nút Scroll to Top */}
           <Top />
-          {/* Nút quay lại đầu trang */}
-          {/* <a href="#" id="navBackToTop" aria-label="Back to top" onClick={(e) => {e.preventDefault(); window.scroll({top: 0, behavior: 'smooth'});}}>
-            <div className="navFooterBackToTop">
-              <span className="navFooterBackToTopText">
-                Quay lại đầu trang
-              </span>
-            </div>
-          </a> */}
-
-
-          
+    
 
         </div>
       </div>

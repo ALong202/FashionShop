@@ -68,21 +68,24 @@ const Slider = () => {
       <img className="mySlides" src="../images/Slider/storeSystem.jpg" /> */}
       <img 
         className="mySlides" 
-        srcset="../images/Slider/saleOff.jpg 1024w, ../images/Slider/saleOff.jpg 2048w"
-        sizes="(max-width: 1024px) 1024px, 2048px"
+        srcset="../images/Slider/saleOff.jpg 1024w, ../images/Slider/saleOff.svg 2048w"
+        sizes="(max-width: 1366px) 80vw, 100vw"
         src="../images/Slider/saleOff.jpg" 
+        layout="responsive"
       />
       <img 
         className="mySlides" 
         srcset="../images/Slider/freeship-t04.jpg 1024w, ../images/Slider/freeship-t04.svg 2048w"
-        sizes="(max-width: 1024px) 1024px, 2048px"
+        sizes="(max-width: 1366px) 800vw, 100vw"
         src="../images/Slider/freeship-t04.jpg" 
+        layout="responsive"
       />
       <img 
         className="mySlides" 
         srcset="../images/Slider/storeSystem.jpg 1024w, ../images/Slider/storeSystem.svg 2048w"
-        sizes="(max-width: 1024px) 1024px, 2048px"
+        sizes="(max-width: 1366px) 80vw, 100vw"
         src="../images/Slider/storeSystem.jpg" 
+        layout="responsive"
       />
 
       <div className="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style={{width: '100%'}}>

@@ -1,7 +1,7 @@
 export const PRODUCT_CATEGORIES = [
   "Nam",
   "Nữ", 
-  "Trẻ em"
+  // "Trẻ em"
 ]
 
 export const PRODUCT_SUBCATEGORIES = {
