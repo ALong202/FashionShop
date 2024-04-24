@@ -350,6 +350,9 @@ nav {
   font-size: 0.9rem;
   color: black;
 }
+#cart:hover {
+  transform: scale(1.1);
+}
 
 .cart-icon {
  color: #392a27;

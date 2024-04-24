@@ -11,6 +11,8 @@ import { setCartItem } from "../../redux/features/cartSlice";
 import { colorMap } from "../../constants/constants";
 import NewReview from "../reviews/NewReview";
 import ListReviews from "../reviews/ListReviews";
+import Zoom from "react-medium-image-zoom"
+import "react-medium-image-zoom/dist/styles.css"
 
 
 const ProductDetails = () => {
@@ -107,14 +109,16 @@ const ProductDetails = () => {
     <div className="row d-flex justify-content-around">
       <div className="col-12 col-lg-5 img-fluid" id="product_image">
         <div className="p-3">
-          <img
-            className="d-block w-100"
-            src={activeImg}
-            alt={product?.name}
-            width="340"
-            height="390"
-            style={{ objectFit: 'contain', maxHeigth: "0%"}}
-          />
+          <Zoom>
+            <img
+              className="d-block w-100"
+              src={activeImg}
+              alt={product?.name}
+              width="340"
+              height="390"
+              style={{ objectFit: 'contain', maxHeigth: "0%"}}
+            />
+          </Zoom>
         </div>
         <div className="row justify-content-start mt-5">
           {product?.images?.map((img) => (
