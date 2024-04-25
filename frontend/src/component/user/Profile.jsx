@@ -13,14 +13,17 @@ const Profile = () => {
         <div className="col-12 col-md-3">
           <figure className="avatar avatar-profile">
             <Zoom>
-              <img
-                className="rounded-circle img-fluid"
-                src={
-                  user?.avatar ? user?.avatar?.url
-                  : "/images/default_avatar.jpg"
-                }
-                alt={user?.name}
-              />
+              <div class = "avatar-wrapper">
+                <img
+                  className="rounded-circle img-fluid"
+                  src={
+                    user?.avatar ? user?.avatar?.url
+                    : "/images/default_avatar.jpg"
+                  }
+                  alt={user?.name}
+                />
+
+              </div>
 
             </Zoom>
           </figure>
