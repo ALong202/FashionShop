@@ -231,7 +231,7 @@ const ProductDetails = () => {
           <NewReview productId = {product?._id} />
         ) : (
           <div className="alert alert-danger my-5" type="alert">
-            Đăng nhập để xem đánh giá.
+            Hãy đăng nhập và mua hàng để có thể đánh giá đơn hàng nhé bạn ^^
           </div>
         )}
       </div>
