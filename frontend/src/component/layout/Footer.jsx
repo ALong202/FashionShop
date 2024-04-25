@@ -1,4 +1,7 @@
-// 'racfe' để tạo functional component với export
+/* 'racfe' để tạo functional component với export
+class="img-fluid" để responsive image
+
+*/
 import React from 'react'
 
 const Footer = () => {
@@ -61,7 +64,7 @@ const Footer = () => {
                   <li className="youtube"><a title="FashionShop" href="https://www.youtube.com/c/FashionShop/featured">&nbsp;</a></li>
                 </ul>
                 <div className="footer-title"><span className="logo-title">Phương thức thanh toán</span></div>
-                <div className="pay"><img src="/../images/pay.png" alt="" className=""/></div>
+                <div className="pay"><img src="/../images/pay.png" alt="" className="img-fluid"/></div>
               </div>
             </div>
           </div>
