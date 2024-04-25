@@ -34,7 +34,7 @@ const SideMenu = () => {
   };
 
   return (
-    <div className="list-group mt-5 pl-4">
+    <div className="list-group mt-2 mt-md-3 mt-lg-5 pl-4">
       {menuItems?.map((menuItem, index) => (
         <Link
           key={index}
