@@ -4,7 +4,7 @@ import SideMenu from "./SideMenu"
 const UserLayout = ({ children }) => {
   return (
     <div>
-      <div className="mt-2 mb-4 py-4">
+      <div className="mt-2 mt-md-3 mb-0 mb-md-2 py-2 py-md-4">
         <h2 className="text-center fw-bolder">Tài khoản cá nhân</h2>
       </div>
 
