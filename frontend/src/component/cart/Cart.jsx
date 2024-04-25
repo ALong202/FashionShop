@@ -96,7 +96,7 @@ const Cart =() => {
                       src={item?.image}
                       alt="FashionShop"
                       height="180"
-                      width="150"
+                      width="100"
                     />
                   </div>
 
@@ -175,7 +175,7 @@ const Cart =() => {
               <hr />
               {/*Thêm onClick và hàm xử lý khi chuyển sang trang thanh toán ở đây */ }
               <button id="checkout_btn" className="btn btn-primary w-100" onClick={checkoutHandler}>
-                Thanh toán
+                Đặt hàng
               </button>
             </div>
           </div>
