@@ -44,90 +44,95 @@ const Invoice = () => {
           <i className="fa fa-print"></i> Tải về Hóa Đơn
         </button>
       </div>
-      <div id="order_invoice" className="p-3 border border-secondary">
-        <header className="clearfix">
-          <div id="logo">
-            <img src="/images/Logo/png/logo-no-background.png" alt="FashionShop Logo" />
-          </div>
-          <h1>Hóa Đơn Số {order?._id}</h1>
-          <div id="company" className="clearfix">
-            <div>FashionShop</div>
-            <div>
-              Hàn Thuyên,
-              <br />
-              KP6, Linh Trung, Thủ Đức, HCM
+
+      <div style={{ width: '100%', margin: 'auto', overflowX: 'auto' }}>
+        <div id="order_invoice" className="p-3 border border-secondary">
+          <header className="clearfix">
+            <div id="logo">
+              <img src="/images/Logo/png/logo-no-background.png" alt="FashionShop Logo" />
             </div>
-            <div>(0999) 113-114</div>
-            <div>
-              <a href="mailto:info@fashionshop.com">info@fashionshop.com</a>
+            <h1>Hóa Đơn Số {order?._id}</h1>
+            <div id="company" className="clearfix">
+              <div>FashionShop</div>
+              <div>
+                Hàn Thuyên,
+                <br />
+                KP6, Linh Trung, Thủ Đức, HCM
+              </div>
+              <div>(0999) 113-114</div>
+              <div>
+                <a href="mailto:info@fashionshop.com">info@fashionshop.com</a>
+              </div>
             </div>
-          </div>
-          <div id="project">
-          <div><span>KHÁCH HÀNG</span> {user?.name}</div>
-            <div><span>EMAIL</span> {user?.email}</div>
-            <div><span>ĐIỆN THOẠI</span> {shippingInfo?.phoneNo}</div>
-            <div>
-              <span>ĐỊA CHỈ</span> {shippingInfo?.address}
+            <div id="project">
+            <div><span>KHÁCH HÀNG</span> {user?.name}</div>
+              <div><span>EMAIL</span> {user?.email}</div>
+              <div><span>ĐIỆN THOẠI</span> {shippingInfo?.phoneNo}</div>
+              <div>
+                <span>ĐỊA CHỈ</span> {shippingInfo?.address}
+              </div>
+              <div><span>NGÀY MUA</span> {new Date(order?.createdAt).toLocaleString("vi-VN")}</div>
+              <div><span>THANH TOÁN</span> {paymentInfo?.status}</div>
             </div>
-            <div><span>NGÀY MUA</span> {new Date(order?.createdAt).toLocaleString("vi-VN")}</div>
-            <div><span>THANH TOÁN</span> {paymentInfo?.status}</div>
-          </div>
-        </header>
-        <main>
-          <table className="mt-5">
-            <thead>
-              <tr>
-                <th className="service">Mã sản phẩm</th>
-                <th className="desc">Tên sản phẩm</th>
-                <th>Đơn giá</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orderItems?.map((item) => (
+          </header>
+
+          <main>
+            <table className="mt-5">
+              <thead>
                 <tr>
-                  <td className="service">{item?.product }</td>
-                  <td className="desc">{item?.name} - Màu: {item?.selectedColor} - Kích thước: {item?.selectedSize}</td>
-                  <td className="unit">{item?.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-                  <td className="qty">{item?.quantity}</td>
-                  <td className="total">{(item?.price * item?.quantity).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                  <th className="service">Mã sản phẩm</th>
+                  <th className="desc">Tên sản phẩm</th>
+                  <th>Đơn giá</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền</th>
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {orderItems?.map((item) => (
+                  <tr>
+                    <td className="service">{item?.product }</td>
+                    <td className="desc">{item?.name} - Màu: {item?.selectedColor} - Kích thước: {item?.selectedSize}</td>
+                    <td className="unit">{item?.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                    <td className="qty">{item?.quantity}</td>
+                    <td className="total">{(item?.price * item?.quantity).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                  </tr>
+                ))}
 
-              <tr>
-                <td colspan="4">
-                  <b>Tiền hàng</b>
-                </td>
-                <td className="total">{order?.itemsPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-              </tr>
+                <tr>
+                  <td colspan="4">
+                    <b>Tiền hàng</b>
+                  </td>
+                  <td className="total">{order?.itemsPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                </tr>
 
-              <tr>
-                <td colspan="4">
-                  <b>Phí vận chuyển</b>
-                </td>
-                <td className="total">{order?.shippingAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-              </tr>
+                <tr>
+                  <td colspan="4">
+                    <b>Phí vận chuyển</b>
+                  </td>
+                  <td className="total">{order?.shippingAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                </tr>
 
-              <tr>
-                <td colspan="4" className="grand total">
-                  <b>TỔNG THANH TOÁN</b>
-                </td>
-                <td className="grand total">{order?.totalAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="notices">
-            <div>Lưu ý:</div>
-            <div className="notice">
-              Hàng mua rồi miễn đổi trả!
+                <tr>
+                  <td colspan="4" className="grand total">
+                    <b>TỔNG THANH TOÁN</b>
+                  </td>
+                  <td className="grand total">{order?.totalAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div id="notices">
+              <div>Lưu ý:</div>
+              <div className="notice">
+                Hàng mua rồi vui lòng miễn đổi trả!
+              </div>
             </div>
-          </div>
-        </main>
-        <footer>
-          Hóa đơn cho Bộ IE104 lập...vô giá trị!
-        </footer>
+          </main>
+          <footer>
+            Hóa đơn cho Bộ IE104 lập...vô giá trị!
+          </footer>
+        </div>
       </div>
+      
     </div>
     </>
   )

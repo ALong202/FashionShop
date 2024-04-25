@@ -2,6 +2,13 @@
   content: "";
   display: table;
   clear: both;
+
+}
+
+#order_invoice {
+  width: 1080px; /* Chiếm 80% chiều rộng của màn hình */
+  margin: auto; /* Để phần tử nằm giữa màn hình */
+  overflow-x: auto;
 }
 
 .order-invoice a {
@@ -12,6 +19,11 @@
 .order-invoice header {
   padding: 10px 0;
   margin-bottom: 30px;
+
+
+  width: 100%;
+
+
 }
 
 #logo {

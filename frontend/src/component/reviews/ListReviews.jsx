@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings'
 const ListReviews = ({reviews}) => {
   return (
     <>
-      <div className="reviews w-75">
+      <div className="reviews w-100">
       <h3>Các đánh giá từ người mua:</h3>
       <hr />
       {reviews?.map((review) => (        

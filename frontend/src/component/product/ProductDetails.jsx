@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useGetProductDetailsQuery } from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
+import { useGetProductDetailsQuery, useGetProductsQuery } from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
 // frames hook dùng để lấy id từ params
-import { useParams } from "react-router-dom"; // auto chèn khi chọn useParams
+import { useParams, useSearchParams } from "react-router-dom"; // auto chèn khi chọn useParams
 // import toast from "react-hot-toast";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
@@ -13,9 +13,13 @@ import NewReview from "../reviews/NewReview";
 import ListReviews from "../reviews/ListReviews";
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
+import ProductItem from "./ProductItem";
+import CustomPagination from "../layout/CustomPagination";
 
 
 const ProductDetails = () => {
+
+
   const params = useParams();
 
   const dispatch = useDispatch();
@@ -227,6 +231,9 @@ const ProductDetails = () => {
         <hr />
         <p id="product_seller mb-3">Sản xuất bởi: <strong>FashionShop</strong></p>
 
+
+
+
         {isAuthenticated ? (
           <NewReview productId = {product?._id} />
         ) : (
@@ -239,6 +246,13 @@ const ProductDetails = () => {
     {product?.reviews?.length > 0 && (
       <ListReviews reviews = {product?.reviews} />
     )}
+
+      <div className={window.location.search.includes('category=') ? "col-12 col-md-9": "col-12 col-md-12 "}>
+          <h1 id="products_heading" className="text-secondary">
+            {"Sản phẩm gợi ý"}            
+          </h1>
+      </div>
+
     </>
   )
 }

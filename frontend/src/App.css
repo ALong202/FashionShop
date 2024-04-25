@@ -844,15 +844,19 @@ nav {
 }
 
 #card_item_price {
-  color: #febd69;
+  /*color: #febd69;*/
   font-weight: bold;
   font-size: 1.4rem;
 }
 
+#shipping_btn,
 #checkout_btn,
 .review-btn {
-  background-color: #fa9c23;
-  border-color: #fa9c23;
+  /*background-color: #fa9c23;*/
+  background-color: #69544a;
+  border: none;
+  /*border-color: #fa9c23;*/
+  color: white;
   margin-top: 2rem;
   border-radius: 5rem;
 }
@@ -1024,7 +1028,8 @@ nav {
 }
 
 .active-step {
-  background: #fa9c23;
+  /*background: #fa9c23;*/
+  background: #69544a;
   color: #fff;
 }
 
@@ -1032,7 +1037,8 @@ nav {
   float: left;
   width: 0;
   border-top: 20px solid transparent;
-  border-left: 15px solid #fa9c23;
+  /*border-left: 15px solid #fa9c23;*/
+  border-left: 15px solid #69544a;
   border-bottom: 20px solid transparent;
   margin-left: -1px;
 }
@@ -1040,9 +1046,11 @@ nav {
 .triangle2-active {
   width: 0;
   float: left;
-  border-top: 20px solid #fa9c23;
+  /*border-top: 20px solid #fa9c23;*/
+  border-top: 20px solid #69544a;
   border-left: 15px solid #fff;
-  border-bottom: 20px solid #fa9c23;
+  /*border-bottom: 20px solid #fa9c23;*/
+  border-bottom: 20px solid #69544a;
   margin-right: -1px;
 }
 

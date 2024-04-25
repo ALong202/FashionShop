@@ -86,7 +86,7 @@ const OrderDetails = () => {
               <td>{order?.paymentMethod}</td>
             </tr>
             <tr>
-              <th scope="row">Stripe ID</th>
+              <th scope="row">Mã thanh toán Tín dụng</th>
               <td>{order?.paymentInfo?.id || "Không có"}</td>
             </tr>
             <tr>
@@ -106,8 +106,8 @@ const OrderDetails = () => {
               <img
                 src={item?.image}
                 alt={item?.name}
-                height="65"
-                width="80"
+                height="100"
+                width="100"
               />
             </div>
 

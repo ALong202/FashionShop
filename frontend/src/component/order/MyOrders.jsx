@@ -55,7 +55,7 @@ const MyOrder = () => {
           sort: "asc",
         },
         {
-          label: "Actions",
+          label: "Xem chi tiết",
           field: "actions",
           sort: "asc",
         },
@@ -94,16 +94,23 @@ const MyOrder = () => {
     <div>
       <MetaData title = {"Danh sách đơn hàng"} />
 
-      <h1 class="my-5">{data?.orders?.length} Đơn hàng</h1>
+      <div style={{width: '80%', margin: 'auto', overflowX: 'auto'}}>
 
-      <MDBDataTable 
-        data = {setOrders()}
-        className = "px-3"
-        bordered
-        striped
-        hover
-      />
-        
+        <div style={{ width: '1080px', margin: 'auto', overflowX: 'auto' }}>
+          <div>
+              <h1 class="my-5">{data?.orders?.length} Đơn hàng</h1>
+            </div>
+
+              <MDBDataTable 
+                data = {setOrders()}
+                className = "px-3"
+                bordered
+                striped
+                hover
+                noBottomColumns                
+              />
+          </div>
+        </div>
 
 
     </div>
