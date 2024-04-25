@@ -29,7 +29,7 @@ const CheckoutSteps = ({shipping, confirmOrder, payment}) => {
         {confirmOrder? (
           <Link
             to="/confirm_order"
-            className="float-right mt-2 mt-md-0 col-12 col-md-4 col-lg-2"
+            className="float-right mt-2 mt-md-0 col-12 col-md-3 col-lg-2"
           >
             <div className="triangle2-active"></div>
             <div className="step active-step">Đơn hàng</div>
@@ -38,7 +38,7 @@ const CheckoutSteps = ({shipping, confirmOrder, payment}) => {
         ) : (
           <Link
             to="#!"
-            className="float-right mt-2 mt-md-0 col-12 col-md-4 col-lg-2"
+            className="float-right mt-2 mt-md-0 col-12 col-md-3 col-lg-2"
             disabled
           >
             <div className="triangle2-incomplete"></div>
@@ -69,6 +69,7 @@ const CheckoutSteps = ({shipping, confirmOrder, payment}) => {
         )}
 
       </div>
+
 
     </>
   )
