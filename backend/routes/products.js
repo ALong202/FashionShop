@@ -38,14 +38,18 @@ router.route("/admin/products/:id").delete(deleteProduct);
 
 router
   .route("/reviews")
+  // Lấy đánh giá sản phẩm
   .get(isAuthenticatedUser, getProductReviews)
+  // Tạo đánh giá sản phẩm
   .put(isAuthenticatedUser, createProductReview);
 
 router
   .route("/admin/reviews")
+  // Xóa đánh giá (chỉ admin)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteReview);
 
 router
+// Kiểm tra người dùng có thể đánh giá không
   .route("/can_review").get(isAuthenticatedUser, canUserReview);
 
 
