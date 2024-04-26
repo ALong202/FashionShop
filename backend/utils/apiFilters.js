@@ -21,10 +21,7 @@ class APIFilters{
           : {};
           const category = this.queryStr.category; // Assuming category is a top-level string
           if (category) {
-            // // Hung: Initialize keyword.category as an object if it doesn't exist
-            // keyword.category = keyword.category || {}; // Hung
-            // keyword.category.name = category; // Filter by category name
-            keyword['category.name'] = category; // Filter by category name
+            keyword['category.name'] = category; // Lọc theo tên category
           }
           const subCategory = this.queryStr.subCategory;
             if (subCategory) {
@@ -55,19 +52,7 @@ class APIFilters{
         // Thay thế các toán tử so sánh trong chuỗi JSON bằng cú pháp của MongoDB
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
         // Thực hiện tìm kiếm dựa trên các điều kiện lọc và gán kết quả vào biến 'query'
-        
-        // Kiểm tra xem category có tồn tại và có trường name không trước khi truy cập
-        // console.log('Before:');
-        // console.log(this.queryStr);
-        // console.log(this.queryStr.category);
-        // console.log('After:');
-
-        // if (this.queryStr.category && typeof this.queryStr.category === 'object' && this.queryStr.category.name) {
-        //     this.query = this.query.find({
-        //         'category.name': this.queryStr.category.name
-        //     });
-        // }
-
+  
         if (this.queryStr.category) {
             this.query = this.query.find({ 'category.name': this.queryStr.category });
         }
@@ -79,28 +64,20 @@ class APIFilters{
 
         return this;
     }
+    // Phương thức phân trang
     pagination(resPerPage) {
         const currentPage = Number(this.queryStr.page) || 1;
         const skip = resPerPage * (currentPage - 1);
         this.query = this.query.limit(resPerPage).skip(skip);
         return this;
     }
-
-
-    sortByPrice() {
-        if (this.queryStr.priceSort) {
-            const sort = this.queryStr.priceSort === 'asc' ? 1 : -1;
-            this.query = this.query.sort({ price: sort });
-        }
-        return this;
-    }
-
+    // Phương thức sắp xếp
     sorting() {
         if (this.queryStr.sort) {
             const sortBy = this.queryStr.sort.split(",").join(" ");
             this.query = this.query.sort(sortBy);
         }
-        else{
+        else{// Mặc định sắp xếp theo thời gian tạo (createdAt)
             this.query = this.query.sort("-createdAt");
         }
         return this;

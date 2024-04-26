@@ -50,12 +50,18 @@
         // Tạo lỗi mới với mã trạng thái 400 và thông báo được tạo
         error = new ErrorHandler(message, 400);
     }
-
+    // Trả về thông tin chi tiết lỗi trong môi trường phát triển
     if (process.env.NODE_ENV === "DEVELOPMENT") {
         res.status(error.statusCode).json({
             message: error.message,
             error:err,
             stack: err?.stack,
+        });
+    }
+    // Trả về thông báo lỗi chung trong môi trường sản xuất
+    if (process.env.NODE_ENV === "PRODUCTION") {
+        res.status(error.statusCode).json({
+            message: error.message,
         });
     }
 

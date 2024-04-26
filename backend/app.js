@@ -1,17 +1,17 @@
-import express from "express";// File nhập liệu chính của backend
+import express from "express";// Import thư viện express để tạo máy chủ HTTP
 const app = express();// Tạo 1 dối tượng ứng dụng Express mới
-import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser"; // Import thư viện cookie-parser để xử lý cookie
 import dotenv from "dotenv"; // Một thư viện của JavaScript load các biến môi trường từ tập tin '.env' vào application's runtime environment
-import { connectDatabase } from "./config/dbConnect.js"; // tự hiện khi gõ lệnh connectDatabase()
-import errorsMiddleware from "./middlewares/errors.js";
-import getRawBody from 'raw-body';
+import { connectDatabase } from "./config/dbConnect.js"; // Import hàm connectDatabase từ tệp dbConnect.js
+import errorsMiddleware from "./middlewares/errors.js";// Import middleware xử lý lỗi từ tệp errors.js
+import getRawBody from 'raw-body';// Import thư viện getRawBody để lấy nội dung yêu cầu HTTP
 
 
 
-
+// Bắt sự kiện lỗi không được xử lý
 process.on("uncaughtException", (err) =>{
-  console.log(`ERROR: ${err}`);
-  console.log("shutting down due to uncatch exception");
+  console.log(`LỖI: ${err}`);
+  console.log("shutting down do lỗi không được xử lý");
   process.exit(1);
 })
 
