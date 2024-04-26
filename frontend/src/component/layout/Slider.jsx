@@ -68,22 +68,22 @@ const Slider = () => {
       <img className="mySlides" src="../images/Slider/storeSystem.jpg" /> */}
       <img 
         className="mySlides" 
-        srcset="../images/Slider/saleOff.jpg 1024w, ../images/Slider/saleOff.svg 2048w"
-        sizes="(max-width: 1366px) 80vw, 100vw"
+        srcset="../images/Slider/saleOff.jpg 1360w, ../images/Slider/saleOff.svg 1520w"
+        sizes="(max-width: 1366px) 100vw, 100vw"
         src="../images/Slider/saleOff.jpg" 
         layout="responsive"
       />
       <img 
         className="mySlides" 
-        srcset="../images/Slider/freeship-t04.jpg 1024w, ../images/Slider/freeship-t04.svg 2048w"
-        sizes="(max-width: 1366px) 800vw, 100vw"
+        srcset="../images/Slider/freeship-t04.jpg 1360w, ../images/Slider/freeship-t04.svg 1520w"
+        sizes="(max-width: 1366px) 100vw, 100vw"
         src="../images/Slider/freeship-t04.jpg" 
         layout="responsive"
       />
       <img 
         className="mySlides" 
-        srcset="../images/Slider/storeSystem.jpg 1024w, ../images/Slider/storeSystem.svg 2048w"
-        sizes="(max-width: 1366px) 80vw, 100vw"
+        srcset="../images/Slider/storeSystem.jpg 1360w, ../images/Slider/storeSystem.svg 1520w"
+        sizes="(max-width: 1366px) 100vw, 100vw"
         src="../images/Slider/storeSystem.jpg" 
         layout="responsive"
       />
