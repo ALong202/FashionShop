@@ -6,6 +6,11 @@ import { connectDatabase } from "./config/dbConnect.js"; // Import hàm connectD
 import errorsMiddleware from "./middlewares/errors.js";// Import middleware xử lý lỗi từ tệp errors.js
 import getRawBody from 'raw-body';// Import thư viện getRawBody để lấy nội dung yêu cầu HTTP
 
+import path from "path"; // Import thư viện path để xử lý đường dẫn
+import { fileURLToPath } from "url"; // Import hàm fileURLToPath từ thư viện url
+const __filename = fileURLToPath(import.meta.url); // Lấy đường dẫn tệp hiện tại
+const __dirname = path.dirname(__filename); // Lấy đường dẫn thư mục hiện tại
+
 
 
 // Bắt sự kiện lỗi không được xử lý
@@ -32,6 +37,13 @@ import orderRoutes from "./routes/order.js";
 app.use("/api", productRoutes);
 app.use("/api", authRoutes);
 app.use("/api", orderRoutes);
+
+if(process.env.NODE_ENV === "PRODUCTION"){
+  app.use(express.static(path.join(__dirname, "../frontend/build"))); // Sử dụng thư mục build của frontend
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html")); // Trả về file index.html
+  });
+}
 
 app.use(errorsMiddleware);
 
