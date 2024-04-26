@@ -12,7 +12,7 @@ const NotFound = () => {
         />
       </div>
       <h5 className="text-center">
-        Page Not Found. Go to <a href="/">Homepage</a>
+        Không tìm thấy trang. Vui lòng quay lại <a href="/">Trang chủ</a>
       </h5>
     </div>
   )
