@@ -3,7 +3,7 @@ container-fluid sẽ chiếm 100% chiều rộng ở tất cả breakpoint, còn
 */
 import "./App.css";
 // React router DOM quản lý routing. Router xác định các routes. Route: URL path
-import { BrowserRouter as Router, Routes} from "react-router-dom"
+import { Route, BrowserRouter as Router, Routes} from "react-router-dom"
 
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
 import Top from "./components/layout/Top";
 import useUserRoutes from "./components/routes/userRoutes";
+import NotFound from "./components/layout/NotFound";
 
 
 
@@ -40,6 +41,7 @@ function App() {
       <div className="container-fluid">
         <Routes>
           {userRoutes}
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
       </div>

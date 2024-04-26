@@ -15,6 +15,7 @@ import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
 import ProductItem from "./ProductItem";
 import CustomPagination from "../layout/CustomPagination";
+import NotFound from "../layout/NotFound";
 
 
 const ProductDetails = () => {
@@ -105,6 +106,10 @@ const ProductDetails = () => {
     console.log(cartItem);
   };
 
+  if (error && error?.status === 404) {
+    return <NotFound />
+  }
+
   if (isLoading) return <Loader />
 
 
@@ -177,7 +182,7 @@ const ProductDetails = () => {
           type="button"
           id="cart_btn"
           className="btn btn-primary d-inline ms-4"
-          disabled={product.stock <= 0}
+          disabled={product?.stock <= 0}
           onClick={setItemToCart}
         >
           Thêm vào giỏ
@@ -191,7 +196,7 @@ const ProductDetails = () => {
 
         <p>Màu sắc:
           {/* <div className="color-chooser"> */}
-            {product.color.map((colorName) => (
+            {product?.color.map((colorName) => (
               <button
                 key={colorName}
                 style={{ backgroundColor: colorMap[colorName] }}
@@ -208,7 +213,7 @@ const ProductDetails = () => {
 
         <p>Sizes: 
           <div className="size-buttons">
-            {product.size.map((size, index) => (
+            {product?.size.map((size, index) => (
               <button 
                 key={index} 
                 onClick={() => handleSizeClick(size)}
