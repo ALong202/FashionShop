@@ -20,7 +20,10 @@ process.on("uncaughtException", (err) =>{
   process.exit(1);
 })
 
-dotenv.config({ path: "backend/config/config.env" });
+// Chỉ sử dụng config.env ở Development
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  dotenv.config({ path: "backend/config/config.env" });
+}
 
 // Connect với database
 connectDatabase();
