@@ -66,6 +66,7 @@ Project được cài cài đặt tại `D:/FashionShop`:
    * Live Server
    * markdownlint
    * Prettier - Code formatter
+   * gitignore
 
 ## Lưu ý khi làm việc trong project:
 
