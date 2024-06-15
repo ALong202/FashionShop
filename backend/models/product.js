@@ -45,40 +45,24 @@ const productSchema = new mongoose.Schema(
       },
     ],
 
-    category: {
-      name: {
-        type: String,
-        required: [true, "Vui lòng nhập danh mục sản phẩm"],
-        enum: ["Nữ", "Nam"]
+    variants: [
+      {
+        color: {
+          type: String,
+          required: [true, "Vui lòng nhập màu sản phẩm."],
+          enum: ["Trắng", "Đen", "Đỏ", "Xanh", "Vàng", "Hồng", "Cam", "Xám", "Nâu", "Sọc", "Họa tiết"],
+        },
+        size: {
+          type: String,
+          required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
+          enum: ["S", "M", "L", "F"],
+        },
+        stock: {
+          type: Number,
+          required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
+        },
       },
-      subCategory: {
-        type: String,
-        enum: ["Áo", "Chân váy và đầm","Quần", "Phụ kiện"],
-      },
-      subSubCategory: {
-        type: String,
-        enum: ["Áo khoác","Áo len","Áo polo","Áo sơ mi","Áo thun", "Cà vạt", "Chân váy", "Đầm","Quần tây","Quần bò", "Quần short", "Thắt lưng", "Tất"],
-      },
-    },
-
-    color: {
-      type: [String],
-      required: [true, "Vui lòng nhập màu sản phẩm."],
-      enum: {
-        values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng","Hồng","Cam","Xám","Nâu", "Sọc", "Họa tiết"],
-        message: "Vui lòng chọn một màu hợp lệ (Trắng, Đen, Đỏ, Xanh, Vàng, Hồng, Cam, Xám, Nâu, Sọc, Họa tiết)",
-      },
-    },
-
-    size: {
-      type: [String],
-      required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
-      enum: {
-        values: ["S", "M", "L","F"],
-        message: "Vui lòng chọn một size hợp lệ (S, M, L, F)",
-      },
-    },
-    
+    ],
 
     stock: {
       type: Number,
@@ -141,4 +125,39 @@ export default mongoose.model("Product", productSchema);
 //       }
 //     }
 //   }
+// },
+
+
+// category: {
+//   name: {
+//     type: String,
+//     required: [true, "Vui lòng nhập danh mục sản phẩm"],
+//     enum: ["Nữ", "Nam"]
+//   },
+//   subCategory: {
+//     type: String,
+//     enum: ["Áo", "Chân váy và đầm","Quần", "Phụ kiện"],
+//   },
+//   subSubCategory: {
+//     type: String,
+//     enum: ["Áo khoác","Áo len","Áo polo","Áo sơ mi","Áo thun", "Cà vạt", "Chân váy", "Đầm","Quần tây","Quần bò", "Quần short", "Thắt lưng", "Tất"],
+//   },
+// },
+
+// color: {
+//   type: [String],
+//   required: [true, "Vui lòng nhập màu sản phẩm."],
+//   enum: {
+//     values: ["Trắng", "Đen", "Đỏ", "Xanh","Vàng","Hồng","Cam","Xám","Nâu", "Sọc", "Họa tiết"],
+//     message: "Vui lòng chọn một màu hợp lệ (Trắng, Đen, Đỏ, Xanh, Vàng, Hồng, Cam, Xám, Nâu, Sọc, Họa tiết)",
+//   },
+// },
+
+// size: {
+//   type: [String],
+//   required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
+//   enum: {
+//     values: ["S", "M", "L","F"],
+//     message: "Vui lòng chọn một size hợp lệ (S, M, L, F)",
+//   },
 // },
