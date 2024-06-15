@@ -45,7 +45,23 @@ const productSchema = new mongoose.Schema(
       },
     ],
 
-    variants: [
+    category: {
+      name: {
+        type: String,
+        required: [true, "Vui lòng nhập danh mục sản phẩm"],
+        enum: ["Nữ", "Nam"]
+      },
+      subCategory: {
+        type: String,
+        enum: ["Áo", "Chân váy và đầm","Quần", "Phụ kiện"],
+      },
+      subSubCategory: {
+        type: String,
+        enum: ["Áo khoác","Áo len","Áo polo","Áo sơ mi","Áo thun", "Cà vạt", "Chân váy", "Đầm","Quần tây","Quần bò", "Quần short", "Thắt lưng", "Tất"],
+      },
+    },
+
+    variants: [ // Touple (color, size, stock)
       {
         color: {
           type: String,
@@ -64,9 +80,9 @@ const productSchema = new mongoose.Schema(
       },
     ],
 
-    stock: {
+    sellQty: { // Số lượng bán được
       type: Number,
-      required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
+      required: false,
     },
 
     numOfReviews: {
@@ -78,8 +94,8 @@ const productSchema = new mongoose.Schema(
       {
         user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User", // Chỉ active khi project go-live
-          required: true,  // Chỉ active khi project go-live
+          // ref: "User", // Chỉ active khi project go-live
+          // required: true,  // Chỉ active khi project go-live
         },
         rating: {
           type: Number,
@@ -94,8 +110,8 @@ const productSchema = new mongoose.Schema(
 
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Chỉ active khi project go-live
-      required: true, // Chỉ active khi project go-live
+      // ref: "User", // Chỉ active khi project go-live
+      // required: true, // Chỉ active khi project go-live
     },
   },
   
@@ -128,22 +144,6 @@ export default mongoose.model("Product", productSchema);
 // },
 
 
-// category: {
-//   name: {
-//     type: String,
-//     required: [true, "Vui lòng nhập danh mục sản phẩm"],
-//     enum: ["Nữ", "Nam"]
-//   },
-//   subCategory: {
-//     type: String,
-//     enum: ["Áo", "Chân váy và đầm","Quần", "Phụ kiện"],
-//   },
-//   subSubCategory: {
-//     type: String,
-//     enum: ["Áo khoác","Áo len","Áo polo","Áo sơ mi","Áo thun", "Cà vạt", "Chân váy", "Đầm","Quần tây","Quần bò", "Quần short", "Thắt lưng", "Tất"],
-//   },
-// },
-
 // color: {
 //   type: [String],
 //   required: [true, "Vui lòng nhập màu sản phẩm."],
@@ -160,4 +160,9 @@ export default mongoose.model("Product", productSchema);
 //     values: ["S", "M", "L","F"],
 //     message: "Vui lòng chọn một size hợp lệ (S, M, L, F)",
 //   },
+// },
+
+// stock: {
+//   type: Number,
+//   required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
 // },
