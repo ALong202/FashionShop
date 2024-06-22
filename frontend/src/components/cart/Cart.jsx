@@ -104,7 +104,7 @@ const Cart =() => {
                     <Link to={`/product/${item?.product}`}> {item?.name} </Link>
                     <p>Màu sắc:
                       <div className="color-chooser">
-                        {item?.color.map((colorName) => (
+                        {(item?.color || []).map((colorName) => ( // Nếu item.color không tồn tại thì trả về mảng rỗng
                           <button
                             key={colorName}
                             style={{ backgroundColor: colorMap[colorName] }}
@@ -119,7 +119,7 @@ const Cart =() => {
 
                     <p>Sizes: 
                     <div className="size-buttons">
-                      {item?.size.map((size, index) => (
+                      {(item?.size || []).map((size, index) => ( // nếu item.size không tồn tại thì trả về mảng rỗng
                         <button 
                           key={index} 
                           onClick={() => handleSizeClick(item, size)}
