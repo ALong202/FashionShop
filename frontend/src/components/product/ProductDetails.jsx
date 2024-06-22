@@ -195,27 +195,35 @@ const ProductDetails = () => {
         </p>
 
         <p>Màu sắc:
-          {/* <div className="color-chooser"> */}
-            {product?.color.map((colorName) => (
-              <button
-                key={colorName}
-                style={{ backgroundColor: colorMap[colorName] }}
-                // className="color-button"
-                className={`color-button ${colorName === selectedColor ? 'color-button-selected' : ''}`}
-                disabled={product.stock <= 0}
-                onClick={() => handleColorChange(colorName)}
-              >
-                {colorName}
-              </button>
+            {/* {product?.color.map((colorName) => ( */}
+            {product?.variants
+              .map(variant => variant.color) // Extract color from each variant
+              .filter((value, index, self) => self.indexOf(value) === index) // Remove duplicate colors
+              .map((colorName) => (                         
+                <button
+                  key={colorName}
+                  style={{ backgroundColor: colorMap[colorName] }}
+                  className={`color-button ${colorName === selectedColor ? 'color-button-selected' : ''}`}
+                  disabled={product.stock <= 0}
+                  onClick={() => handleColorChange(colorName)}
+                >
+                  {colorName}
+                </button>
             ))}
           {/* </div> */}
         </p>
 
         <p>Sizes: 
           <div className="size-buttons">
-            {product?.size.map((size, index) => (
+            {/* {product?.size.map((size, index) => ( */}
+            {product?.variants
+              .filter(variant => variant.color === selectedColor) // Filter variants by selected color
+              .map(variant => variant.size) // Extract size from each variant
+              .filter((value, index, self) => self.indexOf(value) === index) // Remove duplicate sizes
+              .map((size) => (
               <button 
-                key={index} 
+                // key={index}
+                key={size} 
                 onClick={() => handleSizeClick(size)}
                 // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
                 className={`size-button ${selectedSize === size ? 'selected' : ''}`}
