@@ -8,6 +8,13 @@ const Dashboard = () => {
   const [startDate, setStartDate] = useState(new Date().setDate(1)); // setDate(1): để mặc định ban đầu là ngày 1 của tháng hiện tại
   const [endDate, setEndDate] = useState(new Date());
 
+  const submitHandler = () => {
+    console.log("====================================");
+    console.log("Print out console the chosen start & end date:\n", new Date(startDate).toISOString());
+    console.log(endDate.toISOString());
+    console.log("====================================");
+  }
+
   return (
     <AdminLayout>
       <div className="d-flex justify-content-start align-items-center">
@@ -36,7 +43,11 @@ const Dashboard = () => {
             className="form-control"
           />
         </div>
-        <button className="btn fetch-btn ms-4 mt-3 px-5">Lọc</button>
+        <button 
+          className="btn fetch-btn ms-4 mt-3 px-5"
+          onClick={submitHandler}
+        >
+          Lọc</button>
       </div>
 
       <div className="row pr-4 my-5">
