@@ -967,8 +967,10 @@ nav {
 }
 
 .fetch-btn:hover {
-  background-color: #fa9c23;
-  color: black;
+  /* background-color: #fa9c23;
+  color: black; */
+  background-color: #69544a;
+  color: white;
   transform: scale(1.1);
 }
 
