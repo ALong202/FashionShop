@@ -74,8 +74,10 @@ const Header = () => {
                 <span className="username">{user?.name.split(' ').pop()}</span>
               </button>
               <div className="dropdown-menu w-100" aria-labelledby="dropDownMenuButton">
-                <Link className="dropdown-item" to="/admin/dashboard"> Dashboard{" "} </Link>
-
+                {user?.role === "admin" && (
+                  <Link className="dropdown-item" to="/admin/dashboard"> Dashboard{" "} </Link>
+                )}
+                
                 <Link className="dropdown-item" to="/me/orders"> Đơn hàng{" "} </Link>
 
                 <Link className="dropdown-item" to="/me/profile"> Tài khoản{" "} </Link>

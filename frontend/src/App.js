@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
 import Top from "./components/layout/Top";
 import useUserRoutes from "./components/routes/userRoutes";
+import useAdminRoutes from "./components/routes/adminRoutes";
 import NotFound from "./components/layout/NotFound";
 
 
@@ -20,6 +21,7 @@ import NotFound from "./components/layout/NotFound";
 function App() {
 
   const userRoutes = useUserRoutes();
+  const adminRoutes = useAdminRoutes();
 
   return (
     <Router>
@@ -41,6 +43,7 @@ function App() {
       <div className="container-fluid">
         <Routes>
           {userRoutes}
+          {adminRoutes}
           <Route path="*" element={<NotFound />} />
         </Routes>
 

@@ -1,30 +1,9 @@
 import React, { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 
-const SideMenu = () => {
+const SideMenu = ({ menuItems }) => {
 
-  const menuItems = [
-    {
-      name: "Hồ sơ cá nhân",
-      "url": "/me/profile",
-      icon: "fas fa-user",
-    },
-    {
-      name: "Cập nhật hồ sơ",
-      "url": "/me/update_profile",
-      icon: "fas fa-user",
-    },
-    {
-      name: "Cập nhật avatar",
-      "url": "/me/upload_avatar",
-      icon: "fas fa-user-circle",
-    },
-    {
-      name: "Cập nhật mật khẩu",
-      "url": "/me/update_password",
-      icon: "fas fa-lock",
-    }
-  ]
+
   const location = useLocation();
   
   const [activeMenuItem, setActiveMenuItem] = useState(location.pathname)
