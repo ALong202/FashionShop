@@ -82,8 +82,7 @@ const productSchema = new mongoose.Schema(
 
     sellQty: { // Số lượng bán được
       type: Number,
-      min: 0,
-      required: false,
+      default: 0,
     },
 
     numOfReviews: {
