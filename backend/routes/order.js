@@ -5,6 +5,7 @@ import {
   allOrders,
   deleteOrder,
   getOrderDetails,
+  getSales,
   myOrders,
   newOrder, 
   updateOrder
@@ -14,6 +15,10 @@ const router = express.Router();
 router.route("/orders/new").post(isAuthenticatedUser, newOrder);
 router.route("/orders/:id").get(isAuthenticatedUser, getOrderDetails);
 router.route("/me/orders").get(isAuthenticatedUser, myOrders);
+// Route chỉ dành cho admin để lấy số Sales
+router
+  .route("/admin/getSales")
+  .get(isAuthenticatedUser, authorizeRoles("admin"), getSales);
 // Route chỉ dành cho admin để quản lý tất cả các đơn hàng
 router
   .route("/admin/orders")

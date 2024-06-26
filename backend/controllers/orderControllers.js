@@ -139,3 +139,48 @@ export const deleteOrder = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+
+async function getSalesData(startDate, endDate) {
+  const salesData = await Order.aggregate([
+    {
+      // Stage 1 - Filter results
+      $match: {
+        createdAt: {
+          $gte: startDate,
+          $lte: endDate,
+        },
+      },
+    },
+    {
+      // Stage 2 - Group data
+      $group: {
+        _id: {
+          date: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+        },
+        totalSales: { $sum: "$totalAmount" },
+        numOrder: { $sum: 1 } // count the number of orders
+      },
+    }
+  ]) // https://www.mongodb.com/docs/manual/aggregation/
+
+  console.log("====================================");
+  console.log(salesData);
+  console.log("====================================");
+}
+
+// Get số Sales  =>  /api/admin/get_sales
+export const getSales = catchAsyncErrors(async (req, res, next) => {
+  const startDate = new Date(req.query.startDate);
+  const endDate = new Date(req.query.endDate);
+
+  startDate.setUTCHours(0,0,0,0); // 0h:0m:0s:0ms
+  endDate.setUTCHours(23,59,59,999); // 23h:59m:59s:999ms
+
+  getSalesData(startDate, endDate);
+
+  // Trả về thành công với mã trạng thái 200
+  res.status(200).json({
+    success: true,
+  });
+});
