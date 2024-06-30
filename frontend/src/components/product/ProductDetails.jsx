@@ -57,6 +57,9 @@ const ProductDetails = () => {
   const handleSizeClick = (size) => {
     setSelectedSize(size);
   };
+
+  const selectedVariant = product?.variants?.find(variant => variant.color === selectedColor && variant.size === selectedSize);
+  const isInStock = selectedVariant && selectedVariant.stock > 0;
   
   const increseQty = () => {
     const count = document.querySelector(".count");
@@ -182,7 +185,7 @@ const ProductDetails = () => {
           type="button"
           id="cart_btn"
           className="btn btn-primary d-inline ms-4"
-          disabled={product?.stock <= 0}
+          disabled={!isInStock} // product?.stock <= 0
           onClick={setItemToCart}
         >
           Thêm vào giỏ
@@ -191,7 +194,8 @@ const ProductDetails = () => {
         <hr />
 
         <p>
-          Tình trạng: <span id="stock_status" className={product?.stock > 0 ? "greenColor" : "redColor"}>{product?.stock > 0 ? "Còn hàng" : "Hết hàng"}</span>
+          {/* Tình trạng: <span id="stock_status" className={product?.stock > 0 ? "greenColor" : "redColor"}>{product?.stock > 0 ? "Còn hàng" : "Hết hàng"}</span> */}
+          Tình trạng: <span id="stock_status" className={isInStock ? "greenColor" : "redColor"}>{isInStock ? "Còn hàng" : "Hết hàng"}</span>
         </p>
 
         <p>Màu sắc:
