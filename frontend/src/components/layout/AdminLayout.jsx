@@ -43,10 +43,10 @@ const AdminLayout = ({ children }) => {
 
       {/* <div className="container"> */}
         <div className="row justify-content-around">
-          <div className="col-12 col-lg-3">
+          <div className="col-12 col-lg-2">
             <SideMenu menuItems={menuItems} />
           </div>
-          <div className="col-12 col-lg-8 user-dashboard">{children}</div>
+          <div className="col-12 col-lg-10 user-dashboard">{children}</div>
         </div>
       {/* </div> */}
     </div>
