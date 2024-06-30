@@ -90,8 +90,9 @@ const Dashboard = () => {
               <div className="text-center card-font-size">
                 Doanh số
                 <br />
-                <b>{data?.totalSales.toFixed(0).toLocaleString("vi-VN")}đ</b> 
-                {/* toFix: Limit decimal digits */}
+                {/* <b>{(data?.totalSales.toFixed(0)).toLocaleString("vi-VN")}đ</b>  */}
+                <b>{new Intl.NumberFormat("vi-VN").format(Math.round(data?.totalSales))}đ</b>
+                {/* toFix: Limit decimal digits, Math.round: làm tròn số nguyên gần nhất, Intl.NumberFormat("...").format(...) định dạng số */}
               </div>
             </div>
           </div>

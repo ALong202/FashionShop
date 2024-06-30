@@ -65,6 +65,15 @@ export const getProductDetails = catchAsyncErrors( async (req, res) => { // Khai
     });
 });
 
+// Get danh mục sản phẩm - ADMIN => /products/admin/products
+export const getAdminProducts = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+  const product = await Product.find(); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
+
+  res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
+      product, // Trả về thông tin của sản phẩm mới được tạo
+  });
+});
+
 //Update chi tiết sản phẩm mới với đường dẫn => /products/:id
 export const updateProduct = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
     let product = await Product.findById(req?.params?.id ); // Tìm kiếm sản phẩm: sử dụng phương thức findById của Mongoose để tìm kiếm sản phẩm với ID được cung cấp trong yêu cầu (req.params.id).

@@ -218,8 +218,8 @@ export const getSales = catchAsyncErrors(async (req, res, next) => {
   const startDate = new Date(req.query.startDate);
   const endDate = new Date(req.query.endDate);
 
-  startDate.setUTCHours(0,0,0,0); // 0h:0m:0s:0ms
-  endDate.setUTCHours(23,59,59,999); // 23h:59m:59s:999ms
+  startDate.setUTCHours(0,0,0,0); // giờ UTC, 0h:0m:0s:0ms
+  endDate.setUTCHours(23,59,59,999); // giờ UTC, 23h:59m:59s:999ms
 
   const { salesData, totalSales, totalNumOrders } = await getSalesData(startDate, endDate);
 

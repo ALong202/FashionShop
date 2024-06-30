@@ -3,28 +3,32 @@
 
 Routes () cho tài nguyên sản phẩm
 */
-import express from 'express'
-import { 
-    getProducts, 
-    newProduct, 
-    getProductDetails, 
-    updateProduct,
-    deleteProduct, 
-    createProductReview,
-    getProductReviews,
-    deleteReview,
-    canUserReview
-} from '../controllers/productControllers.js'; // tự động xuất hiện khi gõ syntax get(getProducts)
-import { authorizeRoles, isAuthenticatedUser } from '../middlewares/auth.js';
+import express from "express";
+import {
+  getProducts,
+  newProduct,
+  getProductDetails,
+  updateProduct,
+  deleteProduct,
+  createProductReview,
+  getProductReviews,
+  deleteReview,
+  canUserReview,
+  getAdminProducts,
+} from "../controllers/productControllers.js"; // tự động xuất hiện khi gõ syntax get(getProducts)
+import { authorizeRoles, isAuthenticatedUser } from "../middlewares/auth.js";
 
 // Tạo một đối tượng Router của Express mới để định nghĩa các tuyến đường (routes) cho ứng dụng.
-const router = express.Router()
+const router = express.Router();
 
 // Router route(dẫn) đến mục "/products" để get (nhận request) và đưa vào controller function (hàm điều khiển)
 router.route("/products").get(getProducts);
 
-//Router route(dẫn) đến mục "/products" để post sản phẩm mới
-router.route("/admin/products").post(isAuthenticatedUser, newProduct);
+//Router route(dẫn) đến mục "/products" để ...
+router
+  .route("/admin/products")
+  .post(isAuthenticatedUser, authorizeRoles("admin"), newProduct) // chỉ admin có thể tạo sản phẩm
+  .get(isAuthenticatedUser, authorizeRoles("admin"), getAdminProducts); // chỉ admin lấy tất cả sản phẩm
 
 //Router route(dẫn) đến mục "/products" để get thông tin 1 sản phẩm theo id cho sẵn
 //router.route("/products/:id").get(isAuthenticatedUser, authorizeRoles("admin"), getProductDetails);
@@ -49,11 +53,9 @@ router
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteReview);
 
 router
-// Kiểm tra người dùng có thể đánh giá không
-  .route("/can_review").get(isAuthenticatedUser, canUserReview);
-
-
+  // Kiểm tra người dùng có thể đánh giá không
+  .route("/can_review")
+  .get(isAuthenticatedUser, canUserReview);
 
 // để sử dụng trong các files. Khi 1 tệp (app.js) muốn import từ 1 module khác (product.js) thì cần export dữ liệu từ module đó (tương tự return)
 export default router;
-
