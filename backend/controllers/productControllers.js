@@ -66,11 +66,12 @@ export const getProductDetails = catchAsyncErrors( async (req, res) => { // Khai
 });
 
 // Get danh mục sản phẩm - ADMIN => /products/admin/products
-export const getAdminProducts = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
-  const product = await Product.find(); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
+export const getAdminProducts = catchAsyncErrors( async (req, res, next) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+  const products = await Product.find(); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
+  // console.log(products);
 
   res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
-      product, // Trả về thông tin của sản phẩm mới được tạo
+      products, // Trả về thông tin của sản phẩm mới được tạo
   });
 });
 
