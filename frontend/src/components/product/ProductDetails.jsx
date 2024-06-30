@@ -192,11 +192,15 @@ const ProductDetails = () => {
         </button>
 
         <hr />
-
-        <p>
-          {/* Tình trạng: <span id="stock_status" className={product?.stock > 0 ? "greenColor" : "redColor"}>{product?.stock > 0 ? "Còn hàng" : "Hết hàng"}</span> */}
-          Tình trạng: <span id="stock_status" className={isInStock ? "greenColor" : "redColor"}>{isInStock ? "Còn hàng" : "Hết hàng"}</span>
-        </p>
+        
+        {selectedColor && selectedSize ?(
+          <p>
+            {/* Tình trạng: <span id="stock_status" className={product?.stock > 0 ? "greenColor" : "redColor"}>{product?.stock > 0 ? "Còn hàng" : "Hết hàng"}</span> */}
+            Tình trạng: <span id="stock_status" className={isInStock ? "greenColor" : "redColor"}>{isInStock ? "Còn hàng" : "Hết hàng"}</span>
+          </p>
+        ) : (
+          <p> Tình trạng: </p> // "trống" nếu chưa chọn size hoặc color
+        )}
 
         <p>Màu sắc:
             {/* {product?.color.map((colorName) => ( */}

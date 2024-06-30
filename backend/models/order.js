@@ -32,12 +32,26 @@ const orderSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
-        selectedColor: {
-          type: String,
-        },
-        selectedSize: {
-          type: String,
-        },
+        // selectedColor: {
+        //   type: String,
+        // },
+        // selectedSize: {
+        //   type: String,
+        // },
+        selectedVariant: [ // Touple (color, size, stock)
+          {
+            color: {
+              type: String,
+              required: [true, "Vui lòng nhập màu sản phẩm."],
+              enum: ["Trắng", "Đen", "Đỏ", "Xanh", "Vàng", "Hồng", "Cam", "Xám", "Nâu", "Sọc", "Họa tiết"],
+            },
+            size: {
+              type: String,
+              required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
+              enum: ["S", "M", "L", "F"],
+            },
+          },
+        ],
         quantity: {
           type: Number,
           min: 1,
