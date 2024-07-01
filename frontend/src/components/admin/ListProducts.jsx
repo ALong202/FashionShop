@@ -64,7 +64,7 @@ const ListProducts = () => {
 
 
       products.rows.push({
-        id: product?._id,
+        id: product?.productID, // product?._id,
         name: `${product?.name}`, // rút gọn tên với `${product?.name?.substring(0,20)}...`
         // stock: product?.stock,
         variantStock: variantDescriptions,
