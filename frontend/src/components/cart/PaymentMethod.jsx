@@ -28,7 +28,7 @@ const PaymentMethod = () => {
     if (isLoading){
       toast.warn("Đang tạo đơn hàng trên hệ thống");
     }
-  }, [error, isSuccess]);
+  }, [error, isLoading, isSuccess, navigate]);
 
   
   const submitHandler = (e) => {
@@ -41,12 +41,31 @@ const PaymentMethod = () => {
 
     const { itemsPrice, shippingPrice, totalPrice } = calculateOrderCost(cartItems);
 
+    // Xử lý mảng cartItems để loại bỏ variant và _id trong selectedVariant
+    const processedCartItems = cartItems.map(item => {
+      // Loại bỏ thuộc tính variant
+      const { variant, ...rest } = item;
+
+      // Loại bỏ thuộc tính _id trong selectedVariant
+      const { selectedVariant, ...restItem } = rest;
+      const { _id, ...variantWithoutId } = selectedVariant;
+
+      //Trả về đối tượng mới đã xử lý
+      return {
+        ...restItem,
+        selectedVariant: variantWithoutId
+      };
+    });
+
+    console.log(processedCartItems);
+
     if (method === "COD"){
       //alert("COD");
 
       const orderData = {
         shippingInfo,
-        orderItems: cartItems,
+        //orderItems: cartItems,
+        orderItems: processedCartItems,
         itemsPrice, 
         shippingAmount: shippingPrice, 
         totalAmount: totalPrice,
@@ -56,7 +75,7 @@ const PaymentMethod = () => {
         paymentMethod: "COD",
       };
 
-
+      console.log(orderData)
       createNewOrder(orderData)
     }
 
@@ -109,7 +128,7 @@ const PaymentMethod = () => {
             </div>
 
             <button id="shipping_btn" type="submit" className="btn py-2 w-100">
-              TIẾP TỤC THANH TOÁN
+              XÁC NHẬN THANH TOÁN
             </button>
           </form>
         </div>

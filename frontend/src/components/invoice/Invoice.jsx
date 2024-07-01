@@ -13,7 +13,7 @@ const Invoice = () => {
   const { data, isLoading, error } = useOrderDetailsQuery(params?.id);
   const order = data?.order || {};
 
-  const { shippingInfo, orderItems, paymentInfo, user, totalAmount, orderStatus } = order;
+  const { shippingInfo, orderItems, paymentInfo, user } = order;
 
   useEffect(() => {
     if(error){
@@ -53,7 +53,7 @@ const Invoice = () => {
             </div>
             <h1>Hóa Đơn Số {order?._id}</h1>
             <div id="company" className="clearfix">
-              <div>FashionShop</div>
+              <div>FakeshionShop</div>
               <div>
                 Hàn Thuyên,
                 <br />
@@ -121,14 +121,14 @@ const Invoice = () => {
               </tbody>
             </table>
             <div id="notices">
-              <div>Lưu ý:</div>
+              <div>LƯU Ý;</div>
               <div className="notice">
-                Hàng mua rồi vui lòng miễn đổi trả!
+                - HÀNG MUA RỒI MIỄN Ý KIẾN!
               </div>
             </div>
           </main>
           <footer>
-            Hóa đơn cho Bộ IE104 lập...vô giá trị!
+            HÓA ĐƠN DO BỘ IE104-213 LẬP...KHÔNG CÓ GIÁ TRỊ ĂN VẠ!
           </footer>
         </div>
       </div>
