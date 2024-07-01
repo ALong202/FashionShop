@@ -10,68 +10,114 @@ import { toast } from "react-toastify";
 const Cart =() => {
   const dispatch = useDispatch();
 
-  const {cartItems} = useSelector((state) => state.cart);
+  const {cartItems} = useSelector((state) => state.cart); //Danh sách sản phẩm đang lưu tạm trên browser (Local Storage)
 
   const navigate = useNavigate();
+
+  // const [quantity, setQuantity] = useState(1); // quantity: số lượng sản phẩm
+  // const [selectedSize, setSelectedSize] = useState(null); // size: kích cỡ sản phẩm
+  // const [selectedColor, setSelectedColor] = useState(null); // color: màu sắc sản phẩm
   
   //Xử lý khi thay đổi color
   const handleColorChange = (item, color) => {
-    const newColor = color;
-    setItemToCart(item, item.quantity, newColor, item?.selectedSize)
+    const newSelectedVariant = item?.variant.find((variant) => variant.color === color && variant.size === item?.selectedVariant?.size);
+    const newItem = {
+      ...item,
+      selectedVariant: newSelectedVariant
+    };
+
+    //Loại của sản phẩm không còn hàng thì báo lỗi và return
+    if(newItem?.selectedVariant?.stock === 0 ){
+      toast.error("Hết hàng");
+      return;
+    }
+    //Loại của sản phẩm còn hàng nhưng không nhập gì vào ô số lượng thì thêm vào giỏ với số lượng là 1
+    else if (newItem?.quantity === ""){
+      dispatch(removeCartItem(item));
+      setItemToCart(newItem, 1);
+    }
+
+    dispatch(removeCartItem(item));
+    setItemToCart(newItem, newItem?.quantity)
   }
 
-  //Xử lý khi thay đổi size
+  //Xử lý khi thay đổi size =>logic tương tự size
   const handleSizeClick = (item, size) => {
-    const newSize = size;
-    setItemToCart(item, item.quantity, item?.selectedColor, newSize)
+    const newSelectedVariant = item?.variant.find((variant) => variant.size === size && variant.color === item?.selectedVariant?.color);
+    const newItem = {
+      ...item,
+      selectedVariant: newSelectedVariant
+    };
+
+    if(newItem?.selectedVariant?.stock === 0 ){
+      toast.error("Hết hàng");
+      return;
+    }      
+    else if (newItem?.quantity === ""){
+      dispatch(removeCartItem(item));
+      setItemToCart(newItem, 1);
+    }
+
+    dispatch(removeCartItem(item));
+    setItemToCart(newItem, newItem?.quantity)
   };
 
-  //Xử lý khi chọn tăng số lượng
+  //Xử lý khi chọn tăng số lượng => đã cài logic ở cartSlice nên ko check nữa, tăng quá tồn thì đưa về tồn
   const increseQty = (item, quantity) => {
-    const newQty = quantity + 1
+    //const newQty = quantity + 1
 
-    if (newQty >= item?.stock)
+    if (quantity >= item?.selectedVariant?.stock)
       return;
-    setItemToCart(item, newQty, item?.selectedColor, item?.selectedSize);
+    setItemToCart(item, 1);
   };
 
-  //Xử lý khi chọn giảm số lượng
+  //Xử lý khi chọn giảm số lượng => đã cài logic ở cartSlice nên ko check nữa, giảm quá 1 thì đưa về 1
   const decreseQty = (item, quantity) => {
-    const newQty = quantity -1
+    //const newQty = quantity -1
 
-    if (newQty <= 0)
+    if (quantity <= 1){
+      //dispatch(removeCartItem(item));
       return;
-    setItemToCart(item, newQty, item?.selectedColor, item?.selectedSize);
+    }
+    setItemToCart(item, -1);
+  };
+
+  //Xử lý khi đổi số lượng manual
+  const changeQty = (item, quantity) => {
+    dispatch(removeCartItem(item));
+    setItemToCart(item, quantity);
   };
 
   //Hàm set thông tin mặt hàng trong giỏ
-  const setItemToCart = (item, newQty, newSelColor, newSelSize) => {
+  const setItemToCart = (item, newQty) => {
     const cartItem = {
       product: item?.product,
       name: item?.name,
       price: item?.price,
       image: item?.image,
-      stock: item?.stock,
-      color: item?.color, //list các màu của sản phẩm
-      size: item?.size, //list các size của sản phẩm
-      selectedColor: newSelColor, // color: màu sắc đã chọn cho sản phẩm
-      selectedSize: newSelSize, // size: kích cỡ đã chọn cho sản phẩm
+      variant: item?.variant,
+      selectedVariant: item?.selectedVariant,
       quantity: newQty
     };
 
     dispatch(setCartItem(cartItem));
-    toast.success("sửa thành công");
+    if(cartItem.quantity !== "")
+      toast.success("sửa thành công");
 
     console.log(cartItem);
   };
 
   //Hàm xử lý khi xóa sản phẩm trong giỏ
-  const removeCartItemHandler = (id) => {
-    dispatch(removeCartItem(id));
+  const removeCartItemHandler = (item) => {
+    dispatch(removeCartItem(item));
   };
 
   //Hàm xử lý khi chuyển sang kiểm tra vận chuyển
   const checkoutHandler = () => {
+    if (cartItems.find((i) => i?.quantity === "")){
+      toast.error("Các mặt hàng phải có số lượng");
+      return;
+    }
     navigate("/shipping");
   };
 
@@ -104,11 +150,14 @@ const Cart =() => {
                     <Link to={`/product/${item?.product}`}> {item?.name} </Link>
                     <p>Màu sắc:
                       <div className="color-chooser">
-                        {(item?.color || []).map((colorName) => ( // Nếu item.color không tồn tại thì trả về mảng rỗng
+                        {item?.variant
+                          .map(variant => variant.color) // Extract color from each variant
+                          .filter((value, index, self) => self.indexOf(value) === index) // Remove duplicate colors
+                          .map((colorName) => ( // Nếu item.color không tồn tại thì trả về mảng rỗng
                           <button
                             key={colorName}
                             style={{ backgroundColor: colorMap[colorName] }}
-                            className={`color-button ${item?.selectedColor === colorName ? 'active' : ''}`}
+                            className={`color-button ${item?.selectedVariant?.color === colorName ? 'color-button-selected' : ''}`}
                             onClick={() => handleColorChange(item, colorName)}
                           >
                             {colorName}
@@ -117,19 +166,23 @@ const Cart =() => {
                       </div>
                     </p>
 
-                    <p>Sizes: 
-                    <div className="size-buttons">
-                      {(item?.size || []).map((size, index) => ( // nếu item.size không tồn tại thì trả về mảng rỗng
-                        <button 
-                          key={index} 
-                          onClick={() => handleSizeClick(item, size)}
-                          // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
-                          className={`size-button ${item?.selectedSize === size ? 'selected' : ''}`}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
+                    <p>Kích thước: 
+                      <div className="size-buttons">
+                        {item?.variant
+                          .filter(variant => variant.color === item?.selectedVariant?.color) // Filter variants by selected color
+                          .map(variant => variant.size) // Extract size from each variant
+                          .filter((value, index, self) => self.indexOf(value) === index) // Remove duplicate sizes
+                          .map((size) => (
+                          <button 
+                            key={size} 
+                            onClick={() => handleSizeClick(item, size)}
+                            // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
+                            className={`size-button ${item?.selectedVariant?.size === size ? 'selected' : ''}`}
+                          >
+                            {size}
+                          </button>
+                        ))}
+                      </div>
                   </p>
                   </div>
 
@@ -146,7 +199,18 @@ const Cart =() => {
                         type="number"
                         className="form-control count d-inline"
                         value={item?.quantity}
-                        readonly
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value);
+                          if (value > 0) {
+                            changeQty(item, value);
+                          }
+                          else if (value < 0 )
+                            changeQty(item, 1);
+                          else if (value === 0)
+                            return;
+                          else
+                            changeQty(item, e.target.value);
+                        }}
                       />
                       {/*Thêm onClick và hàm tăng số lượng trong giỏ ở đây */}
                       <span className="btn btn-primary plus" onClick={() => increseQty(item, item.quantity)}> + </span>
@@ -154,7 +218,7 @@ const Cart =() => {
                   </div>
                   <div className="col-4 col-lg-1 mt-4 mt-lg-0">
                     {/*Thêm onClick và hàm xử lý khi xóa sản phẩm trong giỏ ở đây */}
-                    <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={() => removeCartItemHandler(item?.product)}></i>
+                    <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={() => removeCartItemHandler(item)}></i>
                   </div>
                 </div>
               </div>

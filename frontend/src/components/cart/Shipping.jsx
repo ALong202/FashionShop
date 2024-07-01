@@ -85,7 +85,7 @@ const Shipping = () => {
               />
             </div>
             <button id="shipping_btn" type="submit" className="btn w-100 py-2">
-              Tiếp tục Đặt hàng
+              Tiếp tục thanh toán
             </button>
           </form>
         </div>

@@ -12,7 +12,7 @@ const OrderDetails = () => {
   const { data, isLoading, error } = useOrderDetailsQuery(params?.id);
   const order = data?.order || {};
 
-  const { shippingInfo, orderItems, paymentInfo, user, totalAnount, orderStatus } = order;
+  const { orderItems, paymentInfo, user, orderStatus } = order;
 
   const isPaid = paymentInfo?.status === "Đã thanh toán" ? true : false;
 
@@ -35,21 +35,22 @@ const OrderDetails = () => {
             <i className = "fa fa-print" ></i>Hóa đơn
           </Link>
         </div>
+
         <table className="table table-striped table-bordered">
           <tbody>
             <tr>
-              <th scope="row">Mã đơn hàng</th>
-              <td>{order?._id}</td>
+              <th style={{width: '50%'}} scope="row">Mã đơn hàng</th>
+              <td style={{ textAlign: 'right' }} >{order?._id}</td>
             </tr>
             <tr>
               <th scope="row">Trạng thái đơn hàng</th>
-              <td className={String(orderStatus).includes("Deliverd") ? "greenColor" : "redColor"}>
+              <td style={{ textAlign: 'right' }}  className={String(order?.orderStatus).includes("Deliverd") ? "greenColor" : "redColor"}>
                 <b>{orderStatus}</b>
               </td>
             </tr>
             <tr>
               <th scope="row">Ngày đặt hàng</th>
-              <td>{new Date(order?.createdAt).toLocaleString("vi-VN")}</td>
+              <td style={{ textAlign: 'right' }} >{new Date(order?.createdAt).toLocaleString("vi-VN")}</td>
             </tr>
           </tbody>
         </table>
@@ -58,16 +59,16 @@ const OrderDetails = () => {
         <table className="table table-striped table-bordered">
           <tbody>
             <tr>
-              <th scope="row">Tên người nhận</th>
-              <td>{user?.name}</td>
+              <th style={{width: '50%'}} scope="row">Tên người nhận</th>
+              <td style={{ textAlign: 'right' }} >{user?.name}</td>
             </tr>
             <tr>
               <th scope="row">Điện thoại liên hệ</th>
-              <td>{shippingInfo?.phoneNo}</td>
+              <td style={{ textAlign: 'right' }} >{order?.shippingInfo?.phoneNo}</td>
             </tr>
             <tr>
               <th scope="row">Đỉa chỉ giao hàng</th>
-              <td>{shippingInfo?.address}</td>
+              <td style={{ textAlign: 'right' }} >{order?.shippingInfo?.address}</td>
             </tr>
           </tbody>
         </table>
@@ -76,22 +77,30 @@ const OrderDetails = () => {
         <table className="table table-striped table-bordered">
           <tbody>
             <tr>
-              <th scope="row">Tình trạng thanh toán</th>
-              <td className={isPaid ? "greenColor" : "redColor"}>
+              <th style={{width: '50%'}} scope="row">Tình trạng thanh toán</th>
+              <td style={{ textAlign: 'right' }}  className={isPaid ? "greenColor" : "redColor"}>
                 <b>{order?.paymentInfo?.status}</b>
               </td>
             </tr>
             <tr>
               <th scope="row">Hình thức thanh toán</th>
-              <td>{order?.paymentMethod}</td>
+              <td style={{ textAlign: 'right' }} >{order?.paymentMethod}</td>
             </tr>
             <tr>
               <th scope="row">Mã thanh toán Tín dụng</th>
-              <td>{order?.paymentInfo?.id || "Không có"}</td>
+              <td style={{ textAlign: 'right' }} >{order?.paymentInfo?.id || "NA(COD)"}</td>
             </tr>
             <tr>
-              <th scope="row">Số tiền thanh toán</th>
-              <td>{order?.totalAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+              <th scope="row">Tiền sản phẩm</th>
+              <td style={{ textAlign: 'right' }} >{order?.itemsPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+            </tr>
+            <tr>
+              <th scope="row">Tiền vận chuyển</th>
+              <td style={{ textAlign: 'right' }} >{order?.shippingAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+            </tr>
+            <tr>
+              <th scope="row">Tổng tiền thanh toán</th>
+              <td style={{ textAlign: 'right' }} >{order?.totalAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
             </tr>
           </tbody>
         </table>
@@ -115,19 +124,19 @@ const OrderDetails = () => {
               <Link to={`/product/${item?.product}`}>{item?.name}</Link>
               <div>
                 <button
-                  key={item?.selectedColor}
-                  style={{ backgroundColor: colorMap[item?.selectedColor] }}
+                  key={item?.selectedVariant?.color}
+                  style={{ backgroundColor: colorMap[item?.selectedVariant?.color] }}
                   className={"color-button active"}
                   disabled={true}
                 >
-                {item?.selectedColor}
+                  {item?.selectedVariant?.color}
                 </button>
                 <button 
-                  key={item?.selectedSize}
+                  key={item?.selectedVariant?.size}
                   className={"size-button selected"}
                   disabled={true}
                 >
-                  {item?.selectedSize}
+                  {item?.selectedVariant?.size}
                 </button>
                 </div>
             </div>

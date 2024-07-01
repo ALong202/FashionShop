@@ -7,7 +7,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/features/cartSlice';
-
+//PENDING - CHỈ ĐƯỢC XEM HÓA ĐƠN KHI ĐÃ THANH TOÁN/GIAO HÀNG
 const MyOrder = () => {
   const { data, isLoading, error } = useMyOrdersQuery();
 
@@ -29,7 +29,7 @@ const MyOrder = () => {
       navigate("/me/orders")
       toast.success("Tạo đơn hàng thành công");
     }
-  }, [error, orderSuccess]);
+  }, [dispatch, error, navigate, orderSuccess]);
 
   const setOrders = () => {
     const orders = {
@@ -96,7 +96,7 @@ const MyOrder = () => {
 
       <div style={{width: '80%', margin: 'auto', overflowX: 'auto'}}>
 
-        <div style={{ width: '1080px', margin: 'auto', overflowX: 'auto' }}>
+        <div style={{ width: '100%', margin: 'auto', overflowX: 'auto' }}>
           <div>
               <h1 class="my-5">{data?.orders?.length} Đơn hàng</h1>
             </div>
@@ -107,7 +107,8 @@ const MyOrder = () => {
                 bordered
                 striped
                 hover
-                noBottomColumns                
+                noBottomColumns
+                style={{ textAlign: 'right' }}           
               />
           </div>
         </div>

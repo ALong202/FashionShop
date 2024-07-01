@@ -16,7 +16,7 @@ const ConfirmOrder = () => {
   
   return (   
     <>
-      <MetaData title = {"Xác nhận giao dịch"} />
+      <MetaData title = {"Kiểm tra đơn hàng"} />
 
       <CheckoutSteps shipping confirmOrder />
 
@@ -49,19 +49,19 @@ const ConfirmOrder = () => {
                     <Link to={`/product/${item.product}`}>{item?.name}</Link>
                     <div>
                       <button
-                        key={item?.selectedColor}
-                        style={{ backgroundColor: colorMap[item?.selectedColor] }}
+                        key={item?.selectedVariant?.color}
+                        style={{ backgroundColor: colorMap[item?.selectedVariant?.color] }}
                         className={"color-button active"}
                         disabled={true}
                       >
-                      {item?.selectedColor}
+                      {item?.selectedVariant?.color}
                       </button>
                       <button 
-                      key={item?.selectedSize}
-                      className={"size-button selected"}
-                      disabled={true}
-                      >
-                      {item?.selectedSize}
+                        key={item?.selectedVariant?.size}
+                        className={"size-button selected"}
+                        disabled={true}
+                        >
+                      {item?.selectedVariant?.size}
                       </button>
                     </div>
                   </div>

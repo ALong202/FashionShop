@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema(
   {
     shippingInfo: {
+      //Quốc: Về cơ bản ko cần lưu thêm orderID tại đây, dùng _id mongo tạo ra là đủ-> xem xét bỏ, nếu bỏ thì báo để e adjust code!!!
       orderID: {
       type: String, //Quốc: e tạm thời đổi number sang string để tiện tạo orderID bên frontend, nếu bên a bất tiện và cần đổi thì trao đổi vs e nha. Thks
       required: true,  
@@ -38,20 +39,22 @@ const orderSchema = new mongoose.Schema(
         // selectedSize: {
         //   type: String,
         // },
-        selectedVariant: [ // Touple (color, size, stock)
-          {
-            color: {
-              type: String,
-              required: [true, "Vui lòng nhập màu sản phẩm."],
-              enum: ["Trắng", "Đen", "Đỏ", "Xanh", "Vàng", "Hồng", "Cam", "Xám", "Nâu", "Sọc", "Họa tiết"],
-            },
-            size: {
-              type: String,
-              required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
-              enum: ["S", "M", "L", "F"],
-            },
+        selectedVariant: {
+          color: {
+            type: String,
+            required: [true, "Vui lòng nhập màu sản phẩm."],
+            enum: ["Trắng", "Đen", "Đỏ", "Xanh", "Vàng", "Hồng", "Cam", "Xám", "Nâu", "Sọc", "Họa tiết"],
           },
-        ],
+          size: {
+            type: String,
+            required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
+            enum: ["S", "M", "L", "F"],
+          },
+          stock: {
+            type: Number,
+            required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
+          },
+        },
         quantity: {
           type: Number,
           min: 1,
