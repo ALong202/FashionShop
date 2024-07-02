@@ -5,7 +5,7 @@ import MetaData from "../layout/MetaData";
 import AdminLayout from "../layout/AdminLayout";
 import { useNavigate } from "react-router-dom";
 import { useCreateProductMutation } from "../../redux/api/productsApi";
-import { PRODUCT_CATEGORIES, PRODUCT_SUBCATEGORIES, PRODUCT_SUBSUBCATEGORIES } from "../../constants/constants";
+import { PRODUCT_CATEGORIES, PRODUCT_COLORS, PRODUCT_SIZES, PRODUCT_SUBCATEGORIES, PRODUCT_SUBSUBCATEGORIES } from "../../constants/constants";
 
 const NewProduct = () => {
   const navigate = useNavigate();
@@ -30,11 +30,12 @@ const NewProduct = () => {
   useEffect(() => {
     if (error) {
       toast.error(error?.data?.message);
-      navigate("/admin/products");
+      // navigate("/admin/products");
     }
 
     if (isSuccess) {
       toast.success("Sản phẩm đã được tạo");
+      // navigate("/admin/products");
     }
   }, [error, isSuccess]);
 
@@ -68,8 +69,25 @@ const NewProduct = () => {
     setProduct({ ...product, variants: newVariants });
   }
 
+  // Function kiểm trùng variants
+  const hasDuplicateVariants = (variants) => {
+    const variantPairs = {};
+    for (const variant of variants) {
+      const key = `${variant.color}-${variant.size}`;
+      if (variantPairs[key]) {
+        return true; // Duplicate found
+      }
+      variantPairs[key] = true;
+    }
+    return false; // No duplicates found
+  }
+
   const submitHandler = (e) => {
     e.preventDefault();
+    if (hasDuplicateVariants(product.variants)) {
+      toast.error("Có lỗi: Trùng lặp các cặp màu sắc và kích cỡ. Vui lòng kiểm tra lại.");
+      return;
+    } // Kiểm tra trùng biến thể (màu và kích cỡ)
     createProduct(product);
   };
 
@@ -79,10 +97,10 @@ const NewProduct = () => {
       <div className="row wrapper">
         <div className="col-10 col-lg-10 mt-5 mt-lg-0">
           <form className="shadow rounded bg-body" onSubmit={submitHandler}>
-            <h2 className="mb-4">New Product</h2>
+            <h2 className="mb-4">Sản phẩm mới</h2>
             <div className="row">
               <div className="mb-3 col-3">
-                <label htmlFor="productID_field" className="form-label">Product ID</label>
+                <label htmlFor="productID_field" className="form-label">Mã ID</label>
                 <input
                   type="text"
                   id="productID_field"
@@ -95,7 +113,7 @@ const NewProduct = () => {
               <div className="mb-3 col-9">
                 <label htmlFor="name_field" className="form-label">
                   {" "}
-                  Name{" "}
+                  Tên{" "}
                 </label>
                 <input
                   type="text"
@@ -110,7 +128,7 @@ const NewProduct = () => {
 
             <div className="mb-3">
               <label htmlFor="description_field" className="form-label">
-                Description
+                Mô tả
               </label>
               <textarea
                 className="form-control"
@@ -126,7 +144,7 @@ const NewProduct = () => {
               <div className="m b-3 col">
                 <label htmlFor="seller_field" className="form-label">
                   {" "}
-                  Seller Name{" "}
+                  Nguồn gốc{" "}
                 </label>
                 <input
                   type="text"
@@ -142,7 +160,7 @@ const NewProduct = () => {
               <div className="mb-3 col">
                 <label htmlFor="price_field" className="form-label">
                   {" "}
-                  Price{" "}
+                  Giá (VNĐ){" "}
                 </label>
                 <input
                   type="text"
@@ -158,7 +176,7 @@ const NewProduct = () => {
               <div className="mb-3 col">
                 <label htmlFor="category_field" className="form-label">
                   {" "}
-                  Category{" "}
+                  Danh mục{" "}
                 </label>
                 <select
                   className="form-select"
@@ -178,7 +196,7 @@ const NewProduct = () => {
 
               {/* SubCategory Selection */}
               <div className="mb-3 col">
-                <label htmlFor="subCategory_field" className="form-label">SubCategory</label>
+                <label htmlFor="subCategory_field" className="form-label">Danh mục phụ L2</label>
                 <select
                   className="form-select"
                   id="subCategory_field"
@@ -187,7 +205,7 @@ const NewProduct = () => {
                   onChange={onChange}
                   disabled={!category.name}
                 >
-                  <option value="">Chọn danh mục phụ L2</option>
+                  <option value="">Vui lòng chọn</option>
                   {category.name && PRODUCT_SUBCATEGORIES[category.name].map((subcategory) => (
                     <option key={subcategory} value={subcategory}>
                       {subcategory}
@@ -198,7 +216,7 @@ const NewProduct = () => {
 
               {/*  SubSubCategory Selection */}
               <div className="mb-3 col">
-                <label htmlFor="subSubCategory_field" className="form-label">SubSubCategory</label>
+                <label htmlFor="subSubCategory_field" className="form-label">Danmh mục phụ L3</label>
                 <select
                   className="form-select"
                   id="subSubCategory_field"
@@ -207,7 +225,7 @@ const NewProduct = () => {
                   onChange={onChange}
                   disabled={!category.subCategory}
                 >
-                  <option value="">Chọn danh mục phụ L3</option>
+                  <option value="">Vui lòng chọn</option>
                   {category.subCategory && PRODUCT_SUBSUBCATEGORIES[category.subCategory].map((subSubCategory) => (
                     <option key={subSubCategory} value={subSubCategory}>
                       {subSubCategory}
@@ -223,7 +241,7 @@ const NewProduct = () => {
             {product.variants.map((variant, index) => (
               <div key={index} className="row align-items-end">
                 <div className="mb-3 col">
-                  <label htmlFor={`color_field_${index}`} className="form-label">Color</label>
+                  <label htmlFor={`color_field_${index}`} className="form-label">Màu sắc</label>
                   <select
                     // type="text"
                     id={`color_field_${index}`}
@@ -234,7 +252,7 @@ const NewProduct = () => {
                     title="Các màu sắc được chấp nhận: Trắng, Đen, Đỏ, Xanh, Vàng, Hồng, Cam, Xám, Nâu, Sọc, Họa tiết"
                   >
                     <option value="">Chọn màu</option>
-                    {["Trắng", "Đen", "Đỏ", "Xanh", "Vàng", "Hồng", "Cam", "Xám", "Nâu", "Sọc", "Họa tiết"].map((color) => (
+                    {PRODUCT_COLORS.map((color) => (
                       <option key={color} value={color}>{color}</option>
                     ))}
                   </select>
@@ -251,13 +269,13 @@ const NewProduct = () => {
                     title="Các kích cỡ được chấp nhận: S, M, L, F"
                   >
                     <option value="">Chọn kích cỡ</option>
-                    {["S", "M", "L", "F"].map((size) => (
+                    {PRODUCT_SIZES.map((size) => (
                       <option key={size} value={size}>{size}</option>
                     ))}
                   </select>
                 </div>
                 <div className="mb-3 col">
-                  <label htmlFor={`stock_field_${index}`} className="form-label">Stock</label>
+                  <label htmlFor={`stock_field_${index}`} className="form-label">Tồn kho</label>
                   <input
                     type="number"
                     id={`stock_field_${index}`}
@@ -272,7 +290,7 @@ const NewProduct = () => {
                 </div>
               </div>
             ))}
-            <button type="button" className="btn btn-primary mb-3" onClick={addVariant}>Add Variant</button>
+            <button type="button" className="btn btn-primary mb-3" onClick={addVariant}>Thêm loại lưu kho</button>
 
 
             <button

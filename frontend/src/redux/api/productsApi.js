@@ -7,7 +7,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
-  tagTypes: ["Product"],
+  tagTypes: ["Product", "AdminProducts"], // tags để xác định khi cần invalidate cache
   // giữ data trong cache 1 ngày: https://redux-toolkit.js.org/rtk-query/usage/cache-behavior
   keepUnusedDataFor: 86400,
   // builder to access the query function, mutations, send requests
@@ -52,6 +52,7 @@ export const productApi = createApi({
     }),
     getAdminProducts: builder.query({
       query: () => `/admin/products`,
+      providesTags: ["AdminProducts"],
     }),
     createProduct: builder.mutation({
       query(body) {
@@ -61,6 +62,7 @@ export const productApi = createApi({
           body,
         };
       },
+      invalidatesTags: ["AdminProducts"],
     }),
   }),
 });
