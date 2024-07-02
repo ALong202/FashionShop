@@ -40,6 +40,7 @@ const UpdateProduct = () => {
 
   const { data } = useGetProductDetailsQuery(params?.id);
 
+  const [hasShownSuccessToast, setHasShownSuccessToast] = useState(false);
   useEffect(() => {
     if (data?.product) {
       setProduct({
@@ -62,11 +63,12 @@ const UpdateProduct = () => {
       // navigate("/admin/products");
     }
 
-    if (isSuccess) {
+    if (isSuccess && !hasShownSuccessToast) {
       toast.success("Sản phẩm đã được cập nhật");
+      setHasShownSuccessToast(true); // Mark shown toast -> prevent multiple toasts <- data
       // navigate("/admin/products");
     }
-  }, [error, isSuccess, data]);
+  }, [error, isSuccess, data, hasShownSuccessToast]);
 
   const { productID, name, description, origin, price, category, variants } =
     product;
