@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
+import { toast } from "react-toastify";
 import MetaData from "../layout/MetaData";
 import AdminLayout from "../layout/AdminLayout";
 import { useNavigate } from "react-router-dom";
