@@ -16,6 +16,7 @@ import {
   canUserReview,
   getAdminProducts,
   uploadProductImages,
+  deleteProductImage,
 } from "../controllers/productControllers.js"; // tự động xuất hiện khi gõ syntax get(getProducts)
 import { authorizeRoles, isAuthenticatedUser } from "../middlewares/auth.js";
 
@@ -38,7 +39,12 @@ router.route("/products/:id").get(getProductDetails);
 //Router route(dẫn) đến mục "/products" để upload ảnh sản phẩm theo id sản phẩm
 router
   .route("/admin/products/:id/upload_images")
-  .put(isAuthenticatedUser, authorizeRoles("admin"), uploadProductImages) // chỉ admin có thể tạo sản phẩm
+  .put(isAuthenticatedUser, authorizeRoles("admin"), uploadProductImages);
+
+//Router route(dẫn) đến mục "/products" để xóa ảnh sản phẩm theo id sản phẩm
+router
+  .route("/admin/products/:id/delete_image")
+  .put(isAuthenticatedUser, authorizeRoles("admin"), deleteProductImage);
 
 //Router route(dẫn) đến mục "/products" để sửa sản phẩm theo id sản phẩm
 router.route("/admin/products/:id").put(updateProduct);

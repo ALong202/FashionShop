@@ -3,8 +3,11 @@ import AdminLayout from "../layout/AdminLayout";
 import { toast } from "react-toastify";
 import MetaData from "../layout/MetaData";
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetProductDetailsQuery, useUploadProductImagesMutation } from "../../redux/api/productsApi";
-
+import {
+  useDeleteProductImageMutation,
+  useGetProductDetailsQuery,
+  useUploadProductImagesMutation,
+} from "../../redux/api/productsApi";
 
 const UploadImages = () => {
   const fileInputRef = useRef(null); // tham chiếu đến input file
@@ -15,7 +18,13 @@ const UploadImages = () => {
   const [imagesPreview, setImagesPreview] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
 
-  const [uploadProductImages, { isLoading, error, isSuccess }] = useUploadProductImagesMutation();
+  const [uploadProductImages, { isLoading, error, isSuccess }] =
+    useUploadProductImagesMutation();
+
+  const [
+    deleteProductImage,
+    { isLoading: isDeleteLoading, error: deleteError },
+  ] = useDeleteProductImageMutation();
 
   const { data } = useGetProductDetailsQuery(params?.id);
 
@@ -30,13 +39,17 @@ const UploadImages = () => {
       // navigate("/admin/products");
     }
 
+    if (deleteError) {
+      toast.error(deleteError?.data?.message);
+    }
+
     if (isSuccess && !hasShownSuccessToast) {
       setImagesPreview([]); // set về rỗng sau khi upload
       toast.success("Hình ảnh đã được tải lên thành công");
       setHasShownSuccessToast(true); // Mark shown toast -> prevent multiple toasts <- data
       // navigate("/admin/products");
     }
-  }, [data, error, isSuccess, hasShownSuccessToast]);
+  }, [data, error, isSuccess, hasShownSuccessToast, deleteError]);
 
   const onChange = (e) => {
     const files = Array.from(e.target.files);
@@ -79,7 +92,11 @@ const UploadImages = () => {
     e.preventDefault();
 
     uploadProductImages({ id: params?.id, body: { images } });
-  }
+  };
+
+  const deleteImage = (imgId) => {
+    deleteProductImage({ id: params?.id, body: { imgId } });
+  };
 
   return (
     <AdminLayout>
@@ -161,8 +178,9 @@ const UploadImages = () => {
                               borderColor: "#dc3545",
                             }}
                             className="btn btn-block btn-danger cross-button mt-1 py-0"
-                            disabled="true"
                             type="button"
+                            disabled={isLoading || isDeleteLoading}
+                            onClick={() => deleteImage(img?.public_id)}
                           >
                             <i className="fa fa-trash"></i>
                           </button>
@@ -178,7 +196,7 @@ const UploadImages = () => {
               id="register_button"
               type="submit"
               className="btn w-100 py-2"
-              disabled={isLoading}
+              disabled={isLoading || isDeleteLoading}
             >
               {isLoading ? "Đang tải lên..." : "Tải lên"}
             </button>
