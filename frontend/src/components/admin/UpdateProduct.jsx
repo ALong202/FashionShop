@@ -3,8 +3,12 @@ import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import AdminLayout from "../layout/AdminLayout";
-import { useNavigate } from "react-router-dom";
-import { useCreateProductMutation } from "../../redux/api/productsApi";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useCreateProductMutation,
+  useGetProductDetailsQuery,
+  useUpdateProductMutation,
+} from "../../redux/api/productsApi";
 import {
   PRODUCT_CATEGORIES,
   PRODUCT_COLORS,
@@ -13,40 +17,56 @@ import {
   PRODUCT_SUBSUBCATEGORIES,
 } from "../../constants/constants";
 
-const initialProductState = () => ({
-  productID: "",
-  name: "",
-  description: "",
-  origin: "",
-  price: "",
-  category: {
-    name: "",
-    subCategory: "",
-    subSubCategory: "",
-  },
-  variants: [{ color: "", size: "", stock: "" }],
-  
-}); // ulitize code 2 places in component
-
-const NewProduct = () => {
+const UpdateProduct = () => {
   const navigate = useNavigate();
+  const params = useParams();
 
-  const [product, setProduct] = useState(initialProductState);
+  const [product, setProduct] = useState({
+    productID: "",
+    name: "",
+    description: "",
+    origin: "",
+    price: "",
+    category: {
+      name: "",
+      subCategory: "",
+      subSubCategory: "",
+    },
+    variants: [{ color: "", size: "", stock: "" }],
+  });
 
-  const [createProduct, { isLoading, error, isSuccess }] =
-    useCreateProductMutation();
+  const [updateProduct, { isLoading, error, isSuccess }] =
+    useUpdateProductMutation();
+
+  const { data } = useGetProductDetailsQuery(params?.id);
 
   useEffect(() => {
+    if (data?.product) {
+      setProduct({
+        productID: data?.product?.productID,
+        name: data?.product?.name,
+        description: data?.product?.description,
+        origin: data?.product?.origin,
+        price: data?.product?.price,
+        category: {
+          name: data?.product?.category?.name,
+          subCategory: data?.product?.category?.subCategory,
+          subSubCategory: data?.product?.category?.subSubCategory,
+        },
+        variants: data?.product?.variants,
+      });
+    }
+
     if (error) {
       toast.error(error?.data?.message);
       // navigate("/admin/products");
     }
 
     if (isSuccess) {
-      toast.success("Sản phẩm đã được tạo");
+      toast.success("Sản phẩm đã được cập nhật");
       // navigate("/admin/products");
     }
-  }, [error, isSuccess]);
+  }, [error, isSuccess, data]);
 
   const { productID, name, description, origin, price, category, variants } =
     product;
@@ -55,7 +75,12 @@ const NewProduct = () => {
     if (e.target.name.startsWith("variants")) {
       const [_, field, variantIndex] = e.target.name.split(".");
       const updatedVariants = [...product.variants];
-      updatedVariants[variantIndex][field] = e.target.value;
+      // updatedVariants[variantIndex][field] = e.target.value;
+      // Create a new object for the updated variant to avoid direct mutation
+      updatedVariants[variantIndex] = {
+        ...updatedVariants[variantIndex],
+        [field]: e.target.value,
+      };
       setProduct({ ...product, variants: updatedVariants });
     } else if (e.target.name.includes("category")) {
       const categoryField = e.target.name.split(".")[1];
@@ -105,18 +130,18 @@ const NewProduct = () => {
       );
       return;
     } // Kiểm tra trùng biến thể (màu và kích cỡ)
+    console.log("param?.id", params?.id);
     console.log(product);
-    createProduct(product);
-    setProduct(initialProductState); // clear fields after successful creation
+    updateProduct({ id: params?.id, body: product });
   };
 
   return (
     <AdminLayout>
-      <MetaData title={"Tạo Sản phẩm mới"} />
+      <MetaData title={"Cập nhật sản phẩm"} />
       <div className="row wrapper">
         <div className="col-10 col-lg-10 mt-5 mt-lg-0">
           <form className="shadow rounded bg-body" onSubmit={submitHandler}>
-            <h2 className="mb-4">Sản phẩm mới</h2>
+            <h2 className="mb-4">Câp nhật Sản phẩm</h2>
             <div className="row">
               <div className="mb-3 col-3">
                 <label htmlFor="productID_field" className="form-label">
@@ -351,7 +376,7 @@ const NewProduct = () => {
               className="btn w-100 py-2"
               disabled={isLoading}
             >
-              {isLoading ? "Đang tạo..." : "TẠO"}
+              {isLoading ? "Đang cập nhật..." : "CẬP NHẬT"}
             </button>
           </form>
         </div>
@@ -360,4 +385,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default UpdateProduct;

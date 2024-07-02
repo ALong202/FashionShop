@@ -40,7 +40,7 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
 
 
 
-//Tạo sản phẩm mới với đường dẫn => /api/admin/products
+// Admin - Tạo sản phẩm mới với đường dẫn => /api/admin/products
 export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
     // Thiết lập người dùng tạo sản phẩm bằng ID của người dùng đang đăng nhập
     req.body.user = req.user._id;
