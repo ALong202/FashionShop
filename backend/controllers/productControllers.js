@@ -4,7 +4,7 @@ import Order from "../models/order.js";
 import APIFilters from "../utils/apiFilters.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
-import { upload_file } from "../utils/cloudinary.js";
+import { delete_file, upload_file } from "../utils/cloudinary.js";
 
 /*
 Hàm điều khiển (controller functions) cho các file routes và xác định route
@@ -108,6 +108,29 @@ export const uploadProductImages = catchAsyncErrors( async (req, res) => { // Kh
 
   product?.images?.push(...urls);
   await product?.save();
+
+  res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
+      product, // Trả về thông tin của sản phẩm mới được tạo
+  });
+});
+
+// Delete hình ảnh sản phẩm => api/admin/products/:id/delete_image
+export const deleteProductImage = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+  let product = await Product.findById(req?.params?.id ); // Tìm kiếm sản phẩm: sử dụng phương thức findById của Mongoose để tìm kiếm sản phẩm với ID được cung cấp trong yêu cầu (req.params.id).
+
+  if(!product) {       //Kiểm tra sự tồn tại của sản phẩm:
+      return next(new ErrorHandler("Không tìm thấy sản phẩm", 404));   //sử dụng một instance của lớp ErrorHandler và gọi hàm next để trả về lỗi 404
+  }
+
+  const isDeleted = await delete_file(req.body.imgId); // make sure chọn đúng delete_file from cloudinary.js
+
+  if (isDeleted) {
+    product.images = product?.images?.filter(
+      (img) => img.public_id !== req.body.imgId
+    );
+
+    await product?.save();
+  }
 
   res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
       product, // Trả về thông tin của sản phẩm mới được tạo
