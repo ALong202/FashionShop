@@ -8,7 +8,6 @@ import { colorMap } from '../../constants/constants';
 
 const ConfirmOrder = () => {
 
-  const navigate = useNavigate();
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
 

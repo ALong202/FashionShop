@@ -15,6 +15,8 @@ const MyOrder = () => {
 
   const orderSuccess = searchParams.get("order_success");
 
+  const paymentSuccess = searchParams.get("status");
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -24,12 +26,17 @@ const MyOrder = () => {
       toast.error(error?.data?.message);
     }
 
-    if (orderSuccess){
+    if ((orderSuccess && orderSuccess === "true") || (paymentSuccess && paymentSuccess === "1")){
       dispatch(clearCart());
       navigate("/me/orders")
       toast.success("Tạo đơn hàng thành công");
     }
-  }, [dispatch, error, navigate, orderSuccess]);
+    if ((orderSuccess !==null && orderSuccess !== "true") || (paymentSuccess != null && paymentSuccess !== "1")) {
+      navigate("/cart");
+      toast.error("Tạo đơn hàng thất bại");
+    }
+
+  }, [dispatch, error, navigate, orderSuccess, paymentSuccess]);
 
   const setOrders = () => {
     const orders = {
