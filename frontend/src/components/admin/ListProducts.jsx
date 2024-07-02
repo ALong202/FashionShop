@@ -30,13 +30,8 @@ const ListProducts = () => {
           sort: "asc",
           width: 150,
         },
-        // {
-        //   label: "Tồn kho",
-        //   field: "stock",
-        //   sort: "asc",
-        // },
         {
-          label: "Tồn kho theo loại",
+          label: "Tồn kho",
           field: "variantStock",
           sort: "asc",
         },
