@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
 import { saveShippingInfo } from "../../redux/features/cartSlice";
 import CheckoutSteps from './CheckoutSteps';
+import moment from 'moment';
 
 const Shipping = () => {
 
@@ -14,7 +15,8 @@ const Shipping = () => {
 
   const { shippingInfo } = useSelector((state) => state.cart);
 
-  const [orderID, setOrderID] = useState(user?._id + Date.now()); //Tạo orderID trong shipping là ID người dùng+timestamp
+  //const [orderID, setOrderID] = useState(user?._id + Date.now()); //Tạo orderID trong shipping là ID người dùng+timestamp
+  const [orderID, setOrderID] = useState(moment().format('YYMMDDHHMMSS') + user?._id); //Tạo orderID trong shipping là YYMMDDHHMMSS_user._id -> phù hợp cho zalopay sử dụng
 
   /*Điện sẵn thông tin từ shippingInfo nếu đã có trên local strorage của kh.
   Nếu chưa có thì dùng thông tin mặc định từ tài khoản*/

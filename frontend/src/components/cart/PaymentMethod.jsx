@@ -7,7 +7,10 @@ import { useCreateNewOrderMutation } from '../../redux/api/orderApi'
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom'
 
+import ZaloPayApi from '../../redux/api/zalopayApi'
+
 const PaymentMethod = () => {
+  const { user } = useSelector((state) => state.auth)
   
   const [method, setMethod] = useState("")
 
@@ -19,6 +22,7 @@ const PaymentMethod = () => {
 
   useEffect(() => {    
     if (error) {
+      navigate("/cart");
       toast.error(error?.data?.message);
     }
 
@@ -59,32 +63,41 @@ const PaymentMethod = () => {
 
     console.log(processedCartItems);
 
+    const orderData = {
+      shippingInfo,
+      orderItems: processedCartItems,
+      itemsPrice, 
+      shippingAmount: shippingPrice, 
+      totalAmount: totalPrice,
+      paymentInfo: {
+        status: "Chưa thanh toán"
+      },
+      paymentMethod: "COD",
+      user: user._id,
+    };
+
+    console.log(orderData)
+
     if (method === "COD"){
       //alert("COD");
-
-      const orderData = {
-        shippingInfo,
-        //orderItems: cartItems,
-        orderItems: processedCartItems,
-        itemsPrice, 
-        shippingAmount: shippingPrice, 
-        totalAmount: totalPrice,
-        paymentInfo: {
-          status: "Chưa thanh toán"
-        },
-        paymentMethod: "COD",
-      };
-
-      console.log(orderData)
       createNewOrder(orderData)
     }
 
     if (method === "Card"){
-      alert("Hình thức này đang được xây dựng");
-
+      //alert("Card");
+      ZaloPayApi.createPayment([orderData])
+      .then(response => {
+        console.log("Day la response\n", response);
+        if (response.status === 200)          
+          window.location.href = response.data.order_url;
+        else
+          toast.error("Hệ thống không khả dụng!");
+      })
+      .catch(e => {
+        console.log(e);
+      }); 
     }
   }
-
 
   return (
     <>
@@ -123,7 +136,7 @@ const PaymentMethod = () => {
                 onChange={(e) => setMethod("Card")}
               />
               <label className="form-check-label" htmlFor="cardradio">
-                Thanh toán bằng thẻ ghi nợ/thẻ tín dụng
+                Thanh toán trực tuyến qua cổng ZaloPay
               </label>
             </div>
 

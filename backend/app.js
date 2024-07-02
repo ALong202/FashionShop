@@ -11,7 +11,7 @@ import { fileURLToPath } from "url"; // Import hàm fileURLToPath từ thư vi�
 const __filename = fileURLToPath(import.meta.url); // Lấy đường dẫn tệp hiện tại
 const __dirname = path.dirname(__filename); // Lấy đường dẫn thư mục hiện tại
 
-
+import cors from 'cors';
 
 // Bắt sự kiện lỗi không được xử lý
 process.on("uncaughtException", (err) =>{
@@ -37,9 +37,14 @@ import productRoutes from "./routes/products.js";
 import authRoutes from "./routes/auth.js";
 import orderRoutes from "./routes/order.js";
 
+import zalopayRoutes from "./routes/zalopay.js";
+
 app.use("/api", productRoutes);
 app.use("/api", authRoutes);
 app.use("/api", orderRoutes);
+
+app.use(cors());
+app.use("/zalopay", zalopayRoutes);
 
 if(process.env.NODE_ENV === "PRODUCTION"){
   app.use(express.static(path.join(__dirname, "../frontend/build"))); // Sử dụng thư mục build của frontend
