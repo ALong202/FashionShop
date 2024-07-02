@@ -87,8 +87,8 @@ const OrderDetails = () => {
               <td style={{ textAlign: 'right' }} >{order?.paymentMethod}</td>
             </tr>
             <tr>
-              <th scope="row">Mã thanh toán Tín dụng</th>
-              <td style={{ textAlign: 'right' }} >{order?.paymentInfo?.id || "NA(COD)"}</td>
+              <th scope="row">Mã thanh toán trực truyến</th>
+              <td style={{ textAlign: 'right' }} >{order?.paymentMethod === "Card" ? order?.shippingInfo?.orderID : "NA(COD)"}</td>
             </tr>
             <tr>
               <th scope="row">Tiền sản phẩm</th>
