@@ -26,6 +26,11 @@ const productSchema = new mongoose.Schema(
       required: [true, "Vui lòng nhập mô tả sản phẩm."],
     },
 
+    origin: {
+      type: String,
+      required: false,
+    }, // Nguồn gốc, xuất xứ...
+
     ratings: {
       type: Number,
       min:0,

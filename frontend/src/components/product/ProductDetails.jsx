@@ -275,7 +275,7 @@ const ProductDetails = () => {
             {product?.description}
           </p>
           <hr />
-          <p id="product_seller mb-3">Nguồn gốc: <strong>FashionShop</strong></p>
+          <p id="product_seller mb-3">Nguồn gốc: <strong>{product?.origin || "FashionShop"}</strong></p>
 
           {isAuthenticated ? (
             <NewReview productId = {product?._id} />
