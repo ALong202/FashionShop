@@ -99,6 +99,9 @@ const ListUsers = () => {
         <AgGridReact
           columnDefs={columnDefs}
           rowData={rowData}
+          getRowStyle={params => {
+            return { backgroundColor: params.node.rowIndex % 2 === 0 ? '#f5f5f5' : '#ffffff' };
+          }} // Hàng chẵn có màu này, hàng lẻ có màu kia
           domLayout='autoHeight'
           defaultColDef={{
             flex: 1,
