@@ -12,53 +12,12 @@
 <a name="SetupProjectinVisualStudioCode"></a>
 Project được cài cài đặt tại `D:/FashionShop`:
 
-1. **Open a Terminal or Command Prompt**:
-   * Trên Windows, mở Command Prompt bằng tổ hợp phím `Win + R`, gõ `cmd`, và nhấn Enter.
-   * Lựa chọn khác, có thể sử dụng PowerShell.
+1. **Open a Git Bash, Terminal or Command Prompt**:
+   * Thanh _menu_ &rarr; ... &rarr; _Terminal_ -> _New Terminal_ &rarr;
+   * Chọn loại Terminal mình muốn sử dụng, ưu tiên sử dụng **Git Bash**
 
-2. **Navigate to your project directory**:
-   Sử dụng lệnh `cd` để thay đổi đường dẫn đến project folder:
-
-   ```bash
-   cd D:/FashionShop
-   ```
-
-3. **Install dependencies**:
-   Sử dụng lệnh sau để cài the dependencies được liệt kê trong `package.json` file:
-
-   ```bash
-   npm install
-   ```
-
-4. **Configure environment variables (Skip)**:
-   Nếu project sử dụng environment variables lưu ở trong một `.env` file, đảm bảo rằng tạo một `.env` file trong project directory (`D:/FashionShop`)  và theit61 lập các environment variables cần thiết.
-
-5. **Run your project**:
-   Nếu `package.json` file chứa một `"start"` script để chạy ứng dụng, sử dụng lệnh sau:
-
-   ```bash
-   npm start
-   ```
-
-   Nếu bạn có script khác để chạy ứng dụng, thay `"start"` với appropriate script name.
-
-6. **Testing (skip)**:
-   Để run tests, thực thi test script được định nghĩa in your `package.json`:
-
-   ```bash
-   npm test
-   ```
-
-7. **Install FRONTEND dependencies**:
-   Thực thi các lệnh sau trong git bash:
-
-   ```bash
-   cd /d/FashionShop/frontend
-   npm install
-   ```
-
-8. **Extension**:
-   Các thư viện cần cài đặt:
+2. **Extension**:
+   Các thư viện cần cài đặt trong Visual Studio Code:
    * Auto Rename Tag
    * Bootstrap 5 Quick snippets
    * ES7+ React/Redux/React-Native/JS snippets
@@ -66,7 +25,56 @@ Project được cài cài đặt tại `D:/FashionShop`:
    * Live Server
    * markdownlint
    * Prettier - Code formatter
-   * gitignore
+   * **gitignore**
+
+3. **Clone project về ổ D**
+   ```bash
+   $git clone https://github.com/22540008/FashionShop
+   ```
+
+4. **Navigate to your project directory** (Skip bước này nếu Terminal đang active tại _D:/FashionShop_):
+
+   Sử dụng lệnh `cd` để thay đổi đường dẫn đến project folder:
+
+   ```bash
+   $cd D:/FashionShop
+   ```
+
+5. **Install dependencies**:
+   Sử dụng lệnh sau để cài the dependencies được liệt kê trong `package.json` file:
+
+   ```bash
+   $npm install
+   ```
+
+6. **Configure environment variables (Skip)**:
+   Nếu project sử dụng environment variables lưu ở trong một `.env` file, đảm bảo rằng tạo một `.env` file trong project directory (`D:/FashionShop`)  và theit61 lập các environment variables cần thiết.
+
+7. **Run your project**:
+   Nếu `package.json` file chứa một `"start"` script để chạy ứng dụng, sử dụng lệnh sau:
+
+   ```bash
+   $npm start
+   ```
+
+   Nếu bạn có script khác để chạy ứng dụng, thay `"start"` với appropriate script name.
+
+8. **Testing (skip)**:
+   Để run tests, thực thi test script được định nghĩa in your `package.json`:
+
+   ```bash
+   $npm test
+   ```
+
+9. **Install FRONTEND dependencies**:
+   Thực thi các lệnh sau trong git bash:
+
+   ```bash
+   $cd /d/FashionShop/frontend
+   $npm install
+   ```
+
+
 
 ## Lưu ý khi làm việc trong project:
 
