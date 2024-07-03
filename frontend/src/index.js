@@ -7,6 +7,10 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
+// Importing ag-Grid styles globally
+import 'ag-grid-community/styles/ag-grid.css'; // Core styles
+import 'ag-grid-community/styles/ag-theme-alpine.css'; // Theme
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // ref: https://react-redux.js.org/api/provider  provide the store to the rest of the app
 root.render(

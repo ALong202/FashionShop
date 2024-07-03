@@ -42,7 +42,6 @@ const ListProducts = () => {
           label: "Tên sản phẩm",
           field: "name",
           sort: "asc",
-          width: 150,
         },
         {
           label: "Tồn kho",
@@ -50,10 +49,9 @@ const ListProducts = () => {
           sort: "asc",
         },
         {
-          label: "Xem chi tiết",
+          label: "Hành động",
           field: "actions",
           sort: "asc",
-          width: 180,
         },
       ],
 
@@ -130,7 +128,7 @@ const ListProducts = () => {
             entriesLabel="Số sản phẩm mỗi trang"
             noRecordsFoundLabel="Không tìm thấy sản phẩm nào"
             noDatalabel="Không có sản phẩm nào"
-            className="px-3"
+            className="px-3 product-list-table"
             bordered
             striped
             hover
