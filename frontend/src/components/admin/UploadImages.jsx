@@ -100,7 +100,7 @@ const UploadImages = () => {
 
   return (
     <AdminLayout>
-      <MetaData title={"Upload Product Images"} />
+      <MetaData title={"Cập nhật hình ảnh sản phẩm"} />
       <div className="row wrapper">
         <div className="col-10 col-lg-8 mt-5 mt-lg-0">
           <form
@@ -108,11 +108,11 @@ const UploadImages = () => {
             enctype="multipart/form-data"
             onSubmit={submitHandler}
           >
-            <h2 className="mb-4">Upload Product Images</h2>
+            <h2 className="mb-4">Cập nhật hình ảnh sản phẩm</h2>
 
             <div className="mb-3">
               <label htmlFor="customFile" className="form-label">
-                Choose Images
+                Chọn hình
               </label>
 
               <div className="custom-file">
@@ -130,7 +130,7 @@ const UploadImages = () => {
               {/* Có upload hình -> hiện chữ "Hình ảnh mới" */}
               {imagesPreview?.length > 0 && (
                 <div className="new-images my-4">
-                  <p className="text-warning">New Images:</p>
+                  <p className="text-warning">Hình ảnh mới:</p>
                   <div className="row mt-4">
                     {imagesPreview?.map((img) => (
                       <div className="col-md-3 mt-2">
@@ -161,7 +161,7 @@ const UploadImages = () => {
               {/* Chỉ hiện dòng chữ "Hình ảnh sản phẩm đã upload" khi sản phẩm có hình ảnh */}
               {uploadedImages?.length > 0 && (
                 <div className="uploaded-images my-4">
-                  <p className="text-success">Product Uploaded Images:</p>
+                  <p className="text-success">Hình ảnh sản phẩm đang có:</p>
                   <div className="row mt-1">
                     {uploadedImages?.map((img) => (
                       <div className="col-md-3 mt-2">

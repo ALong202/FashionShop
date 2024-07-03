@@ -147,6 +147,11 @@ export const deleteProduct = catchAsyncErrors(  async (req, res, next) => { // K
       return next(new ErrorHandler("Không tìm thấy sản phẩm", 404));   //sử dụng một instance của lớp ErrorHandler và gọi hàm next để trả về lỗi 404
   }
 
+  // Delete hình ảnh của sản phẩm từ Cloudinary
+  for (let i = 0; i < product?.images?.length; i++) {
+    await delete_file(product?.images[i]?.public_id);
+  }
+
   await product.deleteOne(); //Nếu sản phẩm tồn tại, sử dụng phương thức deleteOne để xóa sản phẩm khỏi cơ sở dữ liệu.
 
 
