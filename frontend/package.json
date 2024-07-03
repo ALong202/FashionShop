@@ -7,6 +7,8 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "ag-grid-community": "^32.0.0",
+    "ag-grid-react": "^32.0.0",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
     "html2canvas": "^1.4.1",
@@ -24,7 +26,9 @@
     "react-router-dom": "^6.22.3",
     "react-star-ratings": "^2.3.0",
     "react-toastify": "^10.0.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@ag-grid-community/locale": "~32.0.0"
+
   },
   "scripts": {
     "start": "react-scripts start",

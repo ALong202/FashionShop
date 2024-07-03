@@ -1336,12 +1336,36 @@ nav {
 }
 
 /* Bảng DS Sản phẩm - ADMIN */
-.px-3 th:nth-child(1), .px-3 td:nth-child(1) {
+.product-list-table th:nth-child(1), .product-list-table td:nth-child(1) {
   width: 120px !important;
 }
-.px-3 th:nth-child(2), .px-3 td:nth-child(2) {
+.product-list-table th:nth-child(2), .product-list-table td:nth-child(2) {
   width: 480px !important;
 }
-.px-3 th:nth-child(3), .px-3 td:nth-child(2) {
+.product-list-table th:nth-child(3), .product-list-table td:nth-child(3) {
   width: 150px !important;
+}
+
+/* Bảng DS User- ADMIN */
+/* .user-list-table th:nth-child(1), .user-list-table td:nth-child(1) {
+  width: 200px !important;
+}
+.user-list-table th:nth-child(2), .user-list-table td:nth-child(2) {
+  width: 200px !important;
+}
+.user-list-table th:nth-child(3), .user-list-table td:nth-child(3) {
+  width: 150px !important;
+}
+.user-list-table th:nth-child(4), .user-list-table td:nth-child(4) {
+  width: 130px !important;
+}
+.user-list-table th:nth-child(5), .user-list-table td:nth-child(5) {
+  width: 200px !important;
+} */
+
+
+/* Khung icon - Admin Actions */
+.button-outline {
+  padding: 2px 5px; 
+  /* font-size: 12px;  */
 }
