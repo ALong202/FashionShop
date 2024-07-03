@@ -4,17 +4,31 @@ import Loader from "../layout/Loader";
 import { MDBDataTable } from "mdbreact";
 import { Link } from "react-router-dom";
 import MetaData from "../layout/MetaData";
-import { useGetAdminProductsQuery } from "../../redux/api/productsApi";
+import { useDeleteProductMutation, useGetAdminProductsQuery } from "../../redux/api/productsApi";
 import AdminLayout from "../layout/AdminLayout";
 
 const ListProducts = () => {
   const { data, isLoading, error } = useGetAdminProductsQuery();
 
+  const [deleteProduct, { isLoading: isDeleteLoading, error: deleteError, isSuccess }] = useDeleteProductMutation();
+
   useEffect(() => {
     if (error) {
       toast.error(error?.data?.message);
     }
-  }, [error]);
+
+    if (deleteError) {
+      toast.error(deleteError?.data?.message);
+    }
+
+    if (isSuccess) {
+      toast.success("Xóa sản phẩm thành công");
+    }
+  }, [error, deleteError, isSuccess]);
+
+  const deleteProductHandler = (id) => {
+    deleteProduct(id);
+  }
 
   const setProducts = () => {
     const products = {
@@ -68,18 +82,23 @@ const ListProducts = () => {
             <Link
               to={`/admin/products/${product?._id}`}
               className="btn btn-outline-primary"
+              title="Chỉnh sửa sản phẩm"
             >
               <i className="fa fa-pencil"></i>
             </Link>
             <Link
               to={`/admin/products/${product?._id}/upload_images`}
               className="btn btn-outline-success ms-2"
+              title="Cập nhật hình ảnh sản phẩm"
             >
               <i className="fa fa-image"></i>
             </Link>
             <button
               to={`/invoice/orders/${product?._id}`}
               className="btn btn-outline-danger ms-2"
+              onClick={() => deleteProductHandler(product?._id)}
+              disabled={isDeleteLoading}
+              title="Xoá sản phẩm"
             >
               <i className="fa fa-trash"></i>
             </button>
