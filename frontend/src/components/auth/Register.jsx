@@ -4,7 +4,7 @@ import { useRegisterMutation } from "../../redux/api/authApi";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import PhoneInput from 'react-phone-number-input'
 
 const Register = () => {
 
@@ -72,6 +72,10 @@ const Register = () => {
     register(signUpData);
   
   };
+  // Hàm xử lý riêng cho SĐT khi dùng `react-phone-number-input`
+  const handlePhoneChange = (phoneValue) => {
+    setUser({ ...user, phone: phoneValue });
+  }
   // Cập nhật trạng thái người dùng khi nhập dữ liệu vào form
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -136,13 +140,22 @@ const Register = () => {
 
           <div className="mb-3">
             <label htmlFor="phone_field" className="form-label">Số điện thoại</label>
-            <input
+            {/* <input
               type="tel"
               id="phone_field"
               className="form-control"
               name="phone"
               value={phone}
               onChange={onChange}
+            /> */}
+            <PhoneInput 
+                international
+                defaultCountry="VN"
+                id="phone_field"
+                className="form-control"
+                name="phone"
+                value={phone}
+                onChange={handlePhoneChange}
             />
           </div>
 

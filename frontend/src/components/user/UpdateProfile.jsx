@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import UserLayout from '../layout/UserLayout';
 import { set } from 'mongoose';
+import PhoneInput from 'react-phone-number-input'
 
 const UpdateProfile = () => {
   const [name, setName] = useState("");
@@ -88,13 +89,22 @@ const UpdateProfile = () => {
 
             <div className="mb-3">
               <label htmlFor="phone_field" className="form-label"> Điện thoại </label>
-              <input
+              {/* <input
                 type="tel"
                 id="phone_field"
                 className="form-control"
                 name="phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+              /> */}
+              <PhoneInput 
+                international
+                defaultCountry="VN"
+                id="phone_field"
+                className="form-control"
+                name="phone"
+                value={phone}
+                onChange={(value) => setPhone(value)}
               />
             </div>
 
