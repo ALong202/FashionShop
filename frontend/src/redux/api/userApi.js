@@ -6,7 +6,7 @@ import { setIsAuthenticated, setLoading, setUser } from '../features/userSlice';
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
-  tagTypes: ["User", "AdminUsers"], // tagTypes để xác định loại dữ liệu trả về
+  tagTypes: ["User", "AdminUsers", "AdminUser"], // tagTypes để xác định loại dữ liệu trả về
   // endpoints để gửi request đến backend
   endpoints: (builder) => ({ 
     getMe: builder.query({
@@ -80,7 +80,21 @@ export const userApi = createApi({
     getAdminUsers: builder.query({
       query: () => `/admin/users`,
       providesTags: ["AdminUsers"]
-    }),    
+    }),
+    getUserDetail: builder.query({
+      query: (id) => `/admin/users/${id}`,
+      providesTags: ["AdminUser"]
+    }),
+    updateUser: builder.mutation({
+      query({ id, body }) {
+        return {
+          url: `admin/users/${id}`,
+          method: "PUT",
+          body,
+        };      
+      },
+      invalidatesTags: ["AdminUsers", "AdminUser"],
+    }),        
   }),
 })
 
@@ -92,4 +106,6 @@ export const {
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useGetAdminUsersQuery,
+  useGetUserDetailQuery,
+  useUpdateUserMutation,
 } = userApi;

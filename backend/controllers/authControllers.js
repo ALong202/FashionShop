@@ -261,6 +261,8 @@ export const updateUser = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
     name: req.body.name,
     email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
     role: req.body.role,
   };
 

@@ -45,7 +45,7 @@ const ListUsers = () => {
       field: "actions",
       cellRenderer: (params) => (
         <>
-          <Link to={`/admin/orders/${params.data.id}`} className="btn btn-outline-primary button-outline">
+          <Link to={`/admin/users/${params.data.id}`} className="btn btn-outline-primary button-outline">
             <i className="fa fa-pencil"></i>
           </Link>
           <button className="btn btn-outline-danger ms-2 button-outline">
