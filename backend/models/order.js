@@ -54,6 +54,9 @@ const orderSchema = new mongoose.Schema(
             type: Number,
             required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
           },
+          variantID: {
+            type: String,
+          },
         },
         quantity: {
           type: Number,

@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const zalopayApi = createApi({
-  reducerPath: "zalopayApi",
+export const stripeApi = createApi({
+  reducerPath: "stripeApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   endpoints: (builder) => ({
-    createNewZaloPayPayment: builder.mutation({
+    createNewStripePayment: builder.mutation({
       query(body) {
         return {
-          url: "/zalopay/payment",
+          url: "/stripe/payment",
           method: "POST",
           body,
         };
@@ -16,4 +16,4 @@ export const zalopayApi = createApi({
   }),
 });
 
-export const { useCreateNewZaloPayPaymentMutation } = zalopayApi;
+export const { useCreateNewStripePaymentMutation } = stripeApi;

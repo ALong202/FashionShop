@@ -8,6 +8,9 @@ import { userApi } from "./api/userApi";
 import cartReducer from "./features/cartSlice";
 import { orderApi } from "./api/orderApi";
 
+import { zalopayApi } from "./api/zalopayApi";
+import { stripeApi } from "./api/stripeApi";
+
 export const store = configureStore({
   // Dùng Chome extension Redux DevTools để theo dõi các reducers và trạng thái của ứng dụng
   reducer: {
@@ -20,6 +23,8 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
+    [zalopayApi.reducerPath]: orderApi.reducer,
+    [stripeApi.reducerPath]: orderApi.reducer,
      
   },
   // ref: https://redux-toolkit.js.org/rtk-query/usage#adding-the-api-middleware
@@ -30,6 +35,8 @@ export const store = configureStore({
       authApi.middleware,
       userApi.middleware,
       orderApi.middleware,
+      zalopayApi.middleware,
+      stripeApi.middleware,
     ]),    
 });
 

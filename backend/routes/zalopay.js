@@ -1,12 +1,12 @@
 import express from "express";
 import { authorizeRoles, isAuthenticatedUser } from "../middlewares/auth.js";
 import {
-  newPayment,
-  newOrderWithCard,
+  newZaloPayPayment,
+  newOrderWithZaloPay,
 } from "../controllers/zalopayController.js";
 const router = express.Router();
 // Định nghĩa các route cho zalopay process
-router.route("/payment").post(newPayment);
-router.route("/callback").post(newOrderWithCard);
+router.route("/zalopay/payment").post(isAuthenticatedUser, newZaloPayPayment);
+router.route("/zalopay/callback").post(newOrderWithZaloPay);
 
 export default router; 

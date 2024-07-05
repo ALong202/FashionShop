@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import MetaData from '../layout/MetaData';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import MetaData from "../layout/MetaData";
 import { saveShippingInfo } from "../../redux/features/cartSlice";
-import CheckoutSteps from './CheckoutSteps';
-import moment from 'moment';
+import CheckoutSteps from "./CheckoutSteps";
+import moment from "moment";
 
 const Shipping = () => {
-
-  const { user } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,53 +15,38 @@ const Shipping = () => {
   const { shippingInfo } = useSelector((state) => state.cart);
 
   //const [orderID, setOrderID] = useState(user?._id + Date.now()); //Tạo orderID trong shipping là ID người dùng+timestamp
-  const [orderID, setOrderID] = useState(moment().format('YYMMDDHHMMSS') + user?._id); //Tạo orderID trong shipping là YYMMDDHHMMSS_user._id -> phù hợp cho zalopay sử dụng
+  const [orderID, setOrderID] = useState(
+    moment().format("YYMMDDHHMMSS") + user?._id
+  ); //Tạo orderID trong shipping là YYMMDDHHMMSS_user._id -> phù hợp cho zalopay sử dụng
 
-  /*Điện sẵn thông tin từ shippingInfo nếu đã có trên local strorage của kh.
+  /*Điền sẵn thông tin từ shippingInfo nếu đã có trên local strorage của kh.
   Nếu chưa có thì dùng thông tin mặc định từ tài khoản*/
-  const [address, setAddress] = useState(shippingInfo?.address || user?.address);
+  const [address, setAddress] = useState(
+    shippingInfo?.address || user?.address
+  );
   const [phoneNo, setPhoneNo] = useState(shippingInfo?.phoneNo || user?.phone);
-
-
-  //Nếu chưa có shippingInfo trên local db thì tạo với thông số mặc định
-  // if(shippingInfo.length === 0){
-  //   setAddress(user?.address);
-  //   setPhoneNo(user?.phoneNo);
-  //   dispatch(saveShippingInfo({orderID, address: user?.address, phoneNo: user?.phone }));
-  // }
-
-
-  //Hook để render lại khi sửa thông tin vận chuyển
-  // useEffect(() => {
-  //   if (shippingInfo) {
-  //     setAddress(shippingInfo?.address);
-  //     setPhoneNo(shippingInfo?.phoneNo);
-  //   }
-  // }, [shippingInfo]);
 
   const submitHanler = (e) => {
     //e.preventDefault(); //cho phép dùng giá trị mặc định trên các trường thông tin
     //Lưu lại shippingInfo với thông số mặc định hoặc thay đổi (nếu có) khi chọn xác nhận thông tin
-    dispatch(saveShippingInfo({orderID, address, phoneNo}));    
+    dispatch(saveShippingInfo({ orderID, address, phoneNo }));
     navigate("/confirm_order");
   };
 
   return (
     <>
-      <MetaData title = {"Thông tin vận chuyển"} />
+      <MetaData title={"Thông tin vận chuyển"} />
 
       <CheckoutSteps shipping />
-      
+
       <div className="row wrapper mb-5">
         <div className="col-10 col-lg-5">
-          <form
-            className="shadow rounded bg-body"
-
-            onSubmit={submitHanler}
-          >
+          <form className="shadow rounded bg-body" onSubmit={submitHanler}>
             <h2 className="mb-4">Thông tin vận chuyển</h2>
             <div className="mb-3">
-              <label htmlFor="address_field" className="form-label">Địa chỉ</label>
+              <label htmlFor="address_field" className="form-label">
+                Địa chỉ
+              </label>
               <input
                 type="text"
                 id="address_field"
@@ -75,7 +59,9 @@ const Shipping = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="phone_field" className="form-label">Điện thoại liên hệ</label>
+              <label htmlFor="phone_field" className="form-label">
+                Điện thoại liên hệ
+              </label>
               <input
                 type="tel"
                 id="phone_field"
@@ -96,4 +82,4 @@ const Shipping = () => {
   );
 };
 
-export default Shipping
+export default Shipping;

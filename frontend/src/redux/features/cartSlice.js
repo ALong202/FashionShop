@@ -5,7 +5,6 @@ const initialState = {
     ? JSON.parse(localStorage.getItem("cartItems"))
     : [],
 
-    //Cần lấy theo địa chỉ mặc định trong dâtbase
   shippingInfo: localStorage.getItem("shippingInfo")
     ? JSON.parse(localStorage.getItem("shippingInfo"))
     : {},
@@ -18,68 +17,56 @@ export const cartSlice = createSlice({
     setCartItem: (state, action) => {
       const item = action.payload;
 
-    //   const isItemExist = state.cartItems.find(
-    //     (i) => i.product === item.product
-    //   );
-
-    //   if (isItemExist) {
-    //     state.cartItems = state.cartItems.map((i) =>
-    //       i.product === isItemExist.product ? item : i
-    //     );
-    //   } else {
-    //     state.cartItems = [...state.cartItems, item];
-    //   }
-
-    //   localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-    // },
-
       const isItemExistIndex = state.cartItems.findIndex(
         (i) => i?.selectedVariant?._id === item?.selectedVariant?._id
       );
-      
+
       if (isItemExistIndex !== -1) {
         //sản phẩm đã tồn tại trong giỏ hàng
         const existingItem = state.cartItems[isItemExistIndex];
 
-        const checkedItem = { //tạo sản phẩm mới với số lượng tăng/giảm
+        const checkedItem = {
+          //tạo sản phẩm mới với số lượng tăng/giảm
           ...item,
-          quantity: item.quantity + existingItem.quantity
+          quantity: item.quantity + existingItem.quantity,
         };
-        
-        if(checkedItem.quantity > checkedItem.selectedVariant.stock){//số lượng mới vượt tồn thì thêm vào đầu danh sách với số lượng bằng tồn
+
+        if (checkedItem.quantity > checkedItem.selectedVariant.stock) {
+          //số lượng mới vượt tồn thì thêm vào đầu danh sách với số lượng bằng tồn
           const newItem = {
             ...checkedItem,
-            quantity: checkedItem.selectedVariant.stock
+            quantity: checkedItem.selectedVariant.stock,
           };
           state.cartItems.splice(isItemExistIndex, 1);
           state.cartItems.unshift(newItem);
-        }
-        else{ //số lượng mới hợp lý thì thêm với số lượng mới
+        } else {
+          //số lượng mới hợp lý thì thêm với số lượng mới
           //xóa sản phẩm cũ khỏi vị trí hiện tại và thêm sản phẩm mới vào đầu mảng
           state.cartItems.splice(isItemExistIndex, 1);
           state.cartItems.unshift(checkedItem);
         }
       } else {
         //sản phẩm chưa tồn tại trong giỏ hàng
-        const checkedItem = { //tạo sản phẩm mới để check
+        const checkedItem = {
+          //tạo sản phẩm mới để check
           ...item,
-          quantity: item.quantity
+          quantity: item.quantity,
         };
-        if(checkedItem.quantity > checkedItem.selectedVariant.stock){//số lượng mới vượt tồn thì thêm vào đầu danh sách với số lượng bằng tồn
+        if (checkedItem.quantity > checkedItem.selectedVariant.stock) {
+          //số lượng mới vượt tồn thì thêm vào đầu danh sách với số lượng bằng tồn
           const newItem = {
             ...checkedItem,
-            quantity: checkedItem.selectedVariant.stock
+            quantity: checkedItem.selectedVariant.stock,
           };
           state.cartItems.unshift(newItem);
-        }
-        else
-          state.cartItems.unshift(item);
+        } else state.cartItems.unshift(item);
       }
-      
+
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
-    removeCartItem: (state, action) => {  //xóa theo mã loại mặt hàng
+    removeCartItem: (state, action) => {
+      //xóa theo mã loại mặt hàng
       state.cartItems = state?.cartItems?.filter(
         (i) => i?.selectedVariant?._id !== action.payload.selectedVariant?._id
       );
