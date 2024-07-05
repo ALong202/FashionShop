@@ -85,8 +85,8 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <div className="row pr-4 my-5">
-        <div className="col-xl-6 col-sm-12 mb-3">
+      <div className="row pr-4 my-5 justify-content-center">
+        <div className="col-xl-4 col-sm-12 mb-3">
           <div className="card text-white bg-success o-hidden h-100">
             <div className="card-body">
               <div className="text-center card-font-size">
@@ -100,7 +100,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="col-xl-6 col-sm-12 mb-3">
+        <div className="col-xl-4 col-sm-12 mb-3">
           <div className="card text-white bg-primary o-hidden h-100">
             <div className="card-body">
               <div className="text-center card-font-size">
