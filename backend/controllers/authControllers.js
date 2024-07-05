@@ -289,6 +289,12 @@ export const deleteUser = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler(`Không tìm thấy người dùng với id: ${req.params.id}`, 404)
     );
   }
+
+  // Xoá avatar khỏi cloudinary
+  if (user?.avatar?.public_id) {
+    await delete_file(user?.avatar?.public_id);
+  }
+
   // Xóa người dùng khỏi cơ sở dữ liệu
   await user.deleteOne();
 

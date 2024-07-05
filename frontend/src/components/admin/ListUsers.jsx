@@ -5,59 +5,110 @@ import { MDBDataTable } from "mdbreact";
 import { Link } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import AdminLayout from "../layout/AdminLayout";
-import { useGetAdminUsersQuery } from "../../redux/api/userApi";
+import {
+  useDeleteUserMutation,
+  useGetAdminUsersQuery,
+} from "../../redux/api/userApi";
 // import 'ag-grid-community/styles/ag-grid.css'; // Core styles
 // import 'ag-grid-community/styles/ag-theme-alpine.css'; // Theme
-import { AgGridReact } from 'ag-grid-react';
-import { AG_GRID_LOCALE_VN } from '@ag-grid-community/locale';
+import { AgGridReact } from "ag-grid-react";
+import { AG_GRID_LOCALE_VN } from "@ag-grid-community/locale";
 
 const ListUsers = () => {
   const { data, isLoading, error } = useGetAdminUsersQuery();
-  const [quickFilterText, setQuickFilterText] = useState("");
+  const [quickFilterText, setQuickFilterText] = useState(""); // Filter cho table
+
+  const [
+    deleteUser,
+    { isLoading: isDeleteLoading, error: deleteError, isSuccess },
+  ] = useDeleteUserMutation();
 
   useEffect(() => {
     if (error) {
       toast.error(error?.data?.message);
     }
 
-    // if (deleteError) {
-    //   toast.error(deleteError?.data?.message);
-    // }
+    if (deleteError) {
+      toast.error(deleteError?.data?.message);
+    }
 
-    // if (isSuccess) {
-    //   toast.success("Order Deleted");
-    // }
-  }, [error]);
+    if (isSuccess) {
+      toast.success("Tài khoản đã được xóa thành công!");
+    }
+  }, [error, deleteError, isSuccess]);
 
-  // const deleteOrderHandler = (id) => {
-  //   deleteOrder(id);
-  // };
+  const deleteUserHandler = (id) => {
+    deleteUser(id);
+  };
 
   const columnDefs = [
-    { headerName: "ID", field: "id", sortable: true, filter: true, resizable: true },
-    { headerName: "Họ tên", field: "name", sortable: true, filter: true, resizable: true },
-    { headerName: "Email", field: "email", sortable: true, filter: true, resizable: true },
-    { headerName: "SĐT", field: "phone", sortable: true, filter: true, resizable: true },
-    { headerName: "Địa chỉ", field: "address", sortable: true, filter: true, resizable: true },
-    { headerName: "Quyền", field: "role", sortable: true, filter: true, resizable: true },
+    {
+      headerName: "ID",
+      field: "id",
+      sortable: true,
+      filter: true,
+      resizable: true,
+    },
+    {
+      headerName: "Họ tên",
+      field: "name",
+      sortable: true,
+      filter: true,
+      resizable: true,
+    },
+    {
+      headerName: "Email",
+      field: "email",
+      sortable: true,
+      filter: true,
+      resizable: true,
+    },
+    {
+      headerName: "SĐT",
+      field: "phone",
+      sortable: true,
+      filter: true,
+      resizable: true,
+    },
+    {
+      headerName: "Địa chỉ",
+      field: "address",
+      sortable: true,
+      filter: true,
+      resizable: true,
+    },
+    {
+      headerName: "Quyền",
+      field: "role",
+      sortable: true,
+      filter: true,
+      resizable: true,
+    },
     {
       headerName: "Hành động",
       field: "actions",
       cellRenderer: (params) => (
         <>
-          <Link to={`/admin/users/${params.data.id}`} className="btn btn-outline-primary button-outline">
+          <Link
+            to={`/admin/users/${params.data.id}`}
+            className="btn btn-outline-primary button-outline"
+          >
             <i className="fa fa-pencil"></i>
           </Link>
-          <button className="btn btn-outline-danger ms-2 button-outline">
+          <button
+            className="btn btn-outline-danger ms-2 button-outline"
+            onClick={() => deleteUserHandler(params.data.id)}
+            disabled={isDeleteLoading}
+          >
             <i className="fa fa-trash"></i>
           </button>
         </>
       ),
-      resizable: true
+      resizable: true,
     },
   ];
 
-  const rowData = data?.users?.map(user => ({
+  const rowData = data?.users?.map((user) => ({
     id: user?._id,
     name: user?.name,
     email: user?.email,
@@ -65,7 +116,6 @@ const ListUsers = () => {
     address: user?.address,
     role: user?.role,
   }));
-
 
   if (isLoading) return <Loader />;
 
@@ -92,17 +142,20 @@ const ListUsers = () => {
         type="text"
         placeholder="Tìm kiếm..."
         onChange={(e) => setQuickFilterText(e.target.value)}
-        style={{ marginBottom: '10px'}}
+        style={{ marginBottom: "10px" }}
       />
 
-      <div className="ag-theme-alpine" style={{ height: 600, width: '100%' }}>
+      <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
         <AgGridReact
           columnDefs={columnDefs}
           rowData={rowData}
-          getRowStyle={params => {
-            return { backgroundColor: params.node.rowIndex % 2 === 0 ? '#f5f5f5' : '#ffffff' };
+          getRowStyle={(params) => {
+            return {
+              backgroundColor:
+                params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
+            };
           }} // Hàng chẵn có màu này, hàng lẻ có màu kia
-          domLayout='autoHeight'
+          domLayout="autoHeight"
           defaultColDef={{
             flex: 1,
             minWidth: 100,
@@ -125,7 +178,6 @@ const ListUsers = () => {
           // }}
         />
       </div>
-
     </AdminLayout>
   );
 };
