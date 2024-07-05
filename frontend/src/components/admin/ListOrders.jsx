@@ -114,6 +114,7 @@ const ListOrders = () => {
             striped
             hover
             noBottomColumns
+            style={{ textAlign: "center" }}
           />
         </div>
       </div>
