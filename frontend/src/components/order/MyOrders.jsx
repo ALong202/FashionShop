@@ -123,7 +123,7 @@ const MyOrder = () => {
             striped
             hover
             noBottomColumns
-            style={{ textAlign: "right" }}
+            style={{ textAlign: "center" }}
           />
         </div>
       </div>

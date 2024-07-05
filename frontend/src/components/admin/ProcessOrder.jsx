@@ -207,8 +207,12 @@ const ProcessOrder = () => {
             </tbody>
           </table>
 
-          <hr />
-          <div className="cart-item my-1">
+          {/* <hr /> */}
+          <h3 className="mt-5 my-4">
+            <strong>Sản phẩm trong đơn hàng:</strong>
+          
+          </h3>
+          <div id="order_summary" className="cart-item my-1">
             {order?.orderItems?.map((item) => (
               <div className="row my-5">
                 <div className="col-4 col-lg-2">
@@ -271,7 +275,7 @@ const ProcessOrder = () => {
               </div>
             ))}
           </div>
-          <hr />
+          {/* <hr /> */}
         </div>
 
         <div className="col-12 col-lg-3 mt-5">

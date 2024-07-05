@@ -120,7 +120,8 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
       await product.save({ validateBeforeSave: false });
     });
     if(order.paymentMethod ===  "COD")  //nếu là đơn COD thì cập nhật cả tình trạng thanh toán khi đã giao
-    order.paymentInfo = {status : "Đã thanh toán"};
+      order.paymentInfo = {status : "Đã thanh toán"};
+    order.sellQty += 1;
   } 
 
   // Cập nhật trạng thái đơn hàng và thời gian giao hàng

@@ -181,7 +181,7 @@ const PaymentMethod = () => {
               </label>
             </div>
 
-            <button id="shipping_btn" type="submit" className="btn py-2 w-100">
+            <button id="shipping_btn" type="submit" className="btn py-2 w-100" disable={isLoading}>
               XÁC NHẬN THANH TOÁN
             </button>
           </form>

@@ -160,8 +160,8 @@ const OrderDetails = () => {
             <strong>Sản phẩm trong đơn hàng:</strong>
           </h3>
 
-          <hr />
-          <div className="cart-item my-1">
+          {/* <hr /> */}
+          <div id="order_summary" className="cart-item my-1">
             {orderItems?.map((item) => (
               <div className="row my-5">
                 <div className="col-4 col-lg-2">
@@ -224,7 +224,7 @@ const OrderDetails = () => {
               </div>
             ))}
           </div>
-          <hr />
+          {/* <hr /> */}
         </div>
       </div>
     </>
