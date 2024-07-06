@@ -12,6 +12,8 @@ const __filename = fileURLToPath(import.meta.url); // Lấy đường dẫn tệ
 const __dirname = path.dirname(__filename); // Lấy đường dẫn thư mục hiện tại
 
 import cors from 'cors';
+import passport from "passport";
+import session from "express-session";
 
 // Bắt sự kiện lỗi không được xử lý
 process.on("uncaughtException", (err) =>{
@@ -70,6 +72,13 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
+
+
+// passport
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
   
 
 // const upload = multer({ 

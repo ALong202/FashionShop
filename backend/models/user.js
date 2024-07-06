@@ -46,6 +46,14 @@ const userSchema = new mongoose.Schema(
 
     resetPasswordToken: String,
     resetPasswordExpire: Date,
+    // Phương thức đăng nhập
+    method: {
+      type: String,
+      required: true,
+      default: "local",
+    },
+    googleId: String,
+    facebookId: String,
   },
 
   { timestamps: true }

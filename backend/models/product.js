@@ -102,6 +102,11 @@ const productSchema = new mongoose.Schema(
           // ref: "User", // Chỉ active khi project go-live
           // required: true,  // Chỉ active khi project go-live
         },
+        orderID: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Order",
+          required: true,
+        },
         rating: {
           type: Number,
           min:1,

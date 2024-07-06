@@ -1369,3 +1369,20 @@ nav {
   padding: 2px 5px; 
   /* font-size: 12px;  */
 }
+
+/* Chưa có tài khoản */
+.my-3 {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+/* Đăng nhập với Google/ Facebook */
+.button-container {
+  display: flex; /* Đặt các nút cạnh nhau */
+  justify-content: space-between; /* Tùy chọn: Để tạo khoảng cách đều giữa các nút */
+}
+
+.button.google {
+  margin-right: 10px; /* Tạo khoảng cách giữa các nút, điều chỉnh giá trị theo nhu cầu */
+}
