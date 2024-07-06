@@ -1,5 +1,6 @@
 
 import express from "express";
+import passport from "passport";
 import {
   resetPassword, 
   forgotPassword, 
@@ -20,8 +21,31 @@ const router = express.Router();
 
 // Router route(dẫn) đến mục "/products" để get (nhận request) và đưa vào controller function (hàm điều khiển)
 router.route("/register").post(registerUser);
-// Đăng nhập người dùng
+
+// Đăng nhập thông thường
 router.route("/login").post(loginUser);
+
+// Google Auth
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Đăng nhập thành công, chuyển hướng người dùng
+    res.redirect('/');
+  });
+
+// Facebook Auth
+router.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: 'email' }));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Đăng nhập thành công, chuyển hướng người dùng
+    res.redirect('/');
+  });
 
 // Đăng xuất người dùng
 router.route("/logout").get(logout);

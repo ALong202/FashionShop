@@ -92,6 +92,12 @@ const Login = () => {
           <div className="my-3">
             <a href="/register" className="float-end">Chưa có tài khoản?</a>
           </div>
+          <div>
+            <div className="button-container">
+              <a className="button google" href="/login/federated/google">Sign in with Google</a>
+              <a className="button facebook" href="/login/federated/google">Sign in with Facebook</a>
+            </div>
+          </div>
         </form>
       </div>
     </div>
