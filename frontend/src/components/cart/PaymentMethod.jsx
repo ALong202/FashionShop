@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useCreateNewZaloPayPaymentMutation } from '../../redux/api/zalopayApi';
 import { useCreateNewStripePaymentMutation } from '../../redux/api/stripeApi';
+import { useCreateNewMoMoPaymentMutation } from '../../redux/api/momoApi';
 
 const PaymentMethod = () => {
   const { user } = useSelector((state) => state.auth)
@@ -24,6 +25,8 @@ const PaymentMethod = () => {
   const [createNewZaloPayPayment] = useCreateNewZaloPayPaymentMutation();
 
   const [createNewStripePayment] = useCreateNewStripePaymentMutation();
+
+  const [createNewMoMoPayment] = useCreateNewMoMoPaymentMutation();
 
   useEffect(() => {    
     if (error) {
@@ -123,6 +126,20 @@ const PaymentMethod = () => {
         console.log(e);
       }); 
     }
+
+    if (method === "MoMo"){
+      //alert("MoMo");
+      createNewMoMoPayment(orderDataCard).then(response => {
+        console.log("Day la response\n", response);
+        if (response.data.resultCode === 0)          
+          window.location.href = response.data.payUrl;
+        else
+          toast.error("Hệ thống không khả dụng!");
+      })
+      .catch(e => {
+        console.log(e);
+      }); 
+    }
   }
 
   return (
@@ -164,6 +181,20 @@ const PaymentMethod = () => {
               />
               <label className="form-check-label" htmlFor="striperadio">
                 Thanh toán trực tuyến qua cổng Stripe
+              </label>
+            </div>
+
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="payment_mode"
+                id="momoradio"
+                value="MoMo"
+                onChange={(e) => setMethod("MoMo")}
+              />
+              <label className="form-check-label" htmlFor="momoradio">
+                Thanh toán trực tuyến qua cổng MoMo
               </label>
             </div>
 

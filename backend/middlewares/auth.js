@@ -34,3 +34,20 @@ export const authorizeRoles = (...roles) => {
     next();
   };
 };
+
+// Kiểm tra xem có phải đến từ đúng server hay không  -> dùng cho các api callback từ server dịch vụ
+export const isAuthenticatedServer = catchAsyncErrors(async (req, res, next) => {
+  const allowedOrigin = '';
+
+  const requestOrigin = req.headers.origin;
+
+  if (requestOrigin === allowedOrigin)
+    next();
+  else
+    return next(
+      new ErrorHandler(
+        `Server (${req.headers.origin}) không được truy cập tính năng này`,
+        403
+      )
+    );
+});

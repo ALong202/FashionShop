@@ -46,6 +46,7 @@ import orderRoutes from "./routes/order.js";
 
 import zalopayRoutes from "./routes/zalopay.js";
 import stripeRoutes from "./routes/stripe.js";
+import momoRoutes from "./routes/momo.js";
 
 app.use("/api", productRoutes);
 app.use("/api", authRoutes);
@@ -55,6 +56,7 @@ app.use(cors());
 app.use("/zalopay", zalopayRoutes);
 app.use("/api", zalopayRoutes);
 app.use("/api", stripeRoutes);
+app.use("/api", momoRoutes);
 
 if (process.env.NODE_ENV === "PRODUCTION") {
   app.use(express.static(path.join(__dirname, "../frontend/build"))); // Sử dụng thư mục build của frontend
