@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useGetProductDetailsQuery, useGetProductsQuery } from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
+import {
+  useGetProductDetailsQuery,
+  useGetProductsQuery,
+} from "../../redux/api/productsApi"; // auto chèn khi chọn useGetProductDetailsQuery
 // frames hook dùng để lấy id từ params
 import { useParams, useSearchParams } from "react-router-dom"; // auto chèn khi chọn useParams
 // import toast from "react-hot-toast";
@@ -11,16 +14,13 @@ import { setCartItem } from "../../redux/features/cartSlice";
 import { colorMap } from "../../constants/constants";
 import NewReview from "../reviews/NewReview";
 import ListReviews from "../reviews/ListReviews";
-import Zoom from "react-medium-image-zoom"
-import "react-medium-image-zoom/dist/styles.css"
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 import ProductItem from "./ProductItem";
 import CustomPagination from "../layout/CustomPagination";
 import NotFound from "../layout/NotFound";
 
-
 const ProductDetails = () => {
-
-
   const params = useParams();
 
   const dispatch = useDispatch();
@@ -30,8 +30,9 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState(null); // size: kích cỡ sản phẩm đang chọn
   const [selectedColor, setSelectedColor] = useState(null); // color: màu sắc sản phẩm đang chọn
 
-
-  const { data, isLoading, error, isError } = useGetProductDetailsQuery(params?.id);  //lấy thông tin sản phẩm đang xem
+  const { data, isLoading, error, isError } = useGetProductDetailsQuery(
+    params?.id
+  ); //lấy thông tin sản phẩm đang xem
 
   const product = data?.product;
 
@@ -39,7 +40,11 @@ const ProductDetails = () => {
 
   //render lại ảnh khi sản phẩm thay đổi
   useEffect(() => {
-    setActiveImg(product?.images[0] ? product?.images[0]?.url : "/images/default_product.png");
+    setActiveImg(
+      product?.images[0]
+        ? product?.images[0]?.url
+        : "/images/default_product.png"
+    );
   }, [product]);
 
   //báo lỗi khi không lấy dược thông tin sản phẩm
@@ -50,20 +55,32 @@ const ProductDetails = () => {
   }, [error?.data?.message, isError]);
 
   const [selectedVariant, setSelectedVariant] = useState(null); //loại của sản phẩm đang được chọn để đưa vào giỏ
-  const [isInStock, setIsInStock] = useState(false);  //tình trạng còn hàng của loại sản phẩm đan chọn
+  const [isInStock, setIsInStock] = useState(false); //tình trạng còn hàng của loại sản phẩm đan chọn
 
   //khi loại mặt hàng đang chọn hoặc số lượng của loại mặt hàng đang chọn thay đổi thì tính toán và render lại
-  useEffect(() =>{
-    setSelectedVariant(product?.variants?.find(variant => variant.color === selectedColor && variant.size === selectedSize));
+  useEffect(() => {
+    setSelectedVariant(
+      product?.variants?.find(
+        (variant) =>
+          variant.color === selectedColor && variant.size === selectedSize
+      )
+    );
     setIsInStock(selectedVariant && selectedVariant?.stock > 0);
-    setQuantity(quantity >= selectedVariant?.stock ? selectedVariant?.stock: quantity);
-  }, [product?.variants, quantity, selectedColor, selectedSize, selectedVariant]);
-
+    setQuantity(
+      quantity >= selectedVariant?.stock ? selectedVariant?.stock : quantity
+    );
+  }, [
+    product?.variants,
+    quantity,
+    selectedColor,
+    selectedSize,
+    selectedVariant,
+  ]);
 
   // Thay đổi màu
   const handleColorChange = (color) => {
     setSelectedColor(color);
-  }
+  };
 
   // Thay đổi size
   const handleSizeClick = (size) => {
@@ -72,13 +89,12 @@ const ProductDetails = () => {
 
   //const selectedVariant = product?.variants?.find(variant => variant.color === selectedColor && variant.size === selectedSize);
   //const isInStock = selectedVariant && selectedVariant?.stock > 0;
-  
+
   //Xử lý khi chọn tăng số lượng
   const increseQty = () => {
     const count = document.querySelector(".count");
 
-    if (count.valueAsNumber >= selectedVariant?.stock)
-      return;
+    if (count.valueAsNumber >= selectedVariant?.stock) return;
     const qty = count.valueAsNumber + 1;
     setQuantity(qty);
   };
@@ -87,8 +103,7 @@ const ProductDetails = () => {
   const decreseQty = () => {
     const count = document.querySelector(".count");
 
-    if (count.valueAsNumber <= 1)
-      return;
+    if (count.valueAsNumber <= 1) return;
     const qty = count.valueAsNumber - 1;
     setQuantity(qty);
   };
@@ -104,7 +119,7 @@ const ProductDetails = () => {
       toast.error("Vui lòng chọn màu");
       return;
     }
-  
+
     if (product?.size?.length > 0 && !selectedSize) {
       toast.error("Vui lòng chọn kích cỡ");
       return;
@@ -116,8 +131,11 @@ const ProductDetails = () => {
       price: product?.price,
       image: product?.images[0]?.url,
       variant: product?.variants,
-      selectedVariant: product?.variants?.find(variant => variant.color === selectedColor && variant.size === selectedSize),
-      quantity
+      selectedVariant: product?.variants?.find(
+        (variant) =>
+          variant.color === selectedColor && variant.size === selectedSize
+      ),
+      quantity,
     };
 
     dispatch(setCartItem(cartItem));
@@ -127,11 +145,10 @@ const ProductDetails = () => {
   };
 
   if (error && error?.status === 404) {
-    return <NotFound />
+    return <NotFound />;
   }
 
-  if (isLoading) return <Loader />
-
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -145,7 +162,7 @@ const ProductDetails = () => {
                 alt={product?.name}
                 width="340"
                 height="390"
-                style={{ objectFit: 'contain', maxHeigth: "0%"}}
+                style={{ objectFit: "contain", maxHeigth: "0%" }}
               />
             </Zoom>
           </div>
@@ -154,7 +171,9 @@ const ProductDetails = () => {
               <div className="col-2 ms-4 mt-2">
                 <a href="###" role="button">
                   <img
-                    className={`d-block border rounded p-3 cursor-pointer ${img.url === activeImg ? "border-warning" : ""}`}
+                    className={`d-block border rounded p-3 cursor-pointer ${
+                      img.url === activeImg ? "border-warning" : ""
+                    }`}
                     height="100"
                     width="100"
                     src={img?.url}
@@ -175,20 +194,28 @@ const ProductDetails = () => {
 
           <div className="d-flex">
             <StarRatings
-                rating={product?.ratings}
-                starRatedColor="#ffb829"
-                numberOfStars={5}
-                name='rating'
-                starDimension="1.4em"
-                starSpacing="1px"
+              rating={product?.ratings}
+              starRatedColor="#ffb829"
+              numberOfStars={5}
+              name="rating"
+              starDimension="1.4em"
+              starSpacing="1px"
             />
-            <span id="no-of-reviews" className="pt-1 ps-2"> ({product?.numOfReviews} Đánh giá) </span>
+            <span id="no-of-reviews" className="pt-1 ps-2">
+              {" "}
+              ({product?.numOfReviews} Đánh giá){" "}
+            </span>
           </div>
           <hr />
 
           <p id="product_price">{product?.price.toLocaleString("vi-VN")}đ</p>
           <div className="stockCounter d-inline">
-            <span className="btn btn-danger minus " onClick={isInStock ? decreseQty : undefined}>-</span>
+            <span
+              className="btn btn-danger minus "
+              onClick={isInStock ? decreseQty : undefined}
+            >
+              -
+            </span>
             <input
               type="number"
               className="form-control count d-inline"
@@ -196,17 +223,18 @@ const ProductDetails = () => {
               readOnly={!isInStock}
               onChange={(e) => {
                 const value = parseInt(e.target.value);
-                if (e.target.value === "")
-                  setQuantity(e.target.value);
+                if (e.target.value === "") setQuantity(e.target.value);
                 else if (value > 0) {
                   setQuantity(value);
-                }
-                else
-                  setQuantity(1);
-                }
-              }
+                } else setQuantity(1);
+              }}
             />
-            <span className="btn btn-primary plus" onClick={isInStock ? increseQty : undefined}>+</span>
+            <span
+              className="btn btn-primary plus"
+              onClick={isInStock ? increseQty : undefined}
+            >
+              +
+            </span>
           </div>
           <button
             type="button"
@@ -219,26 +247,35 @@ const ProductDetails = () => {
           </button>
 
           <hr />
-          
-          {selectedColor && selectedSize ?(
+
+          {selectedColor && selectedSize ? (
             <p>
               {/* Tình trạng: <span id="stock_status" className={product?.stock > 0 ? "greenColor" : "redColor"}>{product?.stock > 0 ? "Còn hàng" : "Hết hàng"}</span> */}
-              Tình trạng: <span id="stock_status" className={isInStock ? "greenColor" : "redColor"}>{isInStock ? "Còn hàng" : "Hết hàng"}</span>
+              Tình trạng:{" "}
+              <span
+                id="stock_status"
+                className={isInStock ? "greenColor" : "redColor"}
+              >
+                {isInStock ? "Còn hàng" : "Hết hàng"}
+              </span>
             </p>
           ) : (
             <p> Tình trạng: </p> // "trống" nếu chưa chọn size và color
           )}
 
-          <p>Màu sắc:
+          <p>
+            Màu sắc:
             {/* {product?.color.map((colorName) => ( */}
             {product?.variants
-              .map(variant => variant.color) // Extract color from each variant
+              .map((variant) => variant.color) // Extract color from each variant
               .filter((value, index, self) => self.indexOf(value) === index) // Remove duplicate colors
-              .map((colorName) => (                         
+              .map((colorName) => (
                 <button
                   key={colorName}
                   style={{ backgroundColor: colorMap[colorName] }}
-                  className={`color-button ${colorName === selectedColor ? 'color-button-selected' : ''}`}
+                  className={`color-button ${
+                    colorName === selectedColor ? "color-button-selected" : ""
+                  }`}
                   onClick={() => handleColorChange(colorName)}
                 >
                   {colorName}
@@ -247,59 +284,66 @@ const ProductDetails = () => {
             {/* </div> */}
           </p>
 
-          <p>Kích thước: 
+          <p>
+            Kích thước:
             <div className="size-buttons">
               {/* {product?.size.map((size, index) => ( */}
               {product?.variants
-                .filter(variant => variant.color === selectedColor) // Filter variants by selected color
-                .map(variant => variant.size) // Extract size from each variant
+                .filter((variant) => variant.color === selectedColor) // Filter variants by selected color
+                .map((variant) => variant.size) // Extract size from each variant
                 .filter((value, index, self) => self.indexOf(value) === index) // Remove duplicate sizes
                 .map((size) => (
-                <button 
-                  // key={index}
-                  key={size} 
-                  onClick={() => handleSizeClick(size)}
-                  // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
-                  className={`size-button ${selectedSize === size ? 'selected' : ''}`}
-                >
-                  {size}
-                </button>
-              ))}
+                  <button
+                    // key={index}
+                    key={size}
+                    onClick={() => handleSizeClick(size)}
+                    // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
+                    className={`size-button ${
+                      selectedSize === size ? "selected" : ""
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
             </div>
           </p>
 
           <hr />
 
           <h4 className="mt-2">Mô tả:</h4>
-          <p>
-            {product?.description}
-          </p>
+          <p>{product?.description}</p>
           <hr />
-          <p id="product_seller mb-3">Nguồn gốc: <strong>{product?.origin || "FashionShop"}</strong></p>
+          <p id="product_seller mb-3">
+            Nguồn gốc: <strong>{product?.origin || "FashionShop"}</strong>
+          </p>
 
-          {isAuthenticated ? (
+          {/* {isAuthenticated ? (
             <NewReview productId = {product?._id} />
           ) : (
             <div className="alert alert-danger my-5" type="alert">
               Hãy đăng nhập và mua hàng để có thể đánh giá đơn hàng nhé bạn ^^
             </div>
-          )}
+          )} */}
         </div>
       </div>
-      {product?.reviews?.length > 0 && (
-        <ListReviews reviews = {product?.reviews} />
-      )}
 
-      <div className={window.location.search.includes('category=') ? "col-12 col-md-9": "col-12 col-md-12 "}>
+      <br></br>
+      <div id="order_summary" style={{ width: "95%", margin: "auto" }}>
+        {product?.reviews?.length > 0 && (
+          <ListReviews reviews={product?.reviews} />
+        )}
+      </div>
+
+      {/* <div className={window.location.search.includes('category=') ? "col-12 col-md-9": "col-12 col-md-12 "}>
           <h1 id="products_heading" className="text-secondary">
             {"Sản phẩm gợi ý"}            
           </h1>
-      </div>
+      </div> */}
     </>
-  )
-}
+  );
+};
 
-export default ProductDetails
+export default ProductDetails;
 
 /*
 "border-warning": class dùng để border màu vàng cho ảnh đang được chọn
