@@ -1,14 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import MetaData from "../layout/MetaData";
 import { useOrderDetailsQuery } from "../../redux/api/orderApi";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
 import { colorMap } from "../../constants/constants";
+import NewReview from "../reviews/NewReview";
+import StarRatings from "react-star-ratings";
+import { useDispatch, useSelector } from "react-redux";
+import { clearReview, setReviewItem } from "../../redux/features/reviewSlice";
 
 const OrderDetails = () => {
+  //const { user } = useSelector((state) => state.auth);
+  const { reviewItems } = useSelector((state) => state.review);
+  const dispatch = useDispatch();
+
   const params = useParams();
-  const { data, isLoading, error } = useOrderDetailsQuery(params?.id);
+  const { data, isLoading, error, isSuccess } = useOrderDetailsQuery(
+    params?.id
+  );
   const order = data?.order || {};
 
   const { orderItems, paymentInfo, user, orderStatus } = order;
@@ -19,9 +29,59 @@ const OrderDetails = () => {
     if (error) {
       toast.error(error?.data?.message);
     }
-  }, [error]);
+
+    if (isSuccess) {
+      dispatch(clearReview());
+      // console.log(data);
+      const initData = data?.order?.orderItems?.map((d) => ({
+        orderItems: d,
+        userID: user?._id,
+        rating: 0,
+        comment: "",
+        orderID: data?.order?._id,
+        status: data?.order?.orderStatus,
+        variantID: d?.selectedVariant?.variantID,
+        flag: false,
+      }));
+
+      // console.log("init data", initData);
+      // console.log("od items", orderItems)
+
+      initData.forEach((i) => {
+        setItemToReview(i); // Gửi mỗi item vào action và gửi lên Redux store
+      });
+    }
+  }, [error, isSuccess]);
+
+  const setItemToReview = (item) => {
+    const reviewItem = {
+      orderItems: item?.orderItems,
+      userID: item?.userID,
+      rating: item?.rating,
+      comment: item?.comment,
+      orderID: item?.orderID,
+      status: item?.status,
+      variantID: item?.variantID,
+      flag: item?.flag,
+    };
+
+    dispatch(setReviewItem(reviewItem));
+
+    // console.log(reviewItem);
+  };
 
   if (isLoading) return <Loader />;
+
+  const openReview = (e) => {
+    const flagItem = reviewItems.find((r) => r?.variantID === e);
+    // console.log("e = ", e, "\nflagitem = ", flagItem)
+    const { flag, ...restItem } = flagItem;
+    const flagedItem = {
+      ...restItem,
+      flag: true,
+    };
+    setItemToReview(flagedItem);
+  };
 
   return (
     <>
@@ -156,49 +216,98 @@ const OrderDetails = () => {
             </tbody>
           </table>
 
-          <h3 className="mt-5 my-4">
-            <strong>Sản phẩm trong đơn hàng:</strong>
-          </h3>
+          <div className="d-flex justify-content-between align-items-center">
+            <h3 className="mt-5 my-4">
+              <strong>Sản phẩm trong đơn hàng:</strong>
+            </h3>
+          </div>
 
           {/* <hr /> */}
           <div id="order_summary" className="cart-item my-1">
-            {orderItems?.map((item) => (
+            {reviewItems?.map((item) => (
               <div className="row my-5">
                 <div className="col-4 col-lg-2">
                   <img
-                    src={item?.image}
-                    alt={item?.name}
-                    height="100"
-                    width="100"
+                    src={item?.orderItems?.image}
+                    alt={item?.orderItems?.name}
+                    height="150"
+                    width="150"
                   />
                 </div>
 
                 <div className="col-5 col-lg-5">
-                  <Link to={`/product/${item?.product}`}>{item?.name}</Link>
+                  <Link to={`/product/${item?.orderItems?.product}`}>
+                    {item?.orderItems?.name}
+                  </Link>
                   <div>
                     <button
-                      key={item?.selectedVariant?.color}
+                      key={item?.orderItems?.selectedVariant?.color}
                       style={{
-                        backgroundColor: colorMap[item?.selectedVariant?.color],
+                        backgroundColor:
+                          colorMap[item?.orderItems?.selectedVariant?.color],
                       }}
                       className={"color-button active"}
                       disabled={true}
                     >
-                      {item?.selectedVariant?.color}
+                      {item?.orderItems?.selectedVariant?.color}
                     </button>
                     <button
-                      key={item?.selectedVariant?.size}
+                      key={item?.orderItems?.selectedVariant?.size}
                       className={"size-button selected"}
                       disabled={true}
                     >
-                      {item?.selectedVariant?.size}
+                      {item?.orderItems?.selectedVariant?.size}
                     </button>
                   </div>
+
+                  <button
+                    id="review_btn"
+                    type="button"
+                    className="btn btn-primary mt-4"
+                    data-bs-toggle="modal"
+                    data-bs-target="#ratingModal"
+                    value={item?.orderItems?.selectedVariant?.variantID}
+                    onClick={(e) => {
+                      openReview(e.target.value);
+                    }}
+                  >
+                    Đánh giá sản phẩm
+                  </button>
+                  <NewReview />
+
+                  {/* {item?.status === "Delivered" ? (
+                    <>
+                      <button
+                        id="review_btn"
+                        type="button"
+                        className="btn btn-primary mt-4"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ratingModal"
+                        value={item?.orderItems?.selectedVariant?.variantID}
+                        onClick={(e) => {
+                          openReview(e.target.value);
+                        }}
+                      >
+                        Đánh giá sản phẩm
+                      </button>
+                      <NewReview />
+                    </>
+                  ) : (
+                    <button
+                      id="review_btn"
+                      type="button"
+                      className="btn btn-primary mt-4"
+                      value={item?.orderItems?.selectedVariant?.variantID}
+                      disabled={true}
+                    >
+                      Đánh giá sản phẩm
+                    </button>
+                  )} */}
                 </div>
 
                 <div className="col-4 col-lg-2 mt-4 mt-lg-0">
                   <p>
-                    {item?.price.toLocaleString("vi-VN", {
+                    {item?.orderItems?.price.toLocaleString("vi-VN", {
                       style: "currency",
                       currency: "VND",
                     })}
@@ -207,14 +316,16 @@ const OrderDetails = () => {
 
                 <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                   <p>
-                    {item?.quantity} x{" "}
-                    {item?.price.toLocaleString("vi-VN", {
+                    {item?.orderItems?.quantity} x{" "}
+                    {item?.orderItems?.price.toLocaleString("vi-VN", {
                       style: "currency",
                       currency: "VND",
                     })}{" "}
                     ={" "}
                     <b>
-                      {(item?.quantity * item?.price).toLocaleString("vi-VN", {
+                      {(
+                        item?.orderItems?.quantity * item?.orderItems?.price
+                      ).toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                       })}

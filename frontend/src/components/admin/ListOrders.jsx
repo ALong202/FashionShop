@@ -51,7 +51,7 @@ const ListOrders = () => {
           sort: "asc",
         },
         {
-          label: "Xem chi tiết",
+          label: "Thao tác",
           field: "actions",
           sort: "asc",
           width: 180,

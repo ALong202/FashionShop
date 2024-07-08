@@ -82,28 +82,28 @@ const productSchema = new mongoose.Schema(
           type: Number,
           required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
         },
-        // reviews: [
-        //   {
-        //     user: {
-        //       type: mongoose.Schema.Types.ObjectId,
-        //       // ref: "User", // Chỉ active khi project go-live
-        //       // required: true,  // Chỉ active khi project go-live
-        //     },
-        //     order: {
-        //       type: mongoose.Schema.Types.ObjectId,
-        //       // ref: "Order", // Chỉ active khi project go-live
-        //       // required: true,  // Chỉ active khi project go-live
-        //     },
-        //     rating: {
-        //       type: Number,
-        //       min:1,
-        //       max:5,
-        //     },
-        //     comment: {
-        //       type: String,
-        //     },
-        //   },
-        // ],
+        reviews: [
+          {
+            user: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "User", // Chỉ active khi project go-live
+              // required: true,  // Chỉ active khi project go-live
+            },
+            order: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Order", // Chỉ active khi project go-live
+              // required: true,  // Chỉ active khi project go-live
+            },
+            rating: {
+              type: Number,
+              min:1,
+              max:5,
+            },
+            comment: {
+              type: String,
+            },
+          },
+        ],
       },
     ],
 
@@ -119,15 +119,15 @@ const productSchema = new mongoose.Schema(
 
     reviews: [
       {
-        user: {
+        order: {
           type: mongoose.Schema.Types.ObjectId,
-          // ref: "User", // Chỉ active khi project go-live
+          ref: "Order", // Chỉ active khi project go-live
           // required: true,  // Chỉ active khi project go-live
         },
-        orderID: {
+        user: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Order",
-          required: true,
+          ref: "User", // Chỉ active khi project go-live
+          // required: true,  // Chỉ active khi project go-live
         },
         rating: {
           type: Number,
@@ -142,7 +142,7 @@ const productSchema = new mongoose.Schema(
 
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      // ref: "User", // Chỉ active khi project go-live
+      ref: "User", // Chỉ active khi project go-live
       // required: true, // Chỉ active khi project go-live
     },
   },

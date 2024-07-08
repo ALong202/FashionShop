@@ -210,7 +210,6 @@ const ProcessOrder = () => {
           {/* <hr /> */}
           <h3 className="mt-5 my-4">
             <strong>Sản phẩm trong đơn hàng:</strong>
-          
           </h3>
           <div id="order_summary" className="cart-item my-1">
             {order?.orderItems?.map((item) => (

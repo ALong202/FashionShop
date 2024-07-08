@@ -1,7 +1,7 @@
 /* store.js trong Redux Toolkit cấu hình Redux store, lưu trữ toàn bộ trạng thái ứng dụng.
-*/
+ */
 import { configureStore } from "@reduxjs/toolkit"; // ref: https://redux-toolkit.js.org/api/configureStore
-import userReducer from "./features/userSlice" ;
+import userReducer from "./features/userSlice";
 import { productApi } from "./api/productsApi"; // auto chèn khi chọn productAPi
 import { authApi } from "./api/authApi";
 import { userApi } from "./api/userApi";
@@ -10,6 +10,8 @@ import { orderApi } from "./api/orderApi";
 
 import { zalopayApi } from "./api/zalopayApi";
 import { stripeApi } from "./api/stripeApi";
+import { momoApi } from "./api/momoApi";
+import reviewReducer from "./features/reviewSlice";
 
 export const store = configureStore({
   // Dùng Chome extension Redux DevTools để theo dõi các reducers và trạng thái của ứng dụng
@@ -18,18 +20,20 @@ export const store = configureStore({
     auth: userReducer,
     // Định nghĩa các reducers. cartReducer xử lý trạng thái của giỏ hàng
     cart: cartReducer,
+
+    review: reviewReducer,
     // API slices xử lý trạng thái của các yêu cầu API ứng dụng
     [productApi.reducerPath]: productApi.reducer, // ref: https://redux-toolkit.js.org/rtk-query/usage#adding-the-api-to-the-store
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
-    [zalopayApi.reducerPath]: orderApi.reducer,
-    [stripeApi.reducerPath]: orderApi.reducer,
-     
+    [zalopayApi.reducerPath]: zalopayApi.reducer,
+    [stripeApi.reducerPath]: stripeApi.reducer,
+    [momoApi.reducerPath]: momoApi.reducer,
   },
   // ref: https://redux-toolkit.js.org/rtk-query/usage#adding-the-api-middleware
   // thêm các middleware từ các API slices vào chuỗi middleware mặc định của Redux toolkit. Cho phép các AP slices xử lý các yêu cầu API và cập nhật trạng thái ứng dụng
-  middleware: (getDefaultMiddleware) =>   
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       productApi.middleware,
       authApi.middleware,
@@ -37,6 +41,6 @@ export const store = configureStore({
       orderApi.middleware,
       zalopayApi.middleware,
       stripeApi.middleware,
-    ]),    
+      momoApi.middleware,
+    ]),
 });
-
