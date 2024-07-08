@@ -7,7 +7,8 @@ import { useCreateNewOrderMutation } from '../../redux/api/orderApi'
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom'
 
-import ZaloPayApi from '../../redux/api/zalopayApi'
+import { useCreateNewZaloPayPaymentMutation } from '../../redux/api/zalopayApi';
+import { useCreateNewStripePaymentMutation } from '../../redux/api/stripeApi';
 
 const PaymentMethod = () => {
   const { user } = useSelector((state) => state.auth)
@@ -19,6 +20,10 @@ const PaymentMethod = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
   const [createNewOrder, {isLoading, error, isSuccess}] = useCreateNewOrderMutation();
+
+  const [createNewZaloPayPayment] = useCreateNewZaloPayPaymentMutation();
+
+  const [createNewStripePayment] = useCreateNewStripePaymentMutation();
 
   useEffect(() => {    
     if (error) {
@@ -57,11 +62,16 @@ const PaymentMethod = () => {
       //Trả về đối tượng mới đã xử lý
       return {
         ...restItem,
-        selectedVariant: variantWithoutId
+        selectedVariant: {
+          color: variantWithoutId.color,
+          size: variantWithoutId.size,
+          stock: variantWithoutId.stock,
+          variantID: _id,
+        },
       };
     });
 
-    console.log(processedCartItems);
+    console.log("Processed Data", processedCartItems);
 
     const orderData = {
       shippingInfo,
@@ -76,19 +86,35 @@ const PaymentMethod = () => {
       user: user._id,
     };
 
-    console.log(orderData)
+    console.log("Order Data", orderData);
+    const { paymentMethod, ...orderDataCard } = orderData;
+    orderDataCard.paymentMethod = "Card";
+    console.log("Order Data Card", orderDataCard);
 
     if (method === "COD"){
       //alert("COD");
       createNewOrder(orderData)
     }
 
-    if (method === "Card"){
-      //alert("Card");
-      ZaloPayApi.createPayment([orderData])
-      .then(response => {
+    if (method === "Stripe"){
+      //alert("Stripe");
+      createNewStripePayment(orderDataCard).then(response => {
         console.log("Day la response\n", response);
-        if (response.status === 200)          
+        if (response?.data?.url)          
+          window.location.href = response?.data?.url
+        else
+          toast.error("Hệ thống không khả dụng!");
+      })
+      .catch(e => {
+        console.log(e);
+      });        
+    }
+
+    if (method === "ZaloPay"){
+      //alert("ZaloPay");
+      createNewZaloPayPayment(orderDataCard).then(response => {
+        console.log("Day la response\n", response);
+        if (response.data.return_code === 1)          
           window.location.href = response.data.order_url;
         else
           toast.error("Hệ thống không khả dụng!");
@@ -126,21 +152,36 @@ const PaymentMethod = () => {
                 Thanh toán khi nhận hàng
               </label>
             </div>
+
             <div className="form-check">
               <input
                 className="form-check-input"
                 type="radio"
                 name="payment_mode"
-                id="cardradio"
-                value="Card"
-                onChange={(e) => setMethod("Card")}
+                id="striperadio"
+                value="Stripe"
+                onChange={(e) => setMethod("Stripe")}
               />
-              <label className="form-check-label" htmlFor="cardradio">
+              <label className="form-check-label" htmlFor="striperadio">
+                Thanh toán trực tuyến qua cổng Stripe
+              </label>
+            </div>
+
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="payment_mode"
+                id="zalopayradio"
+                value="ZaloPay"
+                onChange={(e) => setMethod("ZaloPay")}
+              />
+              <label className="form-check-label" htmlFor="zalopayradio">
                 Thanh toán trực tuyến qua cổng ZaloPay
               </label>
             </div>
 
-            <button id="shipping_btn" type="submit" className="btn py-2 w-100">
+            <button id="shipping_btn" type="submit" className="btn py-2 w-100" disable={isLoading}>
               XÁC NHẬN THANH TOÁN
             </button>
           </form>

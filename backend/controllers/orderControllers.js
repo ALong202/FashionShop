@@ -91,21 +91,38 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Không tìm thấy đơn hàng với ID này", 404));
   }
 
+  // Trùng trạng thái thì ko làm gì
+  if (order?.orderStatus === req.body.status) {
+    return next(new ErrorHandler("Cần chọn trạng thái mới để sửa", 400));
+  }
+
+  // Đơn hàng đang shipped thì ko đc chuyển về processing
+  if (order?.orderStatus === "Shipped" && req.body.status === "Processing") {
+    return next(new ErrorHandler("Đơn hàng đang được giao", 400));
+  }
+
   // Kiểm tra xem đơn hàng đã được giao hàng chưa
   if (order?.orderStatus === "Delivered") {
     // Nếu đơn hàng đã được giao hàng, trả về lỗi với mã trạng thái 400
-    return next(new ErrorHandler("Đơn hàng của bạn đã được giao", 400));
+    return next(new ErrorHandler("Đơn hàng đã được giao", 400));
   }
 
   // Cập nhật số lượng hàng tồn kho của các sản phẩm liên quan
-  order?.orderItems?.forEach(async (item) => {
-    const product = await Product.findById(item?.product?.toString());
-    if (!product) {
-      return next(new ErrorHandler("Không tìm thấy sản phẩm với ID này", 404));
-    }
-    product.stock = product.stock - item.quantity;
-    await product.save({ validateBeforeSave: false });
-  });
+  if((req.body.status === "Delivered")){ //chỉ khi chuyển sang delivered thì mới cập nhật số lượng và time giao hàng
+    order?.orderItems?.forEach(async (item) => {
+      const product = await Product.findById(item?.product?.toString());
+      if (!product) {
+        return next(new ErrorHandler("Không tìm thấy sản phẩm với ID này", 404));
+      }
+  
+      //fai trừ theo đúng variant
+      product.variants.find(variant => variant._id.toString() === item.selectedVariant.variantID).stock = product.variants.find(variant => variant._id.toString() === item.selectedVariant.variantID).stock - item.quantity;
+      await product.save({ validateBeforeSave: false });
+    });
+    if(order.paymentMethod ===  "COD")  //nếu là đơn COD thì cập nhật cả tình trạng thanh toán khi đã giao
+      order.paymentInfo = {status : "Đã thanh toán"};
+    order.sellQty += 1;
+  } 
 
   // Cập nhật trạng thái đơn hàng và thời gian giao hàng
   order.orderStatus = req.body.status;
@@ -117,6 +134,7 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
   // Trả về thành công với mã trạng thái 200
   res.status(200).json({
     success: true,
+    order,
   });
 });
 

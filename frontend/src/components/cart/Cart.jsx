@@ -134,8 +134,8 @@ const Cart =() => {
           <div className="col-12 col-lg-8">
             {cartItems?.map((item) => (
               <>
-              <hr />
-              <div className="cart-item" data-key="product1">
+              {/* <hr /> */}
+              <div id="order_summary" className="cart-item" data-key="product1">
                 <div className="row">
                   <div className="col-4 col-lg-3">
                     <img
@@ -222,7 +222,7 @@ const Cart =() => {
                   </div>
                 </div>
               </div>
-              <hr />
+              {/* <hr /> */}
               </>
             ))}
 

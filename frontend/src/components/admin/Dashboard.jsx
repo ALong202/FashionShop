@@ -17,17 +17,17 @@ const Dashboard = () => {
     useLazyGetDashboardSalesQuery();
 
   useEffect(() => {
-    if(error){
+    if (error) {
       toast.error(error?.data?.message);
     }
 
-    if(startDate && endDate && !data) {
+    if (startDate && endDate && !data) {
       getDashboardSales({
         startDate: new Date(startDate).toISOString(),
         endDate: endDate.toISOString(),
       }); // lấy dữ liệu doanh số từ API khi có start và end Date nhưng chưa có dữ liệu (lúc mới mở page Dashboard)
     }
-  }, [error]) // có lỗi -> thông báo lỗi bằng toast.error
+  }, [error]); // có lỗi -> thông báo lỗi bằng toast.error
 
   const submitHandler = () => {
     // console.log("====================================");
@@ -44,7 +44,7 @@ const Dashboard = () => {
   // console.log("data:\n", data);
   // console.log("====================================");
 
-  if(isLoading) return <Loader />
+  if (isLoading) return <Loader />;
 
   return (
     <AdminLayout>
@@ -93,7 +93,12 @@ const Dashboard = () => {
                 Doanh số
                 <br />
                 {/* <b>{(data?.totalSales.toFixed(0)).toLocaleString("vi-VN")}đ</b>  */}
-                <b>{new Intl.NumberFormat("vi-VN").format(Math.round(data?.totalSales))}đ</b>
+                <b>
+                  {new Intl.NumberFormat("vi-VN").format(
+                    Math.round(data?.totalSales)
+                  )}
+                  đ
+                </b>
                 {/* toFix: Limit decimal digits, Math.round: làm tròn số nguyên gần nhất, Intl.NumberFormat("...").format(...) định dạng số */}
               </div>
             </div>
