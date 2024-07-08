@@ -1,5 +1,5 @@
 import express from "express";
-import { authorizeRoles, isAuthenticatedUser } from "../middlewares/auth.js";
+import { authorizeRoles, isAuthenticatedUser, isAuthenticatedServer } from "../middlewares/auth.js";
 import {
   newStripePayment,
   newOrderWithStripe,

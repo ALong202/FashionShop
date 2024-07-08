@@ -42,8 +42,8 @@ const Invoice = () => {
         <div className="row d-flex justify-content-center mb-5">
           <button
             className="btn btn-success col-md-5"
-            disable={order?.orderStatus !== "Delivered"}
             onClick={handleDownload}
+            disable={!(order && order?.orderStatus === "Delivered")}
           >
             <i className="fa fa-print"></i> Tải về Hóa Đơn
           </button>
