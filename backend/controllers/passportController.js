@@ -10,13 +10,27 @@ import { delete_file, upload_file } from "../utils/cloudinary.js";
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
+import dotenv from 'dotenv';
+import fs from 'fs';
 
 
 // const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const User = require('./models/userModel'); // Đường dẫn tới file model người dùng của bạn
+// Đường dẫn tới file cấu hình local
+const localConfigPath = "backend/config/config.env.local";
 
+// Chỉ sử dụng config.env ở Development
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  // Kiểm tra sự tồn tại của file cấu hình local
+  if (fs.existsSync(localConfigPath)) {
+    // Nếu tồn tại, sử dụng file cấu hình local
+    dotenv.config({ path: localConfigPath });
+  } else {
+    dotenv.config({ path: "backend/config/config.env" });
+  }
+}
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,

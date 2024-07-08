@@ -10,8 +10,17 @@ export default (user, statusCode, res) => {
     httpOnly: true,// Cookie chỉ có thể được truy cập qua HTTP, không thể được truy cập qua JavaScript trong trình duyệt
   };
 
-  // Đặt cookie chứa token trong phản hồi với các tùy chọn đã thiết lập
-  res.status(statusCode).cookie("token", token, options).json({
-    token, // Trả về token dưới dạng phản hồi JSON
-  });
+  if (loginType === 'local') {
+    // Đặt cookie chứa token trong phản hồi với các tùy chọn đã thiết lập
+    res.status(statusCode).cookie("token", token, options).json({
+      token, // Trả về token dưới dạng phản hồi JSON
+    });
+  } else if (loginType === 'google'){
+    // Đặt cookie chứa token trong phản hồi với các tùy chọn đã thiết lập
+    res.cookie("token", token, options);
+
+    // Chuyển hướng người dùng đến localhost:3000 để cập nhật hồ sơ
+    res.status(statusCode).redirect('http://localhost:3000');
+  }
+
 }; 

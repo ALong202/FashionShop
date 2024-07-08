@@ -14,6 +14,7 @@ const __dirname = path.dirname(__filename); // Lấy đường dẫn thư mục 
 import cors from "cors";
 import passport from "passport";
 import session from "express-session";
+import fs from 'fs';
 
 // Bắt sự kiện lỗi không được xử lý
 process.on("uncaughtException", (err) => {
@@ -22,9 +23,18 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
+// Đường dẫn tới file cấu hình local
+const localConfigPath = "backend/config/config.env.local";
+
 // Chỉ sử dụng config.env ở Development
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  dotenv.config({ path: "backend/config/config.env" });
+  // Kiểm tra sự tồn tại của file cấu hình local
+  if (fs.existsSync(localConfigPath)) {
+    // Nếu tồn tại, sử dụng file cấu hình local
+    dotenv.config({ path: localConfigPath });
+  } else {
+    dotenv.config({ path: "backend/config/config.env" });
+  }
 }
 
 // Connect với database
