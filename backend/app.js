@@ -14,6 +14,8 @@ const __dirname = path.dirname(__filename); // Lấy đường dẫn thư mục 
 import cors from "cors";
 import passport from "passport";
 import session from "express-session";
+import passportSetup from "./controllers/passportController.js" // Đổi tên passport khi import
+import cookieSession from "cookie-session";
 import fs from 'fs';
 
 // Bắt sự kiện lỗi không được xử lý
@@ -50,6 +52,22 @@ app.use(
 );
 
 app.use(cookieParser());
+
+// Set up session middleware
+app.use(
+  session({
+    secret: "secret", // mã hoá
+    resave: false, // lưu lại session ngay cả khi không có thay đổi
+    saveUninitialized: true, // lưu session ngay cả khi chưa có dữ liệu
+    cookie: { maxAge: 1000 * 60 * 60 },
+  })
+);
+// app.use(
+//   cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
+// );
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Import tất cả các routes (đường dẫn)
 import productRoutes from "./routes/products.js";
@@ -95,12 +113,6 @@ process.on("unhandledRejection", (err) => {
   });
 });
 
-
-
-// passport
-app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
   
 
 // const upload = multer({

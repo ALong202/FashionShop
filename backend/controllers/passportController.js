@@ -33,65 +33,84 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/auth/google/callback"
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    // Tìm hoặc tạo người dùng mới dựa trên thông tin từ Google
-    const newUser = {
-      googleId: profile.id,
-      email: profile.emails[0].value,
-      name: profile.displayName,
-      // Giả sử avatar được lấy từ hình ảnh hồ sơ Google
-      avatar: {
-        public_id: "google_avatar_" + profile.id, // Tạo ID tùy ý cho public_id
-        url: profile.photos[0].value
-      },
-    };
-    try {
-      let user = await User.findOne({ googleId: profile.id });
-      if (!user) {
-        user = await User.create(newUser);
-      }
-      done(null, user);
-    } catch (err) {
-      done(err, null);
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: `http://localhost:${process.env.PORT}/api/auth/google/callback`, // backend port: 3001
+  // callbackURL: "auth/google/callback", 
+},
+// function(accessToken, refreshToken, profile, done) {
+//   done(null, profile);
+// }
+async (accessToken, refreshToken, profile, done) => {
+  // Tìm hoặc tạo người dùng mới dựa trên thông tin từ Google
+  const newUser = {
+    googleId: profile.id,
+    email: profile.emails[0].value,
+    name: profile.displayName,
+    // Giả sử avatar được lấy từ hình ảnh hồ sơ Google
+    avatar: {
+      public_id: "google_avatar_" + profile.id, // Tạo ID tùy ý cho public_id
+      url: profile.photos[0].value
+    },
+    // Add placeholders for the required fields
+    address: "Your placeholder address / Vui lòng cập nhật địa chỉ của bạn",
+    phone: "Your placeholder phone number / Vui lòng cập nhật số diện thoại của bạn",
+    password: "Your placeholder password / Vui lòng tạo mật khẩu đăng nhập",
+    method: "google"
+  };
+  try {
+    let user = await User.findOne({ googleId: profile.id });
+    if (!user) {
+      user = await User.create(newUser);
     }
+    done(null, user);
+  } catch (err) {
+    done(err, null);
   }
+}
 ));
 
-passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_APP_ID,
-    clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "/auth/facebook/callback",
-    profileFields: ['id', 'emails', 'name'] // Yêu cầu thông tin này từ Facebook
-  },
-  async (accessToken, refreshToken, profile, done) => {
-    // Tương tự như Google Strategy
-    const newUser = {
-      facebookId: profile.id,
-      email: profile.emails[0].value,
-      name: `${profile.name.givenName} ${profile.name.familyName}`,
-    };
-    try {
-      let user = await User.findOne({ facebookId: profile.id });
-      if (!user) {
-        user = await User.create(newUser);
-      }
-      done(null, user);
-    } catch (err) {
-      done(err, null);
-    }
-  }
-));
 
+
+// Serialize use into the session -> cookie
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+done(null, user.id);
+// done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
+// Deserialize user from the session
+passport.deserializeUser(async (id, done) => {
+try {
+  const user = await User.findById(id);
+  done(null, user); // Lấy thông tin người dùng từ DB dựa trên id
+} catch (err) {
+  done(err, null);
+}
 });
+
+export default passport;
+
+// passport.use(new FacebookStrategy({
+//     clientID: process.env.FACEBOOK_APP_ID,
+//     clientSecret: process.env.FACEBOOK_APP_SECRET,
+//     callbackURL: "/auth/facebook/callback",
+//     profileFields: ['id', 'emails', 'name'] // Yêu cầu thông tin này từ Facebook
+//   },
+//   async (accessToken, refreshToken, profile, done) => {
+//     // Tương tự như Google Strategy
+//     const newUser = {
+//       facebookId: profile.id,
+//       email: profile.emails[0].value,
+//       name: `${profile.name.givenName} ${profile.name.familyName}`,
+//     };
+//     try {
+//       let user = await User.findOne({ facebookId: profile.id });
+//       if (!user) {
+//         user = await User.create(newUser);
+//       }
+//       done(null, user);
+//     } catch (err) {
+//       done(err, null);
+//     }
+//   }
+// ));

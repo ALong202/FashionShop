@@ -1,6 +1,7 @@
 
 import express from "express";
 import passport from "passport";
+import sendToken  from '../utils/sendToken.js';
 import {
   resetPassword, 
   forgotPassword, 
@@ -25,16 +26,58 @@ router.route("/register").post(registerUser);
 // Đăng nhập thông thường
 router.route("/login").post(loginUser);
 
-// Google Auth
-router.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
+// Initiate Google OAuth login
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    prompt: "select_account",
+  })
+);
+
+// Callback route for Google to redirect to
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    // successRedirect: "http://localhost:3000",
+    failureRedirect: "/login/failed",
+  }),
   (req, res) => {
-    // Đăng nhập thành công, chuyển hướng người dùng
-    res.redirect('/');
-  });
+    console.log("Kiểm tra req.user=====================================");
+    console.log(req.user);
+    // console.log(req);
+    console.log("=====================================");
+    sendToken(req.user, 200, res, 'google'); // Send token to client
+    // Đăng nhập thành công, chuyển hướng người dùng về profile của họ
+    res.redirect("http://localhost:3000");
+  }
+);
+
+router.get("/login/success", (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: "Đăng nhập thành công với Google.",
+      user: req.user,
+      cookies: req.cookies,
+    })
+  }
+});
+
+router.get("/login/failed", (req, res) => {
+  res.status(401).json({
+    success: false,
+    message: "Đăng nhập thất bại với Google. Vui lòng thử lại."
+  })
+});
+
+// router.get("/logout", (req, res) => {
+//   req.logout();
+//   res.redirect("/");
+// })
+
+
 
 // Facebook Auth
 router.get('/auth/facebook',

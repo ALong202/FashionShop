@@ -1,5 +1,5 @@
 // Hàm này được sử dụng để tạo và gửi token JWT cho người dùng, sau đó đặt token trong cookie và gửi phản hồi về client
-export default (user, statusCode, res) => {
+export default (user, statusCode, res, loginType='local') => {
 // Lấy token JWT từ người dùng
   const token = user.getJwtToken();
 // Thiết lập các tùy chọn cho cookie
