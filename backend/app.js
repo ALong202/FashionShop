@@ -30,9 +30,8 @@ const localConfigPath = "backend/config/config.env.local";
 
 // Chỉ sử dụng config.env ở Development
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  // Kiểm tra sự tồn tại của file cấu hình local
+  // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
   if (fs.existsSync(localConfigPath)) {
-    // Nếu tồn tại, sử dụng file cấu hình local
     dotenv.config({ path: localConfigPath });
   } else {
     dotenv.config({ path: "backend/config/config.env" });

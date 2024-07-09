@@ -23,9 +23,8 @@ const localConfigPath = "backend/config/config.env.local";
 
 // Chỉ sử dụng config.env ở Development
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  // Kiểm tra sự tồn tại của file cấu hình local
+  // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
   if (fs.existsSync(localConfigPath)) {
-    // Nếu tồn tại, sử dụng file cấu hình local
     dotenv.config({ path: localConfigPath });
   } else {
     dotenv.config({ path: "backend/config/config.env" });
@@ -54,7 +53,7 @@ async (accessToken, refreshToken, profile, done) => {
     },
     // Add placeholders for the required fields
     address: "Your placeholder address / Vui lòng cập nhật địa chỉ của bạn",
-    phone: "Your placeholder phone number / Vui lòng cập nhật số diện thoại của bạn",
+    phone: "+84",
     password: "Your placeholder password / Vui lòng tạo mật khẩu đăng nhập",
     method: "google"
   };

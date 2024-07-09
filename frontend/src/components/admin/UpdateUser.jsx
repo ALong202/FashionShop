@@ -25,7 +25,8 @@ const UpdateUser = () => {
     if (data?.user) {
       setName(data?.user?.name);
       setEmail(data?.user?.email);
-      setPhone(data?.user?.phone);
+      const updatedPhone = data?.user?.phone ? (data?.user?.phone.startsWith('+') ? data?.user?.phone : `+84${data?.user?.phone}`):"+84";
+      setPhone(updatedPhone);
       setAddress(data?.user?.address);
       setRole(data?.user?.role);
     }
