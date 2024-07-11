@@ -79,16 +79,19 @@ router.get("/login/failed", (req, res) => {
 
 
 
-// Facebook Auth
-router.get('/auth/facebook',
-  passport.authenticate('facebook', { scope: 'email' }));
+// Route cho đăng nhập bằng Facebook
+router.get("/auth/facebook",
+  passport.authenticate("facebook", { scope: ["email"] })
+);
 
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
+// Callback route cho Facebook để chuyển hướng
+router.get("/auth/facebook/callback",
+  passport.authenticate("facebook", { failureRedirect: "/login/failed" }),
   (req, res) => {
     // Đăng nhập thành công, chuyển hướng người dùng
-    res.redirect('/');
-  });
+    sendToken(req.user, 200, res, 'facebook');
+  }
+);
 
 // Đăng xuất người dùng
 router.route("/logout").get(logout);
