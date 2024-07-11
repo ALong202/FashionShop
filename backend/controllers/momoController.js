@@ -222,7 +222,8 @@ export const newOrderWithMoMo = catchAsyncErrors(async (req, res, next) => {
       if (req.body.message !== "Thành công.") {
         result.return_code = -1;
         result.return_message = "payment failed";
-      } else {  //tạo đơn hàng theo dữ liệu trả về và khởi tạo đơn hàng lên database
+      } else {
+        //tạo đơn hàng theo dữ liệu trả về và khởi tạo đơn hàng lên database
         // const order = await Order.create({
         //   orderItems: items.orderItems,
         //   shippingInfo: items.shippingInfo,

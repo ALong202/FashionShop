@@ -11,6 +11,8 @@ import { orderApi } from "./api/orderApi";
 import { zalopayApi } from "./api/zalopayApi";
 import { stripeApi } from "./api/stripeApi";
 import { momoApi } from "./api/momoApi";
+import { paypalApi } from "./api/paypalApi";
+import { addressApi } from "./api/addressApi";
 import reviewReducer from "./features/reviewSlice";
 
 export const store = configureStore({
@@ -30,6 +32,8 @@ export const store = configureStore({
     [zalopayApi.reducerPath]: zalopayApi.reducer,
     [stripeApi.reducerPath]: stripeApi.reducer,
     [momoApi.reducerPath]: momoApi.reducer,
+    [paypalApi.reducerPath]: paypalApi.reducer,
+    [addressApi.reducerPath]: addressApi.reducer,
   },
   // ref: https://redux-toolkit.js.org/rtk-query/usage#adding-the-api-middleware
   // thêm các middleware từ các API slices vào chuỗi middleware mặc định của Redux toolkit. Cho phép các AP slices xử lý các yêu cầu API và cập nhật trạng thái ứng dụng
@@ -42,5 +46,7 @@ export const store = configureStore({
       zalopayApi.middleware,
       stripeApi.middleware,
       momoApi.middleware,
+      paypalApi.middleware,
+      addressApi.middleware,
     ]),
 });

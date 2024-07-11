@@ -329,8 +329,12 @@ const ProductDetails = () => {
 
       <br></br>
       <div id="order_summary" style={{ width: "95%", margin: "auto" }}>
-        {product?.reviews?.length > 0 && (
+        {product?.reviews?.length > 0 ? (
           <ListReviews reviews={product?.reviews} />
+        ) : (
+          <div className="alert alert-warning my-5 text-center" type="alert" >
+            Chưa có đánh giá cho sản phẩm này, hãy mua hàng để trở thành người đầu tiên ^^!
+          </div>
         )}
       </div>
 

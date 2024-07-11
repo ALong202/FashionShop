@@ -41,6 +41,7 @@ const OrderDetails = () => {
         orderID: data?.order?._id,
         status: data?.order?.orderStatus,
         variantID: d?.selectedVariant?.variantID,
+        orderDate: data?.order?.createdAt,
         flag: false,
       }));
 
@@ -62,6 +63,7 @@ const OrderDetails = () => {
       orderID: item?.orderID,
       status: item?.status,
       variantID: item?.variantID,
+      orderDate: item?.orderDate,
       flag: item?.flag,
     };
 
@@ -93,8 +95,9 @@ const OrderDetails = () => {
             <Link
               to={`/invoice/orders/${order?._id}`}
               className="btn btn-success"
+              disabled={true}
             >
-              <i className="fa fa-print"></i>Hóa đơn
+              <i className="fa fa-print" disabled={true}></i>Hóa đơn
             </Link>
           </div>
 
