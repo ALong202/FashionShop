@@ -44,6 +44,14 @@ const Login = () => {
   
   };
 
+  const handleGoogleLogin = async () => {
+    window.open("http://localhost:3001/api/auth/google", "_self");
+  };
+
+  const handleFacebookLogin = async () => {
+    window.open("http://localhost:3001/api/auth/facebook", "_self");
+  };
+
   return (
     <div className="row wrapper">
       <div className="col-10 col-lg-5">
@@ -94,8 +102,8 @@ const Login = () => {
           </div>
           <div>
             <div className="button-container">
-              <a className="button google" href="/login/federated/google">Sign in with Google</a>
-              <a className="button facebook" href="/login/federated/google">Sign in with Facebook</a>
+              <button className="button google" onClick={handleGoogleLogin}>Sign in with Google</button>
+              <button className="button facebook" onClick={handleFacebookLogin}>Sign in with Facebook</button>
             </div>
           </div>
         </form>

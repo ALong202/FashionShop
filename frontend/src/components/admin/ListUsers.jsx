@@ -13,6 +13,8 @@ import {
 // import 'ag-grid-community/styles/ag-theme-alpine.css'; // Theme
 import { AgGridReact } from "ag-grid-react";
 import { AG_GRID_LOCALE_VN } from "@ag-grid-community/locale";
+import { Button } from "react-bootstrap";
+import * as XLSX from "xlsx";
 
 const ListUsers = () => {
   const { data, isLoading, error } = useGetAdminUsersQuery();
@@ -22,6 +24,7 @@ const ListUsers = () => {
     deleteUser,
     { isLoading: isDeleteLoading, error: deleteError, isSuccess },
   ] = useDeleteUserMutation();
+
 
   useEffect(() => {
     if (error) {
@@ -119,6 +122,23 @@ const ListUsers = () => {
 
   if (isLoading) return <Loader />;
 
+  const onExportClick = () => {
+    // Tạo một workbook mới
+    const wb = XLSX.utils.book_new();
+
+    // Chuyển đổi dữ liệu sang sheet
+    const ws = XLSX.utils.json_to_sheet(rowData);
+
+    // Thêm sheet vào workbook
+    XLSX.utils.book_append_sheet(wb, ws, "Users");
+
+    // Tạo tên file
+    const exportFileName = "users_data.xlsx";
+
+    // Xuất file
+    XLSX.writeFile(wb, exportFileName);
+    };
+
   return (
     <AdminLayout>
       <MetaData title={"All Users"} />
@@ -138,12 +158,15 @@ const ListUsers = () => {
         striped
         hover
       /> */}
-      <input
-        type="text"
-        placeholder="Tìm kiếm..."
-        onChange={(e) => setQuickFilterText(e.target.value)}
-        style={{ marginBottom: "10px" }}
-      />
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+        <input
+          type="text"
+          placeholder="Tìm kiếm..."
+          onChange={(e) => setQuickFilterText(e.target.value)}
+          // style={{ marginBottom: "10px" }}
+        />
+        <Button onClick={onExportClick}>Xuất Excel</Button>
+      </div>
 
       <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
         <AgGridReact
