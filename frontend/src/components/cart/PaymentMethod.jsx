@@ -1,26 +1,28 @@
-import React, {useEffect, useState} from 'react'
-import MetaData from '../layout/MetaData'
-import CheckoutSteps from './CheckoutSteps'
-import { useSelector } from 'react-redux'
-import { calculateOrderCost } from '../../helpers/helpers'
-import { useCreateNewOrderMutation } from '../../redux/api/orderApi'
+import React, { useEffect, useState } from "react";
+import MetaData from "../layout/MetaData";
+import CheckoutSteps from "./CheckoutSteps";
+import { useSelector } from "react-redux";
+import { calculateOrderCost } from "../../helpers/helpers";
+import { useCreateNewOrderMutation } from "../../redux/api/orderApi";
 import { toast } from "react-toastify";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
-import { useCreateNewZaloPayPaymentMutation } from '../../redux/api/zalopayApi';
-import { useCreateNewStripePaymentMutation } from '../../redux/api/stripeApi';
-import { useCreateNewMoMoPaymentMutation } from '../../redux/api/momoApi';
+import { useCreateNewZaloPayPaymentMutation } from "../../redux/api/zalopayApi";
+import { useCreateNewStripePaymentMutation } from "../../redux/api/stripeApi";
+import { useCreateNewMoMoPaymentMutation } from "../../redux/api/momoApi";
+import { useCreateNewPaypalPaymentMutation } from "../../redux/api/paypalApi";
 
 const PaymentMethod = () => {
-  const { user } = useSelector((state) => state.auth)
-  
-  const [method, setMethod] = useState("")
+  const { user } = useSelector((state) => state.auth);
+
+  const [method, setMethod] = useState("");
 
   const navigate = useNavigate();
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 
-  const [createNewOrder, {isLoading, error, isSuccess}] = useCreateNewOrderMutation();
+  const [createNewOrder, { isLoading, error, isSuccess }] =
+    useCreateNewOrderMutation();
 
   const [createNewZaloPayPayment] = useCreateNewZaloPayPaymentMutation();
 
@@ -28,7 +30,9 @@ const PaymentMethod = () => {
 
   const [createNewMoMoPayment] = useCreateNewMoMoPaymentMutation();
 
-  useEffect(() => {    
+  const [createNewPaypalPayment] = useCreateNewPaypalPaymentMutation();
+
+  useEffect(() => {
     if (error) {
       navigate("/cart");
       toast.error(error?.data?.message);
@@ -37,24 +41,23 @@ const PaymentMethod = () => {
     if (isSuccess) {
       navigate("/me/orders?order_success=true");
     }
-    if (isLoading){
+    if (isLoading) {
       toast.warn("Đang tạo đơn hàng trên hệ thống");
     }
   }, [error, isLoading, isSuccess, navigate]);
 
-  
   const submitHandler = (e) => {
-
     //Ko cho phép để trống hình thức thanh toán
-    e.preventDefault();    
-    if (method === ""){
+    e.preventDefault();
+    if (method === "") {
       toast.error("Bạn phải chọn hình thức thanh toán");
     }
 
-    const { itemsPrice, shippingPrice, totalPrice } = calculateOrderCost(cartItems);
+    const { itemsPrice, shippingPrice, totalPrice } =
+      calculateOrderCost(cartItems);
 
     // Xử lý mảng cartItems để loại bỏ variant và _id trong selectedVariant
-    const processedCartItems = cartItems.map(item => {
+    const processedCartItems = cartItems.map((item) => {
       // Loại bỏ thuộc tính variant
       const { variant, ...rest } = item;
 
@@ -79,11 +82,11 @@ const PaymentMethod = () => {
     const orderData = {
       shippingInfo,
       orderItems: processedCartItems,
-      itemsPrice, 
-      shippingAmount: shippingPrice, 
+      itemsPrice,
+      shippingAmount: shippingPrice,
       totalAmount: totalPrice,
       paymentInfo: {
-        status: "Chưa thanh toán"
+        status: "Chưa thanh toán",
       },
       paymentMethod: "COD",
       user: user._id,
@@ -94,69 +97,81 @@ const PaymentMethod = () => {
     orderDataCard.paymentMethod = "Card";
     console.log("Order Data Card", orderDataCard);
 
-    if (method === "COD"){
+    if (method === "COD") {
       //alert("COD");
-      createNewOrder(orderData)
+      createNewOrder(orderData);
     }
 
-    if (method === "Stripe"){
+    if (method === "Stripe") {
       //alert("Stripe");
-      createNewStripePayment(orderDataCard).then(response => {
-        console.log("Day la response\n", response);
-        if (response?.data?.url)          
-          window.location.href = response?.data?.url
-        else
-          toast.error("Hệ thống không khả dụng!");
-      })
-      .catch(e => {
-        console.log(e);
-      });        
+      createNewStripePayment(orderDataCard)
+        .then((response) => {
+          console.log("Day la response\n", response);
+          if (response?.data?.url) window.location.href = response?.data?.url;
+          else toast.error("Hệ thống không khả dụng!");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
 
-    if (method === "ZaloPay"){
+    if (method === "Paypal") {
+      //alert("Paypal");
+      createNewPaypalPayment(orderDataCard)
+        .then((response) => {
+          console.log("Day la response\n", response);
+          if (response?.data?.links)
+            window.location.href = (response?.data?.links.find(
+              (l) => l.rel === "payer-action"
+            )).href;
+          else toast.error("Hệ thống không khả dụng!");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+
+    if (method === "ZaloPay") {
       //alert("ZaloPay");
-      createNewZaloPayPayment(orderDataCard).then(response => {
-        console.log("Day la response\n", response);
-        if (response.data.return_code === 1)          
-          window.location.href = response.data.order_url;
-        else
-          toast.error("Hệ thống không khả dụng!");
-      })
-      .catch(e => {
-        console.log(e);
-      }); 
+      createNewZaloPayPayment(orderDataCard)
+        .then((response) => {
+          console.log("Day la response\n", response);
+          if (response.data.return_code === 1)
+            window.location.href = response.data.order_url;
+          else toast.error("Hệ thống không khả dụng!");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
 
-    if (method === "MoMo"){
+    if (method === "MoMo") {
       //alert("MoMo");
-      createNewMoMoPayment(orderDataCard).then(response => {
-        console.log("Day la response\n", response);
-        if (response.data.resultCode === 0)          
-          window.location.href = response.data.payUrl;
-        else
-          toast.error("Hệ thống không khả dụng!");
-      })
-      .catch(e => {
-        console.log(e);
-      }); 
+      createNewMoMoPayment(orderDataCard)
+        .then((response) => {
+          console.log("Day la response\n", response);
+          if (response.data.resultCode === 0)
+            window.location.href = response.data.payUrl;
+          else toast.error("Hệ thống không khả dụng!");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
-  }
+  };
 
   return (
     <>
       <MetaData title={"Hình thức thanh toán"} />
 
-      <CheckoutSteps shipping confirmOrder payment/>
+      <CheckoutSteps shipping confirmOrder payment />
 
       <div className="row wrapper">
-        <div className="col-10 col-lg-5">
-          <form
-            className="shadow rounded bg-body"
-            onSubmit={submitHandler}
-          >
-            <h2 className="mb-4">Chọn hình thức thanh toán</h2>
+        <div className="col-10 col-lg-4">
+          <form className="shadow rounded bg-body" onSubmit={submitHandler}>
+            <h2 className="mb-4 text-center">Chọn hình thức thanh toán</h2>
 
-            <div className="form-check">
+            <div className="form-check ">
               <input
                 className="form-check-input"
                 type="radio"
@@ -166,7 +181,7 @@ const PaymentMethod = () => {
                 onChange={(e) => setMethod("COD")}
               />
               <label className="form-check-label" htmlFor="codradio">
-                Thanh toán khi nhận hàng
+                COD
               </label>
             </div>
 
@@ -180,7 +195,21 @@ const PaymentMethod = () => {
                 onChange={(e) => setMethod("Stripe")}
               />
               <label className="form-check-label" htmlFor="striperadio">
-                Thanh toán trực tuyến qua cổng Stripe
+                Stripe
+              </label>
+            </div>
+
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="payment_mode"
+                id="paypalradio"
+                value="Paypal"
+                onChange={(e) => setMethod("Paypal")}
+              />
+              <label className="form-check-label" htmlFor="paypalradio">
+                Paypal
               </label>
             </div>
 
@@ -194,13 +223,13 @@ const PaymentMethod = () => {
                 onChange={(e) => setMethod("MoMo")}
               />
               <label className="form-check-label" htmlFor="momoradio">
-                Thanh toán trực tuyến qua cổng MoMo
+                MoMo
               </label>
             </div>
 
             <div className="form-check">
               <input
-                className="form-check-input"
+                className="form-check-input "
                 type="radio"
                 name="payment_mode"
                 id="zalopayradio"
@@ -208,18 +237,23 @@ const PaymentMethod = () => {
                 onChange={(e) => setMethod("ZaloPay")}
               />
               <label className="form-check-label" htmlFor="zalopayradio">
-                Thanh toán trực tuyến qua cổng ZaloPay
+                ZaloPay
               </label>
             </div>
 
-            <button id="shipping_btn" type="submit" className="btn py-2 w-100" disable={isLoading}>
+            <button
+              id="shipping_btn"
+              type="submit"
+              className="btn py-2 w-100"
+              disable={isLoading}
+            >
               XÁC NHẬN THANH TOÁN
             </button>
           </form>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default PaymentMethod
+export default PaymentMethod;

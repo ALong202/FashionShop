@@ -19,18 +19,18 @@ const NewReview = () => {
 
   const [review, setReview] = useState({});
 
-  const [rating, setRating] = useState(review?.rating);
+  const [rating, setRating] = useState(0);
 
-  const [comment, setComment] = useState(review?.comment);
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     if (reviewItems && reviewItems.find((e) => e?.flag === true)) {
-      const { orderItems, userID, orderID, variantID, rating, comment } =
+      const { orderItems, userID, orderID, variantID, rating, comment, orderDate } =
         reviewItems.find((e) => e?.flag === true);
       //console.log("day la variantID ban dau: ", (reviewItems.find((e) => e?.flag === true))?.variantID);
       console.log("day la variantID ban dau: ", variantID);
 
-      setReview({ orderItems, userID, orderID, variantID, rating, comment });
+      setReview({ orderItems, userID, orderID, variantID, rating, comment, orderDate });
 
       setRating(rating);
 
@@ -94,6 +94,7 @@ const NewReview = () => {
       orderID: review?.orderID,
       status: "Đã thanh toán",
       variantID: review?.variantID,
+      orderDate: review?.orderDate,
       flag: true,
     };
 
