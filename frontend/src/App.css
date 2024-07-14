@@ -201,8 +201,8 @@ nav {
   color: white;
 }
 
-/* Slider */
-.slider-container {
+/* Banner Slider */
+.banner-slider-container {
   display: flex;
   align-items: stretch;
 }
@@ -376,9 +376,17 @@ nav {
   padding-right: 0;
 }
 
-#products_heading {
+#products_heading, #topRatedProducts {
   margin-top: 1.8rem;
+  width: 95%;
+  margin: auto;
 }
+
+#products {
+  width: 95%;
+  margin: auto;
+}
+
 
 .card {
   height: 100%;
@@ -1389,4 +1397,18 @@ nav {
 
 .button.google {
   margin-right: 10px; /* Tạo khoảng cách giữa các nút, điều chỉnh giá trị theo nhu cầu */
+}
+
+/* Tạo gap giữa các Slick-slider*/
+.slider-container .slick-slide > div {
+  margin: 0 0.1rem;
+}
+
+.slick-arrow {
+  background-color: #6d7572 !important; /* Màu nền đen */
+  color: #000 !important; /* Màu chữ trắng */
+  border-radius: 16px;
+  padding: 0; /* Điều chỉnh padding */
+  width: 19px !important; /* Điều chỉnh chiều rộng */
+  height: 19px !important; /* Điều chỉnh chiều cao */
 }
