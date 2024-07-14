@@ -37,7 +37,7 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
         $sort: { numOfReviews: -1 }
       },
       {
-        $limit: 8
+        $limit: 12
       }
     ]);
   } // Fetch the top 8 rated products for the Homepage

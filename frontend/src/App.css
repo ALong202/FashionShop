@@ -379,8 +379,11 @@ nav {
 #products_heading, #topRatedProducts {
   margin-top: 1.8rem;
   width: 95%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
 }
+
 
 #products {
   width: 95%;
@@ -395,7 +398,7 @@ nav {
 .card-title a {
   color: #2e2e2e;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .card-title a:hover {
@@ -409,7 +412,7 @@ nav {
 }
 /* Homepage price */
 .card-text {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .card-img-top {
@@ -421,7 +424,7 @@ nav {
 }
 
 .ratings {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #fdcc0d;
 }
 
@@ -1402,6 +1405,11 @@ nav {
 /* Tạo gap giữa các Slick-slider*/
 .slider-container .slick-slide > div {
   margin: 0 0.1rem;
+}
+
+/* Fix chiều cao tên sản phẩm trong Slider */
+.slider-container .card-title{
+  height: 2.5rem;
 }
 
 .slick-arrow {

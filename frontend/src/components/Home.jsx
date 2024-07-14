@@ -18,7 +18,7 @@ import Sorters from "./layout/Sorters.jsx";
 import Slider from "react-slick";
 
 
-const settings = {
+const productSliderSetting = {
   dots: true,
   infinite: true,
   speed: 500,
@@ -29,7 +29,7 @@ const settings = {
   responsive: [
     {
       breakpoint: 1024,
-      settings: {
+      productSliderSetting: {
         slidesToShow: 4,
         slidesToScroll: 4,
         infinite: true,
@@ -37,16 +37,8 @@ const settings = {
       }
     },
     {
-      breakpoint: 768, // Điều chỉnh tại breakpoint này
-      settings: {
-        slidesToShow: 1, // Hiển thị 2 sản phẩm thay vì teo tóp
-        slidesToScroll: 4,
-        initialSlide: 2
-      }
-    },
-    {
       breakpoint: 600,
-      settings: {
+      productSliderSetting: {
         slidesToShow: 3,
         slidesToScroll: 3,
         initialSlide: 3
@@ -54,7 +46,7 @@ const settings = {
     },
     {
       breakpoint: 480,
-      settings: {
+      productSliderSetting: {
         slidesToShow: 1,
         slidesToScroll: 1
       }
@@ -125,7 +117,7 @@ const Home = () => {
           <h1>Sản phẩm được ưa chuộng</h1>
           {/* <div className="row g-1"> */}
           <div className="slider-container">
-            <Slider {...settings}>
+            <Slider {...productSliderSetting}>
               {data.topRatedProducts.map((product) => (
                 // <ProductItem key={product._id} product={product} columnSize={columnSize} />
                 <ProductItem key={product._id} product={product} columnSize={columnSize} isInSlider={true} />

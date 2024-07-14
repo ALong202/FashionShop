@@ -21,7 +21,7 @@ const ProductItem = ({ product, columnSize, isInSlider = false }) => {
       <div className={containerClass}>
         <div className="card p-3 rounded">
           <img
-            className="card-img-top mx-auto"
+            className="card-img-top mx-auto" 
             src={product?.images[0] ? product?.images[0]?.url : "/images/default_product.png"}
             alt="product?.name"
           />
@@ -32,7 +32,8 @@ const ProductItem = ({ product, columnSize, isInSlider = false }) => {
               {/*<a href="">{product?.name}</a>*/}
               <Link to={`/product/${product?._id}`}>{product?.name}</Link>
             </h5>
-            <div className="ratings mt-auto d-flex">
+            <div className="ratings mt-auto d-flex"> 
+              {/* mt-auto: stars các sp cùng hàng */}
               <StarRatings
                 rating={product?.ratings}
                 starRatedColor="#ffb829"
