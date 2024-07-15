@@ -1420,3 +1420,38 @@ nav {
   width: 19px !important; /* Điều chỉnh chiều rộng */
   height: 19px !important; /* Điều chỉnh chiều cao */
 }
+
+
+.loginButton{
+  width: 150px;
+  padding: 0.4rem 1.8rem;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.loginButton:hover {
+  transform: scale(1.1);
+}
+.loginButton:active {
+  transform: scale(0.95);
+}
+
+.google{
+  background-color: #df4930;
+}
+.facebook{
+  background-color: #507cc0;
+}
+.github{
+  background-color: black;
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
