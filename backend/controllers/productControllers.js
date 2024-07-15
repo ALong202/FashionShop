@@ -14,6 +14,34 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 export const getProducts = catchAsyncErrors(async (req, res) => {
   // Số sản phẩm trên mỗi trang
   const resPerPage = 8;
+  let topRatedProducts = [];
+
+  // Check if it's a request for the Homepage by looking for the absence of specific filters
+  const isHomepageRequest = !req.query.keyword && !req.query.category && !req.query.subCategory && !req.query.subSubCategory;
+
+  if (isHomepageRequest) {
+    // topRatedProducts = await Product.find().sort({ ratings: -1 }).limit(8);
+    topRatedProducts = await Product.aggregate([
+      {
+        $match: {
+          ratings: { $gte: 4 }
+        }
+      },
+      // {
+      //   $addFields: {
+      //     reviewsCount: { $size: "$reviews" }
+      //   }
+      // },
+      {
+        // $sort: { reviewsCount: -1 }
+        $sort: { numOfReviews: -1 }
+      },
+      {
+        $limit: 12
+      }
+    ]);
+  } // Fetch the top 8 rated products for the Homepage
+
   // Áp dụng bộ lọc từ yêu cầu API
   const apiFilters = new APIFilters(Product, req.query)
                           .search()
@@ -36,6 +64,7 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
     resPerPage,// Số sản phẩm trên mỗi trang
     filteredProductsCount,// Số sản phẩm sau khi được lọc
     products, // Danh sách sản phẩm
+    topRatedProducts: isHomepageRequest ? topRatedProducts : [], // Optionally include top rated products in every response
   });
 });
 

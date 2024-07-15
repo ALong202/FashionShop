@@ -13,6 +13,10 @@ import 'ag-grid-community/styles/ag-theme-alpine.css'; // Theme
 
 import 'react-phone-number-input/style.css' 
 
+// Importing slick-carousel styles globally
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // ref: https://react-redux.js.org/api/provider  provide the store to the rest of the app
 root.render(

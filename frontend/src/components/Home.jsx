@@ -12,13 +12,47 @@ import { toast } from "react-toastify";
 import CustomPagination from "./layout/CustomPagination.jsx";
 import { useSearchParams } from "react-router-dom";
 import Filters from "./layout/Filters.jsx";
-import Slider from "./layout/Slider.jsx";
+import BannerSlider from "./layout/Slider.jsx";
 import Top from "./layout/Top.jsx";
 import Sorters from "./layout/Sorters.jsx";
+import Slider from "react-slick";
 
 
-
-
+const productSliderSetting = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  autoplay: true,
+  autoplayspeed: 2000,
+  responsive: [
+    {
+      breakpoint: 1024,
+      productSliderSetting: {
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      productSliderSetting: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        initialSlide: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      productSliderSetting: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+};
 
 const Home = () => {
   
@@ -73,10 +107,25 @@ const Home = () => {
       <>
       <MetaData title={"Cửa hàng thời trang"} />
       <div className="row g-2">
-        {/* Chỉ thêm Slider khi ở Homepage */}
+        {/* Slider chỉ có ở Homepage */}
         {!keyword && !category && (
-          <Slider />
+          <BannerSlider />
         )}
+
+      {data?.topRatedProducts && data.topRatedProducts.length > 0 && (
+        <div id="topRatedProducts" className="text-secondary">
+          <h1>Sản phẩm được ưa chuộng</h1>
+          {/* <div className="row g-1"> */}
+          <div className="slider-container">
+            <Slider {...productSliderSetting}>
+              {data.topRatedProducts.map((product) => (
+                // <ProductItem key={product._id} product={product} columnSize={columnSize} />
+                <ProductItem key={product._id} product={product} columnSize={columnSize} isInSlider={true} />
+              ))}
+            </Slider>
+          </div>
+        </div>
+      )}
 
         {/* Nếu kích thước từ medium (768px) thì Filter chiếm 3/12 grid, nhỏ hơn thì full width */}
         {(keyword || category || window.location.search.includes('category=')) && (
@@ -84,17 +133,18 @@ const Home = () => {
             <Filters />
           </div>
         )}
-        {/* Nếu kích thước từ medium (768px) thì Sản phẩm chiếm 9/12 grid, nhỏ hơn thì full width */}
+        {/* Nếu URL có keyword, category: Nếu kích thước từ medium (768px) thì Sản phẩm chiếm 9/12 grid, nhỏ hơn thì full width
+        Nếu ở Homepage: chiếm full 12/12 grid */}
         <div className={keyword || category || window.location.search.includes('category=') ? "col-12 col-md-9": "col-12 col-md-12 "}>
           <h1 id="products_heading" className="text-secondary">
-            {keyword || category ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Sản phẩm nổi bật"}            
+            {keyword || category ? `${data?.filteredProductsCount} Sản phẩm được tìm thấy với từ khoá: ${keyword}` : "Tất cả sản phẩm"}            
           </h1>
-          
-          {(keyword || category) && (
+          {/* Thanh Filter chỉ xuất hiện khi URL chứa thuộc tính keyword, category */}
+          {(keyword || category) && ( 
             <Sorters />
           )}
-        
-          <section id="products" className="mt-5">
+
+          <section id="products" className="mt-2">
             <div className="row g-1">
               {data?.products?.map((product) => (
                 <ProductItem product = {product} columnSize={columnSize} />
@@ -103,7 +153,6 @@ const Home = () => {
             </div>
           </section>
 
-  
           <CustomPagination
             resPerPage={data?.resPerPage}
             filteredProductsCount={data?.filteredProductsCount}
@@ -124,14 +173,10 @@ const Home = () => {
               </div>
             </div>
           )} 
-    
-
         </div>
       </div>
       </>
   )
-
-  
 }
 
 export default Home

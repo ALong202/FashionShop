@@ -27,16 +27,19 @@ process.on("uncaughtException", (err) => {
 
 // Đường dẫn tới file cấu hình local
 const localConfigPath = "backend/config/config.env.local";
+const globalConfigPath = "backend/config/config.env.global";
 
 // Chỉ sử dụng config.env ở Development
 if (process.env.NODE_ENV !== "PRODUCTION") {
   // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
   if (fs.existsSync(localConfigPath)) {
-    dotenv.config({ path: localConfigPath });
+    dotenv.config({ path: localConfigPath, override: true }); // cho phép ghi đè các biến môi trường đã tồn tại
   } else {
-    dotenv.config({ path: "backend/config/config.env" });
+    dotenv.config({ path: globalConfigPath });
   }
 }
+
+console.log(process.env.GOOGLE_CLIENT_ID)
 
 // Connect với database
 connectDatabase();

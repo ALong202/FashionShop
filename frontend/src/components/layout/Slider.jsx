@@ -62,7 +62,7 @@ const Slider = () => {
 
 
   return (
-    <div className="w3-content w3-display-container slider-container" style={{maxWidth: '90%'}}>
+    <div className="w3-content w3-display-container banner-slider-container" style={{maxWidth: '90%'}}>
       {/* <img className="mySlides" src="../images/Slider/saleOff.jpg" />
       <img className="mySlides" src="../images/Slider/freeship-t04.jpg" />
       <img className="mySlides" src="../images/Slider/storeSystem.jpg" /> */}
