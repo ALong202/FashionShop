@@ -8,8 +8,14 @@ import axios from "axios"; // npm install axios
 import CryptoJS from "crypto-js"; // npm install crypto-js
 import moment from "moment"; // npm install moment
 
-const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PORT, PAYPAL_BASE, FRONTEND_URL, BACKEND_URL } =
-  process.env;
+const {
+  PAYPAL_CLIENT_ID,
+  PAYPAL_CLIENT_SECRET,
+  PAYPAL_BASE,
+  FRONTEND_URL,
+  BACKEND_URL,
+} = process.env;
+
 /**
  * Generate an OAuth 2.0 access token for authenticating with PayPal REST APIs.
  * @see https://developer.paypal.com/api/rest/authentication/
@@ -47,7 +53,6 @@ const generateAccessToken = async () => {
 // Tạo payment mới trên cổng thanh toán của paypal
 export const newPaypalPayment = catchAsyncErrors(async (req, res, next) => {
   try {
-    //console.log(req.body)
     //const { cart } = req.body;
     // use the cart information passed from the front-end to calculate the purchase unit details
     // console.log(
@@ -63,51 +68,50 @@ export const newPaypalPayment = catchAsyncErrors(async (req, res, next) => {
       (req.body.user ? req.body.user : 113114115) +
       "PP";
 
-    const orderInfo = `FakeshionShop - Thanh toán cho đơn hàng #${transID}`;
+    // const orderInfo = `FakeshionShop - Thanh toán cho đơn hàng #${transID}`;
 
-    const DataRaw = {
-      orderItems: req.body.orderItems,
-      shippingInfo: {
-        orderID: transID,
-        address: req.body.shippingInfo.address,
-        phoneNo: req.body.shippingInfo.phoneNo,
-      },
-      itemsPrice: req.body.itemsPrice,
-      shippingAmount: req.body.shippingAmount,
-      totalAmount: req.body.totalAmount,
-      paymentMethod: req.body.paymentMethod,
-      paymentInfo: req.body.paymentInfo,
-      user: req.body.user,
-    };
+    // const DataRaw = {
+    //   orderItems: req.body.orderItems,
+    //   shippingInfo: {
+    //     orderID: transID,
+    //     address: req.body.shippingInfo.address,
+    //     phoneNo: req.body.shippingInfo.phoneNo,
+    //   },
+    //   itemsPrice: req.body.itemsPrice,
+    //   shippingAmount: req.body.shippingAmount,
+    //   totalAmount: req.body.totalAmount,
+    //   paymentMethod: req.body.paymentMethod,
+    //   paymentInfo: req.body.paymentInfo,
+    //   user: req.body.user,
+    // };
 
-    const payload = {
-      intent: "CAPTURE",
-      purchase_units: [
-        {
-          //reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
-          description: orderInfo,
-          custom_id: transID,
-          invoice_id: transID,
-          amount: { currency_code: "USD", value: req.body.shippingAmount/100000 },
-        },
-      ],
-      payment_source: {
-        paypal: {
-          experience_context: {
-            payment_method_preference: "IMMEDIATE_PAYMENT_REQUIRED",
-            brand_name: "FAKESHION SHOP INC",
-            locale: "en-US",
-            landing_page: "NO_PREFERENCE",
-            //shipping_preference: "SET_PROVIDED_ADDRESS",
-            user_action: "PAY_NOW",
-            locale: "en-US",
-            return_url: BACKEND_URL + "/api/paypal/callback/",
-            cancel_url: FRONTEND_URL + "/cart",
-          },
-        },
-      },
-    };
-    console.log(payload)
+    // const payload = {
+    //   intent: "CAPTURE",
+    //   purchase_units: [
+    //     {
+    //       reference_id:transID,
+    //       description: orderInfo,
+    //       custom_id: transID,
+    //       invoice_id: transID,
+    //       amount: { currency_code: "USD", value: req.body.shippingAmount/100000 },
+    //     },
+    //   ],
+    //   payment_source: {
+    //     paypal: {
+    //       experience_context: {
+    //         payment_method_preference: "IMMEDIATE_PAYMENT_REQUIRED",
+    //         brand_name: "FAKESHION SHOP INC",
+    //         locale: "en-US",
+    //         landing_page: "NO_PREFERENCE",
+    //         //shipping_preference: "SET_PROVIDED_ADDRESS",
+    //         user_action: "PAY_NOW",
+    //         locale: "en-US",
+    //         return_url: BACKEND_URL + "/api/paypal/callback/",
+    //         cancel_url: FRONTEND_URL + "/cart",
+    //       },
+    //     },
+    //   },
+    // };
 
     //tạo payload từ req.body ở đây
     // const payload = {
@@ -121,6 +125,62 @@ export const newPaypalPayment = catchAsyncErrors(async (req, res, next) => {
     //     },
     //   ],
     // };
+
+    const prepairedItems = req.body.orderItems.map((i) => ({
+      name: i.name,
+      quantity: i.quantity,
+      sku: i.product,
+      description: `${i.selectedVariant.variantID}-${i.selectedVariant.color}-${i.selectedVariant.size}-${i.selectedVariant.stock}`,
+      image_url: i.image,
+      unit_amount: {
+        currency_code: "USD",
+        value: i.price / 100000,
+      },
+    }));
+    console.log("day la i", prepairedItems);
+
+    const payload = {
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          reference_id: transID,
+          description: `${req.body.shippingInfo.address}-${req.body.shippingInfo.phoneNo}`,
+          custom_id: req.body.user,
+          invoice_id: transID,
+          amount: {
+            currency_code: "USD",
+            value: req.body.totalAmount / 100000,
+            breakdown: {
+              item_total: {
+                currency_code: "USD",
+                value: req.body.itemsPrice / 100000,
+              },
+              shipping: {
+                currency_code: "USD",
+                value: req.body.shippingAmount / 100000,
+              },
+            },
+          },
+          items: prepairedItems,
+        },
+      ],
+      payment_source: {
+        paypal: {
+          experience_context: {
+            payment_method_preference: "IMMEDIATE_PAYMENT_REQUIRED",
+            brand_name: "FAKESHION SHOP INC",
+            locale: "en-US",
+            landing_page: "NO_PREFERENCE",
+            user_action: "PAY_NOW",
+            locale: "en-VN",
+            return_url: BACKEND_URL + "/api/paypal/order",
+            cancel_url: FRONTEND_URL + "/cart",
+          },
+        },
+      },
+    };
+    console.log("day la amount", payload.purchase_units[0].amount);
+    console.log(payload);
 
     const options = {
       method: "post",
@@ -163,3 +223,28 @@ export const newPaypalPayment = catchAsyncErrors(async (req, res, next) => {
 // app.get("/", (req, res) => {
 //   res.sendFile(path.resolve("./checkout.html"));
 // });
+
+// Paypal callback để hệ thống update lại đơn hàng đã tạo trên database sau khi nhận được xác nhận giao dịch thành công từ paypal
+export const newOrderWithPaypal = catchAsyncErrors(async (req, res, next) => {
+  try {
+    const accessToken = await generateAccessToken();
+    //console.log("accessToken", accessToken);
+
+    const options = {
+      method: "post",
+      url: `${PAYPAL_BASE}/v2/checkout/orders/${req.query.token}/capture`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Prefer: "return=representation",
+      },
+    };
+    const response = await axios(options);
+    console.log(response, response.status, response.data);
+    //TẠO ĐƠN HÀNG LÊN HỆ THỐNG Ở ĐÂY-NHỚ CHECK ĐƠN HÀNG TRÙNG
+    res.status(response.status).json(response.data);
+    res.redirect(`${FRONTEND_URL}/me/orders?order_success=true`);
+  } catch (error) {
+    console.error("Failed to create order:", error);
+    res.status(500).json({ error: "Failed to create order." });
+  }
+});

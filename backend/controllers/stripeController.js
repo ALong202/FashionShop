@@ -49,7 +49,8 @@ export const newStripePayment = catchAsyncErrors(async (req, res, next) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     success_url: `${process.env.FRONTEND_URL}/me/orders?order_success=true`,
-    cancel_url: `${process.env.FRONTEND_URL}/cart`,
+    // cancel_url: `${process.env.FRONTEND_URL}/cart`,
+    cancel_url: `${process.env.FRONTEND_URL}/me/orders?order_success=false`,
     client_reference_id: transID,
     mode: "payment",
     metadata: {

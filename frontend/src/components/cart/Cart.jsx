@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import MetaData from "../layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setCartItem, removeCartItem } from "../../redux/features/cartSlice";
-import { colorMap } from "../../constants/constants";
-//import { useGetProductDetailsQuery } from "../../redux/api/productsApi";
 import { toast } from "react-toastify";
 import { useGetAddressDataQuery } from "../../redux/api/addressApi";
+
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardHeader,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBInput,
+  MDBRow,
+  MDBTypography,
+} from "mdb-react-ui-kit";
+import { calculateOrderCost } from "../../helpers/helpers";
+import CheckoutSteps from "./CheckoutSteps";
+
+// import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+// import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Cart = () => {
   const { data } = useGetAddressDataQuery();
@@ -131,208 +147,418 @@ const Cart = () => {
   return (
     <>
       <MetaData title={"Giỏ Hàng"} />
-      {cartItems?.length === 0 ? (
-        <h2
-          id="order_summary"
-          className="alert alert-warning my-5 text-center"
-          type="alert"
-          style={{ width: "80%", margin: "auto" }}
-        >
-          Quý khách chưa chọn mặt hàng nào
-        </h2>
-      ) : (
-        <>
-          <h2 className="mt-5">
-            Mặt hàng trong giỏ: <b>{cartItems?.length} mặt hàng</b>
-          </h2>
-          <div className="row d-flex justify-content-between">
-            <div className="col-12 col-lg-8">
-              {cartItems?.map((item) => (
-                <>
-                  {/* <hr /> */}
-                  <div
-                    id="order_summary"
-                    className="cart-item"
-                    data-key="product1"
-                  >
-                    <div className="row">
-                      <div className="col-4 col-lg-3">
-                        <img
-                          src={item?.image}
-                          alt="FashionShop"
-                          height="180"
-                          width="100"
-                        />
-                      </div>
+      <CheckoutSteps />
 
-                      <div className="col-5 col-lg-3">
-                        <Link to={`/product/${item?.product}`}>
-                          {" "}
-                          {item?.name}{" "}
-                        </Link>
-                        <p>
-                          Màu sắc:
-                          <div className="color-chooser">
-                            {item?.variant
-                              .map((variant) => variant.color) // Extract color from each variant
-                              .filter(
-                                (value, index, self) =>
-                                  self.indexOf(value) === index
-                              ) // Remove duplicate colors
-                              .map(
-                                (
-                                  colorName // Nếu item.color không tồn tại thì trả về mảng rỗng
-                                ) => (
-                                  <button
-                                    key={colorName}
+      {cartItems?.length === 0 ? (
+        <div className="row d-flex justify-content-center">
+          <div className="col-12 col-lg-7 my-5">
+            <section id="order_summary" className="shadow rounded bg-body">
+              <MDBContainer className="py-1 h-100">
+                <MDBRow className="justify-content-center align-items-center h-100">
+                  <MDBCol md="12">
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                      <MDBTypography
+                        tag="h3"
+                        className="fw-bold mb-0 text-black"
+                      >
+                        Quý khách chưa chọn mặt hàng nào!
+                      </MDBTypography>
+                    </div>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </section>
+          </div>
+        </div>
+      ) : (
+        <div className="row d-flex justify-content-center">
+          <div className="col-12 col-lg-7 my-5">
+            <section id="order_summary" className="shadow rounded bg-body">
+              <MDBContainer className="py-1 h-100">
+                <MDBRow className="justify-content-center align-items-center h-100">
+                  <MDBCol md="12">
+                    <MDBCardHeader className="mb-4">
+                      <div className="d-flex justify-content-between align-items-center mb-4">
+                        <MDBTypography
+                          tag="h3"
+                          className="fw-bold mb-0 text-black"
+                        >
+                          Thông tin giỏ hàng: {cartItems?.length} mặt hàng
+                        </MDBTypography>
+                      </div>
+                    </MDBCardHeader>
+
+                    <MDBCardBody className="mb-4">
+                      {cartItems?.map((item) => (
+                        <MDBCard className="rounded-3 mb-4">
+                          <MDBCardBody className="p-4">
+                            <MDBRow className="justify-content-between align-items-center">
+                              <MDBCol md="2" lg="2" xl="2">
+                                <MDBCardImage
+                                  className="rounded-3"
+                                  fluid
+                                  src={item?.image}
+                                  alt={item?.name}
+                                />
+                              </MDBCol>
+                              <MDBCol md="3" lg="3" xl="3">
+                                <div className="lead fw-bold mb-2">
+                                  <Link
+                                    to={`/product/${item?.product}`}
                                     style={{
-                                      backgroundColor: colorMap[colorName],
+                                      textDecoration: "none",
+                                      color: "gray",
                                     }}
-                                    className={`color-button ${
-                                      item?.selectedVariant?.color === colorName
-                                        ? "color-button-selected"
-                                        : ""
-                                    }`}
+                                  >
+                                    {" "}
+                                    {item?.name}{" "}
+                                  </Link>
+                                </div>
+
+                                {/* <p className="lead fw-normal mb-2">
+                                  {item?.name}
+                                </p> */}
+                                <div
+                                  className="dropdown"
+                                  style={{ width: "max-content" }}
+                                >
+                                  <button
+                                    className="form-control form-select "
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style={{ textAlign: "left" }}
+                                  >
+                                    {item?.selectedVariant?.color}
+                                  </button>
+                                  <ul
+                                    className="dropdown-menu "
+                                    style={{
+                                      textAlign: "left",
+                                      maxHeight: "100px",
+                                      overflowY: "auto",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                  >
+                                    {item?.variant
+                                      .map((variant) => variant.color) // Extract color from each variant
+                                      .filter(
+                                        (value, index, self) =>
+                                          self.indexOf(value) === index
+                                      ) // Remove duplicate colors
+                                      .map(
+                                        (
+                                          colorName // Nếu item.color không tồn tại thì trả về mảng rỗng
+                                        ) => (
+                                          <li>
+                                            <button
+                                              class="dropdown-item"
+                                              type="button"
+                                              value={colorName}
+                                              onClick={(e) => {
+                                                handleColorChange(
+                                                  item,
+                                                  colorName
+                                                );
+                                              }}
+                                            >
+                                              {colorName}
+                                            </button>
+                                          </li>
+                                        )
+                                      )}
+                                  </ul>
+                                </div>
+                                <p></p>
+
+                                <div
+                                  className="dropdown"
+                                  style={{ width: "max-content" }}
+                                >
+                                  <button
+                                    className="form-control form-select "
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style={{ textAlign: "left" }}
+                                  >
+                                    {item?.selectedVariant?.size}
+                                  </button>
+                                  <ul
+                                    className="dropdown-menu "
+                                    style={{
+                                      textAlign: "left",
+                                      maxHeight: "100px",
+                                      overflowY: "auto",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                  >
+                                    {item?.variant
+                                      .filter(
+                                        (variant) =>
+                                          variant.color ===
+                                          item?.selectedVariant?.color
+                                      ) // Filter variants by selected color
+                                      .map((variant) => variant.size) // Extract size from each variant
+                                      .filter(
+                                        (value, index, self) =>
+                                          self.indexOf(value) === index
+                                      ) // Remove duplicate sizes
+                                      .map((sizeName) => (
+                                        <li>
+                                          <button
+                                            class="dropdown-item"
+                                            type="button"
+                                            value={sizeName}
+                                            onClick={() =>
+                                              handleSizeClick(item, sizeName)
+                                            }
+                                          >
+                                            {sizeName}
+                                          </button>
+                                        </li>
+                                      ))}
+                                  </ul>
+                                </div>
+                                <p></p>
+                              </MDBCol>
+                              <MDBCol
+                                md="3"
+                                lg="3"
+                                xl="2"
+                                className="d-inline align-items-center justify-content-around"
+                              >
+                                <div className="stockCounter d-inline d-flex justify-content-between align-items-center">
+                                  <span
+                                    style={{
+                                      backgroundColor: "#CC0000",
+                                      cursor: "pointer",
+                                      color: "#ffffff",
+                                      fontWeight: "bold",
+                                      borderRadius: "2px",
+                                    }}
+                                    className="btn px-2 btn-danger minus mx-2"
                                     onClick={() =>
-                                      handleColorChange(item, colorName)
+                                      decreseQty(item, item.quantity)
                                     }
                                   >
-                                    {colorName}
-                                  </button>
-                                )
-                              )}
-                          </div>
-                        </p>
+                                    {" "}
+                                    -{" "}
+                                  </span>
+                                  <input
+                                    type="number"
+                                    className="border form-control count d-inline"
+                                    style={{ borderRadius: "2px" }}
+                                    value={item?.quantity}
+                                    onChange={(e) => {
+                                      const value = parseInt(e.target.value);
+                                      if (value > 0) {
+                                        changeQty(item, value);
+                                      } else if (value < 0) changeQty(item, 1);
+                                      else if (value === 0) return;
+                                      else changeQty(item, e.target.value);
+                                    }}
+                                  />
 
-                        <p>
-                          Kích thước:
-                          <div className="size-buttons">
-                            {item?.variant
-                              .filter(
-                                (variant) =>
-                                  variant.color === item?.selectedVariant?.color
-                              ) // Filter variants by selected color
-                              .map((variant) => variant.size) // Extract size from each variant
-                              .filter(
-                                (value, index, self) =>
-                                  self.indexOf(value) === index
-                              ) // Remove duplicate sizes
-                              .map((size) => (
-                                <button
-                                  key={size}
-                                  onClick={() => handleSizeClick(item, size)}
-                                  // Cập nhật trạng thái khi size button được nhấn, sau đó thêm class selected vào button khi render lại component
-                                  className={`size-button ${
-                                    item?.selectedVariant?.size === size
-                                      ? "selected"
-                                      : ""
-                                  }`}
-                                >
-                                  {size}
-                                </button>
-                              ))}
-                          </div>
-                        </p>
-                      </div>
-
-                      <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                        <p id="card_item_price">
-                          {item?.price.toLocaleString("vi-VN", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
-                        </p>
-                      </div>
-                      <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                        <div className="stockCounter d-inline">
-                          {/*Thêm onClick và hàm giảm số lượng trong giỏ ở đây */}
-                          <span
-                            className="btn btn-danger minus"
-                            onClick={() => decreseQty(item, item.quantity)}
-                          >
-                            {" "}
-                            -{" "}
-                          </span>
-                          <input
-                            type="number"
-                            className="form-control count d-inline"
-                            value={item?.quantity}
-                            onChange={(e) => {
-                              const value = parseInt(e.target.value);
-                              if (value > 0) {
-                                changeQty(item, value);
-                              } else if (value < 0) changeQty(item, 1);
-                              else if (value === 0) return;
-                              else changeQty(item, e.target.value);
-                            }}
-                          />
-                          {/*Thêm onClick và hàm tăng số lượng trong giỏ ở đây */}
-                          <span
-                            className="btn btn-primary plus"
-                            onClick={() => increseQty(item, item.quantity)}
-                          >
-                            {" "}
-                            +{" "}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                        {/*Thêm onClick và hàm xử lý khi xóa sản phẩm trong giỏ ở đây */}
-                        <i
-                          id="delete_cart_item"
-                          className="fa fa-trash btn btn-danger"
-                          onClick={() => removeCartItemHandler(item)}
-                        ></i>
-                      </div>
-                    </div>
-                  </div>
-                  {/* <hr /> */}
-                </>
-              ))}
-            </div>
-            <div className="col-12 col-lg-3 my-4">
-              <div id="order_summary">
-                <h4>Thông tin thanh toán</h4>
-                <hr />
-                {/*Xử lý thông tin số lượng trong giỏ hàng tại đây */}
-                <p>
-                  Số lượng sản phẩm:{" "}
-                  <span className="order-summary-values">
-                    {" "}
-                    {cartItems?.reduce(
-                      (acc, item) => acc + item?.quantity,
-                      0
-                    )}{" "}
-                  </span>
-                </p>
-                {/*Xử lý thông tin thanh toán giỏ hàng tịa đây */}
-                <p>
-                  Tổng tiền tạm tính:{" "}
-                  <span className="order-summary-values">
-                    {cartItems
-                      ?.reduce(
-                        (acc, item) => acc + item?.quantity * item.price,
-                        0
-                      )
-                      .toLocaleString("vi-VN", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                  </span>
-                </p>
-                <hr />
-                {/*Thêm onClick và hàm xử lý khi chuyển sang trang thanh toán ở đây */}
-                <button
-                  id="checkout_btn"
-                  className="btn btn-primary w-100"
-                  onClick={checkoutHandler}
-                >
-                  Đặt hàng
-                </button>
-              </div>
-            </div>
+                                  <span
+                                    style={{
+                                      backgroundColor: "#0066FF",
+                                      cursor: "pointer",
+                                      color: "#ffffff",
+                                      fontWeight: "bold",
+                                      borderRadius: "2px",
+                                    }}
+                                    className="btn btn-primary plus mx-2"
+                                    onClick={() =>
+                                      increseQty(item, item.quantity)
+                                    }
+                                  >
+                                    {" "}
+                                    +{" "}
+                                  </span>
+                                </div>
+                                <p></p>
+                              </MDBCol>
+                              <MDBCol
+                                md="3"
+                                lg="2"
+                                xl="2"
+                                className="offset-lg-1 d-inline align-items-center justify-content-around"
+                              >
+                                <MDBTypography tag="h5" className="mb-0">
+                                  <p id="card_item_price" className="">
+                                    x{" "}
+                                    {item?.price.toLocaleString("vi-VN", {
+                                      style: "currency",
+                                      currency: "VND",
+                                    })}
+                                  </p>
+                                </MDBTypography>
+                              </MDBCol>
+                              <MDBCol
+                                md="1"
+                                lg="1"
+                                xl="1"
+                                className="d-inline align-items-center justify-content-around text-end"
+                              >
+                                <p id="card_item_price" className="text-danger">
+                                  <a href="#!">
+                                    <MDBIcon
+                                      fas
+                                      icon="trash text-danger"
+                                      size="lg"
+                                      onClick={() =>
+                                        removeCartItemHandler(item)
+                                      }
+                                    />
+                                  </a>
+                                </p>
+                              </MDBCol>
+                            </MDBRow>
+                          </MDBCardBody>
+                        </MDBCard>
+                      ))}
+                    </MDBCardBody>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </section>
           </div>
-        </>
+
+          <div className="col-12 col-lg-4 my-5">
+            <section
+              id="order_summary"
+              className="shadow rounded "
+              style={{ backgroundColor: "#f8f9fa" }}
+            >
+              <MDBContainer className="py-1 h-100 ">
+                <MDBRow className="justify-content-center align-items-center h-100">
+                  <MDBCol md="12">
+                    <MDBCardHeader className="mb-4">
+                      <div className="d-flex justify-content-between align-items-center mb-4">
+                        <MDBTypography
+                          tag="h3"
+                          className="fw-bold mb-0 text-black bold"
+                        >
+                          Tạm tính
+                        </MDBTypography>
+                      </div>
+                    </MDBCardHeader>
+                    <hr className="my-4" />
+                    <MDBCardBody className="mb-4">
+                      <MDBRow className="justify-content-between align-items-center mb-4">
+                        <MDBCol>
+                          <MDBTypography tag="h4" className="mb-0">
+                            Số lượng:
+                          </MDBTypography>
+                        </MDBCol>
+
+                        <MDBCol>
+                          <MDBTypography tag="h5" className="mb-0">
+                            <span className="order-summary-values">
+                              {cartItems?.reduce(
+                                (acc, item) => acc + item?.quantity,
+                                0
+                              )}
+                            </span>
+                          </MDBTypography>
+                        </MDBCol>
+                      </MDBRow>
+
+                      <MDBRow className="justify-content-between align-items-center mb-4">
+                        <MDBCol>
+                          <MDBTypography tag="h4" className="mb-0">
+                            Tiền hàng:
+                          </MDBTypography>
+                        </MDBCol>
+
+                        <MDBCol>
+                          <MDBTypography tag="h5" className="mb-0">
+                            <span className="order-summary-values">
+                              {cartItems
+                                ?.reduce(
+                                  (acc, item) =>
+                                    acc + item?.quantity * item.price,
+                                  0
+                                )
+                                .toLocaleString("vi-VN", {
+                                  style: "currency",
+                                  currency: "VND",
+                                })}
+                            </span>
+                          </MDBTypography>
+                        </MDBCol>
+                      </MDBRow>
+
+                      <MDBRow className="justify-content-between align-items-center mb-4">
+                        <MDBCol>
+                          <MDBTypography tag="h4" className="mb-0">
+                            Giảm giá:
+                          </MDBTypography>
+                        </MDBCol>
+
+                        <MDBCol>
+                          <MDBTypography tag="h5" className="mb-0">
+                            <span className="order-summary-values">0 đ</span>
+                          </MDBTypography>
+                        </MDBCol>
+                      </MDBRow>
+
+                      {/* <MDBRow className="justify-content-between align-items-center mb-4">
+                        <MDBCol>
+                          <MDBTypography tag="h4" className="mb-0">
+                            Vận chuyển:
+                          </MDBTypography>
+                        </MDBCol>
+
+                        <MDBCol>
+                          <MDBTypography tag="h5" className="mb-0">
+                            <span className="order-summary-values">
+                              {calculateOrderCost(
+                                cartItems
+                              ).shippingPrice.toLocaleString("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              })}
+                            </span>
+                          </MDBTypography>
+                        </MDBCol>
+                      </MDBRow> */}
+                    </MDBCardBody>
+                    <hr className="my-4" />
+                    <MDBInput
+                      placeholder="Nhập MGG"
+                      wrapperClass="flex-fill"
+                      size="lg"
+                      style={{
+                        border: "2px solid #B9D3EE", // Thay đổi màu viền tại đây
+                        borderRadius: "4px", // Tùy chọn, bo góc cho viền
+                      }}
+                    />
+                    <MDBRow
+                      className="justify-content-center align-items-center mb-4"
+                      // style={{
+                      //   margin: 0.5,
+                      // }}
+                    >
+                      <button
+                        style={{
+                          borderRadius: "5px",
+                          height: "50px",
+                        }}
+                        id="checkout_btn"
+                        className="btn btn-primary w-100 py-2"
+                        onClick={checkoutHandler}
+                      >
+                        Đặt hàng
+                      </button>
+                    </MDBRow>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </section>
+          </div>
+        </div>
       )}
     </>
   );
