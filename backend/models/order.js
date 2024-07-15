@@ -77,6 +77,28 @@ const orderSchema = new mongoose.Schema(
           required: true,
           ref: "Product",
         },
+        reviews: [
+          {
+            order: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Order", // Chỉ active khi project go-live
+              // required: true,  // Chỉ active khi project go-live
+            },
+            user: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "User", // Chỉ active khi project go-live
+              // required: true,  // Chỉ active khi project go-live
+            },
+            rating: {
+              type: Number,
+              min:1,
+              max:5,
+            },
+            comment: {
+              type: String,
+            },
+          },
+        ],
       },
     ],
 

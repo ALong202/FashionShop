@@ -160,76 +160,87 @@ export const deleteProduct = catchAsyncErrors(  async (req, res, next) => { // K
   });
 });
 
+
 // Create/Update product review  =>  /api/reviews
 export const createProductReview = catchAsyncErrors(async (req, res, next) => {
-    // Trích xuất thông tin đánh giá từ yêu cầu
-    const { rating, comment, productId } = req.body;
-  
-    // Tạo đối tượng đánh giá
-    const review = {
-      user: req?.user?._id, // ID của người dùng đánh giá
-      rating: Number(rating), // Điểm đánh giá
-      comment, // Bình luận
-    };
-  
-    // Tìm sản phẩm trong cơ sở dữ liệu bằng ID
-    const product = await Product.findById(productId);
-  
-    // Kiểm tra xem sản phẩm có tồn tại không
-    if (!product) {
-      // Nếu không tìm thấy sản phẩm, trả về lỗi với mã trạng thái 404
-      return next(new ErrorHandler("Sản phẩm không tồn tại", 404));
-    }
-  
-    // Kiểm tra xem người dùng đã đánh giá sản phẩm này chưa
-    const isReviewed = product?.reviews?.find(
-      (r) => r.user.toString() === req?.user?._id.toString()
-    );
-  
-    // Nếu người dùng đã đánh giá sản phẩm, cập nhật đánh giá
-    if (isReviewed) {
-      product.reviews.forEach((review) => {
-        if (review?.user?.toString() === req?.user?._id.toString()) {
-          review.comment = comment;
-          review.rating = rating;
-        }
-      });
-    } else {
-      // Nếu người dùng chưa đánh giá sản phẩm, thêm đánh giá mới
-      product.reviews.push(review);
-      product.numOfReviews = product.reviews.length;
-    }
-  
-    // Tính toán lại điểm đánh giá trung bình của sản phẩm
-    product.ratings =
-      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length;
-  
-    // Lưu thay đổi vào cơ sở dữ liệu
-    await product.save({ validateBeforeSave: false });
-  
-    // Trả về thành công với mã trạng thái 200
-    res.status(200).json({
-      success: true,
+  // Trích xuất thông tin đánh giá từ yêu cầu
+  const { rating, comment, productId, orderID } = req.body;
+
+  // Tạo đối tượng đánh giá
+  const review = {
+    user: req?.user?._id, // ID của người dùng đánh giá
+    rating: Number(rating), // Điểm đánh giá
+    comment, // Bình luận
+    order: orderID,
+  };
+
+  // Tìm sản phẩm trong cơ sở dữ liệu bằng ID
+  const product = await Product.findById(productId);
+
+  // Kiểm tra xem sản phẩm có tồn tại không
+  if (!product) {
+    // Nếu không tìm thấy sản phẩm, trả về lỗi với mã trạng thái 404
+    return next(new ErrorHandler("Sản phẩm không tồn tại", 404));
+  }
+
+  // Kiểm tra xem người dùng đã đánh giá sản phẩm này chưa
+  const isReviewed = product?.reviews?.find(
+    (r) => r.user.toString() === req?.user?._id.toString() && r.order.toString() === orderID.toString()
+  );
+
+  // Nếu người dùng đã đánh giá sản phẩm, cập nhật đánh giá
+  if (isReviewed) {
+    product.reviews.forEach((review) => {
+      if (review?.user?.toString() === req?.user?._id.toString()) {
+        review.comment = comment;
+        review.rating = rating;
+        review.order = orderID;
+      }
     });
+  } else {
+    // Nếu người dùng chưa đánh giá sản phẩm, thêm đánh giá mới
+    product.reviews.push(review);
+    product.numOfReviews = product.reviews.length;
+  }
+
+  // Tính toán lại điểm đánh giá trung bình của sản phẩm
+  product.ratings =
+    product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+    product.reviews.length;
+
+  // Lưu thay đổi vào cơ sở dữ liệu
+  await product.save({ validateBeforeSave: false });
+
+  // Trả về thành công với mã trạng thái 200
+  res.status(200).json({
+    success: true,
   });
-  
+});
+
+
+
+
+
 // Get product reviews  =>  /api/reviews
 export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
-    // Tìm sản phẩm trong cơ sở dữ liệu bằng ID và lấy các đánh giá của người dùng liên quan
-    const product = await Product.findById(req.query.id).populate("reviews.user");
-  
-    // Kiểm tra xem sản phẩm có tồn tại không
-    if (!product) {
-      // Nếu không tìm thấy sản phẩm, trả về lỗi với mã trạng thái 404
-      return next(new ErrorHandler("Sản phẩm không tồn tại", 404));
-    }
-  
-    // Trả về danh sách các đánh giá của sản phẩm với mã trạng thái 200
-    res.status(200).json({
-      reviews: product.reviews, // Trả về danh sách các đánh giá của sản phẩm
-    });
+  const { productID, orderID } = req.query;
+
+  const product = await Product.findOne({
+    _id: productID,
+    'reviews.order': orderID,
+  }).populate('reviews.user');
+
+  if (!product) {
+    return next(new ErrorHandler('Sản phẩm không tồn tại hoặc không có đánh giá cho order này', 404));
+  }
+
+  // Filter reviews to only include those matching the orderID
+  const reviews = product.reviews.filter(review => review.order.toString() === orderID);
+
+  res.status(200).json({
+    reviews,
   });
+});
   
   // Delete product review   =>  /api/admin/reviews
   export const deleteReview = catchAsyncErrors(async (req, res, next) => {
@@ -290,10 +301,5 @@ export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
       canReview: true,
     });
   });
-
-//   Test frontend toast message
-//   return next(new ErrorHandler("Không tìm thấy sản phẩm", 400)); 
-
-
 
 
