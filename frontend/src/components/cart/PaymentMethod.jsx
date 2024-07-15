@@ -5,17 +5,18 @@ import { useSelector } from "react-redux";
 import { calculateOrderCost } from "../../helpers/helpers";
 import { useCreateNewOrderMutation } from "../../redux/api/orderApi";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useCreateNewZaloPayPaymentMutation } from "../../redux/api/zalopayApi";
 import { useCreateNewStripePaymentMutation } from "../../redux/api/stripeApi";
 import { useCreateNewMoMoPaymentMutation } from "../../redux/api/momoApi";
 import { useCreateNewPaypalPaymentMutation } from "../../redux/api/paypalApi";
+import PhoneInput from "react-phone-input-2";
 
 const PaymentMethod = () => {
   const { user } = useSelector((state) => state.auth);
 
-  const [method, setMethod] = useState("");
+  const [method, setMethod] = useState("Chọn hình thức thanh toán");
 
   const navigate = useNavigate();
 
@@ -49,7 +50,8 @@ const PaymentMethod = () => {
   const submitHandler = (e) => {
     //Ko cho phép để trống hình thức thanh toán
     e.preventDefault();
-    if (method === "") {
+    // if (method === "") {
+    if (method === "Chọn hình thức thanh toán") {
       toast.error("Bạn phải chọn hình thức thanh toán");
     }
 
@@ -167,11 +169,26 @@ const PaymentMethod = () => {
       <CheckoutSteps shipping confirmOrder payment />
 
       <div className="row wrapper">
-        <div className="col-10 col-lg-4">
+        <div className="col-10 col-lg-5">
           <form className="shadow rounded bg-body" onSubmit={submitHandler}>
-            <h2 className="mb-4 text-center">Chọn hình thức thanh toán</h2>
+            <div className="d-flex align-items-center justify-content-between">
+              <h2 className="fw-bold text-black bold">Thanh toán đơn hàng</h2>
+              <h3 className="lead fw-bold">
+                <Link
+                  to={`/`}
+                  style={{
+                    textDecoration: "none",
+                    color: "gray",
+                  }}
+                >
+                  Mua thêm sản phẩm
+                </Link>
+              </h3>
+            </div>
+            <hr className="my-4" />
+            {/* <h2 className="mb-4">Thanh toán đơn hàng</h2> */}
 
-            <div className="form-check ">
+            {/* <div className="form-check ">
               <input
                 className="form-check-input"
                 type="radio"
@@ -239,12 +256,152 @@ const PaymentMethod = () => {
               <label className="form-check-label" htmlFor="zalopayradio">
                 ZaloPay
               </label>
+            </div> */}
+
+            <div className="mb-3">
+              <label htmlFor="itemsPrice_field" className="form-label">
+                Tổng tiền hàng
+              </label>
+              <input
+                style={{ backgroundColor: "#f8f9fa" }}
+                type="text"
+                id="itemsPrice_field"
+                className="form-control"
+                name="itemsPrice"
+                value={calculateOrderCost(cartItems).itemsPrice}
+                disabled={true}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="shippingPrice_field" className="form-label">
+                Phí vận chuyển
+              </label>
+              <input
+                style={{ backgroundColor: "#f8f9fa" }}
+                type="text"
+                id="shippingPrice_field"
+                className="form-control"
+                name="shippingPrice"
+                value={calculateOrderCost(cartItems).shippingPrice}
+                disabled={true}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="totalPrice_field" className="form-label">
+                Tổng thanh toán
+              </label>
+              <input
+                style={{ backgroundColor: "#f8f9fa" }}
+                type="text"
+                id="totalPrice_field"
+                className="form-control"
+                name="totalPrice"
+                value={calculateOrderCost(cartItems).totalPrice}
+                disabled={true}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="shippingVender_field" className="form-label">
+                Đơn vị vận chuyển
+              </label>
+              <input
+                style={{ backgroundColor: "#f8f9fa" }}
+                type="text"
+                id="shippingVender_field"
+                className="form-control"
+                name="shippingVender"
+                value={shippingInfo?.shippingVender}
+                disabled={true}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="address_field" className="form-label">
+                Địa chỉ giao hàng
+              </label>
+              <input
+                style={{ backgroundColor: "#f8f9fa" }}
+                type="text"
+                id="address_field"
+                className="form-control"
+                name="address"
+                value={[
+                  shippingInfo?.address,
+                  shippingInfo?.shippingWard,
+                  shippingInfo?.shippingCity,
+                  shippingInfo?.shippingProvince,
+                ]
+                  .filter(Boolean)
+                  .join(", ")}
+                disabled={true}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="phone_field" className="form-label">
+                Điện thoại liên hệ
+              </label>
+              <div>
+                <PhoneInput
+                  inputStyle={{ width: "100%", backgroundColor: "#f8f9fa" }}
+                  country={"vn"}
+                  countryCodeEditable={false}
+                  value={shippingInfo?.phoneNo}
+                  disabled={true}
+                />
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="payment_field" className="form-label">
+                Hình thức thanh toán
+              </label>
+              <div className="dropdown" style={{ width: "100%" }}>
+                <button
+                  className="form-control form-select"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  style={{ "text-align": "left", border: "2px solid #FFA07A" }}
+                >
+                  {method}
+                </button>
+                <ul
+                  className="dropdown-menu"
+                  style={{
+                    width: "100%",
+                    maxHeight: "200px",
+                    overflowY: "auto",
+                  }}
+                >
+                  {["COD", "Stripe", "Paypal", "MoMo", "ZaloPay"].map((m) => (
+                    <li>
+                      <button
+                        class="dropdown-item"
+                        type="button"
+                        value={m}
+                        onClick={(e) => {
+                          setMethod(e.target.value);
+                        }}
+                      >
+                        {m}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <button
+              style={{
+                borderRadius: "5px",
+              }}
               id="shipping_btn"
               type="submit"
-              className="btn py-2 w-100"
+              className="btn btn-primary w-100 py-"
               disable={isLoading}
             >
               XÁC NHẬN THANH TOÁN

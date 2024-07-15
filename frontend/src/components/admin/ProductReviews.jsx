@@ -9,14 +9,19 @@ import {
   useDeleteReviewMutation,
   useLazyGetProductReviewsQuery,
 } from "../../redux/api/productsApi";
+import { AgGridReact } from "ag-grid-react";
+import { AG_GRID_LOCALE_VN } from "@ag-grid-community/locale";
 
 const ProductReviews = () => {
+  const [quickFilterText, setQuickFilterText] = useState("");
+
   const [productId, setProductId] = useState(
     "Nhập mã sản phẩm để tìm bình luận"
   );
 
   const [getProductReviews, { data, isLoading, error }] =
     useLazyGetProductReviewsQuery();
+  console.log("day la data", data);
 
   const [
     deleteReview,
@@ -38,7 +43,7 @@ const ProductReviews = () => {
     console.log("data la", data);
   };
 
-  const deleteOrderHandler = (id) => {
+  const deleteReviewHandle = (id) => {
     console.log("productId 2 la", productId);
     deleteReview({ productId, id });
   };
@@ -86,7 +91,7 @@ const ProductReviews = () => {
           <>
             <button
               className="btn btn-outline-danger ms-2"
-              onClick={() => deleteOrderHandler(review?._id)}
+              onClick={() => deleteReviewHandle(review?._id)}
               disable={isDeleteLoading}
             >
               <i className="fa fa-trash"></i>
@@ -99,15 +104,86 @@ const ProductReviews = () => {
     return reviews;
   };
 
+  const columnDefs = [
+    {
+      headerName: "Mã đánh giá",
+      field: "id",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      flex: 0,
+      width: 350,
+      cellClass: "grid-cell-centered",
+    },
+    {
+      headerName: "Xếp hạng",
+      field: "rating",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      cellClass: "grid-cell-centered",
+    },
+    {
+      headerName: "Bình luận",
+      field: "comment",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      cellClass: "grid-cell-centered",
+    },
+    {
+      headerName: "Người mua",
+      field: "user",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      cellClass: "grid-cell-centered",
+    },
+    {
+      headerName: "Chi tiết",
+      field: "actions",
+      cellRenderer: (params) => (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <button
+            style={{
+              fontSize: "13px",
+            }}
+            className="btn btn-outline-danger ms-2"
+            onClick={() => deleteReviewHandle(params.data?._id)}
+            disable={isDeleteLoading}
+          >
+            <i className="fa fa-trash"></i>
+          </button>
+        </div>
+      ),
+      resizable: true,
+    },
+  ];
+
+  const rowData = data?.reviews?.map((review) => ({
+    _id: review?._id.toUpperCase(),
+    rating: review?.rating,
+    comment: review?.comment,
+    user: review?.user?.name,
+  }));
+
   if (isLoading) return <Loader />;
 
   return (
     <AdminLayout>
-      <div className="row justify-content-center my-5">
+      <MetaData title={"Quản lý đánh giá"} />
+      {/* <div className="row justify-content-center my-5"> */}
+      <div className="row d-flex justify-content-center mt-3">
         <div className="col-6">
           <form onSubmit={submitHandler}>
             <div className="mb-3">
-              <label for="productId_field" className="form-label">
+              <label for="productId_field" className="form-label fw-bold">
                 Nhập mã sản phẩm
               </label>
               <input
@@ -128,15 +204,41 @@ const ProductReviews = () => {
             </button>
           </form>
         </div>
+        <div
+          className="ag-theme-alpine my-5 col-12 col-lg-8"
+          style={{ width: "80%", margin: "auto", overflowX: "auto" }}
+        >
+          <AgGridReact
+            columnDefs={columnDefs}
+            rowData={rowData}
+            getRowStyle={(params) => {
+              return {
+                backgroundColor:
+                  params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
+              };
+            }} // Hàng chẵn có màu này, hàng lẻ có màu kia
+            domLayout="autoHeight"
+            defaultColDef={{
+              flex: 1,
+              minWidth: 100,
+            }}
+            pagination={true}
+            paginationPageSize={10}
+            localeText={AG_GRID_LOCALE_VN}
+            quickFilterText={quickFilterText}
+            loading={false}
+          />
+        </div>
       </div>
-      <MDBDataTable
+
+      {/* <MDBDataTable
         data={setReviews()}
         className="px-3"
         bordered
         striped
         hover
         style={{ textAlign: "center" }}
-      />
+      /> */}
       {/* {data?.reviews?.length > 0 ? (
       ) : (
         <p className="mt-5.text-center">Không có đánh giá nào</p>
