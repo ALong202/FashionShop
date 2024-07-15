@@ -82,6 +82,10 @@ const productSchema = new mongoose.Schema(
           type: Number,
           required: [true, "Vui lòng nhập lượng tồn kho sản phẩm"],
         },
+        sellQty: {
+          type: Number,
+          default: 0,
+        },
         // reviews: [
         //   {
         //     user: {
@@ -149,6 +153,8 @@ const productSchema = new mongoose.Schema(
   
   { timestamps: true }
 );
+
+
 
 export default mongoose.model("Product", productSchema);
 
