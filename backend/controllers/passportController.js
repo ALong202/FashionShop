@@ -17,7 +17,6 @@ import fs from "fs";
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const User = require('./models/userModel'); // Đường dẫn tới file model người dùng của bạn
 // Đường dẫn tới file cấu hình local
-// Đường dẫn tới file cấu hình local
 const localConfigPath = "backend/config/config.env.local";
 const globalConfigPath = "backend/config/config.env.global";
 
@@ -25,7 +24,7 @@ const globalConfigPath = "backend/config/config.env.global";
 if (process.env.NODE_ENV !== "PRODUCTION") {
   // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
   if (fs.existsSync(localConfigPath)) {
-    dotenv.config({ path: localConfigPath });
+    dotenv.config({ path: localConfigPath, override: true }); // cho phép ghi đè các biến môi trường đã tồn tại
   } else {
     dotenv.config({ path: globalConfigPath });
   }
