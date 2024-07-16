@@ -1,3 +1,5 @@
+// backend/app.js
+
 import express from "express"; // Import thư viện express để tạo máy chủ HTTP
 const app = express(); // Tạo 1 dối tượng ứng dụng Express mới
 import cookieParser from "cookie-parser"; // Import thư viện cookie-parser để xử lý cookie

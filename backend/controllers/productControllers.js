@@ -1,3 +1,4 @@
+// backend/controllers/productControllers.js
 import { query } from "express";
 import Product from "../models/product.js"; // Import model Product từ đường dẫn ../models/product.js
 import Order from "../models/order.js";
@@ -14,6 +15,8 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 export const getProducts = catchAsyncErrors(async (req, res) => {
   // Số sản phẩm trên mỗi trang
   const resPerPage = 8;
+
+
   let topRatedProducts = [];
 
   // Check if it's a request for the Homepage by looking for the absence of specific filters
@@ -42,6 +45,7 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
     ]);
   } // Fetch the top 8 rated products for the Homepage
 
+
   // Áp dụng bộ lọc từ yêu cầu API
   const apiFilters = new APIFilters(Product, req.query)
                           .search()
@@ -59,6 +63,7 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
   // Lấy lại danh sách sản phẩm sau khi phân trang
   products = await apiFilters.query.clone();
 
+
   // Trả về danh sách sản phẩm đã được lọc và phân trang
   res.status(200).json({
     resPerPage,// Số sản phẩm trên mỗi trang
@@ -74,8 +79,9 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
 export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
     // Thiết lập người dùng tạo sản phẩm bằng ID của người dùng đang đăng nhập
     req.body.user = req.user._id;
-
     const product = await Product.create(req.body); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
+
+    
     res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
         product, // Trả về thông tin của sản phẩm mới được tạo
     });
@@ -137,6 +143,7 @@ export const uploadProductImages = catchAsyncErrors( async (req, res) => { // Kh
 
   product?.images?.push(...urls);
   await product?.save();
+  
 
   res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
       product, // Trả về thông tin của sản phẩm mới được tạo
@@ -160,6 +167,7 @@ export const deleteProductImage = catchAsyncErrors( async (req, res) => { // Kha
 
     await product?.save();
   }
+
 
   res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
       product, // Trả về thông tin của sản phẩm mới được tạo

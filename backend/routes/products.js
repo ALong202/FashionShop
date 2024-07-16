@@ -3,7 +3,10 @@
 
 Routes () cho tài nguyên sản phẩm
 */
-import express from "express";
+
+// backend/routes/products.js
+
+import express, { application } from "express";
 import {
   getProducts,
   newProduct,
