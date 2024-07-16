@@ -16,8 +16,8 @@ const config = {
   partnerName: "FakashionShop",
   storeId: "MomoTestStore",
   endpoint: process.env.MOMO_ENDPOINT,
-  redirectUrl: process.env.FRONTEND_URL + "/me/orders",
-  ipnUrl: process.env.BACKEND_URL + "/api/momo/callback/",
+  redirectUrl: process.env.FRONTEND_PUB_URL + "/me/orders",
+  ipnUrl: process.env.BACKEND_PUB_URL + "/api/momo/callback/",
   requestType: "payWithMethod",
   autoCapture: true,
   lang: "vi",
@@ -38,6 +38,10 @@ export const newMoMoPayment = catchAsyncErrors(async (req, res, next) => {
       orderID: transID,
       address: req.body.shippingInfo.address,
       phoneNo: req.body.shippingInfo.phoneNo,
+      shippingProvince: req.body?.shippingInfo?.shippingProvince,
+      shippingCity: req.body?.shippingInfo?.shippingCity,
+      shippingWard: req.body?.shippingInfo?.shippingWard,
+      shippingVender: req.body?.shippingInfo?.shippingVender,
     },
     itemsPrice: req.body.itemsPrice,
     shippingAmount: req.body.shippingAmount,
@@ -65,9 +69,16 @@ export const newMoMoPayment = catchAsyncErrors(async (req, res, next) => {
   const userInfo = {
     name: DataRaw?.shippingInfo?.orderID,
     phoneNumber: DataRaw.shippingInfo.phoneNo,
-    email: DataRaw.shippingInfo.address,
+    email: [
+      DataRaw.shippingInfo.address,
+      DataRaw.shippingInfo.shippingWard,
+      DataRaw.shippingInfo.shippingCity,
+      DataRaw.shippingInfo.shippingProvince,
+    ]
+      .filter(Boolean)
+      .join(", "),
   };
-  //console.log("userInfo", userInfo);
+  // console.log("userInfo", userInfo);
 
   const extraDataRaw = {
     itemsPrice: DataRaw.itemsPrice,

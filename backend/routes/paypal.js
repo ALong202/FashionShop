@@ -6,7 +6,7 @@ import {
 } from "../controllers/paypalController.js";
 const router = express.Router();
 // Định nghĩa các route cho paypal process
-router.route("/paypal/payment").post(newPaypalPayment);
+router.route("/paypal/payment").post(isAuthenticatedUser, newPaypalPayment);
 router.route("/paypal/order").get(newOrderWithPaypal);
 
 export default router; 

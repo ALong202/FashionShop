@@ -65,6 +65,25 @@ export const cartSlice = createSlice({
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
+    setSelectedCartItem: (state, action) => {
+      const index = action.payload;
+      const {flag, ...restItem} = state.cartItems[index];
+      const newItem = {
+        ...restItem,
+        flag: !(state.cartItems[index]).flag,
+      }
+      // state.cartItems.splice(index, 1);
+      //   state.cartItems.unshift(newItem);
+      if(flag === false){
+        state.cartItems.splice(index, 1);
+        state.cartItems.unshift(newItem);
+      }
+      else
+        state.cartItems.splice(index, 1, newItem);
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      //const { selectedVariant, ...restItem } = rest;
+    },
+
     removeCartItem: (state, action) => {
       //xóa theo mã loại mặt hàng
       state.cartItems = state?.cartItems?.filter(
@@ -75,8 +94,14 @@ export const cartSlice = createSlice({
     },
 
     clearCart: (state, action) => {
-      localStorage.removeItem("cartItems");
-      state.cartItems = [];
+      
+      state.cartItems = state?.cartItems?.filter((c) => c.flag !== true);
+      if( state.cartItems !== null)
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      else{
+        localStorage.removeItem("cartItems");
+        state.cartItems = [];
+      }
     },
 
     saveShippingInfo: (state, action) => {
@@ -89,5 +114,5 @@ export const cartSlice = createSlice({
 
 export default cartSlice.reducer;
 
-export const { setCartItem, removeCartItem, saveShippingInfo, clearCart } =
+export const { setCartItem, setSelectedCartItem, removeCartItem, saveShippingInfo, clearCart } =
   cartSlice.actions;

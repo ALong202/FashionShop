@@ -63,10 +63,10 @@ const Shipping = () => {
   const [address, setAddress] = useState(
     shippingInfo?.address || user?.address
   );
-  const [phoneNo, setPhoneNo] = useState(shippingInfo?.phoneNo || user?.phone);
+  const [phoneNo, setPhoneNo] = useState(shippingInfo?.phoneNo || user?.phone.substring(1));
 
   const validatePhoneNumber = (phoneNumber) => {
-    //const regex = /^\+\d{11}$/;
+    // const regex = /^\+\d{11}$/;
     const regex = /^\d{11}$/;
     return regex.test(phoneNumber);
   };
@@ -179,7 +179,7 @@ const Shipping = () => {
                                     country={"vn"}
                                     countryCodeEditable={true}
                                     value={phoneNo}
-                                    onChange={(e) => setPhoneNo(e)}
+                                    onChange={(e) => {setPhoneNo(e); console.log(phoneNo)}}
                                   />
                                 </div>
                               </div>
@@ -670,7 +670,7 @@ const Shipping = () => {
                       <MDBCol>
                         <MDBTypography tag="h5" className="mb-0">
                           <span className="order-summary-values">
-                            {cartItems?.reduce(
+                            {cartItems.filter((c) => c.flag === true)?.reduce(
                               (acc, item) => acc + item?.quantity,
                               0
                             )}
@@ -689,7 +689,7 @@ const Shipping = () => {
                       <MDBCol>
                         <MDBTypography tag="h5" className="mb-0">
                           <span className="order-summary-values">
-                            {cartItems
+                            {cartItems.filter((c) => c.flag === true)
                               ?.reduce(
                                 (acc, item) =>
                                   acc + item?.quantity * item.price,
@@ -729,7 +729,7 @@ const Shipping = () => {
                         <MDBTypography tag="h5" className="mb-0">
                           <span className="order-summary-values">
                             {calculateOrderCost(
-                              cartItems
+                              cartItems.filter((c) => c.flag === true)
                             ).shippingPrice.toLocaleString("vi-VN", {
                               style: "currency",
                               currency: "VND",

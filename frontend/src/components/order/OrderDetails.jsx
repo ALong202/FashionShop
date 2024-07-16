@@ -267,17 +267,83 @@ const OrderDetails = () => {
                                 type="text"
                                 id="form6Example3"
                                 className="form-control"
-                                Value={order?.shippingInfo?.address}
-                                // value={[
-                                //   order?.shippingInfo?.address,
-                                //   order?.shippingInfo?.shippingWard,
-                                //   order?.shippingInfo?.shippingCity,
-                                //   order?.shippingInfo?.shippingProvince,
-                                // ]
-                                //   .filter(Boolean)
-                                //   .join(", ")}
+                                // value={order?.shippingInfo?.address}
+                                value={[
+                                  order?.shippingInfo?.address,
+                                  order?.shippingInfo?.shippingWard,
+                                  order?.shippingInfo?.shippingCity,
+                                  order?.shippingInfo?.shippingProvince,
+                                ]
+                                  .filter(Boolean)
+                                  .join(", ")}
                                 disabled={true}
                               />
+                            </div>
+                            <div className="row">
+                              <div className="col-12 col-md-4 mb-3">
+                                <div className="form-outline">
+                                  <label
+                                    className="form-label fw-bold text-black"
+                                    for="form6Example1"
+                                  >
+                                    Phường/Xã
+                                  </label>
+                                  <input
+                                    style={{
+                                      width: "100%",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    type="text"
+                                    id="form6Example1"
+                                    className="form-control"
+                                    value={order?.shippingInfo?.shippingWard}
+                                    disabled={true}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-12 col-md-4 mb-3">
+                                <div className="form-outline">
+                                  <label
+                                    className="form-label fw-bold text-black"
+                                    for="form6Example2"
+                                  >
+                                    Quận/Huyện
+                                  </label>
+                                  <input
+                                    style={{
+                                      width: "100%",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    type="text"
+                                    id="form6Example1"
+                                    className="form-control"
+                                    value={order?.shippingInfo?.shippingCity}
+                                    disabled={true}
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="col-12 col-md-4 mb-3">
+                                <div className="form-outline">
+                                  <label
+                                    className="form-label fw-bold text-black"
+                                    for="form6Example2"
+                                  >
+                                    Tỉnh/Thành Phố
+                                  </label>
+                                  <input
+                                    style={{
+                                      width: "100%",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    type="text"
+                                    id="form6Example1"
+                                    className="form-control"
+                                    value={order?.shippingInfo?.shippingProvince}
+                                    disabled={true}
+                                  />
+                                </div>
+                              </div>
                             </div>
                             <div className="row">
                               <div className="col-12 col-md-6 mb-3">

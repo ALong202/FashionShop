@@ -31,8 +31,9 @@ const ConfirmOrder = () => {
 
   const navigate = useNavigate();
 
-  const { itemsPrice, shippingPrice, totalPrice } =
-    calculateOrderCost(cartItems);
+  const { itemsPrice, shippingPrice, totalPrice } = calculateOrderCost(
+    cartItems.filter((c) => c.flag === true)
+  );
 
   const [createNewOrder, { isLoading, error, isSuccess }] =
     useCreateNewOrderMutation();
@@ -61,25 +62,27 @@ const ConfirmOrder = () => {
 
   const submitHandle = (e) => {
     // Xử lý mảng cartItems để loại bỏ variant và _id trong selectedVariant
-    const processedCartItems = cartItems.map((item) => {
-      // Loại bỏ thuộc tính variant
-      const { variant, ...rest } = item;
+    const processedCartItems = cartItems
+      .filter((c) => c.flag === true)
+      .map((item) => {
+        // Loại bỏ thuộc tính variant
+        const { variant, ...rest } = item;
 
-      // Loại bỏ thuộc tính _id trong selectedVariant
-      const { selectedVariant, ...restItem } = rest;
-      const { _id, ...variantWithoutId } = selectedVariant;
+        // Loại bỏ thuộc tính _id trong selectedVariant
+        const { selectedVariant, ...restItem } = rest;
+        const { _id, ...variantWithoutId } = selectedVariant;
 
-      //Trả về đối tượng mới đã xử lý
-      return {
-        ...restItem,
-        selectedVariant: {
-          color: variantWithoutId.color,
-          size: variantWithoutId.size,
-          stock: variantWithoutId.stock,
-          variantID: _id,
-        },
-      };
-    });
+        //Trả về đối tượng mới đã xử lý
+        return {
+          ...restItem,
+          selectedVariant: {
+            color: variantWithoutId.color,
+            size: variantWithoutId.size,
+            stock: variantWithoutId.stock,
+            variantID: _id,
+          },
+        };
+      });
 
     console.log("Processed Data", processedCartItems);
 
@@ -357,6 +360,72 @@ const ConfirmOrder = () => {
                                 disabled={true}
                               />
                             </div>
+                            <div className="row">
+                              <div className="col-12 col-md-4 mb-3">
+                                <div className="form-outline">
+                                  <label
+                                    className="form-label fw-bold text-black"
+                                    for="form6Example1"
+                                  >
+                                    Phường/Xã
+                                  </label>
+                                  <input
+                                    style={{
+                                      width: "100%",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    type="text"
+                                    id="form6Example1"
+                                    className="form-control"
+                                    value={shippingInfo?.shippingWard}
+                                    disabled={true}
+                                  />
+                                </div>
+                              </div>
+                              <div className="col-12 col-md-4 mb-3">
+                                <div className="form-outline">
+                                  <label
+                                    className="form-label fw-bold text-black"
+                                    for="form6Example2"
+                                  >
+                                    Quận/Huyện
+                                  </label>
+                                  <input
+                                    style={{
+                                      width: "100%",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    type="text"
+                                    id="form6Example1"
+                                    className="form-control"
+                                    value={shippingInfo?.shippingCity}
+                                    disabled={true}
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="col-12 col-md-4 mb-3">
+                                <div className="form-outline">
+                                  <label
+                                    className="form-label fw-bold text-black"
+                                    for="form6Example2"
+                                  >
+                                    Tỉnh/Thành Phố
+                                  </label>
+                                  <input
+                                    style={{
+                                      width: "100%",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    type="text"
+                                    id="form6Example1"
+                                    className="form-control"
+                                    value={shippingInfo?.shippingProvince}
+                                    disabled={true}
+                                  />
+                                </div>
+                              </div>
+                            </div>
                           </form>
                         </MDBRow>
                       </MDBCardBody>
@@ -390,98 +459,103 @@ const ConfirmOrder = () => {
                   </MDBCardHeader>
 
                   <MDBCardBody className="mb-4">
-                    {cartItems?.map((item) => (
-                      <MDBCard className="rounded-3 mb-4">
-                        <MDBCardBody className="p-4">
-                          <MDBRow className="justify-content-between align-items-center">
-                            <MDBCol md="2" lg="2" xl="2">
-                              <MDBCardImage
-                                className="rounded-3"
-                                fluid
-                                src={item?.image}
-                                alt={item?.name}
-                              />
-                            </MDBCol>
-                            <MDBCol md="4" lg="4" xl="4">
-                              <div className="lead fw-bold mb-2">
-                                <Link
-                                  to={`/product/${item?.product}`}
-                                  style={{
-                                    textDecoration: "none",
-                                    color: "gray",
-                                  }}
-                                >
-                                  {" "}
-                                  {item?.name}{" "}
-                                </Link>
-                              </div>
+                    {cartItems
+                      .filter((c) => c.flag === true)
+                      ?.map((item) => (
+                        <MDBCard className="rounded-3 mb-4">
+                          <MDBCardBody className="p-4">
+                            <MDBRow className="justify-content-between align-items-center">
+                              <MDBCol md="2" lg="2" xl="2">
+                                <MDBCardImage
+                                  className="rounded-3"
+                                  fluid
+                                  src={item?.image}
+                                  alt={item?.name}
+                                />
+                              </MDBCol>
+                              <MDBCol md="4" lg="4" xl="4">
+                                <div className="lead fw-bold mb-2">
+                                  <Link
+                                    to={`/product/${item?.product}`}
+                                    style={{
+                                      textDecoration: "none",
+                                      color: "gray",
+                                    }}
+                                  >
+                                    {" "}
+                                    {item?.name}{" "}
+                                  </Link>
+                                </div>
 
-                              <div
-                                className="dropdown"
-                                style={{ width: "max-content" }}
+                                <div
+                                  className="dropdown"
+                                  style={{ width: "max-content" }}
+                                >
+                                  <button
+                                    className="form-control"
+                                    type="button"
+                                    style={{
+                                      textAlign: "left",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    disabled={true}
+                                  >
+                                    {item?.selectedVariant?.color}
+                                  </button>
+                                </div>
+                                <p></p>
+
+                                <div
+                                  className="dropdown"
+                                  style={{ width: "max-content" }}
+                                >
+                                  <button
+                                    className="form-control"
+                                    type="button"
+                                    style={{
+                                      textAlign: "left",
+                                      backgroundColor: "#f8f9fa",
+                                    }}
+                                    disabled={true}
+                                  >
+                                    {item?.selectedVariant?.size}
+                                  </button>
+                                </div>
+                                <p></p>
+                              </MDBCol>
+
+                              <MDBCol
+                                md="4"
+                                lg="4"
+                                xl="4"
+                                className="offset-lg-1 d-inline align-items-center justify-content-around"
                               >
-                                <button
-                                  className="form-control"
-                                  type="button"
-                                  style={{
-                                    textAlign: "left",
-                                    backgroundColor: "#f8f9fa",
-                                  }}
-                                  disabled={true}
+                                <MDBTypography
+                                  tag="h5"
+                                  className="mb-0 text-end"
                                 >
-                                  {item?.selectedVariant?.color}
-                                </button>
-                              </div>
-                              <p></p>
-
-                              <div
-                                className="dropdown"
-                                style={{ width: "max-content" }}
-                              >
-                                <button
-                                  className="form-control"
-                                  type="button"
-                                  style={{
-                                    textAlign: "left",
-                                    backgroundColor: "#f8f9fa",
-                                  }}
-                                  disabled={true}
-                                >
-                                  {item?.selectedVariant?.size}
-                                </button>
-                              </div>
-                              <p></p>
-                            </MDBCol>
-
-                            <MDBCol
-                              md="4"
-                              lg="4"
-                              xl="4"
-                              className="offset-lg-1 d-inline align-items-center justify-content-around"
-                            >
-                              <MDBTypography tag="h5" className="mb-0 text-end">
-                                <p id="card_item_price" className="">
-                                  {item?.quantity} x{" "}
-                                  {item?.price.toLocaleString("vi-VN", {
-                                    style: "currency",
-                                    currency: "VND",
-                                  })}{" "}
-                                  ={" "}
-                                  <b style={{ color: "#CC0000" }}>
-                                    {(
-                                      item?.quantity * item?.price
-                                    ).toLocaleString("vi-VN", {
+                                  <p id="card_item_price" className="">
+                                    {item?.quantity} x{" "}
+                                    {item?.price.toLocaleString("vi-VN", {
                                       style: "currency",
                                       currency: "VND",
-                                    })}
-                                  </b>
-                                </p>
-                              </MDBTypography>
-                            </MDBCol>
-                          </MDBRow>
-                        </MDBCardBody>
-                      </MDBCard>
-                    ))}
+                                    })}{" "}
+                                    ={" "}
+                                    <b style={{ color: "#CC0000" }}>
+                                      {(
+                                        item?.quantity * item?.price
+                                      ).toLocaleString("vi-VN", {
+                                        style: "currency",
+                                        currency: "VND",
+                                      })}
+                                    </b>
+                                  </p>
+                                </MDBTypography>
+                              </MDBCol>
+                            </MDBRow>
+                          </MDBCardBody>
+                        </MDBCard>
+                      ))}
                   </MDBCardBody>
                 </MDBCol>
               </MDBRow>
@@ -531,10 +605,9 @@ const ConfirmOrder = () => {
                       <MDBCol>
                         <MDBTypography tag="h5" className="mb-0">
                           <span className="order-summary-values">
-                            {cartItems?.reduce(
-                              (acc, item) => acc + item?.quantity,
-                              0
-                            )}
+                            {cartItems
+                              .filter((c) => c.flag === true)
+                              ?.reduce((acc, item) => acc + item?.quantity, 0)}
                           </span>
                         </MDBTypography>
                       </MDBCol>
@@ -551,6 +624,7 @@ const ConfirmOrder = () => {
                         <MDBTypography tag="h5" className="mb-0">
                           <span className="order-summary-values">
                             {cartItems
+                              .filter((c) => c.flag === true)
                               ?.reduce(
                                 (acc, item) =>
                                   acc + item?.quantity * item.price,
@@ -590,7 +664,7 @@ const ConfirmOrder = () => {
                         <MDBTypography tag="h5" className="mb-0">
                           <span className="order-summary-values">
                             {calculateOrderCost(
-                              cartItems
+                              cartItems.filter((c) => c.flag === true)
                             ).shippingPrice.toLocaleString("vi-VN", {
                               style: "currency",
                               currency: "VND",

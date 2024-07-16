@@ -25,12 +25,27 @@ const NewReview = () => {
 
   useEffect(() => {
     if (reviewItems && reviewItems.find((e) => e?.flag === true)) {
-      const { orderItems, userID, orderID, variantID, rating, comment, orderDate } =
-        reviewItems.find((e) => e?.flag === true);
+      const {
+        orderItems,
+        userID,
+        orderID,
+        variantID,
+        rating,
+        comment,
+        orderDate,
+      } = reviewItems.find((e) => e?.flag === true);
       //console.log("day la variantID ban dau: ", (reviewItems.find((e) => e?.flag === true))?.variantID);
       console.log("day la variantID ban dau: ", variantID);
 
-      setReview({ orderItems, userID, orderID, variantID, rating, comment, orderDate });
+      setReview({
+        orderItems,
+        userID,
+        orderID,
+        variantID,
+        rating,
+        comment,
+        orderDate,
+      });
 
       setRating(rating);
 
@@ -70,22 +85,22 @@ const NewReview = () => {
 
   // const [comment, setComment] = useState((reviewItems.find((r) => r.flag === true))?.comment);
 
-  //const [submitReview, {isLoading, error, isSuccess}] = useSubmitReviewMutation();
+  const [submitReview, { isLoading, error, isSuccess }] =
+    useSubmitReviewMutation();
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error?.data?.message);
-  //   }
-  //   if (isLoading){
-  //     toast.warn("Đang tải bình luận lên")
-  //   }
-  //   if (isSuccess){
-  //     toast.success("Đã đăng bình luận")
-  //   }
+  useEffect(() => {
+    if (error) {
+      toast.error(error?.data?.message);
+    }
+    if (isLoading) {
+      toast.warn("Đang tải bình luận lên");
+    }
+    if (isSuccess) {
+      toast.success("Đã đăng bình luận");
+    }
+  }, [error, isLoading, isSuccess]);
 
-  // }, [error, isLoading, isSuccess]);
-
-  const submitHandler = () => {
+  const submitHandle = () => {
     const reviewItem = {
       orderItems: review?.orderItems,
       userID: review?.userID,
@@ -101,9 +116,15 @@ const NewReview = () => {
     dispatch(setReviewItem(reviewItem));
 
     //console.log("day la variantID luc submit", review?.variantID);
-    // const reviewData = {rating, comment, productId: item?.item?.product, variantID: e };
+    const reviewData = {
+      rating,
+      comment,
+      productId: review?.orderItems?.product,
+      orderID: review?.orderID,
+      selectedVariant: review?.orderItems?.selectedVariant,
+    };
     // console.log("v reviewData", reviewData)
-    // submitReview(reviewData);
+    submitReview(reviewData);
   };
 
   return (
@@ -267,7 +288,7 @@ const NewReview = () => {
                       className="btn w-100 my-4 px-4"
                       data-bs-dismiss="modal"
                       aria-label="Close"
-                      onClick={(e) => submitHandler()}
+                      onClick={(e) => submitHandle()}
                     >
                       Đánh giá
                     </button>

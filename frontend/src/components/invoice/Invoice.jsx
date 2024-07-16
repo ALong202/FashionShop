@@ -90,6 +90,15 @@ const Invoice = () => {
                   <span>ĐỊA CHỈ</span> {shippingInfo?.address}
                 </div>
                 <div>
+                  <span>{" "}</span> {shippingInfo?.shippingWard}                                
+                </div>
+                <div>
+                  <span>{" "}</span> {shippingInfo?.shippingCity}                                
+                </div>
+                <div>
+                  <span>{" "}</span> {shippingInfo?.shippingProvince}                                
+                </div>
+                <div>
                   <span>NGÀY MUA</span>{" "}
                   {new Date(order?.createdAt).toLocaleString("vi-VN")}
                 </div>

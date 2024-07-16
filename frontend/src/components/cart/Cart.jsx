@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MetaData from "../layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { setCartItem, removeCartItem } from "../../redux/features/cartSlice";
+import {
+  setCartItem,
+  removeCartItem,
+  setSelectedCartItem,
+} from "../../redux/features/cartSlice";
 import { toast } from "react-toastify";
 import { useGetAddressDataQuery } from "../../redux/api/addressApi";
 
@@ -108,7 +112,8 @@ const Cart = () => {
   //Xử lý khi đổi số lượng manual
   const changeQty = (item, quantity) => {
     dispatch(removeCartItem(item));
-    setItemToCart(item, quantity);
+    if (quantity === "") setItemToCart(item, 1);
+    else setItemToCart(item, quantity);
   };
 
   //Hàm set thông tin mặt hàng trong giỏ
@@ -121,9 +126,11 @@ const Cart = () => {
       variant: item?.variant,
       selectedVariant: item?.selectedVariant,
       quantity: newQty,
+      flag: item?.flag,
     };
 
     dispatch(setCartItem(cartItem));
+    if (item?.flag === false) dispatch(setSelectedCartItem(0));
     if (cartItem.quantity !== "") toast.success("sửa thành công");
 
     console.log(cartItem);
@@ -136,13 +143,47 @@ const Cart = () => {
 
   //Hàm xử lý khi chuyển sang kiểm tra vận chuyển
   const checkoutHandler = () => {
-    if (cartItems.find((i) => i?.quantity === "")) {
-      toast.error("Các mặt hàng phải có số lượng");
+    // if (cartItems.find((i) => i?.quantity === "")) {
+    if (
+      cartItems
+        .filter((e) => e.flag === true)
+        ?.reduce((acc, item) => acc + item?.quantity, 0) === 0
+    ) {
+      toast.error(
+        "Cần chọn hàng để mua và các mặt hàng phải có số lượng phù hợp"
+      );
       return;
     }
     sessionStorage.setItem("nationData", JSON.stringify(data));
     navigate("/shipping");
   };
+
+  const [isCheckedAll, setIsCheckedAll] = useState(true); // Khởi tạo state
+
+  useEffect(() => {
+    if (
+      cartItems.filter((c) => c.flag === false) &&
+      cartItems.filter((c) => c.flag === false).length !== 0
+    )
+      setIsCheckedAll(false);
+    // if (cartItems.filter((c) => c.flag === false) )
+    else setIsCheckedAll(true);
+  }, [cartItems, isCheckedAll]);
+
+  const handleCheckboxChange = () => {
+    console.log(cartItems.filter((c) => c.flag === isCheckedAll));
+    cartItems
+      .filter((c) => c.flag === isCheckedAll)
+      .forEach((i) => {
+        const index = cartItems.findIndex(
+          (x) => x.selectedVariant._id === i.selectedVariant._id
+        );
+        dispatch(setSelectedCartItem(index));
+      });
+
+    // cartItems.findIndex((c) => c.flag === isCheckedAll).forEach((i) => dispatch(setSelectedCartItem(i)))
+  };
+  // setIsCheckedAll(!isCheckedAll); // Đảo ngược trạng thái khi click
 
   return (
     <>
@@ -185,6 +226,29 @@ const Cart = () => {
                         >
                           Thông tin giỏ hàng: {cartItems?.length} mặt hàng
                         </MDBTypography>
+                        <MDBTypography
+                          tag="h4"
+                          className="fw-bold mb-0 text-black d-flex justify-content-between align-items-center"
+                        >
+                          <span
+                            className="mx-2"
+                            style={{
+                              textDecoration: "none",
+                              color: "gray",
+                            }}
+                          >
+                            Chọn tất cả
+                          </span>
+
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="flexCheckChecked"
+                            checked={isCheckedAll}
+                            onClick={handleCheckboxChange}
+                          />
+                        </MDBTypography>
                       </div>
                     </MDBCardHeader>
 
@@ -192,7 +256,34 @@ const Cart = () => {
                       {cartItems?.map((item) => (
                         <MDBCard className="rounded-3 mb-4">
                           <MDBCardBody className="p-4">
-                            <MDBRow className="justify-content-between align-items-center">
+                            <MDBRow className="align-items-center">
+                              <MDBCol
+                                md="0"
+                                lg="0"
+                                xl="0"
+                                className="d-flex justify-content-start mb-1"
+                              >
+                                <div class="form-check">
+                                  <input
+                                    className="form-check-input mb-2"
+                                    type="checkbox"
+                                    value="nochecked"
+                                    id="flexCheckChecked"
+                                    checked={item?.flag}
+                                    onChange={() => {
+                                      dispatch(
+                                        setSelectedCartItem(
+                                          cartItems.findIndex(
+                                            (c) =>
+                                              c.selectedVariant._id ===
+                                              item.selectedVariant._id
+                                          )
+                                        )
+                                      );
+                                    }}
+                                  />
+                                </div>
+                              </MDBCol>
                               <MDBCol md="2" lg="2" xl="2">
                                 <MDBCardImage
                                   className="rounded-3"
@@ -456,10 +547,12 @@ const Cart = () => {
                         <MDBCol>
                           <MDBTypography tag="h5" className="mb-0">
                             <span className="order-summary-values">
-                              {cartItems?.reduce(
-                                (acc, item) => acc + item?.quantity,
-                                0
-                              )}
+                              {cartItems
+                                .filter((e) => e.flag === true)
+                                ?.reduce(
+                                  (acc, item) => acc + item?.quantity,
+                                  0
+                                )}
                             </span>
                           </MDBTypography>
                         </MDBCol>
@@ -476,6 +569,7 @@ const Cart = () => {
                           <MDBTypography tag="h5" className="mb-0">
                             <span className="order-summary-values">
                               {cartItems
+                                .filter((e) => e.flag === true)
                                 ?.reduce(
                                   (acc, item) =>
                                     acc + item?.quantity * item.price,

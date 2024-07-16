@@ -26,9 +26,9 @@ export const orderApi = createApi({
     }),
     orderDetails: builder.query({
       query: (id) => ({
-        url: `/orders/${id}`,
-        providesTags: ["Order"],
+        url: `/orders/${id}`,        
       }),
+      providesTags: ["Order"],
     }),
     getDashboardSales: builder.query({
       query: ({ startDate, endDate }) => ({
@@ -37,9 +37,9 @@ export const orderApi = createApi({
     }),
     getAdminOrders: builder.query({
       query: () => ({
-        url: `/admin/orders`,
-        providesTags: ["AdminOrders"],
+        url: `/admin/orders`,        
       }),
+      providesTags: ["AdminOrders"],
     }),
     updateOrder: builder.mutation({
       query({ id, body }) {

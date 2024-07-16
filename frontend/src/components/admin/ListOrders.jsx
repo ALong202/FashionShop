@@ -16,7 +16,7 @@ const ListOrders = () => {
   const [quickFilterText, setQuickFilterText] = useState("");
 
   const { data, isLoading, error } = useGetAdminOrdersQuery();
-
+  console.log("data order", data)
   const [
     deleteOrder,
     { error: deleteError, isLoading: isDeleteLoading, isSuccess },

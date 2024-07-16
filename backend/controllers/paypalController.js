@@ -12,8 +12,8 @@ const {
   PAYPAL_CLIENT_ID,
   PAYPAL_CLIENT_SECRET,
   PAYPAL_BASE,
-  FRONTEND_URL,
-  BACKEND_URL,
+  FRONTEND_PUB_URL,
+  BACKEND_PUB_URL,
 } = process.env;
 
 /**
@@ -144,7 +144,14 @@ export const newPaypalPayment = catchAsyncErrors(async (req, res, next) => {
       purchase_units: [
         {
           reference_id: transID,
-          description: `${req.body.shippingInfo.address}-${req.body.shippingInfo.phoneNo}`,
+          description: `${[
+            req.body.shippingInfo?.address,
+            req.body.shippingInfo?.shippingWard,
+            req.body.shippingInfo?.shippingCity,
+            req.body.shippingInfo?.shippingProvince,
+          ]
+            .filter(Boolean)
+            .join(", ")}-${req.body.shippingInfo.phoneNo}`,
           custom_id: req.body.user,
           invoice_id: transID,
           amount: {
@@ -173,8 +180,8 @@ export const newPaypalPayment = catchAsyncErrors(async (req, res, next) => {
             landing_page: "NO_PREFERENCE",
             user_action: "PAY_NOW",
             locale: "en-VN",
-            return_url: BACKEND_URL + "/api/paypal/order",
-            cancel_url: FRONTEND_URL + "/cart",
+            return_url: BACKEND_PUB_URL + "/api/paypal/order",
+            cancel_url: FRONTEND_PUB_URL + "/cart",
           },
         },
       },

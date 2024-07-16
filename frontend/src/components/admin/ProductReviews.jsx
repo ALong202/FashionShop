@@ -37,14 +37,14 @@ const ProductReviews = () => {
   }, [data, deleteError, error, isSuccess]);
 
   const submitHandler = (e) => {
-    console.log("productId la", productId);
+    // console.log("productId la", productId);
     e.preventDefault();
     getProductReviews(productId);
-    console.log("data la", data);
+    // console.log("data la", data);
   };
 
   const deleteReviewHandle = (id) => {
-    console.log("productId 2 la", productId);
+    // console.log("productId 2 la", productId);
     deleteReview({ productId, id });
   };
 
@@ -155,7 +155,9 @@ const ProductReviews = () => {
               fontSize: "13px",
             }}
             className="btn btn-outline-danger ms-2"
-            onClick={() => deleteReviewHandle(params.data?._id)}
+            onClick={() => {
+              deleteReviewHandle(params.data?._id);
+            }}
             disable={isDeleteLoading}
           >
             <i className="fa fa-trash"></i>
@@ -167,7 +169,8 @@ const ProductReviews = () => {
   ];
 
   const rowData = data?.reviews?.map((review) => ({
-    _id: review?._id.toUpperCase(),
+    _id: review?._id,
+    id: review?._id.toString().toUpperCase(),
     rating: review?.rating,
     comment: review?.comment,
     user: review?.user?.name,
@@ -205,29 +208,43 @@ const ProductReviews = () => {
           </form>
         </div>
         <div
-          className="ag-theme-alpine my-5 col-12 col-lg-8"
+          className="col-12 col-lg-8"
           style={{ width: "80%", margin: "auto", overflowX: "auto" }}
         >
-          <AgGridReact
-            columnDefs={columnDefs}
-            rowData={rowData}
-            getRowStyle={(params) => {
-              return {
-                backgroundColor:
-                  params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
-              };
-            }} // Hàng chẵn có màu này, hàng lẻ có màu kia
-            domLayout="autoHeight"
-            defaultColDef={{
-              flex: 1,
-              minWidth: 100,
-            }}
-            pagination={true}
-            paginationPageSize={10}
-            localeText={AG_GRID_LOCALE_VN}
-            quickFilterText={quickFilterText}
-            loading={false}
-          />
+          <div
+            className="my-4"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <div></div>
+            <input
+              type="text"
+              placeholder="Lọc tìm kiếm..."
+              onChange={(e) => setQuickFilterText(e.target.value)}
+              style={{ height: "38px" }}
+            />
+          </div>
+          <div className="ag-theme-alpine">
+            <AgGridReact
+              columnDefs={columnDefs}
+              rowData={rowData}
+              getRowStyle={(params) => {
+                return {
+                  backgroundColor:
+                    params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
+                };
+              }} // Hàng chẵn có màu này, hàng lẻ có màu kia
+              domLayout="autoHeight"
+              defaultColDef={{
+                flex: 1,
+                minWidth: 100,
+              }}
+              pagination={true}
+              paginationPageSize={10}
+              localeText={AG_GRID_LOCALE_VN}
+              quickFilterText={quickFilterText}
+              loading={false}
+            />
+          </div>
         </div>
       </div>
 
