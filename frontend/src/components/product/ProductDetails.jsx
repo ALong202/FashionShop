@@ -136,6 +136,7 @@ const ProductDetails = () => {
           variant.color === selectedColor && variant.size === selectedSize
       ),
       quantity,
+      flag: true,
     };
 
     dispatch(setCartItem(cartItem));
@@ -328,7 +329,7 @@ const ProductDetails = () => {
       </div>
 
       <br></br>
-      <div id="order_summary" style={{ width: "95%", margin: "auto" }}>
+      {/* <div id="order_summary" style={{ width: "95%", margin: "auto" }}>
         {product?.reviews?.length > 0 ? (
           <ListReviews reviews={product?.reviews} />
         ) : (
@@ -336,7 +337,8 @@ const ProductDetails = () => {
             Chưa có đánh giá cho sản phẩm này, hãy mua hàng để trở thành người đầu tiên ^^!
           </div>
         )}
-      </div>
+      </div> */}
+      <ListReviews reviews={product?.reviews} />
 
       {/* <div className={window.location.search.includes('category=') ? "col-12 col-md-9": "col-12 col-md-12 "}>
           <h1 id="products_heading" className="text-secondary">

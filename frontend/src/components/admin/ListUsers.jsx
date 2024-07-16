@@ -165,7 +165,10 @@ const ListUsers = () => {
           onChange={(e) => setQuickFilterText(e.target.value)}
           // style={{ marginBottom: "10px" }}
         />
-        <Button onClick={onExportClick}>Xuất Excel</Button>
+        <Button onClick={onExportClick}>
+          <img src="../images/excel.png" alt="Excel_icon" style={{ width: '20px', height: '20px' }} />
+          {' '} Xuất Excel
+        </Button>
       </div>
 
       <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>

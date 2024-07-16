@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
 import { MDBDataTable } from "mdbreact";
@@ -9,10 +9,14 @@ import {
   useGetAdminOrdersQuery,
 } from "../../redux/api/orderApi";
 import AdminLayout from "../layout/AdminLayout";
+import { AgGridReact } from "ag-grid-react";
+import { AG_GRID_LOCALE_VN } from "@ag-grid-community/locale";
 
 const ListOrders = () => {
-  const { data, isLoading, error } = useGetAdminOrdersQuery();
+  const [quickFilterText, setQuickFilterText] = useState("");
 
+  const { data, isLoading, error } = useGetAdminOrdersQuery();
+  console.log("data order", data)
   const [
     deleteOrder,
     { error: deleteError, isLoading: isDeleteLoading, isSuccess },
@@ -26,7 +30,7 @@ const ListOrders = () => {
     if (isSuccess) toast.success("Đơn hàng đã bị xóa ");
   }, [error, deleteError, isSuccess]);
 
-  const deleteOrderHandler = (id) => {
+  const deleteOrderHandle = (id) => {
     console.log(id);
     deleteOrder(id);
   };
@@ -76,7 +80,7 @@ const ListOrders = () => {
             </Link>
             <button
               className="btn btn-outline-danger ms-2"
-              onClick={() => deleteOrderHandler(order?._id)}
+              onClick={() => deleteOrderHandle(order?._id)}
               disable={isDeleteLoading}
             >
               <i className="fa fa-trash"></i>
@@ -89,14 +93,165 @@ const ListOrders = () => {
     return orders;
   };
 
+  const columnDefs = [
+    {
+      headerName: "Mã đơn hàng",
+      field: "id",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      flex: 0,
+      width: 350,
+      cellClass: "grid-cell-centered",
+    },
+    {
+      headerName: "Tổng thanh toán",
+      field: "amount",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      cellClass: "grid-cell-centered",
+    },
+    {
+      headerName: "Thời gian đặt hàng",
+      field: "orderdate",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      cellClass: "grid-cell-centered",
+    },
+    {
+      headerName: "Tình trạng thanh toán",
+      field: "paymentStatus",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      cellClass: "grid-cell-centered",
+      cellStyle: (params) => {
+        switch (params.value) {
+          case "CHƯA THANH TOÁN":
+            return { fontWeight: "bold", color: "#FFCC00" };
+          default:
+            return { fontWeight: "bold", color: "green" };
+        }
+      },
+    },
+    {
+      headerName: "Trạng thái đơn hàng",
+      field: "orderStatus",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      cellClass: "grid-cell-centered",
+      cellStyle: (params) => {
+        switch (params.value) {
+          case "DELIVERED":
+            return { fontWeight: "bold", color: "green" };
+          case "SHIPPED":
+            return { fontWeight: "bold", color: "#FFCC00" };
+          default:
+            return { fontWeight: "bold", color: "red" };
+        }
+      },
+    },
+    {
+      headerName: "Chi tiết",
+      field: "actions",
+      cellRenderer: (params) => (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Link
+            to={`/admin/orders/${params.data?._id}`}
+            className="btn btn-outline-primary"
+            style={{
+              fontSize: "13px",
+            }}
+          >
+            <i className="fa fa-pencil"></i>
+          </Link>
+
+          <button
+            style={{
+              fontSize: "13px",
+            }}
+            className="btn btn-outline-danger ms-2"
+            onClick={() => deleteOrderHandle(params.data?._id)}
+            disable={isDeleteLoading}
+          >
+            <i className="fa fa-trash"></i>
+          </button>
+        </div>
+      ),
+      resizable: true,
+    },
+  ];
+
+  const rowData = data?.orders?.map((order) => ({
+    _id: order?._id,
+    id: order?.shippingInfo?.orderID.toUpperCase(),
+    amount: order?.totalAmount.toLocaleString("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }),
+    orderdate: new Date(order?.createdAt).toLocaleString("vi-VN"),
+    paymentStatus: order?.paymentInfo?.status.toUpperCase(),
+    orderStatus: order?.orderStatus.toUpperCase(),
+  }));
+
   if (isLoading) return <Loader />;
 
   return (
     <AdminLayout>
-      <MetaData title={"Danh sách đơn hàng"} />
+      <MetaData title={"Quản lý đơn hàng"} />
+      <div className="row d-flex justify-content-center mt-3">
+        <div
+          className="col-12 col-lg-8"
+          style={{ width: "80%", margin: "auto", overflowX: "auto" }}
+        >
+
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <h1>{data?.orders?.length} Đơn hàng</h1>
+            </div>
+            <input
+              type="text"
+              placeholder="Tìm kiếm..."
+              onChange={(e) => setQuickFilterText(e.target.value)}
+              style={{ height: "38px" }}
+            />
+          </div>
+
+          <div className="ag-theme-alpine">
+            <AgGridReact
+              columnDefs={columnDefs}
+              rowData={rowData}
+              getRowStyle={(params) => {
+                return {
+                  backgroundColor:
+                    params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
+                };
+              }} // Hàng chẵn có màu này, hàng lẻ có màu kia
+              domLayout="autoHeight"
+              defaultColDef={{
+                flex: 1,
+                minWidth: 100,
+              }}
+              pagination={true}
+              paginationPageSize={10}
+              localeText={AG_GRID_LOCALE_VN}
+              quickFilterText={quickFilterText}
+            />
+          </div>
+        </div>
+      </div>
 
       <div style={{ width: "100%", margin: "auto", overflowX: "auto" }}>
-        <div style={{ width: "80%", margin: "auto", overflowX: "auto" }}>
+        {/* <div style={{ width: "80%", margin: "auto", overflowX: "auto" }}>
           <div>
             <h1 class="my-5">{data?.orders?.length} Đơn hàng</h1>
           </div>
@@ -116,7 +271,7 @@ const ListOrders = () => {
             noBottomColumns
             style={{ textAlign: "center" }}
           />
-        </div>
+        </div> */}
       </div>
     </AdminLayout>
   );

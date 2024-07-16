@@ -107,6 +107,9 @@
 .order-invoice table td.service,
 .order-invoice table td.desc {
   vertical-align: top;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow: hidden;
 }
 
 .order-invoice table td.unit,

@@ -101,9 +101,16 @@ const Login = () => {
             <a href="/register" className="float-end">Chưa có tài khoản?</a>
           </div>
           <div>
+            <p className="text-left">Hoặc đăng nhập bằng:</p>
             <div className="button-container">
-              <button className="button google" onClick={handleGoogleLogin}>Sign in with Google</button>
-              <button className="button facebook" onClick={handleFacebookLogin}>Sign in with Facebook</button>
+              <button className="loginButton google" onClick={handleGoogleLogin}>
+                <img src="../images/google.png" alt="google_icon" className="icon" />
+                Google
+              </button>
+              <button className="loginButton facebook" onClick={handleFacebookLogin}>
+                <img src="../images/facebook.png" alt="facebook_icon" className="icon" />
+                Facebook
+              </button>
             </div>
           </div>
         </form>

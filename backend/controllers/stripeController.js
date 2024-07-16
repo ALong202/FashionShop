@@ -45,16 +45,21 @@ export const newStripePayment = catchAsyncErrors(async (req, res, next) => {
     moment().format("YYMMDDHHMMSS") +
     (body.user ? body.user : 113114115) +
     "ST";
-
+  // console.log(body)
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    success_url: `${process.env.FRONTEND_URL}/me/orders?order_success=true`,
-    cancel_url: `${process.env.FRONTEND_URL}/cart`,
+    success_url: `${process.env.FRONTEND_PUB_URL}/me/orders?order_success=true`,
+    // cancel_url: `${process.env.FRONEND_PUB_URL}/cart`,
+    cancel_url: `${process.env.FRONTEND_PUB_URL}/me/orders?order_success=false`,
     client_reference_id: transID,
     mode: "payment",
     metadata: {
       orderID: transID,
       address: body?.shippingInfo?.address,
+      province: body?.shippingInfo?.shippingProvince,
+      city: body?.shippingInfo?.shippingCity,
+      ward: body?.shippingInfo?.shippingWard,
+      vender: body?.shippingInfo?.shippingVender,
       phoneNo: body?.shippingInfo?.phoneNo,
       user: body?.user,
       itemsPrice: body?.itemsPrice,
@@ -138,6 +143,10 @@ export const newOrderWithStripe = catchAsyncErrors(async (req, res, next) => {
           orderID: session.metadata.orderID,
           address: session.metadata.address,
           phoneNo: session.metadata.phoneNo,
+          shippingProvince: session.metadata.province,
+          shippingCity: session.metadata.city,
+          shippingWard: session.metadata.ward,
+          shippingVender: session.metadata.vender,
         },
         itemsPrice: session.metadata.itemsPrice,
         shippingAmount: session.metadata.shippingAmount,

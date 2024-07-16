@@ -13,15 +13,15 @@ const config = {
   key1: process.env.ZALOPAY_KEY1,
   key2: process.env.ZALOPAY_KEY2,
   endpoint: process.env.ZALOPAY_ENDPOINT,
-  callback: process.env.BACKEND_URL + "/api/zalopay/callback/",
+  callback: process.env.BACKEND_PUB_URL + "/api/zalopay/callback/",
 };
 
 // Tạo payment mới trên cổng thanh toán của zalo pay
 export const newZaloPayPayment = catchAsyncErrors(async (req, res, next) => {
   const embed_data = {
-    redirecturl: process.env.FRONTEND_URL + "/me/orders",
+    redirecturl: process.env.FRONTEND_PUB_URL + "/me/orders",
   };
-
+  // console.log("day la req",req.body)
   const transID =
     moment().format("YYMMDDHHMMSS") +
     (req.body.user ? req.body.user : 113114115) +
@@ -34,6 +34,10 @@ export const newZaloPayPayment = catchAsyncErrors(async (req, res, next) => {
         orderID: transID,
         address: req.body.shippingInfo.address,
         phoneNo: req.body.shippingInfo.phoneNo,
+        shippingProvince: req.body?.shippingInfo?.shippingProvince,
+        shippingCity: req.body?.shippingInfo?.shippingCity,
+        shippingWard: req.body?.shippingInfo?.shippingWard,
+        shippingVender: req.body?.shippingInfo?.shippingVender,
       },
       itemsPrice: req.body.itemsPrice,
       shippingAmount: req.body.shippingAmount,
@@ -44,7 +48,7 @@ export const newZaloPayPayment = catchAsyncErrors(async (req, res, next) => {
     },
   ];
 
-  console.log(items);
+  // console.log("day la item",items);
 
   const order = {
       app_id: config.app_id,

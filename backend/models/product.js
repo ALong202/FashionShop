@@ -141,6 +141,21 @@ const productSchema = new mongoose.Schema(
         comment: {
           type: String,
         },
+        selectedVariant: {
+          color: {
+            type: String,
+            required: [true, "Vui lòng nhập màu sản phẩm."],
+            enum: ["Trắng", "Đen", "Đỏ", "Xanh", "Vàng", "Hồng", "Cam", "Xám", "Nâu", "Sọc", "Họa tiết"],
+          },
+          size: {
+            type: String,
+            required: [true, "Vui lòng nhập kích cỡ sản phẩm"],
+            enum: ["S", "M", "L", "F"],
+          },
+          variantID: {
+            type: String,
+          },
+        },
       },
     ],
 
