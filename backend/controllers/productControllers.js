@@ -6,7 +6,7 @@ import APIFilters from "../utils/apiFilters.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import { delete_file, upload_file } from "../utils/cloudinary.js";
-
+import redisClient from '../utils/redisClient.js';
 /*
 Hàm điều khiển (controller functions) cho các file routes và xác định route
 Các điều khiển và các logic cho tài nguyên sản phẩm (product resource)
@@ -88,22 +88,61 @@ export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo h
     });
 });
 
-//Tìm 1 sản phẩm mới với đường dẫn => /products/:id
-export const getProductDetails = catchAsyncErrors(async (req, res) => {
-  // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
-  const product = await Product.findById(req?.params?.id).populate(
-    "reviews.user"
-  ).populate("reviews.order"); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
 
-  if (!product) {
-    return next(new ErrorHandler("Không tìm thấy sản phẩm", 404)); //sử dụng một instance của lớp ErrorHandler và gọi hàm next để trả về lỗi 404
+
+
+
+
+// //Tìm 1 sản phẩm mới với đường dẫn => /products/:id
+// export const getProductDetails = catchAsyncErrors(async (req, res) => {
+//   // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
+//   const product = await Product.findById(req?.params?.id).populate(
+//     "reviews.user"
+//   ).populate("reviews.order"); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
+
+//   if (!product) {
+//     return next(new ErrorHandler("Không tìm thấy sản phẩm", 404)); //sử dụng một instance của lớp ErrorHandler và gọi hàm next để trả về lỗi 404
+//   }
+
+//   res.status(200).json({
+//     // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
+//     product, // Trả về thông tin của sản phẩm mới được tạo
+//   });
+// });
+
+
+
+// Hàm để lấy thông tin sản phẩm và lưu cache
+export const getProductDetails = catchAsyncErrors(async (req, res, next) => {
+  const productId = req.params.id;
+
+  try {
+    // Kiểm tra trong Redis cache trước
+    const product = await redisClient.get(productId);
+
+    if (product) {
+      // Nếu sản phẩm có trong cache, trả về kết quả từ cache
+      return res.status(200).json({ product: JSON.parse(product) });
+    } else {
+      // Nếu không có trong cache, lấy từ cơ sở dữ liệu
+      const product = await Product.findById(productId).populate('reviews.user');
+
+      if (!product) {
+        return next(new ErrorHandler('Không tìm thấy sản phẩm', 404));
+      }
+
+      // Lưu sản phẩm vào Redis cache với thời gian hết hạn (TTL) là 1 giờ (3600 giây)
+      await redisClient.set(productId, JSON.stringify(product), 'EX', 3600);
+
+      // Trả về kết quả từ cơ sở dữ liệu
+      return res.status(200).json({ product });
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+    return next(new ErrorHandler('Lỗi kết nối Redis', 500));
   }
-
-  res.status(200).json({
-    // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
-    product, // Trả về thông tin của sản phẩm mới được tạo
-  });
 });
+
 
 // Get danh mục sản phẩm - ADMIN => /products/admin/products
 export const getAdminProducts = catchAsyncErrors(async (req, res, next) => {
@@ -116,6 +155,14 @@ export const getAdminProducts = catchAsyncErrors(async (req, res, next) => {
     products, // Trả về thông tin của sản phẩm mới được tạo
   });
 });
+
+
+
+
+
+
+
+
 
 // Update chi tiết sản phẩm => /products/:id
 export const updateProduct = catchAsyncErrors(async (req, res) => {
