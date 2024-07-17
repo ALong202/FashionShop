@@ -43,6 +43,8 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
     console.log("backend/config/config.env");
     dotenv.config({ path: "backend/config/config.env" });
   }
+} else {
+  dotenv.config({ path: ".env.production" });
 }
 
 
