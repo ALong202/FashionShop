@@ -15,6 +15,16 @@ import Top from "./components/layout/Top";
 import useUserRoutes from "./components/routes/userRoutes";
 import useAdminRoutes from "./components/routes/adminRoutes";
 import NotFound from "./components/layout/NotFound";
+import AboutUs from "./components/pages/AboutUs";
+import FAQ from "./components/pages/FAQ";
+import ContactUs from "./components/pages/ContactUs";
+import PaymentGuide from "./components/pages/PaymentGuide";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
+import ReturnPolicy from "./components/pages/ReturnPolicy";
+import ShippingPolicy from "./components/pages/ShippingPolicy";
+import ShoppingGuide from "./components/pages/ShoppingGuide";
+import SizeGuide from "./components/pages/SizeGuide";
+import StoreLocator from "./components/pages/StoreLocator";
 
 
 
@@ -44,6 +54,17 @@ function App() {
         <Routes>
           {userRoutes}
           {adminRoutes}
+          <Route path="/gioi-thieu-ve-fashionshop" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/cau-hoi-thuong-gap" element={<FAQ />} />
+          <Route path="/chinh-sach-thanh-toan" element={<PaymentGuide />} />
+          <Route path="/chinh-sach-bao-mat" element={<PrivacyPolicy />} />
+          <Route path="/chinh-sach-doi-tra" element={<ReturnPolicy />} />
+          <Route path="/chinh-sach-van-chuyen" element={<ShippingPolicy />} />
+          <Route path="/huong-dan-mua-hang" element={<ShoppingGuide />} />
+          <Route path="/huong-dan-chon-size" element={<SizeGuide />} />
+          <Route path="/he-thong-cua-hang" element={<StoreLocator />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
 

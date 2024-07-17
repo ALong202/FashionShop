@@ -1609,3 +1609,37 @@ thead {
   height: 20px;
   margin-right: 10px;
 }
+
+
+/* App.css */
+.post {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.post h1 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.post p {
+  line-height: 1.6;
+  font-size: 16px;
+  color: #555;
+}
+
+.post .contact-info {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.post .contact-info p {
+  margin: 5px 0;
+}
+
+.post .branch {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
