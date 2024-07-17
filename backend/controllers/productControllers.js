@@ -15,8 +15,6 @@ Các điều khiển và các logic cho tài nguyên sản phẩm (product resou
 export const getProducts = catchAsyncErrors(async (req, res) => {
   // Số sản phẩm trên mỗi trang
   const resPerPage = 8;
-
-
   let topRatedProducts = [];
 
   // Check if it's a request for the Homepage by looking for the absence of specific filters
@@ -25,56 +23,83 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
     !req.query.category &&
     !req.query.subCategory &&
     !req.query.subSubCategory;
+    // Tạo khóa cache cho trang chủ và các truy vấn khác nhau
+    const homepageCacheKey = 'topRatedProducts';
+    const filterCacheKey = JSON.stringify(req.query);
 
-  if (isHomepageRequest) {
-    // topRatedProducts = await Product.find().sort({ ratings: -1 }).limit(8);
-    topRatedProducts = await Product.aggregate([
-      {
-        $match: {
-          ratings: { $gte: 4 },
-        },
-      },
-      // {
-      //   $addFields: {
-      //     reviewsCount: { $size: "$reviews" }
-      //   }
-      // },
-      {
-        // $sort: { reviewsCount: -1 }
-        $sort: { numOfReviews: -1 },
-      },
-      {
-        $limit: 12,
-      },
-    ]);
-  } // Fetch the top 8 rated products for the Homepage
+    if (isHomepageRequest) {
+      try {
+        const cachedTopRatedProducts = await redisClient.get(homepageCacheKey);
+        if (cachedTopRatedProducts) {
+          topRatedProducts = JSON.parse(cachedTopRatedProducts);
+        } else {
+          topRatedProducts = await Product.aggregate([
+            {
+              $match: {
+                ratings: { $gte: 4 },
+              },
+            },
+            {
+              $sort: { numOfReviews: -1 },
+            },
+            {
+              $limit: 12,
+            },
+          ]);
+  
+          // Cache top rated products for 1 hour
+          await redisClient.set(homepageCacheKey, JSON.stringify(topRatedProducts), 'EX', 3600);
+        }
+      } catch (err) {
+        console.error('Redis error:', err);
+        next(new ErrorHandler('Lỗi kết nối Redis', 500));
+      }
+    }
 
+  // Kiểm tra cache cho các truy vấn có bộ lọc
+  let products, filteredProductsCount;
+  try {
+    const cachedProducts = await redisClient.get(filterCacheKey);
+    if (cachedProducts) {
+      const cachedData = JSON.parse(cachedProducts);
+      products = cachedData.products;
+      filteredProductsCount = cachedData.filteredProductsCount;
+    } else {
+      // Áp dụng bộ lọc từ yêu cầu API
+      const apiFilters = new APIFilters(Product, req.query)
+        .search()
+        .filters()
+        .sorting();
 
-  // Áp dụng bộ lọc từ yêu cầu API
-  const apiFilters = new APIFilters(Product, req.query)
-    .search()
-    .filters()
-    .sorting();
+      products = await apiFilters.query;
+      filteredProductsCount = products.length;
 
-  // Lấy danh sách sản phẩm đã được lọc
-  let products = await apiFilters.query;
-  // Số lượng sản phẩm sau khi được lọc
-  let filteredProductsCount = products.length;
+      // Phân trang sản phẩm
+      apiFilters.pagination(resPerPage);
+      products = await apiFilters.query.clone();
 
-  // Phân trang sản phẩm
-  apiFilters.pagination(resPerPage);
-  // Lấy lại danh sách sản phẩm sau khi phân trang
-  products = await apiFilters.query.clone();
-
+      // Cache filtered products for 1 hour
+      await redisClient.set(
+        filterCacheKey,
+        JSON.stringify({ products, filteredProductsCount }),
+        'EX',
+        3600
+      );
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+    next(new ErrorHandler('Lỗi kết nối Redis', 500));
+  }
 
   // Trả về danh sách sản phẩm đã được lọc và phân trang
   res.status(200).json({
-    resPerPage, // Số sản phẩm trên mỗi trang
-    filteredProductsCount, // Số sản phẩm sau khi được lọc
-    products, // Danh sách sản phẩm
-    topRatedProducts: isHomepageRequest ? topRatedProducts : [], // Optionally include top rated products in every response
+    resPerPage,
+    filteredProductsCount,
+    products,
+    topRatedProducts: isHomepageRequest ? topRatedProducts : [],
   });
 });
+
 
 // Admin - Tạo sản phẩm mới với đường dẫn => /api/admin/products
 export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
@@ -87,29 +112,6 @@ export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo h
         product, // Trả về thông tin của sản phẩm mới được tạo
     });
 });
-
-
-
-
-
-
-// //Tìm 1 sản phẩm mới với đường dẫn => /products/:id
-// export const getProductDetails = catchAsyncErrors(async (req, res) => {
-//   // Khai báo hàm điều khiển newProduct nhận req và res làm tham số
-//   const product = await Product.findById(req?.params?.id).populate(
-//     "reviews.user"
-//   ).populate("reviews.order"); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
-
-//   if (!product) {
-//     return next(new ErrorHandler("Không tìm thấy sản phẩm", 404)); //sử dụng một instance của lớp ErrorHandler và gọi hàm next để trả về lỗi 404
-//   }
-
-//   res.status(200).json({
-//     // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
-//     product, // Trả về thông tin của sản phẩm mới được tạo
-//   });
-// });
-
 
 
 // Hàm để lấy thông tin sản phẩm và lưu cache
@@ -155,13 +157,6 @@ export const getAdminProducts = catchAsyncErrors(async (req, res, next) => {
     products, // Trả về thông tin của sản phẩm mới được tạo
   });
 });
-
-
-
-
-
-
-
 
 
 // Update chi tiết sản phẩm => /products/:id
