@@ -240,7 +240,7 @@ const NewProduct = () => {
               {/*  SubSubCategory Selection */}
               <div className="mb-3 col">
                 <label htmlFor="subSubCategory_field" className="form-label">
-                  Danmh mục phụ L3
+                  Danh mục phụ L3
                 </label>
                 <select
                   className="form-select"

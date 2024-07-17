@@ -31,14 +31,17 @@ const UpdatePassword = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    if (password === oldPassword) {
+      toast.error("Mật khẩu mới không được trùng với mật khẩu cũ");
+      return;
+    }
+    
     if (password !== confirmPassword) {
-      // Hiển thị thông báo lỗi
       toast.error("Mật khẩu xác nhận không khớp");
       return;
     }
 
     if (password.length < 6) {
-      // Hiển thị thông báo lỗi
       toast.error("Mật khẩu phải có ít nhất 6 ký tự");
       return;
     }

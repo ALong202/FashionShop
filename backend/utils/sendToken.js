@@ -10,6 +10,13 @@ export default (user, statusCode, res, loginType='local') => {
     httpOnly: true,// Cookie chỉ có thể được truy cập qua HTTP, không thể được truy cập qua JavaScript trong trình duyệt
   };
 
+  if (loginType === 'local') {
+    // Đặt cookie chứa token trong phản hồi với các tùy chọn đã thiết lập
+    res.status(statusCode).cookie("token", token, options).json({
+      token, // Trả về token dưới dạng phản hồi JSON
+    });
+  }
+
   res.cookie("token", token, options);
 
   let redirectUrl;

@@ -25,6 +25,7 @@ const Login = () => {
   useEffect(() => {
     if(isAuthenticated){
       navigate("/");
+      toast.success("Đăng nhập thành công");
     }
     if(error){
       toast.error(error?.data?.message);
