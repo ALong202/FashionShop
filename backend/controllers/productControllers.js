@@ -107,11 +107,33 @@ export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo h
     req.body.user = req.user._id;
     const product = await Product.create(req.body); // Tạo một sản phẩm mới từ dữ liệu được gửi trong yêu cầu và gán cho biến product
 
+  // Làm sạch bộ nhớ cache cho danh sách sản phẩm trên trang chủ và các bộ lọc
+  const homepageCacheKey = 'topRatedProducts';
+
+
+  try {
+    // Xóa cache của danh sách sản phẩm trên trang chủ
+    await redisClient.del(homepageCacheKey);
     
+    // Nên xóa cache của tất cả các bộ lọc sản phẩm, nhưng điều này phức tạp hơn và có thể yêu cầu quản lý riêng các khóa cache liên quan đến bộ lọc
+    // Một cách tiếp cận đơn giản là xóa toàn bộ cache sản phẩm, nhưng điều này không phải lúc nào cũng hiệu quả và tối ưu
+    // await redisClient.flushdb(); // Xóa toàn bộ cache (Không khuyến khích trừ khi hiểu rõ tác động)
+
+    // Thay vì xóa toàn bộ cache, có thể quản lý các khóa cache liên quan đến bộ lọc một cách chi tiết hơn
+    const keys = await redisClient.keys('*');
+    const productKeys = keys.filter(key => key.startsWith('product:'));
+    if (productKeys.length > 0) {
+      await redisClient.del(productKeys);
+    }
+
+  } catch (err) {
+    console.error('Redis error:', err);
+  }  
     res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
         product, // Trả về thông tin của sản phẩm mới được tạo
     });
 });
+
 
 
 // Hàm để lấy thông tin sản phẩm và lưu cache
@@ -173,6 +195,18 @@ export const updateProduct = catchAsyncErrors(async (req, res) => {
     new: true,
   });
 
+  // Xóa cache liên quan đến sản phẩm
+  try {
+    const keys = await redisClient.keys('*');
+    const productKeys = keys.filter(key => key.startsWith('product:'));
+    if (productKeys.length > 0) {
+      await redisClient.del(productKeys);
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+  }
+  
+
   res.status(200).json({
     // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
     product, // Trả về thông tin của sản phẩm mới được tạo
@@ -195,8 +229,18 @@ export const uploadProductImages = catchAsyncErrors(async (req, res) => {
 
   product?.images?.push(...urls);
   await product?.save();
-  
 
+  // Xóa cache liên quan đến sản phẩm
+  try {
+    const keys = await redisClient.keys('*');
+    const productKeys = keys.filter(key => key.startsWith('product:'));
+    if (productKeys.length > 0) {
+      await redisClient.del(productKeys);
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+  }
+  
   res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
       product, // Trả về thông tin của sản phẩm mới được tạo
   });
@@ -221,7 +265,17 @@ export const deleteProductImage = catchAsyncErrors(async (req, res) => {
 
     await product?.save();
   }
-
+  // Xóa cache liên quan đến sản phẩm
+  try {
+    const keys = await redisClient.keys('*');
+    const productKeys = keys.filter(key => key.startsWith('product:'));
+    if (productKeys.length > 0) {
+      await redisClient.del(productKeys);
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+  }
+  
 
   res.status(200).json({ // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được tạo
       product, // Trả về thông tin của sản phẩm mới được tạo
@@ -244,6 +298,18 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   await product.deleteOne(); //Nếu sản phẩm tồn tại, sử dụng phương thức deleteOne để xóa sản phẩm khỏi cơ sở dữ liệu.
+
+  // Xóa cache liên quan đến sản phẩm
+  try {
+    const keys = await redisClient.keys('*');
+    const productKeys = keys.filter(key => key.startsWith('product:'));
+    if (productKeys.length > 0) {
+      await redisClient.del(productKeys);
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+  }
+  
 
   res.status(200).json({
     // Trả về mã trạng thái 200 và dữ liệu JSON chứa thông tin sản phẩm mới được xóa
@@ -307,7 +373,11 @@ export const createProductReview = catchAsyncErrors(async (req, res, next) => {
 
   // Lưu thay đổi vào cơ sở dữ liệu
   await product.save({ validateBeforeSave: false });
-
+  
+  // Xóa cache liên quan đến đánh giá của sản phẩm trong Redis
+  const cacheKey = `product:${productId}:reviews`;
+  await redisClient.del(cacheKey);
+  
   // Trả về thành công với mã trạng thái 200
   res.status(200).json({
     success: true,
@@ -316,6 +386,19 @@ export const createProductReview = catchAsyncErrors(async (req, res, next) => {
 
 // Get product reviews  =>  /api/reviews
 export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
+  const productId = req.query.id;
+
+  // Kiểm tra cache trước khi truy vấn cơ sở dữ liệu
+  const cacheKey = `product:${req.query.id}:reviews`;
+  const cachedReviews = await redisClient.get(cacheKey);
+
+  if (cachedReviews) {
+    // Nếu tìm thấy dữ liệu trong cache, trả về dữ liệu từ cache
+    return res.status(200).json({
+      reviews: JSON.parse(cachedReviews), // Trả về danh sách các đánh giá từ cache
+    });
+  }
+
   // Tìm sản phẩm trong cơ sở dữ liệu bằng ID và lấy các đánh giá của người dùng liên quan
   const product = await Product.findById(req.query.id).populate("reviews.order").populate("reviews.user");
 
@@ -325,27 +408,16 @@ export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Sản phẩm không tồn tại", 404));
   }
 
+
+  // Lưu đánh giá vào cache với thời gian hết hạn
+  await redisClient.set(cacheKey, JSON.stringify(product.reviews), 'EX', 3600);
+
+
+
   // Trả về danh sách các đánh giá của sản phẩm với mã trạng thái 200
   res.status(200).json({
     reviews: product.reviews, // Trả về danh sách các đánh giá của sản phẩm
   });
-  // const { productID, orderID } = req.query;
-
-  // const product = await Product.findOne({
-  //   _id: productID,
-  //   'reviews.order': orderID,
-  // }).populate('reviews.user');
-
-  // if (!product) {
-  //   return next(new ErrorHandler('Sản phẩm không tồn tại hoặc không có đánh giá cho order này', 404));
-  // }
-
-  // // Filter reviews to only include those matching the orderID
-  // const reviews = product.reviews.filter(review => review.order.toString() === orderID);
-
-  // res.status(200).json({
-  //   reviews,
-  // });
 });
 
 // Delete product review   =>  /api/admin/reviews
