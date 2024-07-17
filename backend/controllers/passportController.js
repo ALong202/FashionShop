@@ -24,7 +24,7 @@ const globalConfigPath = "backend/config/config.env.global";
 if (process.env.NODE_ENV !== "PRODUCTION") {
   // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
   if (fs.existsSync(localConfigPath)) {
-    dotenv.config({ path: localConfigPath, override: true }); // cho phép ghi đè các biến môi trường đã tồn tại
+    dotenv.config({ path: localConfigPath }); // cho phép ghi đè các biến môi trường đã tồn tại
   } else {
     dotenv.config({ path: globalConfigPath });
   }
@@ -35,39 +35,14 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: `http://localhost:${process.env.PORT}/api/auth/google/callback`, // backend port: 3001
+      // callbackURL: `http://localhost:${process.env.PORT}/api/auth/google/callback`, // backend port: 3001
       // callbackURL: "auth/google/callback",
+      callbackURL: process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_URL}/api/auth/google/callback` : `${process.env.BACKEND_PROD_URL}/api/auth/google/callback`,
     },
     // function(accessToken, refreshToken, profile, done) {
     //   done(null, profile);
     // }
     async (accessToken, refreshToken, profile, done) => {
-      // Tìm hoặc tạo người dùng mới dựa trên thông tin từ Google
-      // const newUser = {
-      //   googleId: profile.id,
-      //   email: profile.emails[0].value,
-      //   name: profile.displayName,
-      //   // Giả sử avatar được lấy từ hình ảnh hồ sơ Google
-      //   avatar: {
-      //     public_id: "google_avatar_" + profile.id, // Tạo ID tùy ý cho public_id
-      //     url: profile.photos[0].value,
-      //   },
-      //   // Add placeholders for the required fields
-      //   address: "Your placeholder address / Vui lòng cập nhật địa chỉ của bạn",
-      //   phone: "+84",
-      //   password: "Your placeholder password / Vui lòng tạo mật khẩu đăng nhập",
-      //   method: "google",
-      // };
-      // try {
-      //   let user = await User.findOne({ googleId: profile.id });
-      //   if (!user) {
-      //     user = await User.create(newUser);
-      //   }
-      //   done(null, user);
-      // } catch (err) {
-      //   done(err, null);
-      // }
-
       try {
         let user = await User.findOne({ email: profile.emails[0].value });
         if (user) {
@@ -80,7 +55,7 @@ passport.use(
           await user.save();
         } else {
           // Tạo người dùng mới nếu không tồn tại
-          newUser = {
+          let newUser = {
             googleId: profile.id,
             email: profile.emails[0].value,
             name: profile.displayName,
@@ -109,54 +84,34 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: `http://localhost:${process.env.PORT}/api/auth/facebook/callback`,
+      // callbackURL: `http://localhost:${process.env.PORT}/api/auth/facebook/callback`,
+      callbackURL: process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_URL}/api/auth/facebook/callback` : `${process.env.BACKEND_PROD_URL}/api/auth/facebook/callback`,
       profileFields: ["id", "emails", "name"], // Yêu cầu các trường thông tin từ Facebook
       authType: 'reauthenticate', // Yêu cầu xác thực lại
     },
     async (accessToken, refreshToken, profile, done) => {
-      // Tìm hoặc tạo người dùng mới dựa trên thông tin từ Facebook
-      // const newUser = {
-      //   facebookId: profile.id,
-      //   email: profile.emails[0].value,
-      //   name: `${profile.name.givenName} ${profile.name.familyName}`,
-      //   avatar: {
-      //     public_id: "facebook_avatar_" + profile.id,
-      //     url: `http://graph.facebook.com/${profile.id}/picture?type=large`,
-      //   },
-      //   address: "Your placeholder address / Vui lòng cập nhật địa chỉ của bạn",
-      //   phone: "+84",
-      //   password: "Your placeholder password / Vui lòng tạo mật khẩu đăng nhập",
-      //   method: "facebook",
-      // };
-      // try {
-      //   let user = await User.findOne({ facebookId: profile.id });
-      //   if (!user) {
-      //     user = await User.create(newUser);
-      //   }
-      //   done(null, user);
-      // } catch (err) {
-      //   done(err, null);
-      // }
-
       try {
+        console.log("Tìm user với email:", profile.emails[0].value);
         let user = await User.findOne({ email: profile.emails[0].value });
+        console.log("Kết quả tìm User:", user);
         if (user) {
           // Cập nhật thông tin người dùng nếu đã tồn tại
           user.facebookId = profile.id;
           user.avatar = {
             public_id: "facebook_avatar_" + profile.id,
-            url: `http://graph.facebook.com/${profile.id}/picture?type=large`
+            url: `http://graph.facebook.com/${profile.id}/picture?type=large&access_token=${accessToken}`
           };
           await user.save();
         } else {
           // Tạo người dùng mới nếu không tồn tại
-          newUser = {
+          console.log("Tạo user với email:", profile.emails[0].value);
+          let newUser = {
             facebookId: profile.id,
             email: profile.emails[0].value,
             name: `${profile.name.givenName} ${profile.name.familyName}`,
             avatar: {
               public_id: "facebook_avatar_" + profile.id,
-              url: `http://graph.facebook.com/${profile.id}/picture?type=large`
+              url: `http://graph.facebook.com/${profile.id}/picture?type=large&access_token=${accessToken}`
             },
             address: "Your placeholder address / Vui lòng cập nhật địa chỉ của bạn",
             phone: "+84",

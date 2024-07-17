@@ -54,6 +54,12 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    // Check if password length is less than 6 characters
+    if(password.length < 6){
+      toast.error("Mật khẩu phải có ít nhất 6 ký tự");
+      return;
+    }
+
     // Kiểm tra xem mật khẩu và xác nhận mật khẩu có khớp nhau không trong hàm submitHandler
     if(password !== confirmPassword){
       toast.error("Mật khẩu và xác nhận mật khẩu không khớp");
