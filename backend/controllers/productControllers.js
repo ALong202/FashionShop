@@ -48,7 +48,7 @@ export const getProducts = catchAsyncErrors(async (req, res) => {
           ]);
   
           // Cache top rated products for 1 hour
-          await redisClient.set(homepageCacheKey, JSON.stringify(topRatedProducts), 'EX', 3600);
+          await redisClient.set(homepageCacheKey, JSON.stringify(topRatedProducts), 'EX', 60);
         }
       } catch (err) {
         console.error('Redis error:', err);
@@ -114,6 +114,7 @@ export const newProduct = catchAsyncErrors( async (req, res) => { // Khai báo h
   try {
     // Xóa cache của danh sách sản phẩm trên trang chủ
     await redisClient.del(homepageCacheKey);
+    
     
     // Nên xóa cache của tất cả các bộ lọc sản phẩm, nhưng điều này phức tạp hơn và có thể yêu cầu quản lý riêng các khóa cache liên quan đến bộ lọc
     // Một cách tiếp cận đơn giản là xóa toàn bộ cache sản phẩm, nhưng điều này không phải lúc nào cũng hiệu quả và tối ưu
@@ -195,12 +196,15 @@ export const updateProduct = catchAsyncErrors(async (req, res) => {
     new: true,
   });
 
-  // Xóa cache liên quan đến sản phẩm
   try {
+    // Xóa cache liên quan
+    await redisClient.del(req.params.id);
+    await redisClient.del('topRatedProducts');
+    // Xóa cache liên quan đến các bộ lọc sản phẩm
     const keys = await redisClient.keys('*');
-    const productKeys = keys.filter(key => key.startsWith('product:'));
-    if (productKeys.length > 0) {
-      await redisClient.del(productKeys);
+    const filterKeys = keys.filter(key => key.includes('filters') || key.includes('products'));
+    if (filterKeys.length > 0) {
+      await redisClient.del(filterKeys);
     }
   } catch (err) {
     console.error('Redis error:', err);
@@ -232,10 +236,16 @@ export const uploadProductImages = catchAsyncErrors(async (req, res) => {
 
   // Xóa cache liên quan đến sản phẩm
   try {
+    // Xóa cache của sản phẩm cụ thể
+    await redisClient.del(req.params.id);
+    // Xóa cache của các sản phẩm liên quan khác
+    await redisClient.del('topRatedProducts');
+
+    // Xóa cache liên quan đến các bộ lọc sản phẩm
     const keys = await redisClient.keys('*');
-    const productKeys = keys.filter(key => key.startsWith('product:'));
-    if (productKeys.length > 0) {
-      await redisClient.del(productKeys);
+    const filterKeys = keys.filter(key => key.includes('filters') || key.includes('products'));
+    if (filterKeys.length > 0) {
+      await redisClient.del(filterKeys);
     }
   } catch (err) {
     console.error('Redis error:', err);
@@ -267,10 +277,16 @@ export const deleteProductImage = catchAsyncErrors(async (req, res) => {
   }
   // Xóa cache liên quan đến sản phẩm
   try {
+    // Xóa cache của sản phẩm cụ thể
+    await redisClient.del(req.params.id);
+    // Xóa cache của các sản phẩm liên quan khác
+    await redisClient.del('topRatedProducts');
+
+    // Xóa cache liên quan đến các bộ lọc sản phẩm
     const keys = await redisClient.keys('*');
-    const productKeys = keys.filter(key => key.startsWith('product:'));
-    if (productKeys.length > 0) {
-      await redisClient.del(productKeys);
+    const filterKeys = keys.filter(key => key.includes('filters') || key.includes('products'));
+    if (filterKeys.length > 0) {
+      await redisClient.del(filterKeys);
     }
   } catch (err) {
     console.error('Redis error:', err);
@@ -301,10 +317,16 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
   // Xóa cache liên quan đến sản phẩm
   try {
+    // Xóa cache của sản phẩm cụ thể
+    await redisClient.del(req.params.id);
+    // Xóa cache của các sản phẩm liên quan khác
+    await redisClient.del('topRatedProducts');
+
+    // Xóa cache liên quan đến các bộ lọc sản phẩm
     const keys = await redisClient.keys('*');
-    const productKeys = keys.filter(key => key.startsWith('product:'));
-    if (productKeys.length > 0) {
-      await redisClient.del(productKeys);
+    const filterKeys = keys.filter(key => key.includes('filters') || key.includes('products'));
+    if (filterKeys.length > 0) {
+      await redisClient.del(filterKeys);
     }
   } catch (err) {
     console.error('Redis error:', err);
@@ -374,9 +396,25 @@ export const createProductReview = catchAsyncErrors(async (req, res, next) => {
   // Lưu thay đổi vào cơ sở dữ liệu
   await product.save({ validateBeforeSave: false });
   
-  // Xóa cache liên quan đến đánh giá của sản phẩm trong Redis
-  const cacheKey = `product:${productId}:reviews`;
-  await redisClient.del(cacheKey);
+  // Lưu thay đổi vào cơ sở dữ liệu
+  await product.save({ validateBeforeSave: false });
+
+  // Xóa cache liên quan đến sản phẩm
+  try {
+    // Xóa cache của sản phẩm cụ thể
+    await redisClient.del(productId);
+    // Xóa cache của các sản phẩm liên quan khác
+    await redisClient.del('topRatedProducts');
+
+    // Xóa cache liên quan đến các bộ lọc sản phẩm
+    const keys = await redisClient.keys('*');
+    const filterKeys = keys.filter(key => key.includes('filters') || key.includes('products'));
+    if (filterKeys.length > 0) {
+      await redisClient.del(filterKeys);
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+  }
   
   // Trả về thành công với mã trạng thái 200
   res.status(200).json({
@@ -388,37 +426,42 @@ export const createProductReview = catchAsyncErrors(async (req, res, next) => {
 export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
   const productId = req.query.id;
 
-  // Kiểm tra cache trước khi truy vấn cơ sở dữ liệu
-  const cacheKey = `product:${req.query.id}:reviews`;
-  const cachedReviews = await redisClient.get(cacheKey);
+  try {
+    // Kiểm tra trong Redis cache trước
+    const cachedReviews = await redisClient.get(`reviews:${productId}`);
+    
+    if (cachedReviews) {
+      // Nếu đánh giá có trong cache, trả về kết quả từ cache
+      return res.status(200).json({
+        reviews: JSON.parse(cachedReviews),
+      });
+    }
 
-  if (cachedReviews) {
-    // Nếu tìm thấy dữ liệu trong cache, trả về dữ liệu từ cache
-    return res.status(200).json({
-      reviews: JSON.parse(cachedReviews), // Trả về danh sách các đánh giá từ cache
+    // Tìm sản phẩm trong cơ sở dữ liệu bằng ID và lấy các đánh giá của người dùng liên quan
+    const product = await Product.findById(productId)
+      .populate("reviews.order")
+      .populate("reviews.user");
+
+    // Kiểm tra xem sản phẩm có tồn tại không
+    if (!product) {
+      // Nếu không tìm thấy sản phẩm, trả về lỗi với mã trạng thái 404
+      return next(new ErrorHandler("Sản phẩm không tồn tại", 404));
+    }
+
+    // Lưu đánh giá vào Redis cache với thời gian hết hạn (TTL) là 1 giờ (3600 giây)
+    await redisClient.set(`reviews:${productId}`, JSON.stringify(product.reviews), 'EX', 3600);
+
+    // Trả về danh sách các đánh giá của sản phẩm với mã trạng thái 200
+    res.status(200).json({
+      reviews: product.reviews,
     });
+  } catch (err) {
+    console.error('Redis error:', err);
+    return next(new ErrorHandler('Lỗi kết nối Redis', 500));
   }
-
-  // Tìm sản phẩm trong cơ sở dữ liệu bằng ID và lấy các đánh giá của người dùng liên quan
-  const product = await Product.findById(req.query.id).populate("reviews.order").populate("reviews.user");
-
-  // Kiểm tra xem sản phẩm có tồn tại không
-  if (!product) {
-    // Nếu không tìm thấy sản phẩm, trả về lỗi với mã trạng thái 404
-    return next(new ErrorHandler("Sản phẩm không tồn tại", 404));
-  }
-
-
-  // Lưu đánh giá vào cache với thời gian hết hạn
-  await redisClient.set(cacheKey, JSON.stringify(product.reviews), 'EX', 3600);
-
-
-
-  // Trả về danh sách các đánh giá của sản phẩm với mã trạng thái 200
-  res.status(200).json({
-    reviews: product.reviews, // Trả về danh sách các đánh giá của sản phẩm
-  });
 });
+
+
 
 // Delete product review   =>  /api/admin/reviews
 export const deleteReview = catchAsyncErrors(async (req, res, next) => {
@@ -453,6 +496,23 @@ export const deleteReview = catchAsyncErrors(async (req, res, next) => {
     { reviews, numOfReviews, ratings },
     { new: true }
   );
+
+  // Xóa cache liên quan đến sản phẩm
+  try {
+    // Xóa cache của sản phẩm cụ thể
+    await redisClient.del(productId);
+    // Xóa cache của các sản phẩm liên quan khác
+    await redisClient.del('topRatedProducts');
+
+    // Xóa cache liên quan đến các bộ lọc sản phẩm
+    const keys = await redisClient.keys('*');
+    const filterKeys = keys.filter(key => key.includes('filters') || key.includes('products'));
+    if (filterKeys.length > 0) {
+      await redisClient.del(filterKeys);
+    }
+  } catch (err) {
+    console.error('Redis error:', err);
+  }
 
   // Trả về thành công với mã trạng thái 200 và thông tin sản phẩm đã cập nhật
   res.status(200).json({
