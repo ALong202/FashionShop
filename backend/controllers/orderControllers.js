@@ -199,6 +199,8 @@ export const deleteOrder = catchAsyncErrors(async (req, res, next) => {
 });
 
 
+//-------------------------------
+
 async function getSalesData(startDate, endDate) {
   const salesData = await Order.aggregate([
     {
@@ -271,27 +273,19 @@ function getDatesBetween(startDate, endDate) {
   return dates;
 }
 
-
 // Get số Sales  =>  /api/admin/get_sales
 export const getSales = catchAsyncErrors(async (req, res, next) => {
   const startDate = new Date(req.query.startDate);
   const endDate = new Date(req.query.endDate);
 
-  startDate.setUTCHours(0,0,0,0);
-  endDate.setUTCHours(23,59,59,999);
-
-  const cacheKey = `sales:${startDate.toISOString()}:${endDate.toISOString()}`;
-  const cachedSales = await redisClient.get(cacheKey);
-
-  // if (cachedSales) {
-  //   return res.status(200).json(JSON.parse(cachedSales));
-  // }
+  startDate.setUTCHours(0,0,0,0); // giờ UTC, 0h:0m:0s:0ms
+  endDate.setUTCHours(23,59,59,999); // giờ UTC, 23h:59m:59s:999ms
 
   const { salesData, totalSales, totalNumOrders } = await getSalesData(startDate, endDate);
 
-  await redisClient.set(cacheKey, JSON.stringify({ totalSales, totalNumOrders, sales: salesData }), 'EX', CACHE_EXPIRATION);
-
+  // Trả về thành công với mã trạng thái 200
   res.status(200).json({
+    // success: true,
     totalSales,
     totalNumOrders,
     sales: salesData,
