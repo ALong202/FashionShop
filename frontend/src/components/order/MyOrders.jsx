@@ -15,7 +15,7 @@ const MyOrder = () => {
   const [quickFilterText, setQuickFilterText] = useState("");
 
   const { data, isLoading, error, isSuccess } = useMyOrdersQuery();
-
+  console.log(data)
   const [searchParams] = useSearchParams();
 
   const orderSuccess = searchParams.get("order_success");

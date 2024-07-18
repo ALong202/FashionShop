@@ -43,18 +43,19 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
 
 // Lấy các đơn hàng của người dùng hiện tại  =>  /api/me/orders
 export const myOrders = catchAsyncErrors(async (req, res, next) => {
-  const cacheKey = `myOrders:${req.user._id}`;
-  const cachedOrders = await redisClient.get(cacheKey);
+  // Không dùng cache tại truy vấn này vì lý do call back của các online payment
+  // const cacheKey = `myOrders:${req.user._id}`;
+  // const cachedOrders = await redisClient.get(cacheKey);
 
-  if (cachedOrders) {
-    return res.status(200).json(JSON.parse(cachedOrders));
-  }
+  // if (cachedOrders) {
+  //   return res.status(200).json(JSON.parse(cachedOrders));
+  // }
 
   // Tìm các đơn hàng của người dùng hiện tại trong cơ sở dữ liệu
   const orders = await Order.find({ user: req.user._id });
   let ordersCount = orders.length;
 
-  await redisClient.set(cacheKey, JSON.stringify({ ordersCount, orders }), 'EX', CACHE_EXPIRATION);
+  // await redisClient.set(cacheKey, JSON.stringify({ ordersCount, orders }), 'EX', CACHE_EXPIRATION);
 
   // Trả về danh sách các đơn hàng với mã trạng thái 200
   res.status(200).json({
@@ -197,6 +198,80 @@ export const deleteOrder = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+
+async function getSalesData(startDate, endDate) {
+  const salesData = await Order.aggregate([
+    {
+      // Stage 1 - Filter results
+      $match: {
+        createdAt: {
+          $gte: startDate,
+          $lte: endDate,
+        },
+      },
+    },
+    {
+      // Stage 2 - Group data
+      $group: {
+        _id: {
+          date: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+        },
+        totalSales: { $sum: "$totalAmount" },
+        numOrders: { $sum: 1 } // Count số lượng orders
+      },
+    }
+  ]) // https://www.mongodb.com/docs/manual/aggregation/
+
+  // console.log("====================================");
+  // console.log("Print -> terminal -> Order data:\n", salesData);
+  // console.log("====================================");
+
+  // Tạo 1 Map để chứa dữ liệu sales và số lượng order
+  const salesMap = new Map();
+  let totalSales = 0;
+  let totalNumOrders = 0;
+
+  salesData.forEach((entry) => {
+    const date = entry?._id.date;
+    const sales = entry?.totalSales;
+    const numOrders = entry?.numOrders;
+
+    salesMap.set(date, { sales, numOrders });
+    totalSales += sales;
+    totalNumOrders += numOrders;
+  });
+
+  // Tạo 1 mảng ngày trong khoảng thời gian startDate và endDate
+  const datesBetween = getDatesBetween(startDate, endDate);
+  // console.log("Print -> Terminal -> array[startDate, endDate]:\n", datesBetween);
+
+  // Tạo mảng dữ liệu sales với 0 nếu không có dữ liệu
+  const finalSalesData = datesBetween.map((date) => ({
+    date,
+    sales: (salesMap.get(date) || { sales: 0 }).sales,
+    numOrders: (salesMap.get(date) || { numOrders: 0 }).numOrders,
+  }));
+
+  // console.log("====================================");
+  // console.log("Print -> terminal -> Final Sales Data:\n", finalSalesData);
+  // console.log("====================================");
+  return { salesData: finalSalesData, totalSales, totalNumOrders };
+}
+
+function getDatesBetween(startDate, endDate) {
+  const dates = [];
+  let currentDate = new Date(startDate);
+
+  while(currentDate <= new Date(endDate)) {
+    const formattedDate = currentDate.toISOString().split("T")[0]; // 2024-04-10T10:40:57.000Z -> Lấy ngày tháng năm (không lấy giờ phút giây)
+    dates.push(formattedDate);
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return dates;
+}
+
+
 // Get số Sales  =>  /api/admin/get_sales
 export const getSales = catchAsyncErrors(async (req, res, next) => {
   const startDate = new Date(req.query.startDate);
@@ -208,9 +283,9 @@ export const getSales = catchAsyncErrors(async (req, res, next) => {
   const cacheKey = `sales:${startDate.toISOString()}:${endDate.toISOString()}`;
   const cachedSales = await redisClient.get(cacheKey);
 
-  if (cachedSales) {
-    return res.status(200).json(JSON.parse(cachedSales));
-  }
+  // if (cachedSales) {
+  //   return res.status(200).json(JSON.parse(cachedSales));
+  // }
 
   const { salesData, totalSales, totalNumOrders } = await getSalesData(startDate, endDate);
 
