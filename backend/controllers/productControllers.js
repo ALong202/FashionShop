@@ -469,9 +469,7 @@ export const createProductReview = catchAsyncErrors(async (req, res, next) => {
   }
 
   // Tính toán lại điểm đánh giá trung bình của sản phẩm
-  product.ratings =
-    product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-    product.reviews.length;
+  product.ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
 
   // Lưu thay đổi vào cơ sở dữ liệu
   await product.save({ validateBeforeSave: false });
