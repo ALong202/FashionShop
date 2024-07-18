@@ -1,11 +1,6 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
-import Product from "../models/product.js";
-import Order from "../models/order.js";
-import ErrorHandler from "../utils/errorHandler.js";
 import { createHmac } from "crypto";
-
 import axios from "axios"; // npm install axios
-import CryptoJS from "crypto-js"; // npm install crypto-js
 import moment from "moment"; // npm install moment
 
 //MOMO APP INFO
@@ -16,8 +11,8 @@ const config = {
   partnerName: "FakashionShop",
   storeId: "MomoTestStore",
   endpoint: process.env.MOMO_ENDPOINT,
-  redirectUrl: process.env.FRONTEND_PUB_URL + "/me/orders",
-  ipnUrl: process.env.BACKEND_PUB_URL + "/api/momo/callback/",
+  redirectUrl: process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.FRONTEND_PUB_URL}/me/orders` : `${process.env.FRONTEND_PROD_URL}/me/orders`,
+  ipnUrl: process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_PUB_URL}/api/momo/callback/` : `${process.env.BACKEND_PROD_URL}/api/momo/callback/`,
   requestType: "payWithMethod",
   autoCapture: true,
   lang: "vi",

@@ -12,7 +12,6 @@ import {
 const UploadImages = () => {
   const fileInputRef = useRef(null); // tham chiếu đến input file
   const params = useParams();
-  const navigate = useNavigate();
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);

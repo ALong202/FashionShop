@@ -1,5 +1,4 @@
 import express from "express";
-import { authorizeRoles, isAuthenticatedUser, isAuthenticatedServer } from "../middlewares/auth.js";
 import {
   getAddressData,
 } from "../controllers/addressController.js";

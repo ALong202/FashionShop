@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Loader from "../layout/Loader";
 import { toast } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
 import MetaData from "../layout/MetaData";
@@ -8,7 +7,6 @@ import {
   useUpdateOrderMutation,
 } from "../../redux/api/orderApi";
 import AdminLayout from "../layout/AdminLayout";
-import { colorMap } from "../../constants/constants";
 
 import {
   MDBCard,

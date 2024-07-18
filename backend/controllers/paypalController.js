@@ -1,21 +1,14 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
-import Product from "../models/product.js";
-import Order from "../models/order.js";
-import ErrorHandler from "../utils/errorHandler.js";
-import { createHmac } from "crypto";
-
 import axios from "axios"; // npm install axios
-import CryptoJS from "crypto-js"; // npm install crypto-js
 import moment from "moment"; // npm install moment
-
+console.log(process.env.PAYPAL_CLIENT_ID)
 const {
   PAYPAL_CLIENT_ID,
   PAYPAL_CLIENT_SECRET,
   PAYPAL_BASE,
-  FRONTEND_PUB_URL,
-  BACKEND_PUB_URL,
 } = process.env;
-
+const FRONTEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.FRONTEND_PUB_URL}` : `${process.env.FRONTEND_PROD_URL}`;
+const BACKEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_PUB_URL}` : `${process.env.BACKEND_PROD_URL}`
 /**
  * Generate an OAuth 2.0 access token for authenticating with PayPal REST APIs.
  * @see https://developer.paypal.com/api/rest/authentication/
@@ -179,9 +172,9 @@ export const newPaypalPayment = catchAsyncErrors(async (req, res, next) => {
             locale: "en-US",
             landing_page: "NO_PREFERENCE",
             user_action: "PAY_NOW",
-            locale: "en-VN",
-            return_url: BACKEND_PUB_URL + "/api/paypal/order",
-            cancel_url: FRONTEND_PUB_URL + "/cart",
+            // locale: "en-VN",
+            return_url: `${BACKEND_URL}/me/orders?order_success=true`,
+            cancel_url: `${BACKEND_URL}/me/orders?order_success=false`,
           },
         },
       },

@@ -13,15 +13,7 @@ export const paypalApi = createApi({
         };
       },
     }),
-    createNewPaypalOrder: builder.query({
-      query: () => ({
-        url: `/paypal/order`,
-      }),
-    }),
   }),
 });
 
-export const {
-  useCreateNewPaypalPaymentMutation,
-  useCreateNewPaypalOrderQuery,
-} = paypalApi;
+export const { useCreateNewPaypalPaymentMutation } = paypalApi;

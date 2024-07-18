@@ -8,7 +8,10 @@
     "start": "node backend/app.js",
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/app.js",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/app.js",
-    "seeder": "node backend/seeder/seeder.js"
+    "seeder": "node backend/seeder/seeder.js",
+    "build": "babel backend -d build --copy-files",
+    "prod-build": "SET NODE_ENV=PRODUCTION& node build/app.js",
+    "prod-docker": "node build/app.js"
   },
   "author": "HungNamAnhQuoc",
   "license": "ISC",

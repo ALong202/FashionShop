@@ -3,10 +3,10 @@
 import express from "express"; // Import thư viện express để tạo máy chủ HTTP
 const app = express(); // Tạo 1 dối tượng ứng dụng Express mới
 import cookieParser from "cookie-parser"; // Import thư viện cookie-parser để xử lý cookie
-import dotenv from "dotenv"; // Một thư viện của JavaScript load các biến môi trường từ tập tin '.env' vào application's runtime environment
+// import dotenv from "dotenv"; // Một thư viện của JavaScript load các biến môi trường từ tập tin '.env' vào application's runtime environment
 import { connectDatabase } from "./config/dbConnect.js"; // Import hàm connectDatabase từ tệp dbConnect.js
 import errorsMiddleware from "./middlewares/errors.js"; // Import middleware xử lý lỗi từ tệp errors.js
-import getRawBody from "raw-body"; // Import thư viện getRawBody để lấy nội dung yêu cầu HTTP
+// import getRawBody from "raw-body"; // Import thư viện getRawBody để lấy nội dung yêu cầu HTTP
 
 import path from "path"; // Import thư viện path để xử lý đường dẫn
 import { fileURLToPath } from "url"; // Import hàm fileURLToPath từ thư viện url
@@ -16,9 +16,9 @@ const __dirname = path.dirname(__filename); // Lấy đường dẫn thư mục 
 import cors from "cors";
 import passport from "passport";
 import session from "express-session";
-import passportSetup from "./controllers/passportController.js" // Đổi tên passport khi import
-import cookieSession from "cookie-session";
-import fs from 'fs';
+// import passportSetup from "./controllers/passportController.js" // Đổi tên passport khi import
+// import cookieSession from "cookie-session";
+// import fs from 'fs';
 
 // Bắt sự kiện lỗi không được xử lý
 process.on("uncaughtException", (err) => {
@@ -31,25 +31,21 @@ process.on("uncaughtException", (err) => {
 const localConfigPath = "backend/config/config.env.local";
 const globalConfigPath = "backend/config/config.env.global";
 
-// Chỉ sử dụng config.env ở Development
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
-  if (fs.existsSync(localConfigPath)) {
-    console.log(localConfigPath);
-    dotenv.config({ path: localConfigPath, override: true }); // cho phép ghi đè các biến môi trường đã tồn tại
-  } else if (fs.existsSync(globalConfigPath)) {
-    dotenv.config({ path: globalConfigPath });
-  } else {
-    console.log("backend/config/config.env");
-    dotenv.config({ path: "backend/config/config.env" });
-  }
-} else {
-  dotenv.config({ path: ".env.production" });
-}
-
-
-console.log(process.env.GOOGLE_CLIENT_SECRET)
-console.log(process.env.GOOGLE_CLIENT_ID)
+// // Chỉ sử dụng config.env ở Development
+// if (process.env.NODE_ENV !== "PRODUCTION") {
+//   // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
+//   if (fs.existsSync(localConfigPath)) {
+//     console.log(localConfigPath);
+//     dotenv.config({ path: localConfigPath }); // cho phép ghi đè các biến môi trường đã tồn tại
+//   } else if (fs.existsSync(globalConfigPath)) {
+//     dotenv.config({ path: globalConfigPath });
+//   } else {
+//     console.log("backend/config/config.env");
+//     dotenv.config({ path: "backend/config/config.env" });
+//   }
+// } else {
+//   dotenv.config({ path: ".env.production" });
+// }
 
 // Connect với database
 connectDatabase();

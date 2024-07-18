@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StarRatings from "react-star-ratings";
 import {
-  useCanUserReviewQuery,
   useSubmitReviewMutation,
 } from "../../redux/api/productsApi";
 import { toast } from "react-toastify";
