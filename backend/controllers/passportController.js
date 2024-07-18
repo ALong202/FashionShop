@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 } else {
   dotenv.config({ path: ".env.production" });
 }
-
+// console.log(process.env)
 passport.use(
   new GoogleStrategy(
     {
