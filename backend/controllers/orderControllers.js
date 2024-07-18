@@ -80,7 +80,6 @@ export const allOrders = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 // Cập nhật trạng thái của đơn hàng - ADMIN  =>  /api/admin/orders/:id
 export const updateOrder = catchAsyncErrors(async (req, res, next) => {
   // Tìm đơn hàng trong cơ sở dữ liệu bằng ID
@@ -92,12 +91,12 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Không tìm thấy đơn hàng với ID này", 404));
   }
 
-  // Trùng trạng thái thì không làm gì
+  // Trùng trạng thái thì ko làm gì
   if (order?.orderStatus === req.body.status) {
     return next(new ErrorHandler("Cần chọn trạng thái mới để sửa", 400));
   }
 
-  // Đơn hàng đang shipped thì không được chuyển về processing
+  // Đơn hàng đang shipped thì ko đc chuyển về processing
   if (order?.orderStatus === "Shipped" && req.body.status === "Processing") {
     return next(new ErrorHandler("Đơn hàng đang được giao", 400));
   }
@@ -109,33 +108,21 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
   }
 
   // Cập nhật số lượng hàng tồn kho của các sản phẩm liên quan
-  if (req.body.status === "Delivered") {
-    // Chỉ khi chuyển sang delivered thì mới cập nhật số lượng và thời gian giao hàng
+  if((req.body.status === "Delivered")){ //chỉ khi chuyển sang delivered thì mới cập nhật số lượng và time giao hàng
     order?.orderItems?.forEach(async (item) => {
       const product = await Product.findById(item?.product?.toString());
       if (!product) {
         return next(new ErrorHandler("Không tìm thấy sản phẩm với ID này", 404));
       }
-
-      // Phải trừ theo đúng variant
-      const variant = product.variants.find(
-        (variant) => variant._id.toString() === item.selectedVariant.variantID
-      );
-
-      if (variant) {
-        variant.stock -= item.quantity;
-        variant.sellQty += item.quantity; // Cập nhật số lượng đã bán của variant
-        product.sellQty += item.quantity; // Cập nhật tổng số lượng đã bán của sản phẩm
-      }
-
+  
+      //fai trừ theo đúng variant
+      product.variants.find(variant => variant._id.toString() === item.selectedVariant.variantID).stock = product.variants.find(variant => variant._id.toString() === item.selectedVariant.variantID).stock - item.quantity;
       await product.save({ validateBeforeSave: false });
     });
-
-    if (order.paymentMethod === "COD") {
-      // Nếu là đơn COD thì cập nhật cả tình trạng thanh toán khi đã giao
-      order.paymentInfo = { status: "Đã thanh toán" };
-    }
-  }
+    if(order.paymentMethod ===  "COD")  //nếu là đơn COD thì cập nhật cả tình trạng thanh toán khi đã giao
+      order.paymentInfo = {status : "Đã thanh toán"};
+    order.sellQty += 1;
+  } 
 
   // Cập nhật trạng thái đơn hàng và thời gian giao hàng
   order.orderStatus = req.body.status;
@@ -150,13 +137,6 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
     order,
   });
 });
-
-
-
-
-
-
-//------------------
 
 // Xóa đơn hàng  =>  /api/admin/orders/:id
 export const deleteOrder = catchAsyncErrors(async (req, res, next) => {
