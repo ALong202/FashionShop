@@ -64,7 +64,7 @@ const Login = () => {
     <div className="row wrapper">
       <div className="col-10 col-lg-5">
         <form
-          className="shadow rounded bg-body"
+          className="shadow rounded bg-body no-bottom-padding"
           onSubmit={submitHandler}
           action="your_submit_url_here"
           method="post"

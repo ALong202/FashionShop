@@ -968,7 +968,7 @@ nav {
 }
 
 .wrapper form {
-  padding: 2.5rem 3rem 0.1rem;
+  padding: 2.5rem 3rem;
 }
 
 .wrapper form .btn,
@@ -1545,6 +1545,10 @@ thead {
   display: flex;
   flex-direction: column;
   text-align: right;
+}
+
+.no-bottom-padding {
+  padding-bottom: 0.1rem !important; /* dùng ở form đăng nhập */
 }
 
 /* Đăng nhập với Google/ Facebook */
