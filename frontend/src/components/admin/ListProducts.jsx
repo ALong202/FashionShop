@@ -264,7 +264,9 @@ const ListProducts = () => {
           onChange={(e) => setQuickFilterText(e.target.value)}
         />
         <div style={{ display: 'flex', gap: '10px' }}> {/* Sử dụng gap để tạo khoảng cách */}
-          <Button onClick={toggleAutoHeight}>Xem chi tiết tồn kho</Button>
+          <Button onClick={toggleAutoHeight}>
+            {autoHeight ? "Thu gọn thông tin tồn kho" : "Xem chi tiết tồn kho"}
+          </Button>
           <Button onClick={onExportClick}>
             <img src="../images/excel.png" alt="Excel_icon" style={{ width: '20px', height: '20px' }} />
             {' '}Xuất Excel

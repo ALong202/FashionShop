@@ -29,7 +29,7 @@ const productSliderSetting = {
   responsive: [
     {
       breakpoint: 1024,
-      productSliderSetting: {
+      settings: {
         slidesToShow: 4,
         slidesToScroll: 4,
         infinite: true,
@@ -38,7 +38,7 @@ const productSliderSetting = {
     },
     {
       breakpoint: 600,
-      productSliderSetting: {
+      settings: {
         slidesToShow: 3,
         slidesToScroll: 3,
         initialSlide: 3
@@ -46,7 +46,7 @@ const productSliderSetting = {
     },
     {
       breakpoint: 480,
-      productSliderSetting: {
+      settings: {
         slidesToShow: 1,
         slidesToScroll: 1
       }
