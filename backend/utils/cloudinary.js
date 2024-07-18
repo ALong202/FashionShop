@@ -1,25 +1,5 @@
 import cloudinary from "cloudinary";
-import dotenv from "dotenv";
-import fs from 'fs';
-// Đường dẫn tới file cấu hình local
-const localConfigPath = "backend/config/config.env.local";
-const globalConfigPath = "backend/config/config.env.global";
 
-// Chỉ sử dụng config.env ở Development
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
-  if (fs.existsSync(localConfigPath)) {
-    console.log(localConfigPath);
-    dotenv.config({ path: localConfigPath }); // cho phép ghi đè các biến môi trường đã tồn tại
-  } else if (fs.existsSync(globalConfigPath)) {
-    dotenv.config({ path: globalConfigPath });
-  } else {
-    console.log("backend/config/config.env");
-    dotenv.config({ path: "backend/config/config.env" });
-  }
-} else {
-  dotenv.config({ path: ".env.production" });
-}
 console.log(process.env.CLOUDINARY_CLOUD_NAME)
 
 // dotenv.config({ path: "backend/config/config.env" });

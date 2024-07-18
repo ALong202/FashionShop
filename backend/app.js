@@ -16,8 +16,8 @@ const __dirname = path.dirname(__filename); // Lấy đường dẫn thư mục 
 import cors from "cors";
 import passport from "passport";
 import session from "express-session";
-// import passportSetup from "./controllers/passportController.js" // Đổi tên passport khi import
-// import cookieSession from "cookie-session";
+import passportSetup from "./controllers/passportController.js" // Đổi tên passport khi import
+import cookieSession from "cookie-session";
 // import fs from 'fs';
 
 // Bắt sự kiện lỗi không được xử lý
@@ -28,8 +28,8 @@ process.on("uncaughtException", (err) => {
 });
 
 // Đường dẫn tới file cấu hình local
-const localConfigPath = "backend/config/config.env.local";
-const globalConfigPath = "backend/config/config.env.global";
+// const localConfigPath = "backend/config/config.env.local";
+// const globalConfigPath = "backend/config/config.env.global";
 
 // // Chỉ sử dụng config.env ở Development
 // if (process.env.NODE_ENV !== "PRODUCTION") {

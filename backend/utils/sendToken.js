@@ -1,34 +1,30 @@
 // Hàm này được sử dụng để tạo và gửi token JWT cho người dùng, sau đó đặt token trong cookie và gửi phản hồi về client
-export default (user, statusCode, res, loginType='local') => {
-// Lấy token JWT từ người dùng
+export default (user, statusCode, res, loginType = 'local') => {
+  // Lấy token JWT từ người dùng
   const token = user.getJwtToken();
-// Thiết lập các tùy chọn cho cookie
+
+  // Thiết lập các tùy chọn cho cookie
   const options = {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
-    ),// Thời gian hết hạn của cookie
-    httpOnly: true,// Cookie chỉ có thể được truy cập qua HTTP, không thể được truy cập qua JavaScript trong trình duyệt
+    ),
+    httpOnly: true,
   };
 
   if (loginType === 'local') {
     // Đặt cookie chứa token trong phản hồi với các tùy chọn đã thiết lập
-    res.status(statusCode).cookie("token", token, options).json({
+    res.cookie('token', token, options);
+    res.status(statusCode).json({
       token, // Trả về token dưới dạng phản hồi JSON
     });
-  }
-
-  res.cookie("token", token, options);
-
-  let redirectUrl;
-  if (loginType === 'google' || loginType === 'facebook') {
-    redirectUrl = process.env.NODE_ENV === 'DEVELOPMENT' ? process.env.FRONTEND_URL : process.env.FRONTEND_PROD_URL;
-  } 
-
-  if (!res.headersSent) {
+  } else if (loginType === 'google' || loginType === 'facebook') {
+    let redirectUrl = process.env.NODE_ENV === 'DEVELOPMENT' ? process.env.FRONTEND_URL : process.env.FRONTEND_PROD_URL;
+    res.cookie('token', token, options);
     res.status(statusCode).redirect(redirectUrl);
+  } else {
+    res.status(statusCode).json({ message: 'Unknown login type' });
   }
-
-}; 
+};
 
 
  // if (loginType === 'local') {
