@@ -1,40 +1,33 @@
-import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import User from "../models/user.js";
-import { getResetPasswordTemplate } from "../utils/emailTemplates.js";
-import ErrorHandler from "../utils/errorHandler.js";
-import sendToken from "../utils/sendToken.js";
-import sendEmail from "../utils/sendEmail.js";
-import crypto from "crypto";
-import { delete_file, upload_file } from "../utils/cloudinary.js";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as FacebookStrategy } from "passport-facebook";
-import dotenv from "dotenv";
-import fs from "fs";
-
+// import dotenv from "dotenv";
+// import fs from "fs";
+console.log(process.env.GOOGLE_CLIENT_ID)
 // const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const User = require('./models/userModel'); // Đường dẫn tới file model người dùng của bạn
 // Đường dẫn tới file cấu hình local
-const localConfigPath = "backend/config/config.env.local";
-const globalConfigPath = "backend/config/config.env.global";
+// const localConfigPath = "backend/config/config.env.local";
+// const globalConfigPath = "backend/config/config.env.global";
 
-// Chỉ sử dụng config.env ở Development
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
-  if (fs.existsSync(localConfigPath)) {
-    console.log(localConfigPath);
-    dotenv.config({ path: localConfigPath, override: true }); // cho phép ghi đè các biến môi trường đã tồn tại
-  } else if (fs.existsSync(globalConfigPath)) {
-    dotenv.config({ path: globalConfigPath });
-  } else {
-    console.log("backend/config/config.env");
-    dotenv.config({ path: "backend/config/config.env" });
-  }
-} else {
-  dotenv.config({ path: ".env.production" });
-}
+// // Chỉ sử dụng config.env ở Development
+// if (process.env.NODE_ENV !== "PRODUCTION") {
+//   // Kiểm tra sự tồn tại của file cấu hình local -> ưu tiên sử dụng
+//   if (fs.existsSync(localConfigPath)) {
+//     console.log(localConfigPath);
+//     dotenv.config({ path: localConfigPath, override: true }); // cho phép ghi đè các biến môi trường đã tồn tại
+//   } else if (fs.existsSync(globalConfigPath)) {
+//     dotenv.config({ path: globalConfigPath });
+//   } else {
+//     console.log("backend/config/config.env");
+//     dotenv.config({ path: "backend/config/config.env" });
+//   }
+// } else {
+//   dotenv.config({ path: ".env.production" });
+// }
 
 passport.use(
   new GoogleStrategy(

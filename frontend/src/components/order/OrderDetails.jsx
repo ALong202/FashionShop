@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import MetaData from "../layout/MetaData";
 import { useOrderDetailsQuery } from "../../redux/api/orderApi";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
-import { colorMap } from "../../constants/constants";
 import NewReview from "../reviews/NewReview";
-import StarRatings from "react-star-ratings";
 import { useDispatch, useSelector } from "react-redux";
 import { clearReview, setReviewItem } from "../../redux/features/reviewSlice";
 
@@ -21,7 +19,6 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { Input, Ripple, initMDB } from "mdb-ui-kit";
 import PhoneInput from "react-phone-input-2";
 import CheckoutSteps from "../cart/CheckoutSteps";
 

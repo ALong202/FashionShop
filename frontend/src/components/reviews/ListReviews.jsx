@@ -59,7 +59,8 @@ const ListReviews = ({ reviews }) => {
               </div>
             </div>
           ))}
-          <div className="card-body p-4">
+          <div className="card-body p-4"></div>
+          {/* <div className="card-body p-4">
             <hr className="my-0" />
             <div className="d-flex flex-start mt-2">
               <img
@@ -103,7 +104,7 @@ const ListReviews = ({ reviews }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* </div> */}

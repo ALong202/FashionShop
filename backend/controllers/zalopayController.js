@@ -1,25 +1,26 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
-import Product from "../models/product.js";
 import Order from "../models/order.js";
-import ErrorHandler from "../utils/errorHandler.js";
-
 import axios from "axios"; // npm install axios
 import CryptoJS from "crypto-js"; // npm install crypto-js
 import moment from "moment"; // npm install moment
+console.log(process.env.ZALOPAY_APP_ID)
 
+const FRONTEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.FRONTEND_PUB_URL}` : `${process.env.FRONTEND_PROD_URL}`;
+const BACKEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_PUB_URL}` : `${process.env.BACKEND_PROD_URL}`
 //ZALO PAY APP INFO
 const config = {
   app_id: process.env.ZALOPAY_APP_ID,
   key1: process.env.ZALOPAY_KEY1,
   key2: process.env.ZALOPAY_KEY2,
   endpoint: process.env.ZALOPAY_ENDPOINT,
-  callback: process.env.BACKEND_PUB_URL + "/api/zalopay/callback/",
+  callback: `${BACKEND_URL}/api/zalopay/callback/`,
 };
+
 
 // Tạo payment mới trên cổng thanh toán của zalo pay
 export const newZaloPayPayment = catchAsyncErrors(async (req, res, next) => {
   const embed_data = {
-    redirecturl: process.env.FRONTEND_PUB_URL + "/me/orders",
+    redirecturl: `${FRONTEND_URL}/me/orders`,
   };
   // console.log("day la req",req.body)
   const transID =

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
-import { MDBDataTable } from "mdbreact";
 import { Link } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import {

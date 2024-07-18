@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import AdminLayout from "../layout/AdminLayout";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  useCreateProductMutation,
   useGetProductDetailsQuery,
   useUpdateProductMutation,
 } from "../../redux/api/productsApi";

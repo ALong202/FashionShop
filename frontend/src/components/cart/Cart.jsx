@@ -22,7 +22,6 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { calculateOrderCost } from "../../helpers/helpers";
 import CheckoutSteps from "./CheckoutSteps";
 
 // import 'mdb-react-ui-kit/dist/css/mdb.min.css';

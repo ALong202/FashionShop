@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Loader from "../layout/Loader";
 import { toast } from "react-hot-toast";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import AdminLayout from "../layout/AdminLayout";
 import { useGetUserDetailQuery, useUpdateUserMutation } from "../../redux/api/userApi";
@@ -14,7 +13,6 @@ const UpdateUser = () => {
   const [address, setAddress] = useState("");
   const [role, setRole] = useState("");
 
-  const navigate = useNavigate();
   const params = useParams();
 
   const { data } = useGetUserDetailQuery(params?.id);

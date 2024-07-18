@@ -5,6 +5,11 @@ frontend\node_modules
 frontend\package-lock.json
 backend/config/config.env.local
 .env.production
+.env.docker
+.dockerignore
+Dockerfile
+build
+frontend/build
 
 
 

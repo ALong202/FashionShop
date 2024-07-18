@@ -2,8 +2,10 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import Stripe from "stripe";
 import Order from "../models/order.js";
 import moment from "moment"; // npm install moment
-
+console.log(process.env.STRIPE_SECRET_KEY)
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const FRONTEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.FRONTEND_PUB_URL}` : `${process.env.FRONTEND_PROD_URL}`;
+const BACKEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_PUB_URL}` : `${process.env.BACKEND_PROD_URL}`
 
 // Tạo payment mới trên cổng thanh toán của stripe
 export const newStripePayment = catchAsyncErrors(async (req, res, next) => {
@@ -48,9 +50,9 @@ export const newStripePayment = catchAsyncErrors(async (req, res, next) => {
   // console.log(body)
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    success_url: `${process.env.FRONTEND_PUB_URL}/me/orders?order_success=true`,
+    success_url: `${FRONTEND_URL}/me/orders?order_success=true`,
     // cancel_url: `${process.env.FRONEND_PUB_URL}/cart`,
-    cancel_url: `${process.env.FRONTEND_PUB_URL}/me/orders?order_success=false`,
+    cancel_url: `${FRONTEND_URL}/me/orders?order_success=false`,
     client_reference_id: transID,
     mode: "payment",
     metadata: {
