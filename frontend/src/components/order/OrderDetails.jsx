@@ -510,6 +510,7 @@ const OrderDetails = () => {
                               </MDBTypography>
 
                               <button
+                              disabled={order?.orderStatus !== "Delivered"}
                                 id="review_btn"
                                 type="button"
                                 className="btn btn-primary mt-4 w-100"
