@@ -43,19 +43,19 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
 
 // Lấy các đơn hàng của người dùng hiện tại  =>  /api/me/orders
 export const myOrders = catchAsyncErrors(async (req, res, next) => {
-  // Không dùng cache tại truy vấn này vì lý do call back của các online payment
-  // const cacheKey = `myOrders:${req.user._id}`;
-  // const cachedOrders = await redisClient.get(cacheKey);
+  // Không dùng cache tại truy vấn này vì lý do call back của các online payment -> đã resolve ở các online payment
+  const cacheKey = `myOrders:${req.user._id}`;
+  const cachedOrders = await redisClient.get(cacheKey);
 
-  // if (cachedOrders) {
-  //   return res.status(200).json(JSON.parse(cachedOrders));
-  // }
+  if (cachedOrders) {
+    return res.status(200).json(JSON.parse(cachedOrders));
+  }
 
   // Tìm các đơn hàng của người dùng hiện tại trong cơ sở dữ liệu
   const orders = await Order.find({ user: req.user._id });
   let ordersCount = orders.length;
 
-  // await redisClient.set(cacheKey, JSON.stringify({ ordersCount, orders }), 'EX', CACHE_EXPIRATION);
+  await redisClient.set(cacheKey, JSON.stringify({ ordersCount, orders }), 'EX', CACHE_EXPIRATION);
 
   // Trả về danh sách các đơn hàng với mã trạng thái 200
   res.status(200).json({
@@ -91,19 +91,19 @@ export const getOrderDetails = catchAsyncErrors(async (req, res, next) => {
 
 // Lấy tất cả các đơn hàng - ADMIN  =>  /api/admin/orders
 export const allOrders = catchAsyncErrors(async (req, res, next) => {
-  // Không dùng cache tại truy vấn này vì lý do call back của các online payment
-  // const cacheKey = 'allOrders';
-  // const cachedOrders = await redisClient.get(cacheKey);
+  // Không dùng cache tại truy vấn này vì lý do call back của các online payment -> đã resolve ở các online payment
+  const cacheKey = 'allOrders';
+  const cachedOrders = await redisClient.get(cacheKey);
 
-  // if (cachedOrders) {
-  //   return res.status(200).json(JSON.parse(cachedOrders));
-  // }
+  if (cachedOrders) {
+    return res.status(200).json(JSON.parse(cachedOrders));
+  }
 
   // Tìm tất cả các đơn hàng trong cơ sở dữ liệu
   const orders = await Order.find();
   let ordersCount = orders.length;
 
-  // await redisClient.set(cacheKey, JSON.stringify({ ordersCount, orders }), 'EX', CACHE_EXPIRATION);
+  await redisClient.set(cacheKey, JSON.stringify({ ordersCount, orders }), 'EX', CACHE_EXPIRATION);
 
   // Trả về danh sách các đơn hàng với mã trạng thái 200
   res.status(200).json({

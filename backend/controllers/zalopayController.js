@@ -3,10 +3,17 @@ import Order from "../models/order.js";
 import axios from "axios"; // npm install axios
 import CryptoJS from "crypto-js"; // npm install crypto-js
 import moment from "moment"; // npm install moment
-console.log(process.env.ZALOPAY_APP_ID)
+import redisClient from '../utils/redisClient.js'; // Import Redis client
+console.log(process.env.ZALOPAY_APP_ID);
 
-const FRONTEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.FRONTEND_PUB_URL}` : `${process.env.FRONTEND_PROD_URL}`;
-const BACKEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_PUB_URL}` : `${process.env.BACKEND_PROD_URL}`
+const FRONTEND_URL =
+  process.env.NODE_ENV === "DEVELOPMENT"
+    ? `${process.env.FRONTEND_PUB_URL}`
+    : `${process.env.FRONTEND_PROD_URL}`;
+const BACKEND_URL =
+  process.env.NODE_ENV === "DEVELOPMENT"
+    ? `${process.env.BACKEND_PUB_URL}`
+    : `${process.env.BACKEND_PROD_URL}`;
 //ZALO PAY APP INFO
 const config = {
   app_id: process.env.ZALOPAY_APP_ID,
@@ -15,7 +22,6 @@ const config = {
   endpoint: process.env.ZALOPAY_ENDPOINT,
   callback: `${BACKEND_URL}/api/zalopay/callback/`,
 };
-
 
 // Tạo payment mới trên cổng thanh toán của zalo pay
 export const newZaloPayPayment = catchAsyncErrors(async (req, res, next) => {
@@ -52,16 +58,16 @@ export const newZaloPayPayment = catchAsyncErrors(async (req, res, next) => {
   // console.log("day la item",items);
 
   const order = {
-      app_id: config.app_id,
-      app_trans_id: transID,
-      app_user: items[0].user + " - FakeshionShop",
-      app_time: Date.now(), // miliseconds
-      item: JSON.stringify(items),
-      embed_data: JSON.stringify(embed_data),
-      amount: items[0].totalAmount,
-      description: `FakeshionShop - Thanh toán cho đơn hàng #${transID}`,
-      bank_code: "",
-      callback_url: config.callback,
+    app_id: config.app_id,
+    app_trans_id: transID,
+    app_user: items[0].user + " - FakeshionShop",
+    app_time: Date.now(), // miliseconds
+    item: JSON.stringify(items),
+    embed_data: JSON.stringify(embed_data),
+    amount: items[0].totalAmount,
+    description: `FakeshionShop - Thanh toán cho đơn hàng #${transID}`,
+    bank_code: "",
+    callback_url: config.callback,
   };
 
   console.log(order);
@@ -127,6 +133,10 @@ export const newOrderWithZaloPay = catchAsyncErrors(async (req, res, next) => {
         });
 
         console.log(order);
+
+        // Invalidate cache for myOrders and allOrders
+        await redisClient.del(`myOrders:${items.user}`);
+        await redisClient.del("allOrders");
       } catch (error) {
         console.error("Error parsing JSON data:", error);
       }
