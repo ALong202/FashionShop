@@ -10,7 +10,7 @@ backend/config/config.env.local
 Dockerfile
 build
 frontend/build
-
+docker-run.ps1
 
 
 
