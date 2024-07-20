@@ -91,16 +91,16 @@ const Register = () => {
     //   return;
     // }
     
-    // Dispatch login'
-    const signUpData = {
-      name,
-      email,
-      password,
-      phone,
-      address,
-    };
+    // // Dispatch login'
+    // const signUpData = {
+    //   name,
+    //   email,
+    //   password,
+    //   phone,
+    //   address,
+    // };
 
-    register(signUpData);
+    // register(signUpData);
   
   };
   // Hàm xử lý riêng cho SĐT khi dùng `react-phone-number-input`
