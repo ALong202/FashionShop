@@ -1,7 +1,8 @@
-# Các gói chỉ comment khi deploy
 node_modules
-package-lock.json
 frontend\node_modules
+
+# Các gói chỉ comment khi deploy
+package-lock.json
 frontend\package-lock.json
 build
 
