@@ -100,6 +100,10 @@ const NewReview = () => {
   }, [error, isLoading, isSuccess]);
 
   const submitHandle = () => {
+    if(comment === "" && rating === 0){
+      toast.error("Phải có thông tin để đánh giá");
+      return;
+    }
     const reviewItem = {
       orderItems: review?.orderItems,
       userID: review?.userID,
