@@ -1291,7 +1291,7 @@ nav {
 }
 
 
-@media (max-width: 1170px) {
+@media (max-width: 390px) {
   .search-and-actions {
     flex-direction: column;
   }
