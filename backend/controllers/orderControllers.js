@@ -32,8 +32,17 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
   });
 
   // Invalidate cache for myOrders and allOrders
-  await redisClient.del(`myOrders:${req.user._id}`);
-  await redisClient.del('allOrders');
+  // await redisClient.del(`myOrders:${req.user._id}`);
+  // await redisClient.del('allOrders');
+
+  try {
+    // Xóa toàn bộ cache bằng cách sử dụng sendCommand với FLUSHDB
+    await redisClient.sendCommand(['FLUSHDB']); // Xóa toàn bộ cache
+
+    console.log("Cache flushed successfully");
+  } catch (err) {
+    console.error("Redis error:", err);
+  }
 
   // Trả về thông tin đơn hàng đã tạo với mã trạng thái 200
   res.status(200).json({
@@ -171,6 +180,16 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
   await redisClient.del('allOrders');
   await redisClient.del(`myOrders:${req.user._id}`);
 
+  try {
+    // Xóa toàn bộ cache bằng cách sử dụng sendCommand với FLUSHDB
+    await redisClient.sendCommand(['FLUSHDB']); // Xóa toàn bộ cache
+
+    console.log("Cache flushed successfully");
+  } catch (err) {
+    console.error("Redis error:", err);
+  }
+
+
   res.status(200).json({
     success: true,
     order,
@@ -185,12 +204,56 @@ export const deleteOrder = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Không tìm thấy đơn hàng với ID này", 404));
   }
 
+  // Xóa các review liên quan đến đơn hàng này
+  for (const item of order.orderItems) {
+    const product = await Product.findById(item.product);
+
+    if (product) {
+      const filteredReviews = product.reviews.filter(
+        (review) => 
+          review.order.toString() !== order._id.toString() ||
+          review.selectedVariant.variantID !== item.selectedVariant.variantID
+      );
+
+      // Cập nhật lại số lượng reviews và điểm đánh giá
+      product.numOfReviews = filteredReviews.length;
+      product.ratings = 
+        filteredReviews.reduce((acc, review) => review.rating + acc, 0) / 
+        (filteredReviews.length || 1);
+
+      product.reviews = filteredReviews;
+      await product.save({ validateBeforeSave: false });
+    }
+  }
+
+  // Xóa đơn hàng khỏi cơ sở dữ liệu
   await order.deleteOne();
 
   // Invalidate cache for order details and allOrders
   await redisClient.del(`orderDetails:${req.params.id}`);
   await redisClient.del('allOrders');
   await redisClient.del(`myOrders:${req.user._id}`);
+  try {
+    // Xóa toàn bộ cache bằng cách sử dụng sendCommand với FLUSHDB
+    await redisClient.sendCommand(['FLUSHDB']); // Xóa toàn bộ cache
+
+    console.log("Cache flushed successfully");
+  } catch (err) {
+    console.error("Redis error:", err);
+  }
+
+
+  // // Xóa cache liên quan đến sản phẩm và đánh giá sản phẩm
+  // try {
+  //   await redisClient.del(`productReviews:${productId}`);
+  //   await redisClient.del(productId);
+
+  // } catch (err) {
+  //   console.error("Redis error:", err);
+  // }
+
+
+
 
   res.status(200).json({
     success: true,
