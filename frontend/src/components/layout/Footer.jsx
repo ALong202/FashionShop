@@ -18,8 +18,15 @@ const Footer = () => {
             <div className="footer-column footer-column1 col-12 col-md-3">
               <div className="footer-item">
                 <h4 className="footer-logo">
-                  <a title="FashionShop" href="https://FashionShop.vn/"> 
-                    <img src="../images/FashionShop_logo.svg" alt="" className=""/>
+                  <a title="FashionShop" href="https://modern-lorine-ricardo-uit-e913f641.koyeb.app/"> 
+                  <img
+                    srcset="../images/FashionShop_logo-390w.png 1900w,
+                            ../images/FashionShop_logo.svg 1920w"
+                    sizes="(max-width: 1900px) 100vw, 100vw"
+                    src="../images/FashionShop_logo-390w.png" 
+                    alt="" 
+                    style={{width: '8rem'}}
+                  />
                   </a>
                 </h4>
                 <ul className="footer-links footer-address">
