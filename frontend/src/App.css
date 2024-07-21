@@ -1269,6 +1269,43 @@ nav {
 }
 
 
+@media (max-width: 1170px) {
+  .search-and-actions {
+    flex-direction: column;
+  }
+  .search-and-actions > * {
+    width: 100%; /* Đảm bảo mỗi phần tử con chiếm 100% chiều rộng */
+    margin-bottom: 10px; /* Thêm khoảng cách giữa các phần tử */
+  }
+}
+
+.table {
+  width: 100%;
+  margin: auto;
+  overflow-x: auto
+}
+@media (max-width: 390px) {
+  .table {
+    width: 620px;
+    margin: auto;
+    overflow-x: auto
+  }
+}
+
+.search-input {
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+@media (max-width: 390px) {
+  .search-input {
+    width: auto;
+    flex-grow: 1
+  }
+}
+
+
+
+
 
 /* Reviews */
 
@@ -1687,4 +1724,5 @@ thead {
   border-top: 1px solid #ccc;
   padding-top: 20px;
 }
+
 
