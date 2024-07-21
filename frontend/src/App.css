@@ -345,6 +345,23 @@ nav {
 
 
 
+.btn-form {
+  border-radius: 8px;
+  background-color: #e0e9f0 ;
+  padding: 0.4rem 1.8rem;
+  color: #392a27 ;
+}
+.btn-form:hover {
+  background-color: #bbb; 
+  transform: scale(1.05);
+}
+
+.btn-form:active {
+  background-color: #c4b3ad; 
+  scale: 0.95;
+}
+
+
 #cart {
   /* background-color: #e0e9f0; */
   font-size: 0.9rem;
@@ -969,6 +986,11 @@ nav {
 
 .wrapper form {
   padding: 2.5rem 3rem;
+}
+@media (max-width: 390px){
+  .wrapper form {
+    padding: 0.5rem 0.5rem;
+  }
 }
 
 .wrapper form .btn,
