@@ -524,7 +524,7 @@ export const createProductReview = catchAsyncErrors(async (req, res, next) => {
 
 // Get product reviews  =>  /api/reviews
 export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
-  const { productID, orderID } = req.query;
+  const productID = req.query.id;
 
   try {
     // Kiểm tra trong Redis cache trước
@@ -538,19 +538,14 @@ export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
       });
     }
     // Tìm sản phẩm trong cơ sở dữ liệu bằng ID
-    const product = await Product.findById(productID);
+    const product = await Product.findById(productID).populate("reviews.order").populate("reviews.user");
 
     // Kiểm tra xem sản phẩm có tồn tại không
     if (!product) {
       // Nếu không tìm thấy sản phẩm, trả về lỗi với mã trạng thái 404
       return next(new ErrorHandler("Sản phẩm không tồn tại", 404));
     }
-
-    // Lấy các đánh giá của người dùng liên quan
-    const reviews = product.reviews.filter(
-      (review) => review.order.toString() === orderID
-    );
-
+    const reviews = product.reviews;
     // Lưu đánh giá vào Redis cache với thời gian hết hạn (TTL) là 1 giờ (3600 giây)
     await redisClient.set(cacheKey, JSON.stringify(reviews), "EX", 3600);
 
@@ -558,10 +553,10 @@ export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
       reviews,
     });
-  } catch (err) {
-    console.error("Redis error:", err);
-    return next(new ErrorHandler("Lỗi kết nối Redis", 500));
-  }
+    } catch (err) {
+      console.error("Redis error:", err);
+      return next(new ErrorHandler("Lỗi kết nối Redis", 500));
+    }
 });
 
 //-----------------------------------
