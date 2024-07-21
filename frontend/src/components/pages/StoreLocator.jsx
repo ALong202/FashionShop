@@ -5,7 +5,7 @@ const AboutUs = () => {
   return (
     <div className="post">
       <h1>Hệ thống cửa hàng</h1>
-      <p>FashionShop tự hào là một trong những thương hiệu thời trang lớn và uy tín nhất Việt Nam, với trụ sở chính tại TP.HCM cùng với 3 chi nhánh tại Tiền Giang, Đồng Nai và Lâm Đồng. Chúng tôi cam kết mang đến cho khách hàng những sản phẩm thời trang đa dạng và chất lượng, cùng với dịch vụ chăm sóc khách hàng tận tình và chu đáo.</p>
+      <p>FashionShop tự hào là một trong những thương hiệu thời trang lớn và uy tín nhất Việt Nam, với trụ sở chính tại TP.HCM cùng 3 chi nhánh tại Tiền Giang, Đồng Nai và Lâm Đồng. Chúng tôi cam kết mang đến cho khách hàng những sản phẩm thời trang đa dạng và chất lượng, cùng với dịch vụ chăm sóc khách hàng tận tình và chu đáo.</p>
       <div className="branch">
         {/* <h3>Trụ sở chính</h3>
         <p>Đường Hàn Thuyên, khu phố 6, phường Linh Trung, Thành phố Thủ Đức, Thành phố Hồ Chí Minh</p> */}
