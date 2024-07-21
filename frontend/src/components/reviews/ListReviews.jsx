@@ -11,54 +11,69 @@ const ListReviews = ({ reviews }) => {
         <div className="card text-body col-md-12 col-lg-10">
           <h3 className="mb-0 px-4 mt-4 fw-bold">Đánh giá từ người mua</h3>
 
-          {reviews?.map((review) => (
-            <div className="card-body p-4">
-              <hr className="my-0" />
-              <div className="d-flex flex-start">
-                <img
-                  className="rounded-circle shadow-1-strong me-3 mt-1"
-                  src={
-                    review?.user?.avatar
-                      ? review?.user?.avatar?.url
-                      : "/images/default_avatar.jpg"
-                  }
-                  alt={review?.user?.name}
-                  width="60"
-                  height="60"
-                />
-                <div>
-                  <div className="d-flex align-items-center">
-                    <h6 className="fw-bold mb-0 mt-2 me-2">
-                      {review?.user?.name}
-                    </h6>
-                    <StarRatings
-                      rating={review?.rating}
-                      starRatedColor="#ffb829"
-                      numberOfStars={5}
-                      name="x"
-                      starDimension="1.4em"
-                      starSpacing="1px"
+          {reviews?.length > 0 ? (
+            <>
+              {reviews?.map((review) => (
+                <div className="card-body p-4">
+                  <hr className="my-0" />
+                  <div className="d-flex flex-start">
+                    <img
+                      className="rounded-circle shadow-1-strong me-3 mt-1"
+                      src={
+                        review?.user?.avatar
+                          ? review?.user?.avatar?.url
+                          : "/images/default_avatar.jpg"
+                      }
+                      alt={review?.user?.name}
+                      width="60"
+                      height="60"
                     />
-                  </div>
-                  <p className="mt-1">
-                    Mua hàng ngày:{" "}
-                    {new Date(review?.order?.createdAt).toLocaleDateString("vi-VN")}{" "}
-                    - Loại sản phẩm: {review?.selectedVariant?.color} -{" "}
-                    {review?.selectedVariant?.size}
-                  </p>
-                  <div
-                    className="mt-3"
-                    style={{
-                      textAlign: "justify",
-                      margin: "0",
-                    }}
-                  >
-                    <p>{review?.comment}</p>
+                    <div>
+                      <div className="d-flex align-items-center">
+                        <h6 className="fw-bold mb-0 mt-2 me-2">
+                          {review?.user?.name}
+                        </h6>
+                        <StarRatings
+                          rating={review?.rating}
+                          starRatedColor="#ffb829"
+                          numberOfStars={5}
+                          name="x"
+                          starDimension="1.4em"
+                          starSpacing="1px"
+                        />
+                      </div>
+                      <p className="mt-1">
+                        Mua hàng ngày:{" "}
+                        {new Date(review?.order?.createdAt).toLocaleDateString(
+                          "vi-VN"
+                        )}{" "}
+                        - Loại sản phẩm: {review?.selectedVariant?.color} -{" "}
+                        {review?.selectedVariant?.size}
+                      </p>
+                      <div
+                        className="mt-3"
+                        style={{
+                          textAlign: "justify",
+                          margin: "0",
+                        }}
+                      >
+                        <p>{review?.comment}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
+            </>
+          ) : (
+            <div
+              className="alert alert-warning my-5 text-center mx-5"
+              type="alert"
+            >
+              Chưa có đánh giá cho sản phẩm này, hãy mua hàng để trở thành người
+              đầu tiên ^^!
             </div>
-          ))}
+          )}
+
           <div className="card-body p-4"></div>
           {/* <div className="card-body p-4">
             <hr className="my-0" />

@@ -64,7 +64,7 @@ const Login = () => {
     <div className="row wrapper">
       <div className="col-10 col-lg-5">
         <form
-          className="shadow rounded bg-body"
+          className="shadow rounded bg-body no-bottom-padding"
           onSubmit={submitHandler}
           action="your_submit_url_here"
           method="post"
@@ -108,20 +108,21 @@ const Login = () => {
           <div className="my-3">
             <a href="/register" className="float-end">Chưa có tài khoản?</a>
           </div>
-          <div>
-            <p className="text-left">Hoặc đăng nhập bằng:</p>
-            <div className="button-container">
-              <button className="loginButton google" onClick={handleGoogleLogin}>
-                <img src="../images/google.png" alt="google_icon" className="icon" />
-                Google
-              </button>
-              <button className="loginButton facebook" onClick={handleFacebookLogin}>
-                <img src="../images/facebook.png" alt="facebook_icon" className="icon" />
-                Facebook
-              </button>
-            </div>
-          </div>
         </form>
+
+        <div className="shadow rounded bg-body login-wrapper">
+          <p className="text-left">Hoặc đăng nhập bằng:</p>
+          <div className="button-container">
+            <button className="loginButton google" onClick={handleGoogleLogin}>
+              <img src="../images/google.png" alt="google_icon" className="icon" />
+              Google
+            </button>
+            <button className="loginButton facebook" onClick={handleFacebookLogin}>
+              <img src="../images/facebook.png" alt="facebook_icon" className="icon" />
+              Facebook
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )

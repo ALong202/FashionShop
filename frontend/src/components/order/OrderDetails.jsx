@@ -336,7 +336,9 @@ const OrderDetails = () => {
                                     type="text"
                                     id="form6Example1"
                                     className="form-control"
-                                    value={order?.shippingInfo?.shippingProvince}
+                                    value={
+                                      order?.shippingInfo?.shippingProvince
+                                    }
                                     disabled={true}
                                   />
                                 </div>
@@ -510,6 +512,7 @@ const OrderDetails = () => {
                               </MDBTypography>
 
                               <button
+                                disabled={order?.orderStatus !== "Delivered"}
                                 id="review_btn"
                                 type="button"
                                 className="btn btn-primary mt-4 w-100"

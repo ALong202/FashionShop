@@ -37,18 +37,19 @@ const productSliderSetting = {
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 992,
       settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        initialSlide: 3
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2
       }
     },
     {
       breakpoint: 480,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        dots: false
       }
     }
   ]

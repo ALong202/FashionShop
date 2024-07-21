@@ -6,6 +6,7 @@ import { setIsAuthenticated, setLoading, setUser } from '../features/userSlice';
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
+  keepUnusedDataFor: 1800, // giữ data trong cache 1800s = 30 phút
   tagTypes: ["User", "AdminUsers", "AdminUser"], // tagTypes để xác định loại dữ liệu trả về
   // endpoints để gửi request đến backend
   endpoints: (builder) => ({ 

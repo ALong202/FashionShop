@@ -2,10 +2,16 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors.js";
 import Stripe from "stripe";
 import Order from "../models/order.js";
 import moment from "moment"; // npm install moment
-console.log(process.env.STRIPE_SECRET_KEY)
+console.log(process.env.STRIPE_SECRET_KEY);
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-const FRONTEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.FRONTEND_PUB_URL}` : `${process.env.FRONTEND_PROD_URL}`;
-const BACKEND_URL = process.env.NODE_ENV === 'DEVELOPMENT' ? `${process.env.BACKEND_PUB_URL}` : `${process.env.BACKEND_PROD_URL}`
+const FRONTEND_URL =
+  process.env.NODE_ENV === "DEVELOPMENT"
+    ? `${process.env.FRONTEND_PUB_URL}`
+    : `${process.env.FRONTEND_PROD_URL}`;
+const BACKEND_URL =
+  process.env.NODE_ENV === "DEVELOPMENT"
+    ? `${process.env.BACKEND_PUB_URL}`
+    : `${process.env.BACKEND_PROD_URL}`;
 
 // Tạo payment mới trên cổng thanh toán của stripe
 export const newStripePayment = catchAsyncErrors(async (req, res, next) => {
@@ -160,6 +166,9 @@ export const newOrderWithStripe = catchAsyncErrors(async (req, res, next) => {
         user: session.metadata.user,
       });
 
+      // Invalidate cache for myOrders and allOrders
+      await redisClient.del(`myOrders:${session.metadata.user}`);
+      await redisClient.del("allOrders");
       console.log(order);
 
       console.log("1=========================================");

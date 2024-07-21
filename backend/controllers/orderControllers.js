@@ -52,6 +52,7 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
 
 // Lấy các đơn hàng của người dùng hiện tại  =>  /api/me/orders
 export const myOrders = catchAsyncErrors(async (req, res, next) => {
+  // Không dùng cache tại truy vấn này vì lý do call back của các online payment -> đã resolve ở các online payment
   const cacheKey = `myOrders:${req.user._id}`;
   const cachedOrders = await redisClient.get(cacheKey);
 
@@ -99,6 +100,7 @@ export const getOrderDetails = catchAsyncErrors(async (req, res, next) => {
 
 // Lấy tất cả các đơn hàng - ADMIN  =>  /api/admin/orders
 export const allOrders = catchAsyncErrors(async (req, res, next) => {
+  // Không dùng cache tại truy vấn này vì lý do call back của các online payment -> đã resolve ở các online payment
   const cacheKey = 'allOrders';
   const cachedOrders = await redisClient.get(cacheKey);
 
