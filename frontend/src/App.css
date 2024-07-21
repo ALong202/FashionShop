@@ -378,7 +378,7 @@ nav {
 
 #products_heading, #topRatedProducts {
   margin-top: 1.8rem;
-  width: 95%;
+  width: 92%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
@@ -1242,6 +1242,33 @@ nav {
 .card-font-size {
   font-size: 1.5rem;
 }
+
+/* .sale-chart {
+  width: 95%;
+  margin: auto;
+} */
+
+/* @media only screen and (max-width: 390px) { 
+  .chart-container {
+    min-height: 250px;
+  }
+} */
+
+.custom-btn-height {
+  height: 3rem; 
+  transform: translateY(10px);
+  /* Điều chỉnh độ rộng width rồi canh lề margin */
+  /* width: 95%; */
+  /* margin: auto; */
+}
+@media only screen and (max-width: 390px) { /* Điều chỉnh giá trị này dựa trên kích thước thực tế và tỷ lệ của trình duyệt */
+  .custom-btn-height {
+    width: 95%;
+    margin: auto;
+  }
+}
+
+
 
 /* Reviews */
 

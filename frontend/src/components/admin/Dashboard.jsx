@@ -49,8 +49,10 @@ const Dashboard = () => {
   return (
     <AdminLayout>
       <MetaData title={"Admin Dashboard"} />
-      <div className="d-flex justify-content-start align-items-center">
-        <div className="mb-3 me-4">
+      {/* <div className="d-flex justify-content-start align-items-center" > */}
+      <div className="row mt-3">
+        {/* <div className="mb-3 me-4"> */}
+        <div className="col-12 col-md-auto mb-3">
           <label className="form-label d-block">Từ ngày</label>
           <DatePicker
             dateFormat="dd/MM/yyyy"
@@ -63,7 +65,8 @@ const Dashboard = () => {
             className="form-control"
           />
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3"> */}
+        <div className="col-12 col-md-auto col-md-auto mb-3">
           <label className="form-label d-block">Đến ngày</label>
           <DatePicker
             dateFormat="dd/MM/yyyy"
@@ -78,7 +81,8 @@ const Dashboard = () => {
           />
         </div>
         <button
-          className="btn fetch-btn ms-4 mt-3 px-5"
+          // className="btn fetch-btn ms-4 mt-3 px-5"
+          className="col-12 col-md-auto btn fetch-btn mt-3 px-5 custom-btn-height"
           onClick={submitHandler}
         >
           Lọc
@@ -86,7 +90,7 @@ const Dashboard = () => {
       </div>
 
       <div className="row pr-4 my-5 justify-content-center">
-        <div className="col-xl-4 col-sm-12 mb-3">
+        <div className="col-xl-4 col-md-6 col-sm-12 mb-3">
           <div className="card text-white bg-success o-hidden h-100">
             <div className="card-body">
               <div className="text-center card-font-size">
@@ -105,7 +109,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="col-xl-4 col-sm-12 mb-3">
+        <div className="col-xl-4 col-md-6 col-sm-12 mb-3" >
           <div className="card text-white bg-primary o-hidden h-100">
             <div className="card-body">
               <div className="text-center card-font-size">
