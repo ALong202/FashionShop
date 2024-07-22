@@ -13,10 +13,10 @@ import { useGetAddressDataQuery } from "../../redux/api/addressApi";
 import { useEffect } from "react";
 
 const Header = () => {
-  const { nationalData } = useGetAddressDataQuery();
+  const { data } = useGetAddressDataQuery();
   useEffect(() => {
-    sessionStorage.setItem("nationData", JSON.stringify(nationalData));
-  }, [nationalData]);
+    sessionStorage.setItem("nationData", JSON.stringify(data));
+  }, [data]);
 
   // console.log(data); // Dữ liệu người dùng đăng nhập từ backend
 
