@@ -37,7 +37,14 @@ const Header = () => {
         <div className="col-12 col-md-3 ps-5">
           <div className="navbar-brand">
             <a href="/">
-              <img src="../images/FashionShop_logo.svg" alt="FashionShop Logo" style={{width: '8rem'}}/>
+              <img
+                srcset="../images/FashionShop_logo-390w.png 1900w,
+                        ../images/FashionShop_logo.svg 1920w"
+                sizes="(max-width: 1900px) 100vw, 100vw"
+                src="../images/FashionShop_logo-390w.png" 
+                alt="FashionShop Logo" 
+                style={{width: '8rem'}}
+              />
             </a>
           </div>
         </div>

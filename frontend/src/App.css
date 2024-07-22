@@ -345,6 +345,23 @@ nav {
 
 
 
+.btn-form {
+  border-radius: 8px;
+  background-color: #e0e9f0 ;
+  padding: 0.4rem 1.8rem;
+  color: #392a27 ;
+}
+.btn-form:hover {
+  background-color: #bbb; 
+  transform: scale(1.05);
+}
+
+.btn-form:active {
+  background-color: #c4b3ad; 
+  scale: 0.95;
+}
+
+
 #cart {
   /* background-color: #e0e9f0; */
   font-size: 0.9rem;
@@ -378,7 +395,7 @@ nav {
 
 #products_heading, #topRatedProducts {
   margin-top: 1.8rem;
-  width: 95%;
+  width: 92%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
@@ -970,6 +987,11 @@ nav {
 .wrapper form {
   padding: 2.5rem 3rem;
 }
+@media (max-width: 390px){
+  .wrapper form {
+    padding: 0.5rem 0.5rem;
+  }
+}
 
 .wrapper form .btn,
 .fetch-btn {
@@ -1242,6 +1264,70 @@ nav {
 .card-font-size {
   font-size: 1.5rem;
 }
+
+/* .sale-chart {
+  width: 95%;
+  margin: auto;
+} */
+
+/* @media only screen and (max-width: 390px) { 
+  .chart-container {
+    min-height: 250px;
+  }
+} */
+
+.custom-btn-height {
+  height: 3rem; 
+  transform: translateY(10px);
+  /* Điều chỉnh độ rộng width rồi canh lề margin */
+  /* width: 95%; */
+  /* margin: auto; */
+}
+@media only screen and (max-width: 390px) { /* Điều chỉnh giá trị này dựa trên kích thước thực tế và tỷ lệ của trình duyệt */
+  .custom-btn-height {
+    width: 95%;
+    margin: auto;
+  }
+}
+
+
+@media (max-width: 390px) {
+  .search-and-actions {
+    flex-direction: column;
+  }
+  .search-and-actions > * {
+    width: 100%; /* Đảm bảo mỗi phần tử con chiếm 100% chiều rộng */
+    margin-bottom: 10px; /* Thêm khoảng cách giữa các phần tử */
+  }
+}
+
+.table {
+  width: 100%;
+  margin: auto;
+  overflow-x: auto
+}
+@media (max-width: 390px) {
+  .table {
+    width: 620px;
+    margin: auto;
+    overflow-x: auto
+  }
+}
+
+.search-input {
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+@media (max-width: 390px) {
+  .search-input {
+    width: auto;
+    flex-grow: 1
+  }
+}
+
+
+
+
 
 /* Reviews */
 
@@ -1598,7 +1684,7 @@ thead {
 .google{
   background-color: #df4930;
 }
-.facebook{
+.login-wrapper .facebook{
   background-color: #507cc0;
 }
 .github{
@@ -1661,3 +1747,32 @@ thead {
   padding-top: 20px;
 }
 
+.map-container {
+  position: relative;
+  overflow: hidden;
+  /* width: 100%; */
+  width: 600px;
+  height: 450px;
+  /* padding-top: 75%; */
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 100%;
+  height: 100%; */
+}
+/* Media query cho màn hình có độ rộng từ 768px trở lên (ví dụ: tablet) */
+@media (max-width: 390px) {
+  .map-container {
+    height: 224px;
+  }
+  .map-container {
+    width: 100%;
+  }
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+  }
+}

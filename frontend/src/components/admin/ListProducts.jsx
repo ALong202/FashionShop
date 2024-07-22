@@ -3,7 +3,10 @@ import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
 import { Link } from "react-router-dom";
 import MetaData from "../layout/MetaData";
-import { useDeleteProductMutation, useGetAdminProductsQuery } from "../../redux/api/productsApi";
+import {
+  useDeleteProductMutation,
+  useGetAdminProductsQuery,
+} from "../../redux/api/productsApi";
 import AdminLayout from "../layout/AdminLayout";
 import { AgGridReact } from "ag-grid-react";
 import { AG_GRID_LOCALE_VN } from "@ag-grid-community/locale";
@@ -13,7 +16,10 @@ import * as XLSX from "xlsx";
 const ListProducts = () => {
   const { data, isLoading, error } = useGetAdminProductsQuery();
   const [quickFilterText, setQuickFilterText] = useState(""); // Filter cho table
-  const [deleteProduct, { isLoading: isDeleteLoading, error: deleteError, isSuccess }] = useDeleteProductMutation();
+  const [
+    deleteProduct,
+    { isLoading: isDeleteLoading, error: deleteError, isSuccess },
+  ] = useDeleteProductMutation();
 
   useEffect(() => {
     if (error) {
@@ -31,7 +37,7 @@ const ListProducts = () => {
 
   const deleteProductHandler = (id) => {
     deleteProduct(id);
-  }
+  };
 
   // MDBDataTable
   const setProducts = () => {
@@ -69,7 +75,6 @@ const ListProducts = () => {
           <br />
         </React.Fragment>
       ));
-
 
       products.rows.push({
         id: product?.data.id, // product?._id,
@@ -143,7 +148,7 @@ const ListProducts = () => {
       autoHeight: true,
       cellRenderer: (params) => {
         if (!params.value) {
-          return 'Chưa tạo loại màu/size';
+          return "Chưa tạo loại màu/size";
         }
         return params.value.map((variant, index) => (
           <React.Fragment key={index}>
@@ -206,12 +211,14 @@ const ListProducts = () => {
 
   // Cập nhật định nghĩa cột khi trạng thái autoHeight thay đổi
   useEffect(() => {
-    setColumnDefs(currentDefs => currentDefs.map(col => {
-      if (col.field === 'variantStock') {
-        return { ...col, autoHeight: autoHeight };
-      }
-      return col;
-    }));
+    setColumnDefs((currentDefs) =>
+      currentDefs.map((col) => {
+        if (col.field === "variantStock") {
+          return { ...col, autoHeight: autoHeight };
+        }
+        return col;
+      })
+    );
   }, [autoHeight]);
 
   // Hàm để xử lý việc hiển thị chi tiết sản phẩm
@@ -224,9 +231,13 @@ const ListProducts = () => {
 
   const onExportClick = () => {
     // Chuyển đổi dữ liệu
-    const modifiedData = rowData.map(row => ({
+    const modifiedData = rowData.map((row) => ({
       ...row,
-      variantStock: row.variantStock.map(variant => `${variant.color} / ${variant.size}: ${variant.stock}`).join('; ')
+      variantStock: row.variantStock
+        .map(
+          (variant) => `${variant.color} / ${variant.size}: ${variant.stock}`
+        )
+        .join("; "),
     }));
 
     // Tạo một workbook mới
@@ -251,27 +262,45 @@ const ListProducts = () => {
       <MetaData title={"Danh sách sản phẩm"} />
 
       <div style={{ width: "100%", margin: "auto", overflowX: "auto" }}>
-        <div style={{ width: "1000px", margin: "auto", overflowX: "auto" }}> 
+        {/* <div style={{ width: "1000px", margin: "auto", overflowX: "auto" }}> */}
+        {/* <div style={{ width: "100%", margin: "auto", overflowX: "auto" }}> */}
+        <div className="table">
           <div>
             <h1 class="my-5">{data?.products?.length} Sản phẩm</h1>
           </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-        <input
-          type="text"
-          placeholder="Tìm kiếm..."
-          onChange={(e) => setQuickFilterText(e.target.value)}
-        />
-        <div style={{ display: 'flex', gap: '10px' }}> {/* Sử dụng gap để tạo khoảng cách */}
-          <Button onClick={toggleAutoHeight}>
-            {autoHeight ? "Thu gọn thông tin tồn kho" : "Xem chi tiết tồn kho"}
-          </Button>
-          <Button onClick={onExportClick}>
-            <img src="../images/excel.png" alt="Excel_icon" style={{ width: '20px', height: '20px' }} />
-            {' '}Xuất Excel
-          </Button>
-        </div>
-      </div>
+          <div
+            className="search-and-actions"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "10px",
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Tìm kiếm..."
+              onChange={(e) => setQuickFilterText(e.target.value)}
+              className="search-input"
+            />
+            <div style={{ display: "flex", gap: "10px" }}>
+              {" "}
+              {/* Sử dụng gap để tạo khoảng cách */}
+              <Button onClick={toggleAutoHeight}>
+                {autoHeight
+                  ? "Thu gọn thông tin tồn kho"
+                  : "Xem chi tiết tồn kho"}
+              </Button>
+              <Button onClick={onExportClick}>
+                <img
+                  src="../images/excel.png"
+                  alt="Excel_icon"
+                  style={{ width: "20px", height: "20px" }}
+                />{" "}
+                Xuất Excel
+              </Button>
+            </div>
+          </div>
 
           {/* <MDBDataTable
             data={setProducts()}
@@ -288,12 +317,16 @@ const ListProducts = () => {
             noBottomColumns
           /> */}
 
-          <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
+          <div
+            className="ag-theme-alpine"
+            style={{ height: 600, width: "100%" }}
+          >
             <AgGridReact
               columnDefs={columnDefs}
               rowData={rowData}
               getRowStyle={(params) => ({
-                backgroundColor: params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
+                backgroundColor:
+                  params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
               })}
               domLayout="autoHeight"
               defaultColDef={{

@@ -24,7 +24,6 @@ const ListUsers = () => {
     { isLoading: isDeleteLoading, error: deleteError, isSuccess },
   ] = useDeleteUserMutation();
 
-
   useEffect(() => {
     if (error) {
       toast.error(error?.data?.message);
@@ -136,75 +135,98 @@ const ListUsers = () => {
 
     // Xuất file
     XLSX.writeFile(wb, exportFileName);
-    };
+  };
 
   return (
     <AdminLayout>
       <MetaData title={"All Users"} />
+      <div style={{ width: "100%", margin: "auto", overflowX: "auto" }}>
 
-      <h1 className="my-5">{data?.users?.length} Tài khoản User</h1>
+        <div className="table">
+          <h1 className="my-5">{data?.users?.length} Tài khoản User</h1>
 
-      {/* <MDBDataTable
-        data={setUsers()}
-        infoLabel={["Hiển thị", "đến", "của", "user"]}
-        searchLabel="Tìm kiếm"
-        paginationLabel={["Trước", "Sau"]}
-        entriesLabel="Số user mỗi trang"
-        noRecordsFoundLabel="Không tìm thấy user nào"
-        noDatalabel="Không có user nào"
-        className="px-3 user-list-table"
-        bordered
-        striped
-        hover
-      /> */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-        <input
-          type="text"
-          placeholder="Tìm kiếm..."
-          onChange={(e) => setQuickFilterText(e.target.value)}
-          // style={{ marginBottom: "10px" }}
-        />
-        <Button onClick={onExportClick}>
-          <img src="../images/excel.png" alt="Excel_icon" style={{ width: '20px', height: '20px' }} />
-          {' '} Xuất Excel
-        </Button>
-      </div>
+          
+          <div
+            className="search-and-actions"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "10px",
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Tìm kiếm..."
+              onChange={(e) => setQuickFilterText(e.target.value)}
+              // style={{ marginBottom: "10px" }}
+              className="search-input"
+            />
+            <div style={{ display: "flex" }}>
+              <Button onClick={onExportClick}>
+                <img
+                  src="../images/excel.png"
+                  alt="Excel_icon"
+                  style={{ width: "20px", height: "20px" }}
+                />{" "}
+                Xuất Excel
+              </Button>
+            </div>
+          </div>
 
-      <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
-        <AgGridReact
-          columnDefs={columnDefs}
-          rowData={rowData}
-          getRowStyle={(params) => {
-            return {
-              backgroundColor:
-                params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
-            };
-          }} // Hàng chẵn có màu này, hàng lẻ có màu kia
-          domLayout="autoHeight"
-          defaultColDef={{
-            flex: 1,
-            minWidth: 100,
-          }}
-          pagination={true}
-          paginationPageSize={10}
-          localeText={AG_GRID_LOCALE_VN}
-          quickFilterText={quickFilterText}
-          // localeText={{
-          //   noRowsToShow: 'Không tìm thấy user nào',
-          //   page: 'Trang',
-          //   of: 'của',
-          //   to: 'đến',
-          //   pageSize: 'Số user mỗi trang',
-          //   rowsPerPage: 'Số user mỗi trang',
-          //   firstPage: 'Trang Đầu',
-          //   previousPage: 'Trang Trước',
-          //   nextPage: 'Trang Kế',
-          //   lastPage: 'Trang Cuối',
-          // }}
-        />
+          <div className="ag-theme-alpine" style={{ height: 600, width: "100%" }}>
+            <AgGridReact
+              columnDefs={columnDefs}
+              rowData={rowData}
+              getRowStyle={(params) => {
+                return {
+                  backgroundColor:
+                    params.node.rowIndex % 2 === 0 ? "#f5f5f5" : "#ffffff",
+                };
+              }} // Hàng chẵn có màu này, hàng lẻ có màu kia
+              domLayout="autoHeight"
+              defaultColDef={{
+                flex: 1,
+                minWidth: 100,
+              }}
+              pagination={true}
+              paginationPageSize={10}
+              localeText={AG_GRID_LOCALE_VN}
+              quickFilterText={quickFilterText}
+
+            />
+          </div>
+        </div>
       </div>
     </AdminLayout>
   );
 };
 
 export default ListUsers;
+
+
+{/* <MDBDataTable
+  data={setUsers()}
+  infoLabel={["Hiển thị", "đến", "của", "user"]}
+  searchLabel="Tìm kiếm"
+  paginationLabel={["Trước", "Sau"]}
+  entriesLabel="Số user mỗi trang"
+  noRecordsFoundLabel="Không tìm thấy user nào"
+  noDatalabel="Không có user nào"
+  className="px-3 user-list-table"
+  bordered
+  striped
+  hover
+/> */}
+
+// localeText={{
+//   noRowsToShow: 'Không tìm thấy user nào',
+//   page: 'Trang',
+//   of: 'của',
+//   to: 'đến',
+//   pageSize: 'Số user mỗi trang',
+//   rowsPerPage: 'Số user mỗi trang',
+//   firstPage: 'Trang Đầu',
+//   previousPage: 'Trang Trước',
+//   nextPage: 'Trang Kế',
+//   lastPage: 'Trang Cuối',
+// }}

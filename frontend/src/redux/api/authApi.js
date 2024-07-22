@@ -10,8 +10,8 @@ import { userApi } from './userApi';
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
-  // giữ data trong cache 1 ngày: https://redux-toolkit.js.org/rtk-query/usage/cache-behavior
-  keepUnusedDataFor: 86400,
+  // giữ data trong cache default 60s: https://redux-toolkit.js.org/rtk-query/usage/cache-behavior
+  keepUnusedDataFor: 60,
   // builder to access the query function (GET), mutations (POST, PUT, PATCH, DELETE), send requests
   // endpoints để gửi request đến backend
   endpoints: (builder) => ({ 

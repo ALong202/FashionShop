@@ -28,6 +28,7 @@ ChartJS.register(
 export default function SalesChart({ salesData }) {
   const options = {
     responsive: true,
+    // maintainAspectRatio: false, // Tắt cố định tỉ lệ biểu đồ để CSS
     plugins: {
       legend: {
         position: "top",
@@ -78,5 +79,10 @@ export default function SalesChart({ salesData }) {
     ],
   };
 
-  return <Line options={options} data={data} />;
+  return (
+    <Line options={options} data={data} />
+    // <div className="chart-container">
+      
+    // </div>
+  )
 }

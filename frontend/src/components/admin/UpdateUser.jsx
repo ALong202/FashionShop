@@ -63,11 +63,11 @@ const UpdateUser = () => {
       <div className="row wrapper">
         <div className="col-10 col-lg-8">
           <form className="shadow-lg" onSubmit={submitHandler}>
-            <h2 className="mb-4">Update User</h2>
+            <h2 className="mb-4">Cập nhật tài khoản</h2>
 
             <div className="mb-3">
               <label htmlFor="name_field" className="form-label">
-                Name
+                Họ tên
               </label>
               <input
                 type="name"
@@ -95,7 +95,7 @@ const UpdateUser = () => {
 
             <div className="mb-3">
               <label htmlFor="phone_field" className="form-label">
-                Phone
+                Số điện thoại
               </label>
               <PhoneInput 
                 international
@@ -139,7 +139,7 @@ const UpdateUser = () => {
             </div>
 
             <button type="submit" className="btn update-btn w-100 py-2">
-              Update
+              Cập nhật
             </button>
           </form>
         </div>
