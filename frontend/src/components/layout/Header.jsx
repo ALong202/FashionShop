@@ -9,8 +9,14 @@ import MetaData from "./MetaData";
 import Search from "./Search";
 import { useGetMeQuery } from "../../redux/api/userApi";
 import { useLazyLogoutQuery} from "../../redux/api/authApi";
+import { useGetAddressDataQuery } from "../../redux/api/addressApi";
+import { useEffect } from "react";
 
 const Header = () => {
+  const { nationalData } = useGetAddressDataQuery();
+  useEffect(() => {
+    sessionStorage.setItem("nationData", JSON.stringify(nationalData));
+  }, [nationalData]);
 
   // console.log(data); // Dữ liệu người dùng đăng nhập từ backend
 
