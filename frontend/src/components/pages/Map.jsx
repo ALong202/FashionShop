@@ -8,15 +8,17 @@ const Map = ({ address, title }) => {
   return (
     <div>
       <h5>{title}</h5>
-      <iframe
-        width="600"
-        height="450"
-        style={{ border: 0 }}
-        loading="lazy"
-        allowFullScreen
-        src={mapSrc}
-        title={title}
-      ></iframe>
+      <div className="map-container">
+        <iframe
+          width="600"
+          height="450"
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+          src={mapSrc}
+          title={title}
+        ></iframe>
+      </div>
       <p>{address}</p>
     </div>
   );
