@@ -1776,3 +1776,32 @@ thead {
     height: 100%;
   }
 }
+
+
+.arrow-button {
+  background-color: #c4b3ad;
+  color: white; 
+  padding: 10px; /* Khoảng cách padding */
+  border: none; /* Không viền */
+  cursor: pointer; /* Con trỏ chuột */
+  font-size: 16px; /* Kích thước font */
+}
+.arrow-button:hover {
+  background-color: #69544a;
+  color: white;
+}
+.arrow-button:active {
+  background-color: #e0e9f0;
+  color: #392a27;
+}
+
+.arrow-button::before {
+  content: "";
+  display: inline-block;
+  margin-right: 8px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  transform: rotate(-45deg); /* Xoay để tạo hình mũi tên */
+}

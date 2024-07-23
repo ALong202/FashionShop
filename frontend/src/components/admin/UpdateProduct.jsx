@@ -147,7 +147,7 @@ const UpdateProduct = () => {
         <div className="col-10 col-lg-10 mt-5 mt-lg-0">
           <div>
             <button 
-              className="btn btn-primary mt-3"
+              className="btn mt-3 arrow-button"
               onClick={handleBack}
             >
               Quay lại
