@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loader from "../layout/Loader";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import {
   useDeleteProductMutation,
@@ -21,6 +21,25 @@ const ListProducts = () => {
     { isLoading: isDeleteLoading, error: deleteError, isSuccess },
   ] = useDeleteProductMutation();
 
+  const navigate = useNavigate();
+  const location = useLocation(); // Search info
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const updatedProductId = queryParams.get('updatedProductId');
+    if (updatedProductId) {
+      // Thiết lập filter cho AgGrid dựa trên updatedProductId
+      setQuickFilterText(updatedProductId);
+      // Xóa updatedProductId khỏi URL
+      queryParams.delete('updatedProductId');
+      navigate(`?${queryParams.toString()}`, { replace: true });
+    }
+  }, [location, navigate]);
+
+  // Hàm xử lý thay đổi của input filter
+  const handleFilterChange = (event) => {
+    setQuickFilterText(event.target.value);
+  };
+
   useEffect(() => {
     if (error) {
       toast.error(error?.data?.message);
@@ -37,81 +56,6 @@ const ListProducts = () => {
 
   const deleteProductHandler = (id) => {
     deleteProduct(id);
-  };
-
-  // MDBDataTable
-  const setProducts = () => {
-    const products = {
-      columns: [
-        {
-          label: "Mã sản phẩm",
-          field: "id",
-          sort: "asc",
-        },
-        {
-          label: "Tên sản phẩm",
-          field: "name",
-          sort: "asc",
-        },
-        {
-          label: "Tồn kho",
-          field: "variantStock",
-          sort: "asc",
-        },
-        {
-          label: "Hành động",
-          field: "actions",
-          sort: "asc",
-        },
-      ],
-
-      rows: [],
-    };
-
-    data?.products?.forEach((product) => {
-      const variantDescriptions = product.variants.map((variant, index) => (
-        <React.Fragment key={index}>
-          {`${variant.color} / ${variant.size}: ${variant.stock}`}
-          <br />
-        </React.Fragment>
-      ));
-
-      products.rows.push({
-        id: product?.data.id, // product?._id,
-        name: `${product?.name}`, // rút gọn tên với `${product?.name?.substring(0,20)}...`
-        // stock: product?.stock,
-        variantStock: variantDescriptions,
-        actions: (
-          <>
-            <Link
-              to={`/admin/products/${product?.data.id}`}
-              className="btn btn-outline-primary"
-              title="Chỉnh sửa sản phẩm"
-            >
-              <i className="fa fa-pencil"></i>
-            </Link>
-            <Link
-              to={`/admin/products/${product?._id}/upload_images`}
-              className="btn btn-outline-success ms-2"
-              title="Cập nhật hình ảnh sản phẩm"
-            >
-              <i className="fa fa-image"></i>
-            </Link>
-            <button
-              to={`/invoice/orders/${product?._id}`}
-              className="btn btn-outline-danger ms-2"
-              onClick={() => deleteProductHandler(product?._id)}
-              disabled={isDeleteLoading}
-              title="Xoá sản phẩm"
-            >
-              <i className="fa fa-trash"></i>
-            </button>
-          </>
-        ),
-      });
-    });
-
-    return products;
   };
 
   // AgGrid
@@ -146,17 +90,26 @@ const ListProducts = () => {
       filter: true,
       resizable: true,
       autoHeight: true,
+      valueGetter: (params) => {
+        if (!params.data.variantStock) {
+          return "Chưa tạo loại màu/size";
+        }
+        return params.data.variantStock
+          .map((variant) => `${variant.color} / ${variant.size}: ${variant.stock}`)
+          .join(", ");
+      }, // Giá trị dùng để tìm kiếm
       cellRenderer: (params) => {
         if (!params.value) {
           return "Chưa tạo loại màu/size";
         }
-        return params.value.map((variant, index) => (
+        console.log(params.value);
+        return params.value.split(", ").map((variant, index) => (
           <React.Fragment key={index}>
-            {`${variant.color} / ${variant.size}: ${variant.stock}`}
+            {variant}
             <br />
           </React.Fragment>
         ));
-      },
+      }, // Hiển thị giá trị từ valueGetter
     },
     {
       headerName: "Hành động",
@@ -280,6 +233,7 @@ const ListProducts = () => {
             <input
               type="text"
               placeholder="Tìm kiếm..."
+              value={quickFilterText}
               onChange={(e) => setQuickFilterText(e.target.value)}
               className="search-input"
             />
@@ -346,3 +300,79 @@ const ListProducts = () => {
 };
 
 export default ListProducts;
+
+
+// // MDBDataTable
+// const setProducts = () => {
+//   const products = {
+//     columns: [
+//       {
+//         label: "Mã sản phẩm",
+//         field: "id",
+//         sort: "asc",
+//       },
+//       {
+//         label: "Tên sản phẩm",
+//         field: "name",
+//         sort: "asc",
+//       },
+//       {
+//         label: "Tồn kho",
+//         field: "variantStock",
+//         sort: "asc",
+//       },
+//       {
+//         label: "Hành động",
+//         field: "actions",
+//         sort: "asc",
+//       },
+//     ],
+
+//     rows: [],
+//   };
+
+//   data?.products?.forEach((product) => {
+//     const variantDescriptions = product.variants.map((variant, index) => (
+//       <React.Fragment key={index}>
+//         {`${variant.color} / ${variant.size}: ${variant.stock}`}
+//         <br />
+//       </React.Fragment>
+//     ));
+
+//     products.rows.push({
+//       id: product?.data.id, // product?._id,
+//       name: `${product?.name}`, // rút gọn tên với `${product?.name?.substring(0,20)}...`
+//       // stock: product?.stock,
+//       variantStock: variantDescriptions,
+//       actions: (
+//         <>
+//           <Link
+//             to={`/admin/products/${product?.data.id}`}
+//             className="btn btn-outline-primary"
+//             title="Chỉnh sửa sản phẩm"
+//           >
+//             <i className="fa fa-pencil"></i>
+//           </Link>
+//           <Link
+//             to={`/admin/products/${product?._id}/upload_images`}
+//             className="btn btn-outline-success ms-2"
+//             title="Cập nhật hình ảnh sản phẩm"
+//           >
+//             <i className="fa fa-image"></i>
+//           </Link>
+//           <button
+//             to={`/invoice/orders/${product?._id}`}
+//             className="btn btn-outline-danger ms-2"
+//             onClick={() => deleteProductHandler(product?._id)}
+//             disabled={isDeleteLoading}
+//             title="Xoá sản phẩm"
+//           >
+//             <i className="fa fa-trash"></i>
+//           </button>
+//         </>
+//       ),
+//     });
+//   });
+
+//   return products;
+// };
