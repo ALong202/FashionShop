@@ -156,7 +156,8 @@ const UpdateProduct = () => {
           <form className="shadow rounded bg-body" onSubmit={submitHandler}>
             <h2 className="mb-4">Câp nhật Sản phẩm</h2>
             <div className="row">
-              <div className="mb-3 col-3">
+              {/* <div className="mb-3 col-3"> */}
+              <div className="mb-3 col-12 col-md-3">
                 <label htmlFor="productID_field" className="form-label">
                   Mã ID
                 </label>
@@ -169,7 +170,8 @@ const UpdateProduct = () => {
                   onChange={onChange}
                 />
               </div>
-              <div className="mb-3 col-9">
+              {/* <div className="mb-3 col-9"> */}
+              <div className="mb-3 col-12 col-md-9">
                 <label htmlFor="name_field" className="form-label">
                   {" "}
                   Tên{" "}
@@ -231,7 +233,7 @@ const UpdateProduct = () => {
               </div>
             </div>
             <div className="row">
-              <div className="mb-3 col">
+              <div className="mb-3 col-12 col-md-4">
                 <label htmlFor="category_field" className="form-label">
                   {" "}
                   Danh mục{" "}
@@ -253,7 +255,7 @@ const UpdateProduct = () => {
               </div>
 
               {/* SubCategory Selection */}
-              <div className="mb-3 col">
+              <div className="mb-3 col-12 col-md-4">
                 <label htmlFor="subCategory_field" className="form-label">
                   Danh mục phụ L2
                 </label>
@@ -276,7 +278,7 @@ const UpdateProduct = () => {
               </div>
 
               {/*  SubSubCategory Selection */}
-              <div className="mb-3 col">
+              <div className="mb-3 col-12 col-md-4">
                 <label htmlFor="subSubCategory_field" className="form-label">
                   Danh mục phụ L3
                 </label>
@@ -304,7 +306,7 @@ const UpdateProduct = () => {
             {/* Variants form fields */}
             {product.variants.map((variant, index) => (
               <div key={index} className="row align-items-end">
-                <div className="mb-3 col">
+                <div className="mb-3 col-8 col-md-3">
                   <label
                     htmlFor={`color_field_${index}`}
                     className="form-label"
@@ -320,7 +322,7 @@ const UpdateProduct = () => {
                     onChange={(e) => onChange(e, index)}
                     title="Các màu sắc được chấp nhận: Trắng, Đen, Đỏ, Xanh, Vàng, Hồng, Cam, Xám, Nâu, Sọc, Họa tiết"
                   >
-                    <option value="">Chọn màu</option>
+                    <option value="">Trống</option>
                     {PRODUCT_COLORS.map((color) => (
                       <option key={color} value={color}>
                         {color}
@@ -328,7 +330,7 @@ const UpdateProduct = () => {
                     ))}
                   </select>
                 </div>
-                <div className="mb-3 col">
+                <div className="mb-3 col-4 col-md-3">
                   <label htmlFor={`size_field_${index}`} className="form-label">
                     Size
                   </label>
@@ -341,7 +343,7 @@ const UpdateProduct = () => {
                     onChange={(e) => onChange(e, index)}
                     title="Các kích cỡ được chấp nhận: S, M, L, F"
                   >
-                    <option value="">Chọn kích cỡ</option>
+                    <option value="">Trống</option>
                     {PRODUCT_SIZES.map((size) => (
                       <option key={size} value={size}>
                         {size}
