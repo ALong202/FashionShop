@@ -18,6 +18,7 @@ import {
 const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
+  console.log(params); // productID
 
   const [product, setProduct] = useState({
     productID: "",
@@ -135,11 +136,23 @@ const UpdateProduct = () => {
     updateProduct({ id: params?.id, body: product });
   };
 
+  const handleBack = () => {
+    navigate(`/admin/products?updatedProductId=${productID}`);
+  };
+
   return (
     <AdminLayout>
       <MetaData title={"Cập nhật sản phẩm"} />
       <div className="row wrapper">
         <div className="col-10 col-lg-10 mt-5 mt-lg-0">
+          <div>
+            <button 
+              className="btn btn-primary mt-3"
+              onClick={handleBack}
+            >
+              Quay lại
+            </button>
+          </div>
           <form className="shadow rounded bg-body" onSubmit={submitHandler}>
             <h2 className="mb-4">Câp nhật Sản phẩm</h2>
             <div className="row">
@@ -355,7 +368,7 @@ const UpdateProduct = () => {
                 <div className="mb-3 col-auto">
                   <button
                     type="button"
-                    className="btn btn-danger"
+                    className="btn-form"
                     onClick={() => removeVariant(index)}
                   >
                     Xoá
@@ -365,7 +378,7 @@ const UpdateProduct = () => {
             ))}
             <button
               type="button"
-              className="btn btn-primary mb-3"
+              className="btn-form mb-3"
               onClick={addVariant}
             >
               Thêm loại lưu kho
