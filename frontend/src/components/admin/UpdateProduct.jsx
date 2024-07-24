@@ -18,7 +18,7 @@ import {
 const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params); // productID
+  console.log(params);
 
   const [product, setProduct] = useState({
     productID: "",
@@ -137,7 +137,7 @@ const UpdateProduct = () => {
   };
 
   const handleBack = () => {
-    navigate(`/admin/products?updatedProductId=${productID}`);
+    navigate(`/admin/products?productId=${productID}`);
   };
 
   return (

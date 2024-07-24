@@ -25,12 +25,12 @@ const ListProducts = () => {
   const location = useLocation(); // Search info
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const updatedProductId = queryParams.get('updatedProductId');
-    if (updatedProductId) {
-      // Thiết lập filter cho AgGrid dựa trên updatedProductId
-      setQuickFilterText(updatedProductId);
-      // Xóa updatedProductId khỏi URL
-      queryParams.delete('updatedProductId');
+    const filteredProductId = queryParams.get('productId');
+    if (filteredProductId) {
+      // Thiết lập filter cho AgGrid dựa trên productId
+      setQuickFilterText(filteredProductId);
+      // Xóa productId khỏi URL
+      queryParams.delete('productId');
       navigate(`?${queryParams.toString()}`, { replace: true });
     }
   }, [location, navigate]);
@@ -55,7 +55,10 @@ const ListProducts = () => {
   }, [error, deleteError, isSuccess]);
 
   const deleteProductHandler = (id) => {
-    deleteProduct(id);
+    const confirmed = window.confirm("Xác nhận muốn xoá?");
+    if (confirmed) {
+      deleteProduct(id);
+    }
   };
 
   // AgGrid
@@ -75,6 +78,14 @@ const ListProducts = () => {
       sortable: true,
       filter: true,
       resizable: true,
+    },
+    {
+      headerName: "Giá",
+      field: "price",
+      sortable: true,
+      filter: true,
+      resizable: true,
+      hide: true,
     },
     {
       headerName: "Đã bán",
@@ -102,7 +113,7 @@ const ListProducts = () => {
         if (!params.value) {
           return "Chưa tạo loại màu/size";
         }
-        console.log(params.value);
+        // console.log(params.value);
         return params.value.split(", ").map((variant, index) => (
           <React.Fragment key={index}>
             {variant}
@@ -148,6 +159,7 @@ const ListProducts = () => {
     id: product?._id,
     productID: product?.productID,
     name: product?.name,
+    price: product?.price,
     sellQty: product?.sellQty,
     variantStock: product?.variants.map((variant) => ({
       color: variant.color,
@@ -256,20 +268,7 @@ const ListProducts = () => {
             </div>
           </div>
 
-          {/* <MDBDataTable
-            data={setProducts()}
-            infoLabel={["Hiển thị", "đến", "của", "sản phẩm"]}
-            searchLabel="Tìm kiếm"
-            paginationLabel={["Trước", "Sau"]}
-            entriesLabel="Số sản phẩm mỗi trang"
-            noRecordsFoundLabel="Không tìm thấy sản phẩm nào"
-            noDatalabel="Không có sản phẩm nào"
-            className="px-3 product-list-table"
-            bordered
-            striped
-            hover
-            noBottomColumns
-          /> */}
+
 
           <div
             className="ag-theme-alpine"
@@ -376,3 +375,19 @@ export default ListProducts;
 
 //   return products;
 // };
+
+
+/* <MDBDataTable
+  data={setProducts()}
+  infoLabel={["Hiển thị", "đến", "của", "sản phẩm"]}
+  searchLabel="Tìm kiếm"
+  paginationLabel={["Trước", "Sau"]}
+  entriesLabel="Số sản phẩm mỗi trang"
+  noRecordsFoundLabel="Không tìm thấy sản phẩm nào"
+  noDatalabel="Không có sản phẩm nào"
+  className="px-3 product-list-table"
+  bordered
+  striped
+  hover
+  noBottomColumns
+/> */

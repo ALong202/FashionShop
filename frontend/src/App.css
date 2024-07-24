@@ -1249,7 +1249,7 @@ nav {
 .arrow-button {
   background-color: #c4b3ad;
   color: white; 
-  padding: 10px; /* Khoảng cách padding */
+  padding: 8px; /* Khoảng cách padding */
   border: none; /* Không viền */
   cursor: pointer; /* Con trỏ chuột */
   font-size: 16px; /* Kích thước font */
@@ -1272,6 +1272,12 @@ nav {
   border-top: 2px solid white;
   border-left: 2px solid white;
   transform: rotate(-45deg); /* Xoay để tạo hình mũi tên */
+}
+.arrow-button:hover::before {
+  width: 12px; 
+  height: 12px; 
+  border-top: 3px solid white; 
+  border-left: 3px solid white; 
 }
 
 
