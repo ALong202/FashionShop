@@ -30,6 +30,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   dotenv.config({ path: ".env.production" });
 }
 // console.log(process.env)
+console.log("GOOGLE_CLIENT_ID", process.env.GOOGLE_CLIENT_ID);
 passport.use(
   new GoogleStrategy(
     {

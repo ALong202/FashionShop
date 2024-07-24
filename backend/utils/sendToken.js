@@ -37,7 +37,7 @@ export default (user, statusCode, res, loginType = 'local') => {
   //   res.cookie("token", token, options);
 
   //   // Chuyển hướng người dùng đến localhost:3000 để cập nhật hồ sơ
-  //   // res.status(statusCode).redirect('https://modern-lorine-ricardo-uit-e913f641.koyeb.app');
+  //   // res.status(statusCode).redirect('https://cuddly-dulcinea-ptnam-832ab9ec.koyeb.app/');
     
   // } else if (loginType === 'facebook'){
   //   res.cookie("token", token, options);

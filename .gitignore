@@ -2,10 +2,10 @@ node_modules
 frontend\node_modules
 
 # Các gói chỉ comment khi deploy
-package-lock.json
-frontend\package-lock.json
-build
-frontend/build
+# package-lock.json
+# frontend\package-lock.json
+# build
+# frontend/build
 
 # Không để trong script của package.json để tránh lỗi khi deploy:
 # "build": "babel backend -d build --copy-files",

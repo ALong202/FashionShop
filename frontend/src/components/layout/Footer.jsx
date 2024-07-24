@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="footer-column footer-column1 col-12 col-md-3">
               <div className="footer-item">
                 <h4 className="footer-logo">
-                  <a title="FashionShop" href="https://modern-lorine-ricardo-uit-e913f641.koyeb.app/"> 
+                  <a title="FashionShop" href="https://cuddly-dulcinea-ptnam-832ab9ec.koyeb.app//"> 
                   <img
                     srcset="../images/FashionShop_logo-390w.png 1900w,
                             ../images/FashionShop_logo.svg 1920w"
