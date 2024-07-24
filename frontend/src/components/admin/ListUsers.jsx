@@ -190,6 +190,7 @@ const ListUsers = () => {
               }}
               pagination={true}
               paginationPageSize={10}
+              paginationPageSizeSelector={[10, 20, 50, 100]}
               localeText={AG_GRID_LOCALE_VN}
               quickFilterText={quickFilterText}
 
