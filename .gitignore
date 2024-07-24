@@ -5,6 +5,7 @@ frontend\node_modules
 package-lock.json
 frontend\package-lock.json
 build
+frontend/build
 
 # Không để trong script của package.json để tránh lỗi khi deploy:
 # "build": "babel backend -d build --copy-files",
@@ -14,7 +15,7 @@ backend/config/config.env.local
 .env.docker
 .dockerignore
 Dockerfile
-frontend/build
+
 docker-run.ps1
 
 

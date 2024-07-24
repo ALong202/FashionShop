@@ -8,7 +8,7 @@ import {
   setSelectedCartItem,
 } from "../../redux/features/cartSlice";
 import { toast } from "react-toastify";
-import { useGetAddressDataQuery } from "../../redux/api/addressApi";
+// import { useGetAddressDataQuery } from "../../redux/api/addressApi";
 
 import {
   MDBCard,
@@ -28,7 +28,7 @@ import CheckoutSteps from "./CheckoutSteps";
 // import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Cart = () => {
-  const { data } = useGetAddressDataQuery();
+  // const { data } = useGetAddressDataQuery();
 
   const dispatch = useDispatch();
 
@@ -153,7 +153,7 @@ const Cart = () => {
       );
       return;
     }
-    sessionStorage.setItem("nationData", JSON.stringify(data));
+    // sessionStorage.setItem("nationData", JSON.stringify(data));
     navigate("/shipping");
   };
 

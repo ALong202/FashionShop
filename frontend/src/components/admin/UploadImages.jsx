@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import AdminLayout from "../layout/AdminLayout";
 import { toast } from "react-toastify";
 import MetaData from "../layout/MetaData";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import {
   useDeleteProductImageMutation,
   useGetProductDetailsQuery,
@@ -12,10 +12,12 @@ import {
 const UploadImages = () => {
   const fileInputRef = useRef(null); // tham chiếu đến input file
   const params = useParams();
+  const navigate = useNavigate();
 
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
+  const [productId, setProductId] = useState(null);
 
   const [uploadProductImages, { isLoading, error, isSuccess }] =
     useUploadProductImagesMutation();
@@ -31,6 +33,7 @@ const UploadImages = () => {
   useEffect(() => {
     if (data?.product) {
       setUploadedImages(data?.product?.images);
+      setProductId(data?.product?.productID);
     }
 
     if (error) {
@@ -97,11 +100,21 @@ const UploadImages = () => {
     deleteProductImage({ id: params?.id, body: { imgId } });
   };
 
+  const handleBack = () => {
+    navigate(`/admin/products?productId=${productId}`);
+  }
+
   return (
     <AdminLayout>
       <MetaData title={"Cập nhật hình ảnh sản phẩm"} />
       <div className="row wrapper">
         <div className="col-10 col-lg-8 mt-5 mt-lg-0">
+          <button
+            className="btn mt-3 mb-1 arrow-button"
+            onClick={handleBack}
+          >
+            Quay lại
+          </button>
           <form
             className="shadow rounded bg-body"
             enctype="multipart/form-data"
